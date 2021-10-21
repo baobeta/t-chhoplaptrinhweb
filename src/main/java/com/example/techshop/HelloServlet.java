@@ -1,5 +1,6 @@
 package com.example.techshop;
 
+import com.example.techshop.dao.repository.CartItemRepo;
 import com.example.techshop.entity.RoleEntity;
 import java.io.*;
 import javax.servlet.ServletException;
@@ -12,5 +13,10 @@ import org.hibernate.Transaction;
 @WebServlet("/test")
 public class HelloServlet extends HttpServlet {
 
+  CartItemRepo cartItemRepo = new CartItemRepo();
 
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+  }
 }

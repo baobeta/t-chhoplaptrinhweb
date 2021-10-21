@@ -9,36 +9,27 @@ import java.util.List;
 
 @Entity
 @Table(name = "product")
+@Getter
+@Setter
 public class ProductEntity {
-    @Getter
-    @Setter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     public int productId;
 
-    @Getter
-    @Setter
     @Column(name = "description")
     public String description;
 
-    @Getter
-    @Setter
     @Column(name = "name")
     public String name;
 
-    @Getter
-    @Setter
     @Column(name = "price")
     public Integer price;
 
-    @Getter
-    @Setter
     @Column(name = "quantity")
     public Integer quantity;
 
-    @Getter
-    @Setter
     @Column(name = "photo")
     public String photo;
 
@@ -56,11 +47,11 @@ public class ProductEntity {
     @Setter
     @ManyToOne
     @JoinColumn(name = "category_id")
-    public ProductCategoryEntity productCategoryEntity;
+    public CategoryEntity productCategoryEntity;
 
     @Getter
     @Setter
     @ManyToOne
     @JoinColumn(name = "brand_id")
-    public ProductBrandEntity productBrandEntity;
+    public BrandEntity productBrandEntity;
 }

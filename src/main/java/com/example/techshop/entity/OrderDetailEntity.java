@@ -8,22 +8,18 @@ import java.util.List;
 
 @Entity
 @Table(name = "order_details")
+@Getter
+@Setter
 public class OrderDetailEntity {
 
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_details_id")
     public int orderDetailsId;
 
-    @Getter
-    @Setter
     @Column(name = "total")
     public Long total;
 
-    @Getter
-    @Setter
     @Column(name = "ispaid")
     public Boolean ispaid;
 
