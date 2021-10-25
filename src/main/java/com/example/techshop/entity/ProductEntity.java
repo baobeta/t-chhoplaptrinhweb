@@ -6,52 +6,46 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import lombok.ToString;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 @Getter
 @Setter
+@ToString
 public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    public int productId;
+    private int productId;
 
     @Column(name = "description")
-    public String description;
+    private String description;
 
     @Column(name = "name")
-    public String name;
+    private String name;
 
     @Column(name = "price")
-    public Integer price;
+    private Integer price;
 
     @Column(name = "quantity")
-    public Integer quantity;
+    private Integer quantity;
 
     @Column(name = "photo")
-    public String photo;
+    private String photo;
 
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "productEntity", cascade = CascadeType.ALL)
-    public List<CartItemEntity> cartItemEntityList;
+    private List<CartItemEntity> cartItemEntityList;
 
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "productEntity", cascade = CascadeType.ALL)
-    public List<OrderItemEntity> orderItemEntityList;
+    private List<OrderItemEntity> orderItemEntityList;
 
-    @Getter
-    @Setter
     @ManyToOne
     @JoinColumn(name = "category_id")
-    public CategoryEntity productCategoryEntity;
+    private CategoryEntity categoryEntity;
 
-    @Getter
-    @Setter
     @ManyToOne
     @JoinColumn(name = "brand_id")
-    public BrandEntity productBrandEntity;
+    private BrandEntity brandEntity;
 }

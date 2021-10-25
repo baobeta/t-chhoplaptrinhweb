@@ -4,13 +4,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import lombok.ToString;
 
 @Entity
 @Table(name ="users")
 @Getter
 @Setter
+@ToString
 public class UserEntity {
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 

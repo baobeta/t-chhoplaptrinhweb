@@ -60,6 +60,13 @@ public class STRepoUtil {
     return orderDetailRepo;
   }
 
+  public static OrderItemRepo getOrderItemRepo(){
+    if(orderItemRepo==null){
+      orderItemRepo = new OrderItemRepo();
+    }
+    return orderItemRepo;
+  }
+
   public static ProductRepo getProductRepo(){
     if(productRepo==null){
       productRepo = new ProductRepo();
@@ -87,10 +94,5 @@ public class STRepoUtil {
     }
     return userRepo;
   }
-
-
-
-
-
 
 }

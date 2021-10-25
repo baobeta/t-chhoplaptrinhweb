@@ -5,34 +5,35 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import lombok.ToString;
 
 @Entity
 @Table(name = "order_details")
 @Getter
 @Setter
+@ToString
 public class OrderDetailEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_details_id")
-    public int orderDetailsId;
+    @Column(name = "order_detail_id")
+    private int orderDetailsId;
 
     @Column(name = "total")
-    public Long total;
+    private Long total;
 
     @Column(name = "ispaid")
-    public Boolean ispaid;
-
+    private Boolean ispaid;
 
     @OneToMany(mappedBy = "orderDetailEntity", cascade = CascadeType.ALL)
-    public List<OrderItemEntity> orderItemEntityList;
+    private List<OrderItemEntity> orderItemEntityList;
 
     @ManyToOne
     @JoinColumn(name = "seller")
-    public UserEntity userEntity;
+    private UserEntity userEntity;
 
     @ManyToOne
     @JoinColumn(name = "cus_id")
-    public CustomerEntity customerEntity;
+    private CustomerEntity customerEntity;
 
 }

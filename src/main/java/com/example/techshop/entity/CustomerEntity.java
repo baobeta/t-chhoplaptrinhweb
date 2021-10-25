@@ -6,12 +6,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import lombok.ToString;
 
 
 @Entity
 @Table(name = "customers")
 @Getter
 @Setter
+@ToString
 public class CustomerEntity {
 
     @Id
@@ -36,9 +38,5 @@ public class CustomerEntity {
 
     @OneToMany(mappedBy = "customerEntity", cascade = CascadeType.ALL)
     public List<OrderDetailEntity> orderDetailEntityList;
-
-    @OneToOne // Đánh dấu có mỗi quan hệ 1-1 với Person ở phía dưới
-    @JoinColumn(name = "cus_id") // Liên kết với nhau qua khóa ngoại users_id
-    public ShoppingSessionEntity sessionEntity;
 
 }

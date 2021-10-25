@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="ConnectDB.AllTest" time="2.262" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="ConnectDB.AllTest" time="0.003" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.1.2"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -60,5 +60,5 @@
     <property name="java.vendor.version" value="Corretto-16.0.2.7.1"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="ConnectDB.AllTest" name="TestConnect" time="2.262"/>
+  <testcase classname="ConnectDB.AllTest" name="TestConnect" time="0.003"/>
 </testsuite>

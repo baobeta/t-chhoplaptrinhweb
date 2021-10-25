@@ -5,26 +5,28 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import lombok.ToString;
 
 @Entity
-@Table(name = "category")
+@Table(name = "categories")
 @Getter
 @Setter
+@ToString
 public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
-    public int categoryId;
+    private int categoryId;
 
     @Column(name = "description")
-    public String description;
+    private String description;
 
     @Column(name = "name")
-    public String name;
+    private String name;
 
-    @OneToMany(mappedBy = "productCategoryEntity", cascade = CascadeType.ALL)
-    public List<ProductEntity> productEntityList;
+    @OneToMany(mappedBy = "categoryEntity", cascade = CascadeType.ALL)
+    private List<ProductEntity> productEntityList;
 
 
 }

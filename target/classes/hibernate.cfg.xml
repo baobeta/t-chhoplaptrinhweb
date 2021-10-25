@@ -4,15 +4,17 @@
   "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.password">123456</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/laptrinhweb</property>
-    <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
+    <property name="connection.driver_class">org.postgresql.Driver</property>
+    <property name="connection.url">jdbc:postgresql://localhost:5432/laptrinhweb</property>
+    <property name="connection.username">postgres</property>
+    <property name="connection.password">123456</property>
+    <property name="dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
+    <property name="hbm2ddl.auto">update</property>
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
-    <mapping class="com.example.techshop.entity.UserEntity" />
-    <mapping class="com.example.techshop.entity.ShoppingSessionEntity" />
+
+    <mapping class="com.example.techshop.entity.UserEntity"/>
+    <mapping class="com.example.techshop.entity.ShoppingSessionEntity"/>
     <mapping class="com.example.techshop.entity.RoleEntity"/>
     <mapping class="com.example.techshop.entity.ProductEntity"/>
     <mapping class="com.example.techshop.entity.CategoryEntity"/>

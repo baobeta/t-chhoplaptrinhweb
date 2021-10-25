@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 public class HibernateUtil {
     private static final SessionFactory SessionFactory = buildSessionFactory();
 
+
     private static SessionFactory buildSessionFactory(){
         //create sessionfactory from hibernate.cfg.xml
         try {

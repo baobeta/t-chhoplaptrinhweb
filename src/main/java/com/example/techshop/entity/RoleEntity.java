@@ -5,15 +5,16 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import lombok.ToString;
 
 @Entity
 @Table(name = "roles")
 @Getter
 @Setter
+@ToString
 public class RoleEntity {
 
     @Id
-    @Column(name = "roleid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer roleId;
 

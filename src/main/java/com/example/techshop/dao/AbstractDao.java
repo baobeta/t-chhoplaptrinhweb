@@ -29,9 +29,8 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
   public List<T> findAll() {
     List<T> list = new ArrayList<T>();
     Session session = HibernateUtil.getSessionFactory().openSession();
-    Transaction transaction = null;
+    Transaction transaction = session.beginTransaction();
     try {
-      transaction = session.beginTransaction();
       //HQL
       StringBuilder sql = new StringBuilder("from ");
       sql.append(this.getPersistenceClassName());
@@ -57,7 +56,6 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
     try{
-
       Object object = session.merge(entity);
       result = (T) object;
       transaction.commit();
