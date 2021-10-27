@@ -1,14 +1,0 @@
-
-–
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÁÍŠ}
-`
-java:S1128"CRemove this unused import 'com.example.techshop.entity.RoleEntity'.(ñ×ğ·8é¡¹Ê/
-Z
-java:S1128	"=Remove this unused import 'org.hibernate.HibernateException'.(™òı²8ê¡¹Ê/
-T
-java:S1128
-"2Remove this unused import 'org.hibernate.Session'.(È¹›§ùÿÿÿÿ8ê¡¹Ê/
-S
-java:S1128"6Remove this unused import 'org.hibernate.Transaction'.(ìÌè³8ë¡¹Ê/
-s
-java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(ÇâÒ·şÿÿÿÿ

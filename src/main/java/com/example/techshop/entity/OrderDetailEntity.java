@@ -25,7 +25,7 @@ public class OrderDetailEntity {
     @Column(name = "ispaid")
     private Boolean ispaid;
 
-    @OneToMany(mappedBy = "orderDetailEntity", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderDetailEntity", cascade = CascadeType.ALL)
     private List<OrderItemEntity> orderItemEntityList;
 
     @ManyToOne

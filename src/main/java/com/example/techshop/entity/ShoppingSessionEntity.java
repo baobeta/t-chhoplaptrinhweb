@@ -26,9 +26,9 @@ public class ShoppingSessionEntity {
     @JoinColumn(name = "cus_id", referencedColumnName = "customer_id") // Liên kết với nhau qua khóa ngoại users_id
     private CustomerEntity customerEntity;
 
-    @OneToMany(mappedBy = "shoppingSessionEntity", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shoppingSessionEntity", cascade = CascadeType.ALL)
     private List<CartItemEntity> cartItemEntityList;
 
-    @OneToMany(mappedBy = "userEntity",fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity")
     List<OrderDetailEntity> orderDetailEntityList;
 }

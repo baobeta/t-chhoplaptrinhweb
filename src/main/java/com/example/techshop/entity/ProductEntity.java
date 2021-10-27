@@ -35,10 +35,10 @@ public class ProductEntity {
     @Column(name = "photo")
     private String photo;
 
-    @OneToMany(mappedBy = "productEntity", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "productEntity", cascade = CascadeType.ALL)
     private List<CartItemEntity> cartItemEntityList;
 
-    @OneToMany(mappedBy = "productEntity", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productEntity", cascade = CascadeType.ALL)
     private List<OrderItemEntity> orderItemEntityList;
 
     @ManyToOne

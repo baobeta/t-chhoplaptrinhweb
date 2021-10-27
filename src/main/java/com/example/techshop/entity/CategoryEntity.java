@@ -25,7 +25,7 @@ public class CategoryEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "categoryEntity", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoryEntity", cascade = CascadeType.ALL)
     private List<ProductEntity> productEntityList;
 
 

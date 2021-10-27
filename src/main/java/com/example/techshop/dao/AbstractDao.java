@@ -1,6 +1,7 @@
 package com.example.techshop.dao;
 
 import com.example.techshop.common.CoreConstant;
+import com.example.techshop.dto.UserDTO;
 import com.example.techshop.utils.HibernateUtil;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -211,4 +212,32 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
     }
     return result;
   }
+
+//  public UserEntity checkLogin(String email, String password)
+//  {
+//    UserEntity userEntity = new UserEntity() ;
+//    Session session =HibernateUtil.getSessionFactory().openSession();
+//    Transaction transaction = session.beginTransaction();
+//    boolean isUserExist = false;
+//    String roleName = null;
+//    try {
+//      StringBuilder sql = new StringBuilder("FROM UserEntity ue WHERE ue.email= :email AND ue.password= :password ");
+//      Query query = session.createQuery(sql.toString());
+//      query.setParameter("name",email);
+//      query.setParameter("password",password);
+//      if(query.getResultList().size()>0) {
+//        isUserExist = true;
+//        userEntity = (UserEntity) query.getSingleResult();
+//      }
+//
+//    } catch (HibernateException e)
+//    {
+//      transaction.rollback();
+//      throw e;
+//    }
+//    finally {
+//      session.close();
+//    }
+//    return userEntity;
+//  }
 }

@@ -1,7 +1,0 @@
-
-W
-java:S1118	":Add a private constructor to hide the implicit public one.(ýçéö8ûÀœ¾Ë/
-{
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÈèæÛûÿÿÿÿ8ŠŽ¿¼Ë/
-v
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ˆüªî8‹Ž¿¼Ë/

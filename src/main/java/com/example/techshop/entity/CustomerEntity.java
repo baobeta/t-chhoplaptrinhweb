@@ -36,7 +36,7 @@ public class CustomerEntity {
     @Column(name = "phone_number")
     public String phoneNumber;
 
-    @OneToMany(mappedBy = "customerEntity", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customerEntity", cascade = CascadeType.ALL)
     public List<OrderDetailEntity> orderDetailEntityList;
 
 }

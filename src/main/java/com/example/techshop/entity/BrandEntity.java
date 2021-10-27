@@ -1,6 +1,7 @@
 package com.example.techshop.entity;
 
 
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,7 +27,6 @@ public class BrandEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "brandEntity", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "brandEntity", cascade = CascadeType.ALL)
     private List<ProductEntity> productEntityList;
-
 }

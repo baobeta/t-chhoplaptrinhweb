@@ -11,7 +11,6 @@ import lombok.ToString;
 @Table(name = "roles")
 @Getter
 @Setter
-@ToString
 public class RoleEntity {
 
     @Id
@@ -24,7 +23,11 @@ public class RoleEntity {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "roleEntity",fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "roleEntity")
     private List<UserEntity> userEntityList;
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

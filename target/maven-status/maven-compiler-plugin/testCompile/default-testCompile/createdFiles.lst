@@ -1,2 +1,3 @@
 ConnectDB\AllTest.class
 ConnectDB\ConvertTest.class
+ConnectDB\LoginTest.class

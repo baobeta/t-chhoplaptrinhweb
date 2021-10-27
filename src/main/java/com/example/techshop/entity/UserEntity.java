@@ -10,7 +10,6 @@ import lombok.ToString;
 @Table(name ="users")
 @Getter
 @Setter
-@ToString
 public class UserEntity {
     @Id
     @Column(name = "user_id")
@@ -35,4 +34,9 @@ public class UserEntity {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private RoleEntity roleEntity;
+
+    @Override
+    public String toString() {
+        return this.userId.toString()+"   "+ this.email.toString() +"   "+ this.roleEntity.toString() +"   "+ this.firstName + "  " + this.photos+ " " ;
+    }
 }
