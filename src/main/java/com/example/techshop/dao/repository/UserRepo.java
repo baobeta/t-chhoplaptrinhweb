@@ -19,7 +19,7 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> {
       Query query = session.createQuery(sql.toString());
       query.setParameter("email", email);
       query.setParameter("password", password);
-      if (query.getResultList().size() > 0) {
+      if (query.getSingleResult()!=null) {
         UserEntity entity = (UserEntity) query.getSingleResult();
         return entity;
       }

@@ -8,18 +8,16 @@ import java.util.List;
 
 public class UserService {
 
-
   public UserDTO findUser(String email, String password) {
-    UserEntity entity = STRepoUtil.getUserRepo().findUser(email,password);
+    UserEntity entity = STRepoUtil.getUserRepo().findUser(email, password);
     UserDTO dto = UserConverter.entity2Dto(entity);
-    if (dto != null){
+    if (dto != null) {
       return dto;
     }
     return null;
   }
 
   public UserDTO findById(Integer id) {
-
     UserEntity userEntity = STRepoUtil.getUserRepo().findById(id);
     UserDTO userDTO = UserConverter.entity2Dto(userEntity);
     return userDTO;
@@ -40,6 +38,5 @@ public class UserService {
   public void deleteUser(List<Integer> ids) {
     STRepoUtil.getUserRepo().delete(ids);
   }
-
 
 }

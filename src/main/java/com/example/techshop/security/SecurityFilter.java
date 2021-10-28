@@ -42,6 +42,7 @@ public class SecurityFilter implements Filter {
       chain.doFilter(request, response);
       return;
     }
+
     HttpServletRequest wrapRequest = request;
 
     if (loginedUser != null) {
@@ -67,7 +68,7 @@ public class SecurityFilter implements Filter {
         // Lưu trữ trang hiện tại để redirect đến sau khi đăng nhập thành công.
         int redirectId = AppUtils.storeRedirectAfterLoginUrl(request.getSession(), requestUri);
 
-        response.sendRedirect(wrapRequest.getContextPath() + "/login?redirectId=" + redirectId);
+        response.sendRedirect( "/login?redirectId=" + redirectId);
         return;
       }
 
@@ -77,7 +78,6 @@ public class SecurityFilter implements Filter {
 
         RequestDispatcher dispatcher //
             = request.getServletContext().getRequestDispatcher("/WEB-INF/views/accessDeniedView.jsp");
-
         dispatcher.forward(request, response);
         return;
       }

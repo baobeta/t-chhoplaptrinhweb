@@ -1,0 +1,10 @@
+
+\
+java:S1118
+":Add a private constructor to hide the implicit public one.(¯Î³’ýÿÿÿÿ8’¼›¾Ë/
+o
+java:S1128"RRemove this unused import 'com.example.techshop.utils.convert.OrderItemConverter'.(êä‘È8±Ñš¾Ë/
+{
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(áœ¿Çþÿÿÿÿ8Ÿ¿œ¼Ë/
+{
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(«¤ Íþÿÿÿÿ8Ÿ¿œ¼Ë/

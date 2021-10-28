@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class SecurityConfig {
+
   public static final String ROLE_ADMIN = "ADMIN";
   public static final String ROLE_CUSTOMER = "CUSTOMER";
 
@@ -22,18 +23,12 @@ public class SecurityConfig {
 
     // Cấu hình cho vai trò "EMPLOYEE".
     List<String> adminUrlPattern = new ArrayList<String>();
-
     adminUrlPattern.add("/admin");
-    adminUrlPattern.add("/employeeTask");
-
     mapConfig.put(ROLE_ADMIN, adminUrlPattern);
 
     // Cấu hình cho vai trò "MANAGER".
     List<String> cusUrlPattern = new ArrayList<String>();
-
-    cusUrlPattern.add("/home");
-    cusUrlPattern.add("/managerTask");
-
+    cusUrlPattern.add("/customer");
     mapConfig.put(ROLE_CUSTOMER, cusUrlPattern);
   }
 
