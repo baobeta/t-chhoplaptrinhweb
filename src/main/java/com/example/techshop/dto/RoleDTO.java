@@ -8,7 +8,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class RoleDTO {
 
   private Integer roleId;
@@ -19,4 +18,8 @@ public class RoleDTO {
 
   private List<UserDTO> userDTOList;
 
+  @Override
+  public String toString() {
+    return this.name;
+  }
 }

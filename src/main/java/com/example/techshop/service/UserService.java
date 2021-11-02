@@ -4,6 +4,9 @@ import com.example.techshop.dto.UserDTO;
 import com.example.techshop.entity.UserEntity;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.convert.UserConverter;
+import com.example.techshop.utils.convert.list.UserListConverter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
@@ -15,6 +18,11 @@ public class UserService {
       return dto;
     }
     return null;
+  }
+  public List<UserDTO> getUser() {
+    List<UserEntity> entities = STRepoUtil.getUserRepo().findAll();
+    List<UserDTO> dtos = UserListConverter.entity2Dto(entities);
+    return dtos;
   }
 
   public UserDTO findById(Integer id) {
