@@ -16,10 +16,10 @@
     <title>Sign Up Form by Colorlib</title>
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="<c:url value='../static/fonts/material-icon/css/material-design-iconic-font.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/static/fonts/material-icon/css/material-design-iconic-font.min.css'/>">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="<c:url value='../static/css/style.css'/>">
+    <link rel="stylesheet" href="<c:url value='/static/css/style.css'/>">
 </head>
 <body>
 <div class="main">
@@ -29,7 +29,7 @@
             <div class="signin-content">
                 <div class="signin-image">
                     <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
-                    <a methods="GET" th:href="@{/registration}" class="signup-image-link">Create an account</a>
+                    <a methods="GET" href="@{/registration}" class="signup-image-link">Create an account</a>
                 </div>
 
                 <div class="signin-form">
@@ -62,7 +62,7 @@
     </section>
 </div>
 <!-- JS -->
-<script src="<c:url value='../static/jquery/jquery.min.js'/>"></script>
-<script src="<c:url value='../static/js/main.js'/>"></script>
+<script src="<c:url value='/static/jquery/jquery.min.js'/>"></script>
+<script src="<c:url value='/static/js/main.js'/>"></script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
