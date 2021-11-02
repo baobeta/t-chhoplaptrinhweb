@@ -27,7 +27,7 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
 //  private final Logger log =Logger.getLogger(this.getClass());
 
   @Override
-  public List<T> findAll() {
+  public List<T>  findAll() {
     List<T> list = new ArrayList<T>();
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
