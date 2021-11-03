@@ -19,10 +19,10 @@ public class AdminController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    List<UserDTO> users = STServiceUtil.getUserService().getUser();
-    request.setAttribute("users",users);
+//    List<UserDTO> users = STServiceUtil.getUserService().getUser();
+//    request.setAttribute("users",users);
     RequestDispatcher dispatcher
-        = this.getServletContext().getRequestDispatcher("/views/admin.jsp");
+        = this.getServletContext().getRequestDispatcher("/views/usermanager.jsp");
     dispatcher.forward(request, response);
   }
 }

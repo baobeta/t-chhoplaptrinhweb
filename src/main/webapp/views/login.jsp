@@ -1,6 +1,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:url var="login" value="/login"/>
 <div class="main">
     <div class="container">
         <ul class="breadcrumb">
@@ -30,17 +30,17 @@
                 <div class="content-form-page">
                     <div class="row">
                         <div class="col-md-7 col-sm-7">
-                            <form class="form-horizontal form-without-legend" role="form">
+                            <form action="${login}" method="post" class="form-horizontal form-without-legend" role="form">
                                 <div class="form-group">
                                     <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
                                     <div class="col-lg-8">
-                                        <input type="text" class="form-control" id="email">
+                                        <input name="email" type="text" class="form-control" id="email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
                                     <div class="col-lg-8">
-                                        <input type="text" class="form-control" id="password">
+                                        <input name="password" type="text" class="form-control" id="password">
                                     </div>
                                 </div>
                                 <div class="row">
