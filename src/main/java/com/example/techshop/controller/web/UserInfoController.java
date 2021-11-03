@@ -22,7 +22,7 @@ public class UserInfoController extends HttpServlet {
       throws ServletException, IOException {
 
     RequestDispatcher dispatcher //
-        = this.getServletContext().getRequestDispatcher("/WEB-INF/views/userInfo.jsp");
+        = this.getServletContext().getRequestDispatcher("/views/userInfo.jsp");
 
     dispatcher.forward(request, response);
   }

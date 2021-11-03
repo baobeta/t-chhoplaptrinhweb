@@ -20,7 +20,7 @@ public class UserController extends HttpServlet {
         List<UserDTO> users = STServiceUtil.getUserService().getUser();
         request.setAttribute("users",users);
         RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/userInfo.jsp");
+                = this.getServletContext().getRequestDispatcher("/views/userInfo.jsp");
         dispatcher.forward(request, response);
     }
 }

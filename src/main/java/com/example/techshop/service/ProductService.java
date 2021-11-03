@@ -1,9 +1,9 @@
 package com.example.techshop.service;
 
 import com.example.techshop.dto.ProductDTO;
-import com.example.techshop.dto.UserDTO;
+import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.ProductEntity;
-import com.example.techshop.entity.UserEntity;
+import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.convert.ProductConverter;
 import com.example.techshop.utils.convert.UserConverter;
@@ -19,34 +19,34 @@ public class ProductService {
     return dtos;
   }
 
-//  public UserDTO findUser(String email, String password) {
-//    UserEntity entity = STRepoUtil.getUserRepo().findUser(email, password);
-//    UserDTO dto = UserConverter.entity2Dto(entity);
+//  public ProductDTO findUser(String email, String password) {
+//    ProductEntity entity = STRepoUtil.getProductRepo().findUser(email, password);
+//    ProductDTO dto = UserConverter.entity2Dto(entity);
 //    if (dto != null) {
 //      return dto;
 //    }
 //    return null;
 //  }
-//  public UserDTO findById(Integer id) {
-//    UserEntity userEntity = STRepoUtil.getUserRepo().findById(id);
-//    UserDTO userDTO = UserConverter.entity2Dto(userEntity);
-//    return userDTO;
+  public ProductDTO findById(Integer id) {
+    ProductEntity entity = STRepoUtil.getProductRepo().findById(id);
+    ProductDTO ProductDTO = ProductConverter.entity2Dto(entity);
+    return ProductDTO;
+  }
+//
+//  public void saveUser(ProductDTO ProductDTO) {
+//    ProductEntity ProductEntity = UserConverter.dto2Entity(ProductDTO);
+//    STRepoUtil.getProductRepo().save(ProductEntity);
 //  }
 //
-//  public void saveUser(UserDTO userDTO) {
-//    UserEntity userEntity = UserConverter.dto2Entity(userDTO);
-//    STRepoUtil.getUserRepo().save(userEntity);
-//  }
-//
-//  public UserDTO updateUser(UserDTO userDTO) {
-//    UserEntity userEntity = UserConverter.dto2Entity(userDTO);
-//    userEntity = STRepoUtil.getUserRepo().update(userEntity);
-//    userDTO = UserConverter.entity2Dto(userEntity);
-//    return userDTO;
+//  public ProductDTO updateUser(ProductDTO ProductDTO) {
+//    ProductEntity ProductEntity = UserConverter.dto2Entity(ProductDTO);
+//    ProductEntity = STRepoUtil.getProductRepo().update(ProductEntity);
+//    ProductDTO = UserConverter.entity2Dto(ProductEntity);
+//    return ProductDTO;
 //  }
 //
 //  public void deleteUser(List<Integer> ids) {
-//    STRepoUtil.getUserRepo().delete(ids);
+//    STRepoUtil.getProductRepo().delete(ids);
 //  }
 
 }

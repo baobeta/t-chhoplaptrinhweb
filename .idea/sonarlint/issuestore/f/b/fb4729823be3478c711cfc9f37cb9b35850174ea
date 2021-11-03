@@ -1,14 +1,16 @@
 
-]	java:S125"<This block of commented-out lines of code should be removed.(ö‡¥¢üÿÿÿÿ8÷Éß™Î/
-Z
-java:S1128"=Remove this unused import 'com.example.techshop.dto.UserDTO'.(“â•‹8èığ™Î/
-`
-java:S1128"CRemove this unused import 'com.example.techshop.entity.UserEntity'.(ÈÁµØ8éığ™Î/
-l
-java:S1128"PRemove this unused import 'com.example.techshop.utils.convert.ProductConverter'.(×ÄÕ@8êığ™Î/
+]	java:S125"<This block of commented-out lines of code should be removed.(÷®ûßúÿÿÿÿ8¼„¼œÎ/
+X	java:S125$"<This block of commented-out lines of code should be removed.(ıÖ¤„8Şğ¼œÎ/
+;
+java:S1128"Remove this duplicated import.(ˆòü’8ò×»œÎ/
+;
+java:S1128"Remove this duplicated import.(¦ğÜ’8¾„¼œÎ/
 j
-java:S1128	"MRemove this unused import 'com.example.techshop.utils.convert.UserConverter'.(Î¨ÿà8ëığ™Î/
+java:S1128	"MRemove this unused import 'com.example.techshop.utils.convert.UserConverter'.(Î¨ÿà8¦²¾œÎ/
 s
-java:S1128"VRemove this unused import 'com.example.techshop.utils.convert.list.UserListConverter'.(´Ñ¾ÿ8ëığ™Î/
+java:S1128"VRemove this unused import 'com.example.techshop.utils.convert.list.UserListConverter'.(´Ñ¾ÿ8¦²¾œÎ/
+r	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çÛ¸úÿÿÿÿ8ßğ¼œÎ/
 ~
-java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "dtos".(Ä†ãüÿÿÿÿ8ê”à™Î/
+java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "dtos".(Ä†ãüÿÿÿÿ8¿„¼œÎ/
+„
+java:S1488 "bImmediately return this expression instead of assigning it to the temporary variable "ProductDTO".(çÛ¸úÿÿÿÿ8ßğ¼œÎ/

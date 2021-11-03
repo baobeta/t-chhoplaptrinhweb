@@ -23,13 +23,12 @@ public class HomeController extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    ProductCommand productCommand = FormUtil.populate(ProductCommand.class,request);
-    productCommand.setListResult(STServiceUtil.getProductService().getAllProduct());
-
-    request.setAttribute("items",productCommand.getListResult());
+//    ProductCommand productCommand = FormUtil.populate(ProductCommand.class,request);
+//    productCommand.setListResult(STServiceUtil.getProductService().getAllProduct());
+//    request.setAttribute("items",productCommand);
 
     RequestDispatcher dispatcher //
-        = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home.jsp");
+        = this.getServletContext().getRequestDispatcher("/views/home.jsp");
     dispatcher.forward(request, response);
   }
 }

@@ -15,7 +15,7 @@ public class CustomerController extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     RequestDispatcher dispatcher //
-        = this.getServletContext().getRequestDispatcher("/WEB-INF/views/customer.jsp");
+        = this.getServletContext().getRequestDispatcher("/views/customer.jsp");
     dispatcher.forward(request, response);
   }
 

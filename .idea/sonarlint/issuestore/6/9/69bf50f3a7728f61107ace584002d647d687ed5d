@@ -1,0 +1,12 @@
+
+W	java:S125"<This block of commented-out lines of code should be removed.(ä€8ã²È¤Î/
+|
+java:S1989"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ÜÕˆêøÿÿÿÿ
+j
+java:S1128"HRemove this unused import 'com.example.techshop.command.ProductCommand'.(ÇéŒŸıÿÿÿÿ8å²È¤Î/
+]
+java:S1128"@Remove this unused import 'com.example.techshop.dto.ProductDTO'.(ˆòü’8å²È¤Î/
+b
+java:S1128"@Remove this unused import 'com.example.techshop.utils.FormUtil'.(­ƒ‹úÿÿÿÿ8å²È¤Î/
+b
+java:S1128"ERemove this unused import 'com.example.techshop.utils.STServiceUtil'.(«Ü­¥8å²È¤Î/
