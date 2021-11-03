@@ -1,4 +1,4 @@
-package com.example.techshop.controller.admin;
+package com.example.techshop.controller.admin.user;
 
 
 import com.example.techshop.command.UserCommand;
@@ -27,7 +27,7 @@ public class UserUpdateController extends HttpServlet {
         UserCommand command = FormUtil.populate(UserCommand.class,req);
         Integer id = Integer.valueOf(req.getParameter("userId"));
         RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/views/user-form.jsp");
+                = this.getServletContext().getRequestDispatcher("/views/admin/user/user-form.jsp");
         dispatcher.forward(req, resp);
     }
 

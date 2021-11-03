@@ -22,7 +22,7 @@ public class AdminController extends HttpServlet {
 //    List<UserDTO> users = STServiceUtil.getUserService().getUser();
 //    request.setAttribute("users",users);
     RequestDispatcher dispatcher
-        = this.getServletContext().getRequestDispatcher("/views/usermanager.jsp");
+        = this.getServletContext().getRequestDispatcher("/views/admin/admin.jsp");
     dispatcher.forward(request, response);
   }
 }

@@ -25,7 +25,7 @@ public class ProductDetailController extends HttpServlet {
 //    request.setAttribute("product",dto);
 
     RequestDispatcher dispatcher //
-        = this.getServletContext().getRequestDispatcher("/views/productDetail.jsp");
+        = this.getServletContext().getRequestDispatcher("/views/web/productDetail.jsp");
     dispatcher.forward(request, response);
   }
 }

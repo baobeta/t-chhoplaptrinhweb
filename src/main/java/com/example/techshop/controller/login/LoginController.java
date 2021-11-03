@@ -24,7 +24,7 @@ public class LoginController extends HttpServlet {
       throws ServletException, IOException {
 
     RequestDispatcher dispatcher //
-        = request.getServletContext().getRequestDispatcher("/views/login.jsp");
+        = request.getServletContext().getRequestDispatcher("/views/common/login.jsp");
 
     dispatcher.forward(request, response);
   }
@@ -40,7 +40,7 @@ public class LoginController extends HttpServlet {
     if (userAccount == null) {
       String errorMessage = "Invalid email or Password";
       request.setAttribute("errorMessage", errorMessage);
-      RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/views/login.jsp");
+      RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/views/common/login.jsp");
       dispatcher.forward(request, response);
       return;
     }

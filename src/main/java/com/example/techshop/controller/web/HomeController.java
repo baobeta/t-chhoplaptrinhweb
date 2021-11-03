@@ -28,7 +28,7 @@ public class HomeController extends HttpServlet {
 //    request.setAttribute("items",productCommand);
 
     RequestDispatcher dispatcher //
-        = this.getServletContext().getRequestDispatcher("/views/home.jsp");
+        = this.getServletContext().getRequestDispatcher("/views/web/home.jsp");
     dispatcher.forward(request, response);
   }
 }
