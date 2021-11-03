@@ -75,10 +75,7 @@ public class SecurityFilter implements Filter {
       // Kiểm tra người dùng có vai trò hợp lệ hay không?
       boolean hasPermission = SecurityUtils.hasPermission(wrapRequest);
       if (!hasPermission) {
-
-        RequestDispatcher dispatcher //
-            = request.getServletContext().getRequestDispatcher("/views/accessDenied.jsp");
-        dispatcher.forward(request, response);
+        ((HttpServletResponse) resp).sendRedirect("/error");
         return;
       }
     }

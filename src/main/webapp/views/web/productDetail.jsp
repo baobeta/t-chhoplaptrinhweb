@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="main">
     <div class="container">
         <ul class="breadcrumb">
@@ -230,7 +230,7 @@
                                 <img src="<c:url value='/static/assets/frontend/pages/img/products/k1.jpg'/>" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
                                     <a href="<c:url value='/static/assets/frontend/pages/img/products/k1.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    <a href="${pDetail}" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
                             <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
@@ -245,7 +245,7 @@
                                 <img src="<c:url value='/static/assets/frontend/pages/img/products/k2.jpg'/>" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
                                     <a href="<c:url value='/static/assets/frontend/pages/img/products/k2.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    <a href="${pDetail}" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
                             <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
@@ -259,7 +259,7 @@
                                 <img src="<c:url value='/static/assets/frontend/pages/img/products/k3.jpg'/>" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
                                     <a href="<c:url value='/static/assets/frontend/pages/img/products/k3.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    <a href="${pDetail}" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
                             <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
@@ -273,7 +273,7 @@
                                 <img src="<c:url value='/static/assets/frontend/pages/img/products/k4.jpg'/>" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
                                     <a href="<c:url value='/static/assets/frontend/pages/img/products/k4.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    <a href="${pDetail}" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
                             <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
@@ -288,7 +288,7 @@
                                 <img src="<c:url value='/static/assets/frontend/pages/img/products/k1.jpg'/>" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
                                     <a href="<c:url value='/static/assets/frontend/pages/img/products/k1.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    <a href="${pDetail}" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
                             <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
@@ -302,7 +302,7 @@
                                 <img src="<c:url value='/static/assets/frontend/pages/img/products/k2.jpg'/>" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
                                     <a href="<c:url value='/static/assets/frontend/pages/img/products/k2.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    <a href="${pDetail}" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
                             <h3><a href="shop-item.html">Berry Lace Dress6</a></h3>

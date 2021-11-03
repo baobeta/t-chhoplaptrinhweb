@@ -59,7 +59,6 @@
 <%@ include file="/common/admin/footer.jsp" %>
 <!-- end footer -->
 
-
 <script src="<c:url value='/static/assets/global/plugins/jquery.min.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/static/assets/global/plugins/jquery-migrate.min.js'/>" type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->

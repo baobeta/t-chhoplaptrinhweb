@@ -1,4 +1,7 @@
 <!-- BEGIN TOP BAR -->
+
+<c:url var="home" value="/home"/>
+<c:url var="search" value="/search"/>
 <div class="pre-header">
     <div class="container">
         <div class="row">
@@ -32,7 +35,7 @@
                 <ul class="list-unstyled list-inline pull-right">
                     <li><a href="shop-account.html">My Account</a></li>
                     <li><a href="shop-checkout.html">Checkout</a></li>
-                    <li><a href="page-login.html">Log In</a></li>
+                    <li><a href="${login}">Log In</a></li>
                 </ul>
             </div>
             <!-- END TOP BAR MENU -->
@@ -44,7 +47,7 @@
 <!-- BEGIN HEADER -->
 <div class="header">
     <div class="container">
-        <a class="site-logo" href="shop-index.html"><img src="<c:url value='/static/assets/frontend/layout/img/logos/logo-shop-red.png'/>" alt="Metronic Shop UI"></a>
+        <a class="site-logo" href="${home}"><img src="<c:url value='/static/assets/frontend/layout/img/logos/logo-shop-red.png'/>" alt="Metronic Shop UI"></a>
 
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
@@ -149,36 +152,6 @@
                                             <a href="#" class="btn btn-default add2cart">Add to cart</a>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-4 col-xs-6">
-                                        <div class="product-item">
-                                            <div class="pi-img-wrapper">
-                                                <a href="shop-item.html"><img src="<c:url value='/static/assets/frontend/pages/img/products/model3.jpg'/>" class="img-responsive" alt="Berry Lace Dress"></a>
-                                            </div>
-                                            <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                                            <div class="pi-price">$29.00</div>
-                                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-4 col-xs-6">
-                                        <div class="product-item">
-                                            <div class="pi-img-wrapper">
-                                                <a href="shop-item.html"><img src="<c:url value='/static/assets/frontend/pages/img/products/model7.jpg'/>" class="img-responsive" alt="Berry Lace Dress"></a>
-                                            </div>
-                                            <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                                            <div class="pi-price">$29.00</div>
-                                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-4 col-xs-6">
-                                        <div class="product-item">
-                                            <div class="pi-img-wrapper">
-                                                <a href="shop-item.html"><img src="<c:url value='/static/assets/frontend/pages/img/products/model4.jpg'/>" class="img-responsive" alt="Berry Lace Dress"></a>
-                                            </div>
-                                            <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                                            <div class="pi-price">$29.00</div>
-                                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -190,7 +163,7 @@
                     <span class="sep"></span>
                     <i class="fa fa-search search-btn"></i>
                     <div class="search-box">
-                        <form action="#">
+                        <form action="${search}">
                             <div class="input-group">
                                 <input type="text" placeholder="Search" class="form-control">
                                 <span class="input-group-btn">
