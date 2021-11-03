@@ -10,35 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e7097a2-d123-4041-9a57-50673acdbfe2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/admin/product/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/product/productManager.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/login/RegisterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/common/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/9/093aeadae44f32415a5ef847911318008567d49d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/9/69bf50f3a7728f61107ace584002d647d687ed5d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/c/6cf0902e5607bd72cca8b7ece28c5b22747e8129" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/admin/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/admin/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/admin/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/admin/UserUpdateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/admin/user/UserUpdateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/login/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/web/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/web/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/web/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/web/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/web/ProductDetailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/techshop/controller/web/ProductDetailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/techshop/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/techshop/entity/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/decorators.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/decorators.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/accessDenied.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/common/accessDenied.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/customer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/customer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/common/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/productDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/productDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/user-form.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/user/user-form.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/userInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/user/userInfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/usermanager.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/user/userManager.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/techshop/controller/web/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/techshop/controller/web/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/techshop/controller/web/ProductDetailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/techshop/controller/web/ProductDetailController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/techshop-1.0-SNAPSHOT/WEB-INF/classes/com/example/techshop/controller/web/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/techshop-1.0-SNAPSHOT/WEB-INF/classes/com/example/techshop/controller/web/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/techshop-1.0-SNAPSHOT/WEB-INF/classes/com/example/techshop/controller/web/ProductDetailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/techshop-1.0-SNAPSHOT/WEB-INF/classes/com/example/techshop/controller/web/ProductDetailController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/decorators/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/decorators/admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/decorators/web.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/decorators/web.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -254,6 +232,7 @@
       <workItem from="1635904905758" duration="6710000" />
       <workItem from="1635921052101" duration="1755000" />
       <workItem from="1635922900613" duration="4094000" />
+      <workItem from="1635927238035" duration="1473000" />
     </task>
     <task id="LOCAL-00001" summary="decorator-admin">
       <created>1635924944478</created>
