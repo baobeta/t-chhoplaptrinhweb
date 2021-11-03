@@ -1,3 +1,7 @@
 
+M
+java:S1128	"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8¨ŠÞ™Î/
+~
+java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "dtos".(€¨¡ƒýÿÿÿÿ8©ŠÞ™Î/
 u
-java:S1488"_Immediately return this expression instead of assigning it to the temporary variable "userDTO".(Ð¿ÅÝ
+java:S1488"_Immediately return this expression instead of assigning it to the temporary variable "userDTO".(Ð¿ÅÝ

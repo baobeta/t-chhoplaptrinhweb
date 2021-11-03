@@ -1,7 +1,11 @@
 
-v
-java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(îºñˆıÿÿÿÿ8«…ßÄÊ/
-q
-java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(ˆòü’8«…ßÄÊ/
-q
-java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(“â•‹8«…ßÄÊ/
+L
+java:S1068"0Remove this unused "orderItemsId" private field.(¹œu8‰ÌıÍ/
+G
+java:S1068"+Remove this unused "quantiy" private field.(Ö°Ğ18‰ÌıÍ/
+P
+java:S1068".Remove this unused "productDTO" private field.(ıÅä³ÿÿÿÿÿ8Ÿ‰ÌıÍ/
+T
+java:S1068"2Remove this unused "orderDetailDTO" private field.(ú¾Òæûÿÿÿÿ8Ÿ‰ÌıÍ/
+Q
+java:S1068"/Remove this unused "customerDTO" private field.(²Œş„üÿÿÿÿ8 ‰ÌıÍ/

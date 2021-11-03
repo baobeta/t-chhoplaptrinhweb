@@ -34,6 +34,7 @@ import com.example.techshop.utils.convert.UserConverter;
 import com.example.techshop.utils.convert.list.CartItemListConverter;
 import com.example.techshop.utils.convert.list.OrderDetailListConverter;
 import com.example.techshop.utils.convert.list.OrderItemListConverter;
+import com.example.techshop.utils.convert.list.ProductListConverter;
 import com.example.techshop.utils.convert.list.UserListConverter;
 import java.util.List;
 import org.junit.Test;
@@ -86,6 +87,14 @@ public class ConvertTest {
         .findAll());
 
     List<UserDTO> userDTOS = UserListConverter.entity2Dto(STRepoUtil.getUserRepo().findAll());
+
+    System.out.println("done!!!");
+  }
+
+  @Test
+  public void TestConvertList2(){
+    List<ProductDTO> productDTOS = ProductListConverter.entity2Dto(STRepoUtil.getProductRepo()
+        .findAll());
 
     System.out.println("done!!!");
   }

@@ -1,3 +1,14 @@
 
-d
-java:S2094"BRemove this empty class, write its code or make it an "interface".(’’Úÿúÿÿÿÿ8ÃÍð¾Ë/
+]	java:S125"<This block of commented-out lines of code should be removed.(ö‡¥¢üÿÿÿÿ8÷Éß™Î/
+Z
+java:S1128"=Remove this unused import 'com.example.techshop.dto.UserDTO'.(“â•‹8èýð™Î/
+`
+java:S1128"CRemove this unused import 'com.example.techshop.entity.UserEntity'.(ÈÁµØ8éýð™Î/
+l
+java:S1128"PRemove this unused import 'com.example.techshop.utils.convert.ProductConverter'.(×ÄÕ@8êýð™Î/
+j
+java:S1128	"MRemove this unused import 'com.example.techshop.utils.convert.UserConverter'.(Î¨ÿà8ëýð™Î/
+s
+java:S1128"VRemove this unused import 'com.example.techshop.utils.convert.list.UserListConverter'.(´Ñ¾ÿ8ëýð™Î/
+~
+java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "dtos".(Ä†ãüÿÿÿÿ8ê”à™Î/

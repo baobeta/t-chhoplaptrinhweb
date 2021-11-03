@@ -7,10 +7,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:url var="pDetail" value="/pDetail/"/>
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href='<c:url value="/badeptrai.css"/>'>
+    <c:forEach items="${products}" var="pItem">
+        <form action="${pDetail}+${pItem.productId}">
+        <h2>${pItem.name}</h2>
+            <input type="hidden" name="productId" value="${pItem.productId}">
+            <input type="submit" value="Xem san pham">
+        </form>
+    </c:forEach>
 </head>
 <body>
 <h1>Home Page</h1>
