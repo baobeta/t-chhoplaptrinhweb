@@ -13,7 +13,7 @@
 <div class="container">
     <h2>Hover Rows</h2>
     <p>The .table-hover class enables a hover state on table rows:</p>
-    <a url="<c:url value="/"/>">Thêm User</a>
+    <a url="<c:url value='/user-form'/>">Thêm User</a>
     <table class="table table-hover">
         <thead>
         <tr>

@@ -23,13 +23,4 @@ public class UserDTO {
 
   private RoleDTO roleDTO;
 
-  @Override
-  public String toString() {
-    return this.userId.toString() +" - "
-        + this.email+" - "
-        +this.password+ " - "
-        +this.firstName+ " - "
-        +this.lastName+" - "
-        +this.roleDTO.getName();
-  }
 }

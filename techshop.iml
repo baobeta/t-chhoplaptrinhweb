@@ -31,7 +31,7 @@
       <configuration>
         <datasource-map>
           <unit-entry name="hibernate.cfb.xml" />
-          <unit-entry name="hibernate.cfg.xml" value="4b0719ec-a145-4b78-b010-6e11d41abb72" />
+          <unit-entry name="hibernate.cfg.xml" value="6d4dbc67-3c10-441b-bb74-65b8033bf15c" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/hibernate.cfb.xml" />
