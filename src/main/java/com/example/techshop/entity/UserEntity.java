@@ -28,7 +28,7 @@ public class UserEntity {
     @Column(name="last_name", length =45 , nullable =false)
     private String lastName;
 
-    @Column( length =64 )
+    @Column( length = 300)
     private String photos;
 
     @ManyToOne

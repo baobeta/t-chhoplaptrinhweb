@@ -3,6 +3,7 @@ package com.example.techshop.controller.admin;
 
 import com.example.techshop.command.UserCommand;
 import com.example.techshop.dto.RoleDTO;
+import com.example.techshop.dto.UserDTO;
 import com.example.techshop.utils.FormUtil;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
@@ -25,7 +26,11 @@ public class UserUpdateController extends HttpServlet {
         List<RoleDTO> roles=  STServiceUtil.getRoleService().getRole();
         req.setAttribute("roles",roles);
         UserCommand command = FormUtil.populate(UserCommand.class,req);
-        Integer id = Integer.valueOf(req.getParameter("userId"));
+        if(req.getParameter("userId")!=null) {
+            Integer id = Integer.valueOf(req.getParameter("userId"));
+            UserDTO dto = STServiceUtil.getUserService().findEqualUnique("id",id);
+            req.setAttribute("user",dto);
+        }
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/user-form.jsp");
         dispatcher.forward(req, resp);
@@ -34,9 +39,21 @@ public class UserUpdateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserCommand command = FormUtil.populate(UserCommand.class,req);
-        RoleDTO role = RoleConverter.entity2Dto(STRepoUtil.getRoleRepo().findEqualUnique("name",command.getRole()));
-        command.getPojo().setRoleDTO(role);
-        STServiceUtil.getUserService().saveUser(command.getPojo());
-        resp.sendRedirect("/user");
+        if(command.getPojo().getUserId() != null) {
+            RoleDTO role = RoleConverter.entity2Dto(STRepoUtil.getRoleRepo().findEqualUnique("name",command.getRole()));
+            command.getPojo().setRoleDTO(role);
+            STServiceUtil.getUserService().updateUser(command.getPojo());
+//            req.setAttribute("message","Chỉnh sửa tài khoản thành công");
+            resp.sendRedirect("/user?message=updateSuccess");
+        } else {
+            RoleDTO role = RoleConverter.entity2Dto(STRepoUtil.getRoleRepo().findEqualUnique("name",command.getRole()));
+            command.getPojo().setRoleDTO(role);
+            STServiceUtil.getUserService().saveUser(command.getPojo());
+            resp.sendRedirect("/user?message=addSuccess");
+
+
+        }
+
+
     }
 }
