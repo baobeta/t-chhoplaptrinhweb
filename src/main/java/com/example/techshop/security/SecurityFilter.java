@@ -50,10 +50,10 @@ public class SecurityFilter implements Filter {
       String userName = loginedUser.getEmail();
 
       // Các vai trò (Role).
-      List<String> roles = Collections.singletonList(loginedUser.getRoleDTO().getName());
+      List<String> role = Collections.singletonList(loginedUser.getRoleDTO().getName());
 
       // Gói request cũ bởi một Request mới với các thông tin userName và Roles.
-      wrapRequest = (HttpServletRequest) new UserRoleRequestWrapper(userName, roles, request);
+      wrapRequest = (HttpServletRequest) new UserRoleRequestWrapper(userName, role, request);
     }
 
     // Các trang bắt buộc phải đăng nhập.

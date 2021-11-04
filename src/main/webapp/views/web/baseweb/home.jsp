@@ -1,11 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:url var="pDetail" value="/pDetail/"/>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page pageEncoding="UTF-8" %>
+<%@include file="/common/taglib.jsp" %>
+
 <!-- BEGIN SLIDER -->
 <div class="page-slider margin-bottom-35">
     <!-- LayerSlider start -->
     <div id="layerslider" style="width: 100%; height: 494px; margin: 0 auto;">
-
         <!-- slide one start -->
         <div class="ls-slide ls-slide1"
              data-ls="offsetxin: right; slidedelay: 7000; transition2d: 24,25,27,28;">
@@ -167,16 +167,15 @@
     <!-- LayerSlider end -->
 </div>
 <!-- END SLIDER -->
-
 <div class="main">
     <div class="container">
         <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
         <div class="row margin-bottom-40">
             <!-- BEGIN SALE PRODUCT -->
             <div class="col-md-12 sale-product">
-                <h2>New Arrivals</h2>
+                <h2><fmt:message key="newProduct" bundle="${lang}"/></h2>
                 <div class="owl-carousel owl-carousel5">
-                    <!-----------------------------------------Code foreach---------------------------------------------------------------------->
+                    <c:forEach items="${productItems.listResult}" var="product">
                     <div>
                         <div class="product-item">
                             <div class="pi-img-wrapper">
@@ -185,17 +184,20 @@
                                 <div>
                                     <a href="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
                                        class="btn btn-default fancybox-button">Zoom</a>
+                                    <c:url var="pDetail" value="/pDetail/">
+                                        <c:param name="pojo.productId" value="${product.productId}"/>
+                                    </c:url>
                                     <a href="${pDetail}"
-                                       class="btn btn-default fancybox-fast-view">View</a>
+                                       class="btn btn-default fancybox-fast-view"><fmt:message key="view" bundle="${lang}"/></a>
                                 </div>
                             </div>
-                            <h3><a href="shop-item.html">Acer Nitro 5</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                            <h3><a href="shop-item.html">${product.name}</a></h3>
+                            <div class="pi-price">${product.price}</div>
+                            <a href="#" class="btn btn-default add2cart"><fmt:message key="addToCart" bundle="${lang}"/></a>
                             <div class="sticker sticker-sale"></div>
                         </div>
                     </div>
-                    <!--------------------------------------------Code foreach------------------------------------------------------------------->
+                    </c:forEach>
                 </div>
             </div>
             <!-- END SALE PRODUCT -->
@@ -207,22 +209,29 @@
             <!-- BEGIN SIDEBAR -->
             <div class="sidebar col-md-3 col-sm-4">
                 <ul class="list-group margin-bottom-25 sidebar-menu">
-                    <li class="list-group-item clearfix"><a> DANH MỤC</a></li>
-
-                    <ul class="list-group margin-bottom-25 sidebar-menu">
-                        <c:forEach items="${brandItems.listResult}" var="brandItem">
-                        <li class="list-group-item clearfix"><a href="shop-product-list.html"><i
-                                class="fa fa-angle-right"></i> ${brandItem.name}</a></li>
-                        </c:forEach>
-                    </ul>
+                    <li class="list-group-item clearfix"><a><fmt:message key="viewCategory" bundle="${lang}"/></a></li>
+                    <c:forEach items="${cateItems.listResult}" var="category">
+                        </li>
+                        <li class="list-group-item clearfix dropdown">
+                            <a href="shop-product-list.html">
+                                <i class="fa fa-angle-right"></i>
+                                    ${category.name}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <c:forEach items="${brandItems.listResult}" var="brand">
+                                    <li><a href="shop-product-list.html"><i
+                                            class="fa fa-angle-right"></i> ${brand.name}</a></li>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             <div class="col-md-9 col-sm-8">
-                <h2>Three items</h2>
+                <h2><fmt:message key="symbolItem" bundle="${lang}"/> </h2>
                 <div class="owl-carousel owl-carousel3">
-
                   <c:forEach items="${productItems.listResult}" var="productItem">
                     <div>
                         <div class="product-item">
@@ -238,44 +247,19 @@
                             </div>
                             <h3><a href="shop-item.html">${productItem.name}</a></h3>
                             <div class="pi-price">${productItem.price} VNĐ</div>
-                            <a href="#" class="btn btn-default add2cart"> Add to cart</a>
+                            <a href="#" class="btn btn-default add2cart"> <fmt:message key="addToCart" bundle="${lang}"/></a>
                             <div class="sticker sticker-new"></div>
                         </div>
                     </div>
                   </c:forEach>
-                    <!-----------------------------Code foreach-------------------------------------------------->
                 </div>
             </div>
             <!-- END CONTENT -->
         </div>
         <!-- END SIDEBAR & CONTENT -->
 
-        <!-- BEGIN TWO PRODUCTS & PROMO -->
+        <!-- BEGIN PROMO -->
         <div class="row margin-bottom-35 ">
-            <!-- BEGIN TWO PRODUCTS -->
-            <div class="col-md-6 two-items-bottom-items">
-                <h2>Two items</h2>
-                <div class="owl-carousel owl-carousel2">
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="<c:url value='/static/assets/frontend/pages/img/products/k4.jpg'/>"
-                                     class="img-responsive" alt="Berry Lace Dress">
-                                <div>
-                                    <a href="<c:url value='/static/assets/frontend/pages/img/products/k4.jpg'/>"
-                                       class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="${pDetail}"
-                                       class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END TWO PRODUCTS -->
             <!-- BEGIN PROMO -->
             <div class="col-md-6 shop-index-carousel">
                 <div class="content-slider">
@@ -308,18 +292,3 @@
         <!-- END TWO PRODUCTS & PROMO -->
     </div>
 </div>
-
-<script>
-  // $( document ).ready(function() {
-  //   const price = document.getElementById('p-price');
-  //   price.value = 'VNĐ' + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-  // });
-  // function formatCurrency(n) {
-  //   n=3000
-  //   var price = 'VNĐ' + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-  //   document.getElementsByClassName('pi-price').innerHTML = price;
-  // }
-  // function format2(n, currency) {
-  //   return currency + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-  // }
-</script>

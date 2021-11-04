@@ -23,7 +23,7 @@ public class SecurityConfig {
 
     // Cấu hình cho vai trò "EMPLOYEE".
     List<String> adminUrlPattern = new ArrayList<String>();
-    adminUrlPattern.add("/admin/**");
+    adminUrlPattern.add("/admin");
     mapConfig.put(ROLE_ADMIN, adminUrlPattern);
 
     // Cấu hình cho vai trò "MANAGER".
