@@ -21,7 +21,7 @@
 <div class="container">
     <h2>Hover Rows</h2>
     <p>The .table-hover class enables a hover state on table rows:</p>
-    <a class="btn btn-primary"href="<c:url value='/user-form'/>">Thêm User</a>
+    <a class="btn btn-primary"href="<c:url value='/admin/user-form'/>">Thêm User</a>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -46,12 +46,12 @@
                 <td><img src="${user.photos}"  alt="" id="image" style="width:200px;height:300px;"></td>
                 <td>${user.roleDTO}</td>
                 <td>
-                    <c:url value="/user-form" var="updateURL">
+                    <c:url value="/admin/user-form" var="updateURL">
                         <c:param name="userId" value="${user.userId}"/>
                         <c:param name="page" value="1"/>
                     </c:url>
                     <a class="btn btn-secondary" href="${updateURL}">Sửa</a>
-                    <form action="<c:url value="/user-delete"/>" method="post">
+                    <form action="<c:url value="/admin/user-delete"/>" method="post">
                         <input type="hidden" name="idDelete" value="${user.userId}"/>
                         <button type="submit" class="btn btn-primary">Xóa</button>
                     </form>

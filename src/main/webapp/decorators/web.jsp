@@ -57,6 +57,10 @@
           id="style-color">
     <link href="<c:url value='/static/assets/frontend/layout/css/custom.css'/>" rel="stylesheet">
 
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+
 </head>
 <body class="ecommerce">
 <!-- Header -->

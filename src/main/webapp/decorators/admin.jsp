@@ -8,6 +8,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
+
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all"
           rel="stylesheet" type="text/css">
@@ -48,6 +49,10 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/static/assets/global/plugins/bootstrap-datepicker/css/datepicker.css'/>"/>
     <!-- END PAGE LEVEL STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
 </head>
 <body>
 <!-- Header -->

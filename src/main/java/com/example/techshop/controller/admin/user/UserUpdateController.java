@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/user-form")
+@WebServlet("/admin/user-form")
 public class UserUpdateController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,12 +44,12 @@ public class UserUpdateController extends HttpServlet {
             command.getPojo().setRoleDTO(role);
             STServiceUtil.getUserService().updateUser(command.getPojo());
 //            req.setAttribute("message","Chỉnh sửa tài khoản thành công");
-            resp.sendRedirect("/user?message=updateSuccess");
+            resp.sendRedirect("/admin/user?message=updateSuccess");
         } else {
             RoleDTO role = RoleConverter.entity2Dto(STRepoUtil.getRoleRepo().findEqualUnique("name",command.getRole()));
             command.getPojo().setRoleDTO(role);
             STServiceUtil.getUserService().saveUser(command.getPojo());
-            resp.sendRedirect("/user?message=addSuccess");
+            resp.sendRedirect("/admin/user?message=addSuccess");
         }
     }
 }

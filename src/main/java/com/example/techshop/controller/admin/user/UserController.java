@@ -22,10 +22,7 @@ public class UserController extends HttpServlet {
         UserCommand command = FormUtil.populate(UserCommand.class,request);
         List<UserDTO> users = STServiceUtil.getUserService().pagingnation(command.getPage(), command.getMaxPageItems());
         command.setTotalItems((STServiceUtil.getUserService().CountUser()/ command.getMaxPageItems())+1);
-
         request.setAttribute("users",users);
-
-
         checkMessage(request);
         request.setAttribute("pojo",command);
         RequestDispatcher dispatcher
