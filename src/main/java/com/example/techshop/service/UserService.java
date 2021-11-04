@@ -58,7 +58,7 @@ public class UserService {
 
   }
 
-  public List<UserDTO> Pagingnation(Integer pageNumber, Integer pageSize) {
+  public List<UserDTO> pagingnation(Integer pageNumber, Integer pageSize) {
     List<UserEntity> listEntity = STRepoUtil.getUserRepo().pagination(pageNumber,pageSize);
     return UserListConverter.entity2Dto(listEntity);
   }

@@ -28,11 +28,8 @@ public class UserEntity {
     @Column(name="last_name", length =45 , nullable =false)
     private String lastName;
 
-<<<<<<< HEAD
     @Column( length =300 )
-=======
-    @Column( length = 300)
->>>>>>> c7802b2352bfdf38d3423eafa402810f01ac3fb2
+
     private String photos;
 
     @ManyToOne

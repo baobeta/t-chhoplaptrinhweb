@@ -20,7 +20,7 @@ public class UserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserCommand command = FormUtil.populate(UserCommand.class,request);
-        List<UserDTO> users = STServiceUtil.getUserService().Pagingnation(command.getPage(), command.getMaxPageItems());
+        List<UserDTO> users = STServiceUtil.getUserService().pagingnation(command.getPage(), command.getMaxPageItems());
         command.setTotalItems((STServiceUtil.getUserService().CountUser()/ command.getMaxPageItems())+1);
 
         request.setAttribute("users",users);
@@ -29,7 +29,7 @@ public class UserController extends HttpServlet {
         checkMessage(request);
         request.setAttribute("pojo",command);
         RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/views/admin/user/userManager.jsp");
+                = this.getServletContext().getRequestDispatcher("/views/admin/user/userInfo.jsp");
         dispatcher.forward(request, response);
     }
 

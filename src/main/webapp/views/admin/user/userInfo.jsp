@@ -67,7 +67,7 @@
         <ul class="pagination justify-content-center flex-wrap">
 
             <li class="page-item disabled">
-                <c:url var="urlPageBegin" value="/user">
+                <c:url var="urlPageBegin" value="/admin/user">
                     <c:param name="page" value="${(pojo.page-1) < 1 ? 1 : (pojo.page-1) }"/>
                 </c:url>
                 <a class="page-link" href="${urlPageBegin}" tabindex="-1">Previous</a>
@@ -80,7 +80,7 @@
                 </c:if>
                 <c:if test="${i!=pojo.page}">
                     <li class="page-item">
-                        <c:url var="urlPage" value="/user">
+                        <c:url var="urlPage" value="/admin/user">
                             <c:param name="page" value="${i}"/>
                         </c:url>
                         <a class="page-link" href="${urlPage}">${i}</a>
@@ -88,7 +88,7 @@
                 </c:if>
             </c:forEach>
             <li class="page-item">
-                <c:url var="urlPageEnd" value="/user">
+                <c:url var="urlPageEnd" value="/admin/user">
                     <c:param name="page" value="${(pojo.page+1)> pojo.totalItems ? pojo.totalItems : (pojo.page+1) }"/>
                 </c:url>
                 <a class="page-link" href="${urlPageEnd}">Next</a>

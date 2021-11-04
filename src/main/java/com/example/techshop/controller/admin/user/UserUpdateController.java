@@ -50,10 +50,6 @@ public class UserUpdateController extends HttpServlet {
             command.getPojo().setRoleDTO(role);
             STServiceUtil.getUserService().saveUser(command.getPojo());
             resp.sendRedirect("/user?message=addSuccess");
-
-
         }
-
-
     }
 }

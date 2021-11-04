@@ -1,4 +1,4 @@
-package com.example.techshop.controller.admin;
+package com.example.techshop.controller.admin.user;
 
 import com.example.techshop.command.UserCommand;
 import com.example.techshop.utils.FormUtil;
