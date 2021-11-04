@@ -1,6 +1,7 @@
 <!-- BEGIN TOP BAR -->
 
 <c:url var="home" value="/home"/>
+<c:url var="login" value="/login"/>
 <c:url var="search" value="/search"/>
 <div class="pre-header">
     <div class="container">

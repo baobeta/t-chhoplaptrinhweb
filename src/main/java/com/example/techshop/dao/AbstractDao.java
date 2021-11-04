@@ -1,7 +1,6 @@
 package com.example.techshop.dao;
 
 import com.example.techshop.common.CoreConstant;
-import com.example.techshop.dto.UserDTO;
 import com.example.techshop.utils.HibernateUtil;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -9,10 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javassist.tools.rmi.ObjectNotFoundException;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.*;
+import org.hibernate.criterion.Projections;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 
 public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>{
 
@@ -240,4 +242,156 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
 //    }
 //    return userEntity;
 //  }
+
+//  // @page: 1, 2, ..
+//  public Map<String,Object> PaginationResult(String params, int page, int maxResult, int maxNavigationPage) {
+//
+//    int thistotalRecords;
+//    int thiscurrentPage;
+//    List<T> thislist;
+//    int thismaxResult;
+//    int thistotalPages;
+//    int thismaxNavigationPage;
+//    List<Integer> thisnavigationPages;
+//    Map<String, Object> returnValue = new HashMap<>();
+//    Session session = HibernateUtil.getSessionFactory().openSession();
+//    Transaction transaction = session.beginTransaction();
+//
+//
+//    String sql = "Select e from " + persistenceClass + " e " //
+//            + " Where e."+params+"> :"+"params";
+//    org.hibernate.query.Query<T> query = session.createQuery(sql,persistenceClass);
+//    query.setParameter(params, 100);
+//
+//
+//
+//    final int pageIndex = page - 1 < 0 ? 0 : page - 1;
+//
+//    int fromRecordIndex = pageIndex * maxResult;
+//    int maxRecordIndex = fromRecordIndex + maxResult;
+//
+//    ScrollableResults resultScroll = query.scroll(ScrollMode.SCROLL_INSENSITIVE  );
+//
+//    List<T> results = new ArrayList<T>();
+//
+//    boolean hasResult =   resultScroll.first();
+//
+//    if (hasResult) {
+//
+//      // Scroll to position:
+//      hasResult = resultScroll.scroll(fromRecordIndex);
+//
+//      if (hasResult) {
+//        do {
+//          T record = (T) resultScroll.get(0);
+//          results.add(record);
+//        } while (resultScroll.next()//
+//                && resultScroll.getRowNumber() >= fromRecordIndex
+//                && resultScroll.getRowNumber() < maxRecordIndex);
+//
+//      }
+//
+//      // Go to Last record.
+//      resultScroll.last();
+//    }
+//
+//    // Total Records
+//    thistotalRecords = resultScroll.getRowNumber() + 1;
+//    thiscurrentPage = pageIndex + 1;
+//    thislist = results;
+//    thismaxResult = maxResult;
+//
+//    if (thistotalRecords % thismaxResult == 0) {
+//      thistotalPages = thistotalRecords / thismaxResult;
+//    } else {
+//      thistotalPages = (thistotalRecords / thismaxResult) + 1;
+//    }
+//
+//    thismaxNavigationPage = maxNavigationPage;
+//
+//    if (maxNavigationPage < thistotalPages) {
+//      thismaxNavigationPage = maxNavigationPage;
+//    }
+//    resultScroll.close();
+//
+//    //=====================================================
+//    /// calc Navigation pages
+//    thisnavigationPages = new ArrayList<Integer>();
+//
+//    int current = thiscurrentPage > thistotalPages ? thistotalPages : thiscurrentPage;
+//
+//    int begin = current - thismaxNavigationPage / 2;
+//    int end = current + thismaxNavigationPage / 2;
+//
+//    // The first page
+//    thisnavigationPages.add(1);
+//    if (begin > 2) {
+//
+//
+//      // Using for '...'
+//      thisnavigationPages.add(-1);
+//    }
+//
+//    for (int i = begin; i < end; i++) {
+//      if (i > 1 && i < thistotalPages) {
+//        thisnavigationPages.add(i);
+//      }
+//    }
+//
+//    if (end < thistotalPages - 2) {
+//
+//      // Using for '...'
+//      thisnavigationPages.add(-1);
+//    }
+//
+//    // The last page.
+//    thisnavigationPages.add(thistotalPages);
+//
+//    returnValue.put("totalRecords",thistotalRecords);
+//    returnValue.put("currentPage",thiscurrentPage);
+//    returnValue.put("list",thislist);
+//    returnValue.put("maxResult",thismaxResult);
+//    returnValue.put("totalPages",thistotalPages);
+//    returnValue.put("maxNavigationPage",thismaxNavigationPage);
+//    returnValue.put("navigationPages",thisnavigationPages);
+//    return returnValue;
+//  }
+
+  public List<T> pagination(Integer pageNumber, Integer pageSize){
+    List<T> listResult = new ArrayList<>();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    try {
+      session.beginTransaction();
+
+      Criteria criteria = session.createCriteria(persistenceClass);
+      criteria.setFirstResult((pageNumber - 1) * pageSize);
+      criteria.setMaxResults(pageSize);
+
+      listResult = (List<T>) criteria.list();
+      session.getTransaction().commit();
+    }
+    catch (HibernateException e) {
+      e.printStackTrace();
+      session.getTransaction().rollback();
+    }
+    return listResult;
+  }
+  public int Count(String params) {
+    int count =0;
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    try {
+      session.beginTransaction();
+      CriteriaBuilder builder = session.getCriteriaBuilder();
+      CriteriaQuery<Long> query = builder.createQuery(Long.class);
+      Root<T> root = query.from(persistenceClass);
+      query.select(builder.count(root.get(params)));
+      count = Math.toIntExact((Long) session.createQuery(query).getSingleResult());
+      session.getTransaction().commit();
+    }
+    catch (HibernateException e) {
+      e.printStackTrace();
+      session.getTransaction().rollback();
+    }
+    return count;
+  }
 }

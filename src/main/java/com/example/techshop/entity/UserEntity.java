@@ -29,6 +29,7 @@ public class UserEntity {
     private String lastName;
 
     @Column( length =300 )
+
     private String photos;
 
     @ManyToOne

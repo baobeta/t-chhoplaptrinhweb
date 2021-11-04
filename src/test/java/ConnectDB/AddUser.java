@@ -5,6 +5,8 @@ import com.example.techshop.entity.UserEntity;
 import com.example.techshop.utils.STRepoUtil;
 import org.junit.Test;
 
+import java.util.List;
+
 public class AddUser {
 
 
@@ -33,4 +35,14 @@ public class AddUser {
             STRepoUtil.getRoleRepo().save(roleEntity1);
 
   }
+  @Test
+  public void testPagination() {
+      List<UserEntity> list = STRepoUtil.getUserRepo().pagination(2,10);
+  }
+
+  @Test
+  public void countUser() {
+      Integer count = STRepoUtil.getUserRepo().Count("userId");
+      System.out.println(count);
+    }
 }
