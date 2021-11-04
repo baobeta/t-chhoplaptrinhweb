@@ -42,6 +42,10 @@
           rel="stylesheet">
     <link href="<c:url value='/static/assets/global/plugins/slider-layer-slider/css/layerslider.css'/>"
           rel="stylesheet">
+    <link href="<c:url value='/static/assets/global/plugins/uniform/css/uniform.default.css'/>" rel="stylesheet" type="text/css">
+    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+    <!-- for slider-range -->
+    <link href="<c:url value='/static/assets/global/plugins/rateit/src/rateit.css'/>" rel="stylesheet" type="text/css">
     <!-- Page level plugin styles END -->
 
     <!-- Theme styles START -->
@@ -96,7 +100,8 @@
         type="text/javascript"></script>
 <script src="<c:url value='/static/assets/global/plugins/rateit/src/jquery.rateit.js'/>"
         type="text/javascript"></script>
-
+<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/pages/scripts/checkout.js'/>" type="text/javascript"></script>
 <!-- BEGIN LayerSlider -->
 <script src="<c:url value='/static/assets/global/plugins/slider-layer-slider/js/greensock.js'/>"
         type="text/javascript"></script><!-- External libraries: GreenSock -->
@@ -106,10 +111,33 @@
         type="text/javascript"></script><!-- LayerSlider script files -->
 <script src="<c:url value='/static/assets/frontend/pages/scripts/layerslider-init.js'/>"
         type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script><!-- for slider-range -->
 <!-- END LayerSlider -->
 
-<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>"
-        type="text/javascript"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    Layout.init();
+    Layout.initOWL();
+    Layout.initTwitter();
+    Layout.initImageZoom();
+    Layout.initTouchspin();
+    Layout.initUniform();
+    Checkout.init();
+  });
+</script>
+
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    Layout.init();
+    Layout.initOWL();
+    Layout.initTwitter();
+    Layout.initImageZoom();
+    Layout.initTouchspin();
+    Layout.initUniform();
+    Layout.initSliderRange();
+  });
+</script>
+
 <script type="text/javascript">
   jQuery(document).ready(function () {
     Layout.init();
@@ -120,8 +148,6 @@
     Layout.initTwitter();
   });
 </script>
-
-<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
 
 <script type="text/javascript">
   jQuery(document).ready(function () {
