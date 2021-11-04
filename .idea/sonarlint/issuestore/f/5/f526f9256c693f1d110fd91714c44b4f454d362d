@@ -1,8 +1,0 @@
-
-\
-java:S1118":Add a private constructor to hide the implicit public one.(ã‡Îøÿÿÿÿ8¤ı›Î/
-a
-java:S2147"DCombine this catch with the one at line 15, which has the same body.(åşáÿ8¤ı›Î/
-K
-java:S1905")Remove this unnecessary cast to "Object".(ÊËç±üÿÿÿÿ8Ÿ¤ı›Î/
-E	java:S108")Either remove or fill this block of code.(¯áè8¢¤ı›Î/
