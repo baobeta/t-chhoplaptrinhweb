@@ -45,6 +45,7 @@
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link rel="stylesheet" type="text/css" href="<c:url value='/static/assets/global/plugins/select2/select2.css'/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/static/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css'/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/static/assets/global/plugins/bootstrap-datepicker/css/datepicker.css'/>"/>
     <!-- END PAGE LEVEL STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
 </head>
@@ -78,6 +79,7 @@
 <script src="<c:url value='/static/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/static/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/static/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js'/>" type="text/javascript"></script>
+<script type="text/javascript" src="<c:url value='/static/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'/>"></script>
 <!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
 <script src="<c:url value='/static/assets/global/plugins/morris/morris.min.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/static/assets/global/plugins/morris/raphael-min.js'/>" type="text/javascript"></script>
@@ -93,7 +95,10 @@
 <script src="<c:url value='/static/assets/admin/pages/scripts/table-managed.js'/>"></script>
 <script src="<c:url value='/static/assets/admin/pages/scripts/index3.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/static/assets/admin/pages/scripts/tasks.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/scripts/datatable.js'/>"></script>
+<script src=".<c:url value='/static/assets/admin/pages/scripts/ecommerce-products.js'/>"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
+
 <script>
   jQuery(document).ready(function() {
     Metronic.init(); // init metronic core componets
@@ -110,6 +115,16 @@
     Layout.init(); // init current layout
     Demo.init(); // init demo features
     TableManaged.init();
+  });
+</script>
+<!-- END JAVASCRIPTS -->
+
+<script>
+  jQuery(document).ready(function() {
+    Metronic.init(); // init metronic core components
+    Layout.init(); // init current layout
+    Demo.init(); // init demo features
+    EcommerceProducts.init();
   });
 </script>
 <!-- END JAVASCRIPTS -->
