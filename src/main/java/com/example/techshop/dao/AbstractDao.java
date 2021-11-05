@@ -394,4 +394,5 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
     }
     return count;
   }
+
 }

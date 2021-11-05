@@ -13,12 +13,22 @@ import java.util.List;
 
 public class ProductService {
 
+
+
   public List<ProductDTO> getAllProduct() {
     List<ProductEntity> entities = STRepoUtil.getProductRepo().findAll();
-    List<ProductDTO> dtos = ProductListConverter.entity2Dto(entities);
-    return dtos;
+    return ProductListConverter.entity2Dto(entities);
   }
 
+  public List<ProductDTO> getProducts(int firstIndex){
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().getProducts(firstIndex);
+    return ProductListConverter.entity2Dto(entities);
+  }
+
+  public List<ProductDTO> getSomeFirstProducts(){
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().getProducts(0);
+    return ProductListConverter.entity2Dto(entities);
+  }
 //  public ProductDTO findUser(String email, String password) {
 //    ProductEntity entity = STRepoUtil.getProductRepo().findUser(email, password);
 //    ProductDTO dto = UserConverter.entity2Dto(entity);

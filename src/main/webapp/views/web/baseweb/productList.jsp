@@ -72,27 +72,29 @@
                     </div>
                 </div>
                 <!-- BEGIN PRODUCT LIST -->
-                <div class="row product-list">
-                    <!-- PRODUCT ITEMS START -->
-                    <c:forEach items="${productItems.listResult}" var="product">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
-                                     class="img-responsive" alt="Berry Lace Dress">
-                                <div>
-                                    <a href="../../assets/frontend/pages/img/products/model1.jpg"
-                                       class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up"
-                                       class="btn btn-default fancybox-fast-view">View</a>
+                <div class="row product-list" id="product-list">
+                    <div id="product-item">
+                        <!-- PRODUCT ITEMS START -->
+                        <c:forEach items="${productItems.listResult}" var="product">
+                            <div class="col-md-4 col-sm-6 col-xs-12" >
+                                <div class="product-item">
+                                    <div class="pi-img-wrapper">
+                                        <img src="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
+                                             class="img-responsive" alt="Berry Lace Dress">
+                                        <div>
+                                            <a href="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
+                                               class="btn btn-default fancybox-button">Zoom</a>
+                                            <a href="#product-pop-up"
+                                               class="btn btn-default fancybox-fast-view">View</a>
+                                        </div>
+                                    </div>
+                                    <h3><a href="shop-item.html">${product.name}</a></h3>
+                                    <div class="pi-price">${product.price}</div>
+                                    <a href="#" class="btn btn-default add2cart">Add to cart</a>
                                 </div>
                             </div>
-                            <h3><a href="shop-item.html">${product.name}</a></h3>
-                            <div class="pi-price">${product.price}</div>
-                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                        </div>
+                        </c:forEach>
                     </div>
-                    </c:forEach>
                     <!-- PRODUCT ITEMS END -->
                 </div>
                 <!-- END PRODUCT LIST -->
@@ -101,13 +103,19 @@
                     <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10 total</div>
                     <div class="col-md-8 col-sm-8">
                         <ul class="pagination pull-right">
-                            <li><a href="#">&laquo;</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><span>2</span></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&raquo;</a></li>
+                            <li class="paginationItem"><a href="#">&laquo;</a></li>
+                            <c:forEach var="page" begin="1" end="${productItems.totalPages}">
+                                <c:choose>
+                                    <c:when test="${page == 1}">
+                                        <li class="paginationItem"><span><a
+                                                href="#">${page}</a></span></li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li class="paginationItem"><a href="#">${page}</a></li>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                            <li class="paginationItem"><a href="#">&raquo;</a></li>
                         </ul>
                     </div>
                 </div>

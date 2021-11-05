@@ -116,15 +116,7 @@
                             </ul>
                             <div id="myTabContent" class="tab-content">
                                 <div class="tab-pane fade" id="Description">
-                                    <p>Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed sit
-                                        nonumy nibh sed euismod laoreet dolore magna aliquarm erat
-                                        sit volutpat Nostrud duis molestie at dolore. Lorem ipsum
-                                        dolor ut sit ame dolore adipiscing elit, sed sit nonumy nibh
-                                        sed euismod laoreet dolore magna aliquarm erat sit volutpat
-                                        Nostrud duis molestie at dolore. Lorem ipsum dolor ut sit
-                                        ame dolore adipiscing elit, sed sit nonumy nibh sed euismod
-                                        laoreet dolore magna aliquarm erat sit volutpat Nostrud duis
-                                        molestie at dolore. </p>
+                                    <p>Description </p>
                                 </div>
                                 <div class="tab-pane fade" id="Information">
                                     <table class="datasheet">
@@ -164,13 +156,7 @@
                                                  data-rateit-readonly="true"></div>
                                         </div>
                                         <div class="review-item-content">
-                                            <p>Sed velit quam, auctor id semper a, hendrerit eget
-                                                justo. Cum sociis natoque penatibus et magnis dis
-                                                parturient montes, nascetur ridiculus mus. Duis vel
-                                                arcu pulvinar dolor tempus feugiat id in orci.
-                                                Phasellus sed erat leo. Donec luctus, justo eget
-                                                ultricies tristique, enim mauris bibendum orci, a
-                                                sodales lectus purus ut lorem.</p>
+                                            <p>Comment</p>
                                         </div>
                                     </div>
                                     <div class="review-item clearfix">
@@ -182,13 +168,7 @@
                                                  data-rateit-readonly="true"></div>
                                         </div>
                                         <div class="review-item-content">
-                                            <p>Sed velit quam, auctor id semper a, hendrerit eget
-                                                justo. Cum sociis natoque penatibus et magnis dis
-                                                parturient montes, nascetur ridiculus mus. Duis vel
-                                                arcu pulvinar dolor tempus feugiat id in orci.
-                                                Phasellus sed erat leo. Donec luctus, justo eget
-                                                ultricies tristique, enim mauris bibendum orci, a
-                                                sodales lectus purus ut lorem.</p>
+                                            <p>Comment</p>
                                         </div>
                                     </div>
 
@@ -236,32 +216,5 @@
             <!-- END CONTENT -->
         </div>
         <!-- END SIDEBAR & CONTENT -->
-
-        <!-- BEGIN SIMILAR PRODUCTS -->
-        <div class="row margin-bottom-40">
-            <div class="col-md-12 col-sm-12">
-                <h2>Most popular products</h2>
-                <div class="owl-carousel owl-carousel4">
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="<c:url value='/static/assets/frontend/pages/img/products/k1.jpg'/>"
-                                     class="img-responsive" alt="Berry Lace Dress">
-                                <div>
-                                    <a href="<c:url value='/static/assets/frontend/pages/img/products/k1.jpg'/>"
-                                       class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="${pDetail}" class="btn btn-default fancybox-fast-view">View</a>
-                                </div>
-                            </div>
-                            <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Add to cart</a>
-                            <div class="sticker sticker-new"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END SIMILAR PRODUCTS -->
     </div>
 </div>

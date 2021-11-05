@@ -1,8 +1,11 @@
 package ConnectDB;
 
+import com.example.techshop.dto.ProductDTO;
+import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.entity.RoleEntity;
 import com.example.techshop.entity.UserEntity;
 import com.example.techshop.utils.STRepoUtil;
+import com.example.techshop.utils.STServiceUtil;
 import org.junit.Test;
 
 import java.util.List;
@@ -54,4 +57,11 @@ public class AddUser {
       Integer count = STRepoUtil.getUserRepo().Count("userId");
       System.out.println(count);
     }
+
+    @Test
+  public void testPagination2(){
+    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(10);
+      List<ProductDTO> list = productDTOS;
+    }
+
 }
