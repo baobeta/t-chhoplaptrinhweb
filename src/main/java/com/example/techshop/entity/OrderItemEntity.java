@@ -29,8 +29,4 @@ public class OrderItemEntity {
     @JoinColumn(name = "order_id")
     private OrderDetailEntity orderDetailEntity;
 
-    @OneToOne(cascade = CascadeType.ALL) // Đánh dấu có mỗi quan hệ 1-1 với Person ở phía dưới
-    @JoinColumn(name = "cus_id", referencedColumnName = "customer_id") // Liên kết với nhau qua khóa ngoại users_id
-    private CustomerEntity customerEntity;
-
 }

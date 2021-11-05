@@ -26,7 +26,6 @@
     <mapping class="com.example.techshop.entity.BrandEntity"/>
     <mapping class="com.example.techshop.entity.OrderItemEntity"/>
     <mapping class="com.example.techshop.entity.OrderDetailEntity"/>
-    <mapping class="com.example.techshop.entity.CustomerEntity"/>
     <mapping class="com.example.techshop.entity.CartItemEntity"/>
   </session-factory>
 </hibernate-configuration>

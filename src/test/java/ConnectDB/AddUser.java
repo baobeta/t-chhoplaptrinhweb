@@ -10,6 +10,15 @@ import java.util.List;
 public class AddUser {
 
 
+  @Test
+  public void addRole(){
+    RoleEntity roleEntity = new RoleEntity();
+    roleEntity.setName("CUSTOMER");
+    roleEntity.setDescription("tao la CUSTOMER");
+    STRepoUtil.getRoleRepo().save(roleEntity);
+  }
+
+
     @Test
   public void TestInsertUserEntity() {
     RoleEntity role = STRepoUtil.getRoleRepo().findById(1);

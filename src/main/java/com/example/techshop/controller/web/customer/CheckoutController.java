@@ -1,4 +1,4 @@
-package com.example.techshop.controller.web;
+package com.example.techshop.controller.web.customer;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/cart")
-public class CartController extends HttpServlet {
+@WebServlet("/checkout")
+public class CheckoutController extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     RequestDispatcher dispatcher //
-        = request.getServletContext().getRequestDispatcher("/views/web/shoppingCart.jsp");
+        = request.getServletContext().getRequestDispatcher("/views/web/customer/checkout.jsp");
     dispatcher.forward(request, response);
   }
 

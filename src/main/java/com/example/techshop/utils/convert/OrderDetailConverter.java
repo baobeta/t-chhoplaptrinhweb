@@ -11,7 +11,7 @@ public class OrderDetailConverter {
     dto.setIspaid(entity.getIspaid());
     dto.setTotal(entity.getTotal());
     dto.setUserDTO(UserConverter.entity2Dto(entity.getUserEntity()));
-    dto.setCustomerDTO(CustomerConverter.entity2Dto(entity.getCustomerEntity()));
+    dto.setUserDTO(UserConverter.entity2Dto(entity.getUserEntity()));
     return dto;
   }
 
@@ -21,7 +21,7 @@ public class OrderDetailConverter {
     entity.setIspaid(dto.getIspaid());
     entity.setTotal(dto.getTotal());
     entity.setUserEntity(UserConverter.dto2Entity(dto.getUserDTO()));
-    entity.setCustomerEntity(CustomerConverter.dto2Entity(dto.getCustomerDTO()));
+    entity.setUserEntity(UserConverter.dto2Entity(dto.getUserDTO()));
     return entity;
   }
 }

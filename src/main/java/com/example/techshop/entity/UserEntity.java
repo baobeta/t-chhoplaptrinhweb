@@ -1,5 +1,6 @@
 package com.example.techshop.entity;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,6 +36,9 @@ public class UserEntity {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private RoleEntity roleEntity;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity")
+    private List<OrderDetailEntity> orderDetailEntities;
 
     @Override
     public String toString() {

@@ -1,5 +1,6 @@
 package com.example.techshop.entity;
 
+import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,5 +30,8 @@ public class CartItemEntity {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private ProductEntity productEntity;
+
+    @Column(name = "createdDate")
+    private Timestamp createdDate;
 
 }

@@ -29,11 +29,7 @@ public class OrderDetailEntity {
     private List<OrderItemEntity> orderItemEntityList;
 
     @ManyToOne
-    @JoinColumn(name = "seller")
-    private UserEntity userEntity;
-
-    @ManyToOne
     @JoinColumn(name = "cus_id")
-    private CustomerEntity customerEntity;
+    private UserEntity userEntity;
 
 }

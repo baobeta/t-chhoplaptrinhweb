@@ -3,7 +3,6 @@ package com.example.techshop.utils;
 import com.example.techshop.service.BrandService;
 import com.example.techshop.service.CartItemService;
 import com.example.techshop.service.CategoryService;
-import com.example.techshop.service.CustomerService;
 import com.example.techshop.service.OrderDetailService;
 import com.example.techshop.service.OrderItemService;
 import com.example.techshop.service.ProductService;
@@ -16,7 +15,6 @@ public class STServiceUtil {
   private static BrandService brandService = null;
   private static CartItemService cartItemService = null;
   private static CategoryService categoryService = null;
-  private static CustomerService customerService = null;
   private static OrderDetailService orderDetailService = null;
   private static OrderItemService orderItemService = null;
   private static ProductService productService = null;
@@ -43,13 +41,6 @@ public class STServiceUtil {
       categoryService =new CategoryService();
     }
     return categoryService;
-  }
-
-  public static CustomerService getCustomerService() {
-    if (customerService == null){
-      customerService =new CustomerService();
-    }
-    return customerService;
   }
 
   public static OrderDetailService getOrderDetailService() {
