@@ -23,12 +23,9 @@ public class ShoppingSessionEntity {
     private Long total;
 
     @OneToOne(cascade = CascadeType.ALL) // Đánh dấu có mỗi quan hệ 1-1 với Person ở phía dưới
-    @JoinColumn(name = "cus_id", referencedColumnName = "customer_id") // Liên kết với nhau qua khóa ngoại users_id
-    private CustomerEntity customerEntity;
+    @JoinColumn(name = "cus_id") // Liên kết với nhau qua khóa ngoại users_id
+    private UserEntity userEntity;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "shoppingSessionEntity", cascade = CascadeType.ALL)
     private List<CartItemEntity> cartItemEntityList;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity")
-    List<OrderDetailEntity> orderDetailEntityList;
 }

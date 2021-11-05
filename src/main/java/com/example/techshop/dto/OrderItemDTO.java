@@ -20,6 +20,4 @@ public class OrderItemDTO {
 
   private OrderDetailDTO orderDetailDTO;
 
-  private CustomerDTO customerDTO;
-
 }

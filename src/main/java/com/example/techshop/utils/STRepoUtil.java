@@ -3,20 +3,17 @@ package com.example.techshop.utils;
 import com.example.techshop.dao.repository.BrandRepo;
 import com.example.techshop.dao.repository.CartItemRepo;
 import com.example.techshop.dao.repository.CategoryRepo;
-import com.example.techshop.dao.repository.CustomerRepo;
 import com.example.techshop.dao.repository.OrderDetailRepo;
 import com.example.techshop.dao.repository.OrderItemRepo;
 import com.example.techshop.dao.repository.ProductRepo;
 import com.example.techshop.dao.repository.RoleRepo;
 import com.example.techshop.dao.repository.ShoppingSessionRepo;
 import com.example.techshop.dao.repository.UserRepo;
-import javax.management.relation.Role;
 
 public class STRepoUtil {
   private static BrandRepo brandRepo = null;
   private static CartItemRepo cartItemRepo = null;
   private static CategoryRepo categoryRepo = null;
-  private static CustomerRepo customerRepo = null;
   private static OrderDetailRepo orderDetailRepo = null;
   private static OrderItemRepo orderItemRepo = null;
   private static ProductRepo productRepo = null;
@@ -44,13 +41,6 @@ public class STRepoUtil {
       categoryRepo = new CategoryRepo();
     }
     return categoryRepo;
-  }
-
-  public static CustomerRepo getCustomerRepo(){
-    if(customerRepo==null){
-      customerRepo = new CustomerRepo();
-    }
-    return customerRepo;
   }
 
   public static OrderDetailRepo getOrderDetailRepo(){

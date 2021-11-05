@@ -23,4 +23,6 @@ public class UserDTO {
 
   private RoleDTO roleDTO;
 
+  private OrderDetailDTO orderDetailDTO;
+
 }

@@ -1,8 +1,5 @@
 package com.example.techshop.dto;
 
-import com.example.techshop.dto.CustomerDTO;
-import com.example.techshop.dto.OrderItemDTO;
-import com.example.techshop.dto.UserDTO;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +19,5 @@ public class OrderDetailDTO {
   private List<OrderItemDTO> orderItemDTOList;
 
   private UserDTO userDTO;
-
-  private CustomerDTO customerDTO;
 
 }
