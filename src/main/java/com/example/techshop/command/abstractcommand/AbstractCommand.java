@@ -15,6 +15,7 @@ public class AbstractCommand<T>{
     private int maxPageItems = 5;
     private int totalItems = 0;
     private int firstItem = 0;
+    private int totalPages = 5;
     private String sortExpression;
     private String sortDirection;
     private String[] checkList;

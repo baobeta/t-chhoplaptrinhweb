@@ -24,7 +24,6 @@ public class ProductController extends HttpServlet {
     ProductCommand productCommand = FormUtil.populate(ProductCommand.class,request);
     setCommandAttribute(categoryCommand, brandCommand, productCommand, request);
 
-
     RequestDispatcher dispatcher //
         = request.getServletContext().getRequestDispatcher("/views/web/baseweb/productList.jsp");
     dispatcher.forward(request, response);
@@ -34,7 +33,7 @@ public class ProductController extends HttpServlet {
       ProductCommand productCommand,
       HttpServletRequest request) {
     categoryCommand.setListResult(STServiceUtil.getCategoryService().getAllCategory());
-    productCommand.setListResult(STServiceUtil.getProductService().getAllProduct());
+    productCommand.setListResult(STServiceUtil.getProductService().getSomeFirstProducts());
     brandCommand.setListResult(STServiceUtil.getBrandService().getAllBrand());
     request.setAttribute("cateItems", categoryCommand);
     request.setAttribute("brandItems", brandCommand);
