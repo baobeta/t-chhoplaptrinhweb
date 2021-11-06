@@ -107,8 +107,7 @@
                             <c:forEach var="page" begin="1" end="${productItems.totalPages}">
                                 <c:choose>
                                     <c:when test="${page == 1}">
-                                        <li class="paginationItem"><span><a
-                                                href="#">${page}</a></span></li>
+                                        <li class="paginationItem"><span><a href="#">${page}</a></span></li>
                                     </c:when>
                                     <c:otherwise>
                                         <li class="paginationItem"><a href="#">${page}</a></li>

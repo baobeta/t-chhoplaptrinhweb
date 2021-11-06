@@ -24,8 +24,6 @@ public class ProductController extends HttpServlet {
     ProductCommand productCommand = FormUtil.populate(ProductCommand.class,request);
     setCommandAttribute(categoryCommand, brandCommand, productCommand, request);
 
-
-
     RequestDispatcher dispatcher //
         = request.getServletContext().getRequestDispatcher("/views/web/baseweb/productList.jsp");
     dispatcher.forward(request, response);
