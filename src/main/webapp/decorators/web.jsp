@@ -175,8 +175,8 @@
 
 <script>
   $("body").on("click", ".paginationItem", function () {
-    var page = $(this).text();
-    var firstIndex = (page - 1)*${productItems.maxPageItems};
+    var currentPage = $(this).text();
+    var firstIndex = (currentPage - 1)*${productItems.maxPageItems};
 
 
 
@@ -184,12 +184,13 @@
       url:"/api/get-product-list",
       type: "GET",
       data:{
-        firstIndex: firstIndex
+        firstIndex: firstIndex,
       },
       success: function(value){
         var productList = $("#product-list").find("#product-item");
         productList.empty();
         productList.append(value);
+
       }
     })
   })

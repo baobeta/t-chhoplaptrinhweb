@@ -12,7 +12,7 @@ public class ShoppingSessionDTO {
 
   private int shoppingSessionId;
 
-  private Long total;
+  private int total;
 
   private UserDTO userDTO;
 

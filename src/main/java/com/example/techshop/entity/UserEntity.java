@@ -40,6 +40,10 @@ public class UserEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity")
     private List<OrderDetailEntity> orderDetailEntities;
 
+    @OneToOne(mappedBy = "userEntity", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private ShoppingSessionEntity shoppingSessionEntity;
+
     @Override
     public String toString() {
         return this.userId.toString()+"   "+ this.email.toString() +"   "+ this.roleEntity.toString() +"   "+ this.firstName + "  " + this.photos+ " " ;

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 
@@ -176,27 +176,35 @@
                 <h2><fmt:message key="newProduct" bundle="${lang}"/></h2>
                 <div class="owl-carousel owl-carousel5">
                     <c:forEach items="${productItems.listResult}" var="product">
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
-                                     class="img-responsive" alt="Berry Lace Dress">
-                                <div>
-                                    <a href="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
-                                       class="btn btn-default fancybox-button">Zoom</a>
-                                    <c:url var="pDetail" value="/pDetail/">
-                                        <c:param name="pojo.productId" value="${product.productId}"/>
-                                    </c:url>
-                                    <a href="${pDetail}"
-                                       class="btn btn-default fancybox-fast-view"><fmt:message key="view" bundle="${lang}"/></a>
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
+                                         class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a href="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
+                                           class="btn btn-default fancybox-button">Zoom</a>
+                                        <c:url var="pDetail" value="/pDetail">
+                                            <c:param name="pojo.productId"
+                                                     value="${product.productId}"/>
+                                        </c:url>
+                                        <a href="${pDetail}"
+                                           class="btn btn-default fancybox-fast-view"><fmt:message
+                                                key="view" bundle="${lang}"/></a>
+                                    </div>
                                 </div>
+                                <h3><a href="shop-item.html">${product.name}</a></h3>
+                                    <%--                            <div class="pi-price">${product.price}</div>--%>
+                                <fmt:setLocale value="fr_CA"/>
+                                <div class="pi-price"><fmt:formatNumber value="${product.price}"
+                                                                        type="currency"
+                                                                        maxFractionDigits="0"
+                                currencySymbol="VNĐ"/></div>
+                                <a href="#" class="btn btn-default add2cart"><fmt:message
+                                        key="addToCart" bundle="${lang}"/></a>
+                                <div class="sticker sticker-sale"></div>
                             </div>
-                            <h3><a href="shop-item.html">${product.name}</a></h3>
-                            <div class="pi-price">${product.price}</div>
-                            <a href="#" class="btn btn-default add2cart"><fmt:message key="addToCart" bundle="${lang}"/></a>
-                            <div class="sticker sticker-sale"></div>
                         </div>
-                    </div>
                     </c:forEach>
                 </div>
             </div>
@@ -209,7 +217,8 @@
             <!-- BEGIN SIDEBAR -->
             <div class="sidebar col-md-3 col-sm-4">
                 <ul class="list-group margin-bottom-25 sidebar-menu">
-                    <li class="list-group-item clearfix"><a><fmt:message key="viewCategory" bundle="${lang}"/></a></li>
+                    <li class="list-group-item clearfix"><a><fmt:message key="viewCategory"
+                                                                         bundle="${lang}"/></a></li>
                     <c:forEach items="${cateItems.listResult}" var="category">
                         </li>
                         <li class="list-group-item clearfix dropdown">
@@ -230,28 +239,32 @@
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             <div class="col-md-9 col-sm-8">
-                <h2><fmt:message key="symbolItem" bundle="${lang}"/> </h2>
+                <h2><fmt:message key="symbolItem" bundle="${lang}"/></h2>
                 <div class="owl-carousel owl-carousel3">
-                  <c:forEach items="${productItems.listResult}" var="productItem">
-                    <div>
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="<c:url value='/static/assets/frontend/pages/img/products/k1.jpg'/>"
-                                     class="img-responsive" alt="Berry Lace Dress">
-                                <div>
-                                    <a href="<c:url value='/static/assets/frontend/pages/img/products/k1.jpg'/>"
-                                       class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="${pDetail}"
-                                       class="btn btn-default fancybox-fast-view">View</a>
+                    <c:forEach items="${productItems.listResult}" var="product">
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="<c:url value='/static/assets/frontend/pages/img/products/k1.jpg'/>"
+                                         class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a href="<c:url value='/static/assets/frontend/pages/img/products/k1.jpg'/>"
+                                           class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="${pDetail}"
+                                           class="btn btn-default fancybox-fast-view">View</a>
+                                    </div>
                                 </div>
+                                <h3><a href="shop-item.html">${product.name}</a></h3>
+                                <div class="pi-price"><fmt:formatNumber value="${product.price}"
+                                                                        type="currency"
+                                                                        maxFractionDigits="0"
+                                                                        currencySymbol="VNĐ"/></div>
+                                <a href="#" class="btn btn-default add2cart"> <fmt:message
+                                        key="addToCart" bundle="${lang}"/></a>
+                                <div class="sticker sticker-new"></div>
                             </div>
-                            <h3><a href="shop-item.html">${productItem.name}</a></h3>
-                            <div class="pi-price">${productItem.price} VNĐ</div>
-                            <a href="#" class="btn btn-default add2cart"> <fmt:message key="addToCart" bundle="${lang}"/></a>
-                            <div class="sticker sticker-new"></div>
                         </div>
-                    </div>
-                  </c:forEach>
+                    </c:forEach>
                 </div>
             </div>
             <!-- END CONTENT -->

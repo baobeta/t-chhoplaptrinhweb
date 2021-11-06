@@ -15,15 +15,15 @@ import lombok.ToString;
 public class ShoppingSessionEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "shopping_session_id")
-    private int shoppingSessionId;
+    @Column(name = "cus_id")
+    private Integer shoppingSessionId;
 
     @Column(name = "total")
-    private Long total;
+    private int total;
 
-    @OneToOne(cascade = CascadeType.ALL) // Đánh dấu có mỗi quan hệ 1-1 với Person ở phía dưới
-    @JoinColumn(name = "cus_id") // Liên kết với nhau qua khóa ngoại users_id
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "cus_id")
     private UserEntity userEntity;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "shoppingSessionEntity", cascade = CascadeType.ALL)

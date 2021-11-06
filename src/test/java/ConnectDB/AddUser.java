@@ -26,11 +26,11 @@ public class AddUser {
   public void TestInsertUserEntity() {
     RoleEntity role = STRepoUtil.getRoleRepo().findById(1);
     UserEntity userEntity = new UserEntity();
-    userEntity.setEmail("Hellomaycung@gmail.com");
-    userEntity.setPassword("baodeptrai");
+    userEntity.setEmail("alion.com");
+    userEntity.setPassword("tong");
     userEntity.setPhotos("789.jpg");
-    userEntity.setFirstName("Bao");
-    userEntity.setLastName("Le");
+    userEntity.setFirstName("Tong");
+    userEntity.setLastName("Huynh Duc");
     userEntity.setRoleEntity(role);
     STRepoUtil.getUserRepo().save(userEntity);
   }
