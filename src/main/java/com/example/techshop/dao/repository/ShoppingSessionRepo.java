@@ -5,4 +5,5 @@ import com.example.techshop.entity.ShoppingSessionEntity;
 
 public class ShoppingSessionRepo extends AbstractDao<Integer, ShoppingSessionEntity> {
 
+
 }

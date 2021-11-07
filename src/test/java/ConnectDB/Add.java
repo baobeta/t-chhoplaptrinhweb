@@ -1,6 +1,8 @@
 package ConnectDB;
 
 import com.example.techshop.dto.ProductDTO;
+import com.example.techshop.entity.BrandEntity;
+import com.example.techshop.entity.CategoryEntity;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.entity.RoleEntity;
 import com.example.techshop.entity.UserEntity;
@@ -10,8 +12,43 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class AddUser {
+public class Add {
+  @Test
+  public void testDelCartItem(){
 
+  }
+
+
+  @Test
+  public void addBrand(){
+    BrandEntity brand = new BrandEntity();
+    brand.setName("ASUS");
+    brand.setDescription("tao la ASUS");
+    STRepoUtil.getBrandRepo().save(brand);
+  }
+
+  @Test
+  public void addCate(){
+    CategoryEntity category = new CategoryEntity();
+    category.setName("CHUOT");
+    category.setDescription("tao la CHUOT");
+    STRepoUtil.getCategoryRepo().save(category);
+  }
+
+  @Test
+  public void addProduct(){
+    ProductEntity product = new ProductEntity();
+    BrandEntity brand = STRepoUtil.getBrandRepo().findById(1);
+    CategoryEntity category = STRepoUtil.getCategoryRepo().findById(2);
+    product.setName("Chuot ASUS");
+    product.setDescription("tao la chuot Asus");
+    product.setPrice(123);
+    product.setQuantity(5);
+    product.setPhoto("456.jpg");
+    product.setBrandEntity(brand);
+    product.setCategoryEntity(category);
+    STRepoUtil.getProductRepo().save(product);
+  }
 
   @Test
   public void addRole(){
@@ -21,16 +58,15 @@ public class AddUser {
     STRepoUtil.getRoleRepo().save(roleEntity);
   }
 
-
     @Test
   public void TestInsertUserEntity() {
     RoleEntity role = STRepoUtil.getRoleRepo().findById(1);
     UserEntity userEntity = new UserEntity();
-    userEntity.setEmail("Hellomaycung@gmail.com");
-    userEntity.setPassword("baodeptrai");
+    userEntity.setEmail("alion.com");
+    userEntity.setPassword("tong");
     userEntity.setPhotos("789.jpg");
-    userEntity.setFirstName("Bao");
-    userEntity.setLastName("Le");
+    userEntity.setFirstName("Tong");
+    userEntity.setLastName("Huynh Duc");
     userEntity.setRoleEntity(role);
     STRepoUtil.getUserRepo().save(userEntity);
   }

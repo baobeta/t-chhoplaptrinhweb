@@ -18,8 +18,11 @@ public class ProductListAPI extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     int firstIndex = Integer.parseInt(request.getParameter("firstIndex"));
+    int page = Integer.parseInt(request.getParameter("page"));
     List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(firstIndex);
 
+
+    String viewURL ="/pDetail?pojo.productId=";
     response.setContentType("text/html");
     response.setCharacterEncoding("UTF-8");
     PrintWriter out = response.getWriter();
@@ -32,7 +35,7 @@ public class ProductListAPI extends HttpServlet {
           + "                                        <div>\n"
           + "                                            <a href=\"<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>\"\n"
           + "                                               class=\"btn btn-default fancybox-button\">Zoom</a>\n"
-          + "                                            <a href=\"#product-pop-up\"\n"
+          + "                                            <a href=\""+viewURL+product.getProductId()+"\"\n"
           + "                                               class=\"btn btn-default fancybox-fast-view\">View</a>\n"
           + "                                        </div>\n"
           + "                                    </div>\n"

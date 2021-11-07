@@ -84,7 +84,11 @@
                                         <div>
                                             <a href="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
                                                class="btn btn-default fancybox-button">Zoom</a>
-                                            <a href="#product-pop-up"
+                                            <c:url var="pDetail" value="/pDetail">
+                                                <c:param name="pojo.productId"
+                                                         value="${product.productId}"/>
+                                            </c:url>
+                                            <a href="${pDetail}"
                                                class="btn btn-default fancybox-fast-view">View</a>
                                         </div>
                                     </div>
@@ -106,7 +110,7 @@
                             <li class="paginationItem"><a href="#">&laquo;</a></li>
                             <c:forEach var="page" begin="1" end="${productItems.totalPages}">
                                 <c:choose>
-                                    <c:when test="${page == 1}">
+                                    <c:when test="${page == 1 }">
                                         <li class="paginationItem"><span><a href="#">${page}</a></span></li>
                                     </c:when>
                                     <c:otherwise>
