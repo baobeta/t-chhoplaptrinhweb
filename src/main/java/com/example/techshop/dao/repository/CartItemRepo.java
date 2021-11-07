@@ -26,11 +26,9 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
       if (shoppingSession ==null){
         ShoppingSessionEntity newSession = new ShoppingSessionEntity();
         UserEntity user = STRepoUtil.getUserRepo().findById(cusId);
-        newSession.setShoppingSessionId(cusId);
         newSession.setUserEntity(user);
         newSession.setTotal(0);
-        session.persist(newSession);
-        transaction.commit();
+        STRepoUtil.getShoppingSessionRepo().save(newSession);
       }
     }catch (HibernateException e){
       throw e;

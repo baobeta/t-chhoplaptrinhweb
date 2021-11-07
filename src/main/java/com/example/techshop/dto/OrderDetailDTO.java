@@ -12,7 +12,7 @@ public class OrderDetailDTO {
   
   private int orderDetailsId;
 
-  private Long total;
+  private Integer total;
 
   private Boolean ispaid;
 

@@ -14,18 +14,18 @@ import lombok.ToString;
 @ToString
 public class ShoppingSessionEntity {
 
-    @Id
-    @Column(name = "cus_id")
-    private Integer shoppingSessionId;
+  @Id
+  @Column(name = "session_id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer shoppingSessionId;
 
-    @Column(name = "total")
-    private int total;
+  @Column(name = "total")
+  private int total;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "cus_id")
-    private UserEntity userEntity;
+  @OneToOne
+  @JoinColumn(name = "cus_id", nullable = false)
+  private UserEntity userEntity;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shoppingSessionEntity", cascade = CascadeType.ALL)
-    private List<CartItemEntity> cartItemEntityList;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "shoppingSessionEntity", cascade = CascadeType.ALL)
+  private List<CartItemEntity> cartItemEntityList;
 }

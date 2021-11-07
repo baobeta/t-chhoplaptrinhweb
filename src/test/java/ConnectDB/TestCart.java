@@ -19,5 +19,4 @@ public class TestCart {
     newSession.setTotal(0);
     STRepoUtil.getShoppingSessionRepo().save(newSession);
   }
-
 }
