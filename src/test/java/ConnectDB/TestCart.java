@@ -23,11 +23,4 @@ public class TestCart {
 
   }
 
-  @Test
-  public void testShoppingSession(){
-    ShoppingSessionEntity newSession = new ShoppingSessionEntity();
-    newSession.setUserEntity(STRepoUtil.getUserRepo().findById(1));
-    newSession.setTotal(0);
-    STRepoUtil.getShoppingSessionRepo().save(newSession);
-  }
 }

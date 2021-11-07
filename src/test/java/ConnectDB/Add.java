@@ -13,7 +13,12 @@ import org.junit.Test;
 import java.util.List;
 
 public class Add {
-  
+  @Test
+  public void testDelCartItem(){
+
+  }
+
+
   @Test
   public void addBrand(){
     BrandEntity brand = new BrandEntity();
