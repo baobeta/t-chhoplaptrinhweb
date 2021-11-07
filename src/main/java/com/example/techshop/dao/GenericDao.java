@@ -9,7 +9,6 @@ public interface GenericDao<ID extends Serializable,T> {
   T update(T entity);
   T save(T entity);
   T findById(ID id);
-  Object[] findByProperty(Map<String,Object> property, String sortExpression, String sortDirection, Integer offset, Integer limit,String whereClause);
   Integer delete(List<ID> ids);
   T findEqualUnique(String property,Object value);
 }

@@ -20,7 +20,7 @@ public class OrderDetailEntity {
     private Integer orderDetailsId;
 
     @Column(name = "total")
-    private Integer total;
+    private int total;
 
     @Column(name = "ispaid")
     private Boolean ispaid;
