@@ -8,7 +8,7 @@ public class ShoppingSessionConverter {
   public static ShoppingSessionDTO entity2Dto(ShoppingSessionEntity entity) {
     ShoppingSessionDTO dto = new ShoppingSessionDTO();
     dto.setUserDTO(UserConverter.entity2Dto(entity.getUserEntity()));
-    dto.setShoppingSessionId(entity.getShoppingSessionId());
+    dto.setShoppingSessionId(entity.getSessionId());
     dto.setTotal(entity.getTotal());
     return dto;
   }
@@ -16,7 +16,7 @@ public class ShoppingSessionConverter {
   public static ShoppingSessionEntity dto2Entity(ShoppingSessionDTO dto){
     ShoppingSessionEntity entity = new ShoppingSessionEntity();
     entity.setUserEntity(UserConverter.dto2Entity(dto.getUserDTO()));
-    entity.setShoppingSessionId(dto.getShoppingSessionId());
+    entity.setSessionId(dto.getShoppingSessionId());
     entity.setTotal(dto.getTotal());
     return entity;
   }

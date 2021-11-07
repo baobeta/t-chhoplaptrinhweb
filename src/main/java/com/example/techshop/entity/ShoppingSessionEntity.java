@@ -17,7 +17,7 @@ public class ShoppingSessionEntity {
   @Id
   @Column(name = "session_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer shoppingSessionId;
+  private Integer sessionId;
 
   @Column(name = "total")
   private int total;

@@ -20,11 +20,11 @@ public class ProductEntity {
     @Column(name = "product_id")
     private Integer productId;
 
-    @Column(name = "description")
-    private String description;
-
     @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "price")
     private Integer price;

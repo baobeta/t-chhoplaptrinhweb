@@ -7,11 +7,22 @@ import org.junit.Test;
 public class TestCart {
 
   @Test
-  public void testShoppingCart(){
+  public void testAddCartItem(){
+    STRepoUtil.getCartItemRepo().addProductToCart(1,1);
+  }
 
-    STRepoUtil.getCartItemRepo().addProduct(1);
+  @Test
+  public void testUpdateCartItem(){
+    STRepoUtil.getCartItemRepo().updateCart(1,1,3);
+  }
+
+  @Test
+  public void testDeleteCartItem(){
+    Integer sessionId = STRepoUtil.getUserRepo().findSessionById(1).getSessionId();
+    STRepoUtil.getCartItemRepo().deleteCartItem(sessionId,1);
 
   }
+
   @Test
   public void testShoppingSession(){
     ShoppingSessionEntity newSession = new ShoppingSessionEntity();
