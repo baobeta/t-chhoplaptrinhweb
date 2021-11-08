@@ -29,7 +29,7 @@ public class UserController extends HttpServlet {
         checkMessage(request);
         request.setAttribute("pojo",command);
         RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/views/admin/user/userInfo.jsp");
+                = this.getServletContext().getRequestDispatcher("/views/admin/user/userManager.jsp");
         dispatcher.forward(request, response);
     }
 

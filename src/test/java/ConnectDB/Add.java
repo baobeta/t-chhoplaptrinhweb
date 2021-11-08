@@ -39,7 +39,7 @@ public class Add {
   public void addProduct(){
     ProductEntity product = new ProductEntity();
     BrandEntity brand = STRepoUtil.getBrandRepo().findById(1);
-    CategoryEntity category = STRepoUtil.getCategoryRepo().findById(2);
+    CategoryEntity category = STRepoUtil.getCategoryRepo().findById(1);
     product.setName("Chuot ASUS");
     product.setDescription("tao la chuot Asus");
     product.setPrice(123);
