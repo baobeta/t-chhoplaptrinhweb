@@ -2,6 +2,7 @@
 
 <c:url var="home" value="/home"/>
 <c:url var="login" value="/login"/>
+<c:url var="logout" value="/logout"/>
 <c:url var="search" value="/search"/>
 <c:url var="checkout" value="/checkout"/>
 <c:url var="cart" value="/cart"/>
@@ -23,7 +24,14 @@
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
                     <li><a href="shop-account.html">My Account</a></li>
-                    <li><a href="${login}">Log In</a></li>
+                    <c:if test="${sessionScope.loginedUser != null}">
+                        <li><a href="#">${sessionScope.loginedUser.lastName}</a></li>
+                        <li><a href="${logout}">Log out</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.loginedUser == null}">
+                        <li><a href="${login}">Log In</a></li>
+                    </c:if>
+
                 </ul>
             </div>
             <!-- END TOP BAR MENU -->

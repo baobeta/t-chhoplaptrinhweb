@@ -8,7 +8,7 @@ public class TestCart {
 
   @Test
   public void testAddCartItem(){
-    STRepoUtil.getCartItemRepo().addProductToCart(1,1);
+    STRepoUtil.getCartItemRepo().addProductToCart(2,1);
   }
 
   @Test

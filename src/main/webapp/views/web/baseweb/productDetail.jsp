@@ -3,6 +3,17 @@
 <%@ page pageEncoding="UTF-8" %>
 <c:url value="/home" var="home"/>
 
+<%--<c:set var="cusId"--%>
+<%--       value="${sessionScope.loginedUser.userId}"/>--%>
+
+<%--<c:if test="${sessionScope.loginedUser.userId != null}">--%>
+<%--    <c:set var="cusId"--%>
+<%--           value="${sessionScope.loginedUser.userId}"/>--%>
+<%--</c:if>--%>
+<%--<c:if test="${sessionScope.loginedUser.userId == null}">--%>
+<%--    <c:set var="cusId" value="0"/>--%>
+<%--</c:if>--%>
+
 <div class="main">
     <div class="container">
         <ul class="breadcrumb">
@@ -69,8 +80,9 @@
                                     <%--                                    <em>$<span>62.00</span></em>--%>
                                 </div>
                                 <div class="availability">
-                                    <fmt:message key="state" bundle="${lang}"/><strong><fmt:message key="available"
-                                                                                  bundle="${lang}"/></strong>
+                                    <fmt:message key="state" bundle="${lang}"/><strong>: <fmt:message
+                                        key="available"
+                                        bundle="${lang}"/></strong>
                                 </div>
                             </div>
                             <div class="description">
@@ -81,8 +93,10 @@
                                     <input id="product-quantity" type="text" value="1" readonly
                                            class="form-control input-sm">
                                 </div>
-                                <button class="btn btn-primary" type="submit"><fmt:message
-                                        key="addToCart" bundle="${lang}"/></button>
+                                <button class="btn btn-primary" type="submit" id="btnAddToCart">
+                                    <fmt:message
+                                            key="addToCart" bundle="${lang}"/>
+                                    </button>
                             </div>
                             <div class="review">
                                 <input type="range" value="4" step="0.25" id="backing4">

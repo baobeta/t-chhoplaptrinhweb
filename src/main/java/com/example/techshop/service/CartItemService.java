@@ -4,8 +4,8 @@ import com.example.techshop.utils.STRepoUtil;
 
 public class CartItemService {
 
-  public void addProductToCart(Integer cusId, Integer productId){
-    STRepoUtil.getCartItemRepo().addProductToCart(cusId,productId);
+  public boolean addProductToCart(Integer cusId, Integer productId){
+    return STRepoUtil.getCartItemRepo().addProductToCart(cusId,productId);
   }
 
   public void updateCartItem(Integer cusId, Integer productId, int quantity){

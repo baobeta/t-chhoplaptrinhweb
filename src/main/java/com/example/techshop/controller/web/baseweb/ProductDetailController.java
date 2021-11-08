@@ -33,11 +33,12 @@ public class ProductDetailController extends HttpServlet {
       response.sendRedirect("error");
     }
 
+    response.setCharacterEncoding("UTF-8");
+    request.setCharacterEncoding("UTF-8");
     RequestDispatcher dispatcher //
         = this.getServletContext().getRequestDispatcher("/views/web/baseweb/productDetail.jsp");
     dispatcher.forward(request, response);
   }
-
 
   void setCommandAttribute(CategoryCommand categoryCommand, BrandCommand brandCommand, HttpServletRequest request) {
     categoryCommand.setListResult(STServiceUtil.getCategoryService().getAllCategory());
