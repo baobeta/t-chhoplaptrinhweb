@@ -194,6 +194,14 @@
   })
 </script>
 <script>
+
+  function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/cart";
+  }
+
   $("#btnAddToCart").on("click", function () {
     var productId = ${product.productId};
     var cusId = ${empty sessionScope.loginedUser.userId ? -1: sessionScope.loginedUser.userId };
@@ -205,10 +213,10 @@
         productId: productId
       },
       success: function (value) {
+        setCookie('productId',productId,3);
         alert("them thanh cong")
       }
     })
-
   })
 
 </script>

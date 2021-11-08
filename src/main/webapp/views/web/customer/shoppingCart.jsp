@@ -1,3 +1,8 @@
+<%@include file="/common/taglib.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
+<c:url value="/home" var="home"/>
+<c:set var="totalAll" value="0"/>
 <div class="main">
     <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->
@@ -17,60 +22,44 @@
                                     <th class="goods-page-price">Unit price</th>
                                     <th class="goods-page-total" colspan="2">Total</th>
                                 </tr>
-                                <tr>
-                                    <td class="goods-page-image">
-                                        <a href="#"><img src="../../assets/frontend/pages/img/products/model3.jpg" alt="Berry Lace Dress"></a>
-                                    </td>
-                                    <td class="goods-page-description">
-                                        <h3><a href="#">Cool green dress with red bell</a></h3>
-                                        <p><strong>Item 1</strong> - Color: Green; Size: S</p>
-                                        <em>More info is here</em>
-                                    </td>
-                                    <td class="goods-page-ref-no">
-                                        javc2133
-                                    </td>
-                                    <td class="goods-page-quantity">
-                                        <div class="product-quantity">
-                                            <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
-                                        </div>
-                                    </td>
-                                    <td class="goods-page-price">
-                                        <strong><span>$</span>47.00</strong>
-                                    </td>
-                                    <td class="goods-page-total">
-                                        <strong><span>$</span>47.00</strong>
-                                    </td>
-                                    <td class="del-goods-col">
-                                        <a class="del-goods" href="#">&nbsp;</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="goods-page-image">
-                                        <a href="#"><img src="../../assets/frontend/pages/img/products/model4.jpg" alt="Berry Lace Dress"></a>
-                                    </td>
-                                    <td class="goods-page-description">
-                                        <h3><a href="#">Cool green dress with red bell</a></h3>
-                                        <p><strong>Item 1</strong> - Color: Green; Size: S</p>
-                                        <em>More info is here</em>
-                                    </td>
-                                    <td class="goods-page-ref-no">
-                                        javc2133
-                                    </td>
-                                    <td class="goods-page-quantity">
-                                        <div class="product-quantity">
-                                            <input id="product-quantity2" type="text" value="1" readonly class="form-control input-sm">
-                                        </div>
-                                    </td>
-                                    <td class="goods-page-price">
-                                        <strong><span>$</span>47.00</strong>
-                                    </td>
-                                    <td class="goods-page-total">
-                                        <strong><span>$</span>47.00</strong>
-                                    </td>
-                                    <td class="del-goods-col">
-                                        <a class="del-goods" href="#">&nbsp;</a>
-                                    </td>
-                                </tr>
+                                <c:forEach var="item" items="${cartItems}">
+                                    <c:set var="total" value="${item.productDTO.price*item.quantity}"/>
+                                    ${totalAll=totalAll+total}
+                                    <tr>
+                                        <td class="goods-page-image">
+                                            <a href="#"><img src="<c:url value ='/static/assets/frontend/pages/img/products/model3.jpg'/>" alt="Berry Lace Dress'/>"></a>
+                                        </td>
+                                        <td class="goods-page-description">
+                                            <h3><a href="#">${item.productDTO.name}</a></h3>
+                                            <p><strong>Item 1</strong> - Color: Green; Size: S</p>
+                                            <em>More info is here</em>
+                                        </td>
+                                        <td class="goods-page-ref-no">
+                                            javc2133
+                                        </td>
+                                        <td class="goods-page-quantity">
+                                            <div class="product-quantity">
+                                                <input id="product-quantity" type="text" value="${item.quantity}" readonly class="form-control input-sm">
+                                            </div>
+                                        </td>
+                                        <td class="goods-page-price">
+                                            <strong><fmt:formatNumber value="${item.productDTO.price}"
+                                                                      type="currency"
+                                                                      maxFractionDigits="0"
+                                                                      currencySymbol="VNĐ "/></strong>
+                                        </td>
+                                        <td class="goods-page-total">
+                                            <strong><fmt:formatNumber value="${total}"
+                                                                      type="currency"
+                                                                      maxFractionDigits="0"
+                                                                      currencySymbol="VNĐ "/></strong>
+                                        </td>
+                                        <td class="del-goods-col">
+                                            <a class="del-goods" href="#">&nbsp;</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+
                             </table>
                         </div>
 
@@ -86,7 +75,10 @@
                                 </li>
                                 <li class="shopping-total-price">
                                     <em>Total</em>
-                                    <strong class="price"><span>$</span>50.00</strong>
+                                    <strong class="price"><fmt:formatNumber value="${totalAll}"
+                                                                            type="currency"
+                                                                            maxFractionDigits="0"
+                                                                            currencySymbol="VNĐ "/></strong>
                                 </li>
                             </ul>
                         </div>
@@ -107,9 +99,9 @@
                     <div>
                         <div class="product-item">
                             <div class="pi-img-wrapper">
-                                <img src="../../assets/frontend/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                <img src="<c:url value ='/static/assets/frontend/pages/img/products/k1.jpg'/>" class="img-responsive" alt="Berry Lace Dress'/>">
                                 <div>
-                                    <a href="../../assets/frontend/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="<c:url value ='/static/assets/frontend/pages/img/products/k1.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
                                     <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
@@ -122,9 +114,9 @@
                     <div>
                         <div class="product-item">
                             <div class="pi-img-wrapper">
-                                <img src="../../assets/frontend/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                <img src="<c:url value ='/static/assets/frontend/pages/img/products/k2.jpg'/>" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
-                                    <a href="../../assets/frontend/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="<c:url value ='/static/assets/frontend/pages/img/products/k2.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
                                     <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
@@ -136,9 +128,9 @@
                     <div>
                         <div class="product-item">
                             <div class="pi-img-wrapper">
-                                <img src="../../assets/frontend/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                <img src="<c:url value ='/static/assets/frontend/pages/img/products/k3.jpg'/>" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
-                                    <a href="../../assets/frontend/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="<c:url value ='/static/assets/frontend/pages/img/products/k3.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
                                     <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
@@ -150,9 +142,9 @@
                     <div>
                         <div class="product-item">
                             <div class="pi-img-wrapper">
-                                <img src="../../assets/frontend/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                <img src="<c:url value ='/static/assets/frontend/pages/img/products/k4.jpg'/>" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
-                                    <a href="../../assets/frontend/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="<c:url value ='/static/assets/frontend/pages/img/products/k4.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
                                     <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
@@ -165,9 +157,9 @@
                     <div>
                         <div class="product-item">
                             <div class="pi-img-wrapper">
-                                <img src="../../assets/frontend/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                <img src="<c:url value ='/static/assets/frontend/pages/img/products/k1.jpg'/>" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
-                                    <a href="../../assets/frontend/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="<c:url value ='/static/assets/frontend/pages/img/products/k1.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
                                     <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
@@ -179,9 +171,9 @@
                     <div>
                         <div class="product-item">
                             <div class="pi-img-wrapper">
-                                <img src="../../assets/frontend/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                <img src="<c:url value ='/static/assets/frontend/pages/img/products/k2.jpg'/>" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
-                                    <a href="../../assets/frontend/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="<c:url value ='/static/assets/frontend/pages/img/products/k2.jpg'/>" class="btn btn-default fancybox-button">Zoom</a>
                                     <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
