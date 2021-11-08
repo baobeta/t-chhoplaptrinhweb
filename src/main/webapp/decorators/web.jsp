@@ -112,6 +112,10 @@
 <script src="<c:url value='/static/assets/frontend/pages/scripts/layerslider-init.js'/>"
         type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script><!-- for slider-range -->
+
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
 <!-- END LayerSlider -->
 
 <script type="text/javascript">
@@ -166,7 +170,5 @@
   });
 </script>
 
-<!-- END CORE PLUGINS -->
-<!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>
 </html>

@@ -1,6 +1,15 @@
 package com.example.techshop.controller.admin.user;
 
+import com.example.techshop.command.UserCommand;
+import com.example.techshop.dto.RoleDTO;
+import com.example.techshop.dto.UserDTO;
+import com.example.techshop.utils.FormUtil;
+import com.example.techshop.utils.STRepoUtil;
+import com.example.techshop.utils.STServiceUtil;
+import com.example.techshop.utils.convert.RoleConverter;
+
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,11 +22,33 @@ public class EditUserController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-//        List<UserDTO> users = STServiceUtil.getUserService().getUser();
-//        request.setAttribute("users",users);
+    List<RoleDTO> roles=  STServiceUtil.getRoleService().getRole();
+    request.setAttribute("roles",roles);
+    UserCommand command = FormUtil.populate(UserCommand.class,request);
+    if(request.getParameter("userId")!=null) {
+      Integer id = Integer.valueOf(request.getParameter("userId"));
+      UserDTO dto = STServiceUtil.getUserService().findEqualUnique("id",id);
+      request.setAttribute("user",dto);
+    }
     RequestDispatcher dispatcher
         = this.getServletContext().getRequestDispatcher("/views/admin/user/editUser.jsp");
     dispatcher.forward(request, response);
+  }
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    UserCommand command = FormUtil.populate(UserCommand.class,req);
+    if(command.getPojo().getUserId() != null) {
+      RoleDTO role = RoleConverter.entity2Dto(STRepoUtil.getRoleRepo().findEqualUnique("name",command.getRole()));
+      command.getPojo().setRoleDTO(role);
+      STServiceUtil.getUserService().updateUser(command.getPojo());
+//            req.setAttribute("message","Chỉnh sửa tài khoản thành công");
+      resp.sendRedirect("/admin/user?message=updateSuccess");
+    } else {
+      RoleDTO role = RoleConverter.entity2Dto(STRepoUtil.getRoleRepo().findEqualUnique("name",command.getRole()));
+      command.getPojo().setRoleDTO(role);
+      STServiceUtil.getUserService().saveUser(command.getPojo());
+      resp.sendRedirect("/admin/user?message=addSuccess");
+    }
   }
 
 }
