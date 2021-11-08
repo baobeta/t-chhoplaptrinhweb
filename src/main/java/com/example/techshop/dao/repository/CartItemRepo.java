@@ -2,6 +2,7 @@ package com.example.techshop.dao.repository;
 
 import com.example.techshop.dao.AbstractDao;
 import com.example.techshop.entity.CartItemEntity;
+import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.entity.ShoppingSessionEntity;
 import com.example.techshop.entity.UserEntity;
 import com.example.techshop.utils.HibernateUtil;
@@ -19,56 +20,71 @@ import org.hibernate.query.Query;
 
 public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
 
-  public void addProductToCart(Integer cusId, Integer productId) {
+  public boolean addProductToCart(Integer cusId, Integer productId) {
     try {
-      ShoppingSessionEntity sessionEntity = STRepoUtil.getUserRepo().findSessionById(cusId);
-      if (sessionEntity == null) {
-        //Neu khong tim thay session thi tao moi
-        sessionEntity = new ShoppingSessionEntity();
-        sessionEntity.setUserEntity(STRepoUtil.getUserRepo().findById(cusId));
-        sessionEntity.setTotal(0);
-        STRepoUtil.getShoppingSessionRepo().save(sessionEntity);
+      if(cusId == -1){
+
+
+
+      } else {
+        ShoppingSessionEntity sessionEntity = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
+        if (sessionEntity == null) {
+          //Neu khong tim thay session thi tao moi
+          sessionEntity = new ShoppingSessionEntity();
+          sessionEntity.setUserEntity(STRepoUtil.getUserRepo().findById(cusId));
+          sessionEntity.setTotal(0);
+          STRepoUtil.getShoppingSessionRepo().save(sessionEntity);
+        }
+        CartItemEntity cartItem = findCartItem(sessionEntity.getSessionId(), productId);
+        // Kiem tra co du so luong khong, neu co thi tang len 1
+        if (cartItem != null) {
+          int newQuantity = cartItem.getQuantity() + 1;
+          if (isEnoughAmount(productId, newQuantity)) {
+            cartItem.setQuantity(cartItem.getQuantity() + 1);
+            STRepoUtil.getCartItemRepo().update(cartItem);
+            return true;
+          } else {
+            return false;
+          }
+        }
+        if (isEnoughAmount(productId, 1)) {
+          cartItem = new CartItemEntity();
+          cartItem.setShoppingSessionEntity(sessionEntity);
+          cartItem.setProductEntity(STRepoUtil.getProductRepo().findById(productId));
+          cartItem.setQuantity(1);
+          cartItem.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
+          STRepoUtil.getCartItemRepo().save(cartItem);
+          return true;
+        }
       }
 
-      CartItemEntity cartItem = findCartItem(sessionEntity.getSessionId(), productId);
-      if (cartItem != null) {
-        // Neu co product nay roi thi tang so luong len 1
-        cartItem.setQuantity(cartItem.getQuantity() + 1);
-        STRepoUtil.getCartItemRepo().update(cartItem);
-      } else {
-        cartItem = new CartItemEntity();
-        cartItem.setShoppingSessionEntity(sessionEntity);
-        cartItem.setProductEntity(STRepoUtil.getProductRepo().findById(productId));
-        cartItem.setQuantity(1);
-        cartItem.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
-        STRepoUtil.getCartItemRepo().save(cartItem);
-      }
     } catch (HibernateException e) {
       throw e;
     }
+    return false;
   }
 
-  public void updateCart(Integer cusId, Integer productId, int quantity) {
-
+  public boolean updateCartItem(Integer sessionId, Integer productId, int quantity) {
     try {
-      //Tim session cua user
-      Integer sessionId = STRepoUtil.getUserRepo().findSessionById(cusId).getSessionId();
       if (sessionId != null) {
         //Tim item trong session
         CartItemEntity cartItem = findCartItem(sessionId, productId);
-        if (cartItem != null) {
+        if (cartItem != null && isEnoughAmount(productId, quantity)) {
           cartItem.setQuantity(quantity);
           STRepoUtil.getCartItemRepo().update(cartItem);
+          return true;
         }
       }
     } catch (HibernateException e) {
       throw e;
     }
+    return false;
   }
 
-  public void deleteCartItem(Integer sessionId, Integer productId){
-    CartItemEntity cartItem = findCartItem(sessionId,productId);
-    STRepoUtil.getCartItemRepo().delete(Collections.singletonList(cartItem.getCartItemId()));
+  public boolean deleteCartItem(Integer sessionId, Integer productId) {
+    Integer cartItemId = findCartItem(sessionId, productId).getCartItemId();
+    STRepoUtil.getCartItemRepo().delete(Collections.singletonList(cartItemId));
+    return true;
   }
 
   public CartItemEntity findCartItem(Integer sessionId, Integer productId) {
@@ -90,5 +106,13 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
     }
   }
 
-
+  public boolean isEnoughAmount(Integer productId, int quantity) {
+    ProductEntity product = STRepoUtil.getProductRepo().findById(productId);
+    if (product.getQuantity() >= quantity) {
+      return true;
+    } else if (product.getQuantity() == 0) {
+      return false;
+    }
+    return false;
+  }
 }

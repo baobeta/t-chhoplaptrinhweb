@@ -30,7 +30,7 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> {
     return null;
   }
 
-  public ShoppingSessionEntity findSessionById(Integer cusId) {
+  public ShoppingSessionEntity findSessionByCusId(Integer cusId) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
     try {

@@ -10,9 +10,9 @@ import lombok.ToString;
 @ToString
 public class OrderDetailDTO {
   
-  private int orderDetailsId;
+  private Integer orderDetailsId;
 
-  private Integer total;
+  private int total;
 
   private Boolean ispaid;
 

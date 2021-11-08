@@ -176,17 +176,15 @@
 <script>
   $("body").on("click", ".paginationItem", function () {
     var currentPage = $(this).text();
-    var firstIndex = (currentPage - 1)*${productItems.maxPageItems};
-
-
+    var firstIndex = (currentPage - 1) *${productItems.maxPageItems};
 
     $.ajax({
-      url:"/api/get-product-list",
+      url: "/api/get-product-list",
       type: "GET",
-      data:{
+      data: {
         firstIndex: firstIndex,
       },
-      success: function(value){
+      success: function (value) {
         var productList = $("#product-list").find("#product-item");
         productList.empty();
         productList.append(value);
@@ -194,6 +192,25 @@
       }
     })
   })
+</script>
+<script>
+  $("#btnAddToCart").on("click", function () {
+    var productId = ${product.productId};
+    var cusId = ${empty sessionScope.loginedUser.userId ? -1: sessionScope.loginedUser.userId };
+    $.ajax({
+      url: "/api/add-to-cart",
+      type: "POST",
+      data: {
+        cusId: cusId,
+        productId: productId
+      },
+      success: function (value) {
+        alert("them thanh cong")
+      }
+    })
+
+  })
+
 </script>
 
 <!-- END CORE PLUGINS -->

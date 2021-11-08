@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 public class OrderItemDTO {
 
-  private int orderItemsId;
+  private Integer orderItemsId;
 
   private Integer quantiy;
 

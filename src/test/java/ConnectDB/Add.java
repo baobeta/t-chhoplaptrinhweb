@@ -62,7 +62,7 @@ public class Add {
   public void TestInsertUserEntity() {
     RoleEntity role = STRepoUtil.getRoleRepo().findById(1);
     UserEntity userEntity = new UserEntity();
-    userEntity.setEmail("alion.com");
+    userEntity.setEmail("alion1.com");
     userEntity.setPassword("tong");
     userEntity.setPhotos("789.jpg");
     userEntity.setFirstName("Tong");

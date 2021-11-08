@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 public class ShoppingSessionDTO {
 
-  private int shoppingSessionId;
+  private Integer shoppingSessionId;
 
   private int total;
 

@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 public class BrandDTO {
 
-  private int brandId;
+  private Integer brandId;
 
   private String description;
 

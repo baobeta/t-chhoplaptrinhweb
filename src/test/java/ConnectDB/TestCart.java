@@ -8,19 +8,17 @@ public class TestCart {
 
   @Test
   public void testAddCartItem(){
-    STRepoUtil.getCartItemRepo().addProductToCart(1,1);
+    STRepoUtil.getCartItemRepo().addProductToCart(2,1);
   }
 
   @Test
   public void testUpdateCartItem(){
-    STRepoUtil.getCartItemRepo().updateCart(1,1,3);
+    STRepoUtil.getCartItemRepo().updateCartItem(1,1,6);
   }
 
   @Test
   public void testDeleteCartItem(){
-    Integer sessionId = STRepoUtil.getUserRepo().findSessionById(1).getSessionId();
-    STRepoUtil.getCartItemRepo().deleteCartItem(sessionId,1);
-
+    STRepoUtil.getCartItemRepo().deleteCartItem(1,1);
   }
 
 }

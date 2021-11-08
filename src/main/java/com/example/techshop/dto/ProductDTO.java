@@ -15,7 +15,7 @@ import lombok.ToString;
 @ToString
 public class ProductDTO {
 
-  private int productId;
+  private Integer productId;
 
   private String description;
 
