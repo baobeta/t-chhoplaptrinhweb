@@ -24,8 +24,6 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
     try {
       if(cusId == -1){
 
-
-
       } else {
         ShoppingSessionEntity sessionEntity = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
         if (sessionEntity == null) {

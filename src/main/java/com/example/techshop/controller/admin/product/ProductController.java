@@ -1,6 +1,10 @@
 package com.example.techshop.controller.admin.product;
 
+import com.example.techshop.command.ProductCommand;
+import com.example.techshop.command.UserCommand;
+import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.dto.UserDTO;
+import com.example.techshop.utils.FormUtil;
 import com.example.techshop.utils.STServiceUtil;
 import java.io.IOException;
 import java.util.List;
@@ -16,8 +20,10 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        List<UserDTO> users = STServiceUtil.getUserService().getUser();
-//        request.setAttribute("users",users);
+        ProductCommand command = FormUtil.populate(ProductCommand.class,request);
+        List<ProductDTO> listProduct = STServiceUtil.getProductService().getAllProduct();
+        request.setAttribute("products",listProduct);
+
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/views/admin/product/productManager.jsp");
         dispatcher.forward(request, response);
