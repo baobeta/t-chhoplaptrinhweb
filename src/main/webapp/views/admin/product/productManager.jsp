@@ -30,6 +30,11 @@
                 </li>
             </ul>
             <!-- END PAGE BREADCRUMB -->
+            <c:if test="${message != null}">
+                <div class="alert alert-success text-center">
+                    <c:out value="${message}"></c:out>
+                </div>
+            </c:if>
             <!-- BEGIN PAGE CONTENT INNER -->
             <div class="row">
                 <div class="col-md-12">
@@ -45,6 +50,11 @@
                                 <i class="fa fa-gift font-green-sharp"></i>
                                 <span class="caption-subject font-green-sharp bold uppercase">Products</span>
                                 <span class="caption-helper">manage products...</span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="btn-group">
+                                    <a class="btn green"href="<c:url value='/admin/product/edit'/>">Thêm User</a>
+                                </div>
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -74,15 +84,13 @@
                                             Photo
                                         </th>
                                         <th width="10%">
-                                            Status
-                                        </th>
-                                        <th width="10%">
                                             Actions
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="product" items="${products}">
+                                    <c:forEach var="product" items="${products}">
+                                        <tr>
                                             <td>${product.productId}</td>
                                             <td>${product.name}</td>
                                             <td>${product.categoryDTO.name}</td>
@@ -90,7 +98,19 @@
                                             <td>${product.price}</td>
                                             <td>${product.quantity}</td>
                                             <td>${product.photo}</td>
-                                        </c:forEach>
+                                            <td>
+                                                <c:url value="/admin/product/edit" var="updateURL">
+                                                    <c:param name="userId" value="${product.productId}"/>
+                                                    <c:param name="page" value="1"/>
+                                                </c:url>
+                                                <a class="btn green" href="${updateURL}">Sửa</a>
+                                                <form action="<c:url value="/admin/product/delete"/>" method="post">
+                                                    <input type="hidden" name="idDelete" value="${product.productId}"/>
+                                                    <button type="submit" class="btn btn-primary">Xóa</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
