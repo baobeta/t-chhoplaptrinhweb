@@ -52,6 +52,64 @@ public class Add {
     product.setCategoryEntity(category);
     STRepoUtil.getProductRepo().save(product);
   }
+  @Test
+  public void addProductNew() {
+    ProductEntity product = new ProductEntity();
+    ProductEntity product1 = new ProductEntity();
+    ProductEntity product2 = new ProductEntity();
+    ProductEntity product3 = new ProductEntity();
+    ProductEntity product4 = new ProductEntity();
+    BrandEntity brand = STRepoUtil.getBrandRepo().findById(1);
+    CategoryEntity category = STRepoUtil.getCategoryRepo().findById(1);
+    product.setName("Chuot ASUS 1");
+    product.setDescription("tao la chuot Asus 1");
+    product.setPrice(123);
+    product.setQuantity(5);
+    product.setPhoto("456.jpg");
+    product.setBrandEntity(brand);
+    product.setCategoryEntity(category);
+
+
+    product1.setName("Chuot ASUS 2");
+    product1.setDescription("tao la chuot Asus 1");
+    product1.setPrice(123);
+    product1.setQuantity(5);
+    product1.setPhoto("456.jpg");
+    product1.setBrandEntity(brand);
+    product1.setCategoryEntity(category);
+
+    product2.setName("Chuot ASUS 3");
+    product2.setDescription("tao la chuot Asus 1");
+    product2.setPrice(123);
+    product2.setQuantity(5);
+    product2.setPhoto("456.jpg");
+    product2.setBrandEntity(brand);
+    product2.setCategoryEntity(category);
+
+
+    product3.setName("Chuot ASUS 4");
+    product3.setDescription("tao la chuot Asus 1");
+    product3.setPrice(123);
+    product3.setQuantity(5);
+    product3.setPhoto("456.jpg");
+    product3.setBrandEntity(brand);
+    product3.setCategoryEntity(category);
+
+    product4.setName("Chuot ASUS 5");
+    product4.setDescription("tao la chuot Asus 1");
+    product4.setPrice(123);
+    product4.setQuantity(5);
+    product4.setPhoto("456.jpg");
+    product4.setBrandEntity(brand);
+    product4.setCategoryEntity(category);
+
+    STRepoUtil.getProductRepo().save(product);
+    STRepoUtil.getProductRepo().save(product1);
+    STRepoUtil.getProductRepo().save(product2);
+    STRepoUtil.getProductRepo().save(product3);
+    STRepoUtil.getProductRepo().save(product4);
+
+  }
 
   @Test
   public void addRole(){

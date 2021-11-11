@@ -27,7 +27,7 @@ import org.hibernate.query.Query;
 public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
 
   public boolean addProductToCart(Integer cusId, Integer productId) {
-    try {
+    try { 
       ShoppingSessionEntity sessionEntity = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
       if (sessionEntity == null) {
         //Neu khong tim thay session thi tao moi
