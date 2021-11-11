@@ -217,7 +217,6 @@
                     <li class="list-group-item clearfix"><a><fmt:message key="viewCategory"
                                                                          bundle="${lang}"/></a></li>
                     <c:forEach items="${cateItems.brandInCate}" var="category">
-                        </li>
                         <li class="list-group-item clearfix dropdown">
                             <a href="shop-product-list.html">
                                 <i class="fa fa-angle-right"></i>
@@ -225,8 +224,12 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <c:forEach items="${category.value}" var="brand">
-                                    <li><a href="shop-product-list.html"><i
-                                            class="fa fa-angle-right"></i> ${brand.name}</a></li>
+                                    <c:url var="search" value="/search">
+                                        <c:param name="brand.brandId" value="${brand.brandId}"/>
+                                        <c:param name="category.categoryId" value="${category.key.categoryId}"/>
+                                    </c:url>
+                                    <li><a href="${search}"><i
+                                            class="fa fa-angle-right"></i>${brand.name}</a></li>
                                 </c:forEach>
                             </ul>
                         </li>

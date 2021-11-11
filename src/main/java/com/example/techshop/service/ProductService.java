@@ -11,6 +11,7 @@ import com.example.techshop.utils.convert.UserConverter;
 import com.example.techshop.utils.convert.list.ProductListConverter;
 import com.example.techshop.utils.convert.list.UserListConverter;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 public class ProductService {
 
@@ -36,8 +37,8 @@ public class ProductService {
     STRepoUtil.getProductRepo().delete(ids);
   }
 
-  public List<ProductDTO> getProducts(int firstIndex){
-    List<ProductEntity> entities = STRepoUtil.getProductRepo().getProducts(firstIndex);
+  public List<ProductDTO> getProducts(int firstIndex, Integer brandId, Integer cateId){
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().getProducts(firstIndex,brandId,cateId);
     return ProductListConverter.entity2Dto(entities);
   }
 
@@ -53,8 +54,8 @@ public class ProductService {
 
   }
 
-  public List<ProductDTO> getSomeFirstProducts(){
-    List<ProductEntity> entities = STRepoUtil.getProductRepo().getProducts(0);
+  public List<ProductDTO> getSomeFirstProducts(Integer brandId, Integer cateId){
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().getProducts(0,brandId,cateId);
     return ProductListConverter.entity2Dto(entities);
   }
 

@@ -180,12 +180,16 @@
   $("body").on("click", ".paginationItem", function () {
     var currentPage = $(this).text();
     var firstIndex = (currentPage - 1) *${productItems.maxPageItems};
+    var brandId = ${productItems.brand.brandId};
+    var categoryId = ${productItems.category.categoryId};
 
     $.ajax({
       url: "/api/get-product-list",
       type: "GET",
       data: {
         firstIndex: firstIndex,
+        brandId: brandId,
+        categoryId: categoryId
       },
       success: function (value) {
         var productList = $("#product-list").find("#product-item");

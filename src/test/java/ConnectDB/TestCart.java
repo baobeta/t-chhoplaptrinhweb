@@ -2,6 +2,7 @@ package ConnectDB;
 
 import com.example.techshop.command.CategoryCommand;
 import com.example.techshop.dto.CartItemDTO;
+import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.BrandEntity;
 import com.example.techshop.entity.CartItemEntity;
 import com.example.techshop.entity.RoleEntity;
@@ -50,6 +51,13 @@ public class TestCart {
 //    command.
 //    List<BrandEntity> brandEntities = STRepoUtil.getCategoryRepo().getBrandInCate(1);
 //    System.out.println("duoc roi ne");
+  }
+
+  @Test
+  public void testPagination(){
+    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(4,1,2);
+    System.out.println("duoc roi ne");
+
   }
 
 }

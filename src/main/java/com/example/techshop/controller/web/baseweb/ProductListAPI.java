@@ -18,8 +18,9 @@ public class ProductListAPI extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     int firstIndex = Integer.parseInt(request.getParameter("firstIndex"));
-    int page = Integer.parseInt(request.getParameter("page"));
-    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(firstIndex);
+    int brandId = Integer.parseInt(request.getParameter("brandId"));
+    int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(firstIndex,brandId,categoryId);
 
     String viewURL ="/pDetail?pojo.productId=";
     response.setContentType("text/html");

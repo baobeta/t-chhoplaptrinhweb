@@ -155,10 +155,10 @@ public class Add {
       System.out.println(count);
     }
 
-    @Test
-  public void testPagination2(){
-    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(10);
-      List<ProductDTO> list = productDTOS;
-    }
+//    @Test
+//  public void testPagination2(){
+//    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(10);
+//      List<ProductDTO> list = productDTOS;
+//    }
 
 }
