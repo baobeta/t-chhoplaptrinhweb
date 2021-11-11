@@ -38,11 +38,6 @@
             <!-- BEGIN PAGE CONTENT INNER -->
             <div class="row">
                 <div class="col-md-12">
-                    <div class="note note-danger note-bordered">
-                        <p>
-                            NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only.
-                        </p>
-                    </div>
                     <!-- Begin: life time stats -->
                     <div class="portlet light">
                         <div class="portlet-title">
@@ -53,7 +48,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="btn-group">
-                                    <a class="btn green"href="<c:url value='/admin/product/edit'/>">Thêm User</a>
+                                    <a class="btn green"href="<c:url value='/admin/product/edit'/>">Thêm sản phẩm</a>
                                 </div>
                             </div>
                         </div>
@@ -97,10 +92,10 @@
                                             <td>${product.brandDTO.name}</td>
                                             <td>${product.price}</td>
                                             <td>${product.quantity}</td>
-                                            <td>${product.photo}</td>
+                                            <td><img src="${product.photo}"  alt="" id="image" style="width:200px;height:300px;"></td>
                                             <td>
                                                 <c:url value="/admin/product/edit" var="updateURL">
-                                                    <c:param name="userId" value="${product.productId}"/>
+                                                    <c:param name="productId" value="${product.productId}"/>
                                                     <c:param name="page" value="1"/>
                                                 </c:url>
                                                 <a class="btn green" href="${updateURL}">Sửa</a>
@@ -118,6 +113,41 @@
                     </div>
                     <!-- End: life time stats -->
                 </div>
+            </div>
+            <div style="text-align: center;">
+                <nav aria-label="...">
+                    <ul class="pagination justify-content-center=">
+
+                        <li class="page-item ">
+                            <c:url var="urlPageBegin" value="/admin/product">
+                                <c:param name="page" value="${(pojo.page-1) < 1 ? 1 : (pojo.page-1) }"/>
+                            </c:url>
+                            <a class="page-link" href="${urlPageBegin}">Previous</a>
+                        </li>
+                        <c:forEach var = "i" begin = "1" end = "${pojo.totalItems}">
+                            <c:if test="${i==pojo.page}">
+                                <li class="page-item active">
+                                    <a class="page-link" href="${i==pojo.page}" >${i} <span class="sr-only"></span></a>
+                                </li>
+                            </c:if>
+                            <c:if test="${i!=pojo.page}">
+                                <li class="page-item">
+                                    <c:url var="urlPage" value="/admin/product">
+                                        <c:param name="page" value="${i}"/>
+                                    </c:url>
+                                    <a class="page-link" href="${urlPage}">${i}</a>
+                                </li>
+                            </c:if>
+                        </c:forEach>
+                        <li class="page-item">
+                            <c:url var="urlPageEnd" value="/admin/product">
+                                <c:param name="page" value="${(pojo.page+1)> pojo.totalItems ? pojo.totalItems : (pojo.page+1) }"/>
+                            </c:url>
+                            <a class="page-link" href="${urlPageEnd}">Next</a>
+                        </li>
+
+                    </ul>
+                </nav>
             </div>
             <!-- END PAGE CONTENT INNER -->
         </div>

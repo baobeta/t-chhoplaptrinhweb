@@ -5,6 +5,7 @@ import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.BrandEntity;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.convert.BrandConverter;
+import com.example.techshop.utils.convert.ProductConverter;
 import com.example.techshop.utils.convert.list.BrandListConverter;
 import com.example.techshop.utils.convert.list.ProductListConverter;
 import java.util.List;
@@ -15,4 +16,12 @@ public class BrandService {
     List<BrandDTO> dtos = BrandListConverter.entity2Dto(entities);
     return dtos;
   }
+
+  public BrandDTO findById(Integer id) {
+     BrandDTO dto = new BrandDTO();
+     BrandEntity entity = STRepoUtil.getBrandRepo().findById(id);
+     dto = BrandConverter.entity2Dto(entity);
+     return dto;
+  }
+
 }
