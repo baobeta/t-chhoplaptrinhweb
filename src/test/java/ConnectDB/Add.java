@@ -18,7 +18,10 @@ public class Add {
 
   }
 
+  @Test
+  public void testFindAll(){
 
+  }
   @Test
   public void addBrand(){
     BrandEntity brand = new BrandEntity();
@@ -30,8 +33,8 @@ public class Add {
   @Test
   public void addCate(){
     CategoryEntity category = new CategoryEntity();
-    category.setName("CHUOT");
-    category.setDescription("tao la CHUOT");
+    category.setName("BAN PHIM");
+    category.setDescription("tao la BAN PHIM");
     STRepoUtil.getCategoryRepo().save(category);
   }
 
@@ -39,10 +42,10 @@ public class Add {
   public void addProduct(){
     ProductEntity product = new ProductEntity();
     BrandEntity brand = STRepoUtil.getBrandRepo().findById(1);
-    CategoryEntity category = STRepoUtil.getCategoryRepo().findById(1);
-    product.setName("Chuot ASUS");
-    product.setDescription("tao la chuot Asus");
-    product.setPrice(123);
+    CategoryEntity category = STRepoUtil.getCategoryRepo().findById(3);
+    product.setName("Ban phim ASUS");
+    product.setDescription("tao la ban phim Asus");
+    product.setPrice(1234555);
     product.setQuantity(5);
     product.setPhoto("456.jpg");
     product.setBrandEntity(brand);
@@ -120,7 +123,7 @@ public class Add {
   public void TestInsertUserEntity() {
     RoleEntity role = STRepoUtil.getRoleRepo().findById(1);
     UserEntity userEntity = new UserEntity();
-    userEntity.setEmail("alion1.com");
+    userEntity.setEmail("alion3.com");
     userEntity.setPassword("tong");
     userEntity.setPhotos("789.jpg");
     userEntity.setFirstName("Tong");

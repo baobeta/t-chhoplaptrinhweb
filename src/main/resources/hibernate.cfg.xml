@@ -17,7 +17,9 @@
     <property name="hbm2ddl.auto">update</property>
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
-
+<!--    <property name="hibernate.current_session_context_class">-->
+<!--      org.hibernate.context.internal.ThreadLocalSessionContext-->
+<!--    </property>-->
     <mapping class="com.example.techshop.entity.UserEntity"/>
     <mapping class="com.example.techshop.entity.ShoppingSessionEntity"/>
     <mapping class="com.example.techshop.entity.RoleEntity"/>

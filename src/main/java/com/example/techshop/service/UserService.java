@@ -15,6 +15,11 @@ import java.util.Map;
 
 public class UserService {
 
+  public boolean register(UserDTO userDTO){
+    UserEntity userEntity = UserConverter.dto2Entity(userDTO);
+    return STRepoUtil.getUserRepo().register(userEntity);
+  }
+
   public UserDTO findUser(String email, String password) {
     UserEntity entity = STRepoUtil.getUserRepo().findUser(email, password);
     UserDTO dto = UserConverter.entity2Dto(entity);

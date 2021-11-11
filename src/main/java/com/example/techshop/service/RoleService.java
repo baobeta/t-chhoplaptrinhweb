@@ -12,6 +12,11 @@ import java.util.List;
 
 public class RoleService {
 
+    public RoleDTO getRoleByName(String roleName){
+        RoleEntity roleEntity = STRepoUtil.getRoleRepo().getRoleByName(roleName);
+        return RoleConverter.entity2Dto(roleEntity);
+    }
+
     public List<RoleDTO> getRole() {
         List<RoleDTO> dtos = new ArrayList<>();
         List<RoleEntity> entitys = STRepoUtil.getRoleRepo().findAll();

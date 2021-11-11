@@ -21,7 +21,6 @@ public class ProductListAPI extends HttpServlet {
     int page = Integer.parseInt(request.getParameter("page"));
     List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(firstIndex);
 
-
     String viewURL ="/pDetail?pojo.productId=";
     response.setContentType("text/html");
     response.setCharacterEncoding("UTF-8");
