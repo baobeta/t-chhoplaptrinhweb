@@ -1,15 +1,12 @@
 package com.example.techshop.dao;
 
-import com.example.techshop.common.CoreConstant;
 import com.example.techshop.utils.HibernateUtil;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.hibernate.*;
-import org.hibernate.criterion.Projections;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -18,7 +15,7 @@ import javax.persistence.criteria.Root;
 
 public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>{
 
-  private Class<T> persistenceClass;
+  private final Class<T> persistenceClass;
 
   public AbstractDao() {
     this.persistenceClass = (Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[1];
@@ -26,7 +23,6 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
   public String getPersistenceClassName() {
     return this.persistenceClass.getSimpleName();
   }
-//  private final Logger log =Logger.getLogger(this.getClass());
 
   @Override
   public List<T>  findAll() {

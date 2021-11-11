@@ -2,9 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <c:url value="/home" var="home"/>
+<c:url value="/checkout" var="checkout"/>
 
 <c:set var="totalAll" value="0"/>
-<c:set var="pQuantity" value="0" scope="application"/>
+<%--<c:set var="pQuantity" value="0" scope="application"/>--%>
 <div class="main">
     <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->
@@ -31,8 +32,9 @@
                                 <c:forEach var="item" items="${cartItems}">
                                     <c:set var="total"
                                            value="${item.productDTO.price*item.quantity}"/>
-                                    ${pQuantity = pQuantity +1}
-                                    ${totalAll=totalAll+total}
+                                    <c:set var="totalAll" value="${totalAll +total}"/>
+<%--                                    <c:set var="pQuantity" value="${pQuantity+1}"/>--%>
+<%--                                    ${totalAll=totalAll+total}--%>
                                     <tr>
                                         <td class="goods-page-image">
                                             <a href="#"><img
@@ -71,7 +73,6 @@
                                         </td>
                                     </tr>
                                 </c:forEach>
-
                             </table>
                         </div>
 
@@ -98,8 +99,8 @@
                     </div>
                     <button class="btn btn-default" type="submit">Continue shopping <i
                             class="fa fa-shopping-cart"></i></button>
-                    <button class="btn btn-primary" type="submit" onclick="test()"><fmt:message
-                            key="checkout" bundle="${lang}"/><i class="fa fa-check"></i></button>
+                    <a href="${checkout}" class="btn btn-primary" type="submit"><fmt:message
+                            key="checkout" bundle="${lang}"/><i class="fa fa-check"></i></a>
                 </div>
             </div>
             <!-- END CONTENT -->

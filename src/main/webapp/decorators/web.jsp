@@ -237,8 +237,6 @@
   });
 </script>
 
-
-
 <!-- END CORE PLUGINS -->
 <!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>

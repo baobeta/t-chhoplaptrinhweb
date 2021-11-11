@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@include file="/common/taglib.jsp" %>
 <div class="main">
     <div class="container">
         <ul class="breadcrumb">
@@ -38,6 +39,23 @@
                         <a href="#"><i class="fa fa-th-large"></i></a>
                         <a href="#"><i class="fa fa-th-list"></i></a>
                     </div>
+                    <div class="content-search margin-bottom-20">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1><fmt:message key="searchResult" bundle="${lang}"/> <em>KET QUA</em></h1>
+                            </div>
+                            <div class="col-md-6">
+                                <form action="#">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Search again" class="form-control">
+                                        <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit"><fmt:message key="search" bundle="${lang}"/></button>
+                      </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-10 col-sm-10">
                         <div class="pull-right">
                             <label class="control-label">Show:</label>
@@ -71,8 +89,10 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- BEGIN PRODUCT LIST -->
                 <div class="row product-list" id="product-list">
+
                     <div id="product-item">
                         <!-- PRODUCT ITEMS START -->
                         <c:forEach items="${productItems.listResult}" var="product">
@@ -93,8 +113,12 @@
                                         </div>
                                     </div>
                                     <h3><a href="shop-item.html">${product.name}</a></h3>
-                                    <div class="pi-price">${product.price}</div>
-                                    <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                                    <fmt:setLocale value="fr_CA"/>
+                                    <div class="pi-price"><fmt:formatNumber value="${product.price}"
+                                                                            type="currency"
+                                                                            maxFractionDigits="0"
+                                                                            currencySymbol="VNĐ"/></div>
+<%--                                    <a href="#" class="btn btn-default add2cart">Add to cart</a>--%>
                                 </div>
                             </div>
                         </c:forEach>

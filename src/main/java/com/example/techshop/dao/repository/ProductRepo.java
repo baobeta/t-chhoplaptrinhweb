@@ -26,6 +26,19 @@ public class ProductRepo extends AbstractDao<Integer, ProductEntity> {
     } catch (HibernateException e) {
       throw e;
     }
+    finally {
+      session.close();
+    }
     return products;
   }
+  public void getProductByBrandAntCate(){
+    List<ProductEntity> products = new ArrayList<ProductEntity>();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+  }
+
+//  public List<ProductEntity> searchProducts(){
+//    List<ProductEntity> products = new ArrayList<ProductEntity>();
+//    Session session = HibernateUtil.getSessionFactory().openSession();
+//
+//  }
 }
