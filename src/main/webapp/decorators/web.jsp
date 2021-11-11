@@ -63,7 +63,6 @@
     <link href="<c:url value='/static/assets/frontend/layout/css/themes/red.css'/>" rel="stylesheet"
           id="style-color">
     <link href="<c:url value='/static/assets/frontend/layout/css/custom.css'/>" rel="stylesheet">
-
 </head>
 <body class="ecommerce">
 <!-- Header -->
@@ -198,7 +197,13 @@
   })
 </script>
 <script>
-  $("#btnAddToCart").on("click", function () {
+  function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/cart";
+  }
+  function addToCart (){
     var productId = ${product.productId};
     var cusId = ${empty sessionScope.loginedUser.userId ? -1: sessionScope.loginedUser.userId };
     $.ajax({
@@ -209,13 +214,34 @@
         productId: productId
       },
       success: function (value) {
+        if (cusId == -1){
+          setCookie('productId'+productId,productId,1);
+        }
         alert("them thanh cong")
       }
     })
-
-  })
-
+  }
 </script>
+
+<script>
+  $(document).ready(function () {
+    $('#pass, #re_pass').on('keyup', function () {
+      if ($('#pass').val() != '' && $('#re_pass').val() != '') {
+        if ($('#pass').val() == $('#re_pass').val()) {
+          $('#check_matching').html('OK').css('color', 'green');
+          $('#signup').prop('disabled', false);
+        } else {
+          $('#check_matching').html('Không OK').css('color', 'red');
+          $('#signup').prop('disabled', true);
+        }
+      } else {
+        $('#check_matching').text('')
+      }
+    });
+  });
+</script>
+
+
 
 <!-- END CORE PLUGINS -->
 <!-- END PAGE LEVEL JAVASCRIPTS -->

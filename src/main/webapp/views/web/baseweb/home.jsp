@@ -194,14 +194,11 @@
                                     </div>
                                 </div>
                                 <h3><a href="shop-item.html">${product.name}</a></h3>
-                                    <%--                            <div class="pi-price">${product.price}</div>--%>
                                 <fmt:setLocale value="fr_CA"/>
                                 <div class="pi-price"><fmt:formatNumber value="${product.price}"
                                                                         type="currency"
                                                                         maxFractionDigits="0"
-                                currencySymbol="VNĐ"/></div>
-                                <a href="#" class="btn btn-default add2cart"><fmt:message
-                                        key="addToCart" bundle="${lang}"/></a>
+                                                                        currencySymbol="VNĐ"/></div>
                                 <div class="sticker sticker-sale"></div>
                             </div>
                         </div>
@@ -219,15 +216,15 @@
                 <ul class="list-group margin-bottom-25 sidebar-menu">
                     <li class="list-group-item clearfix"><a><fmt:message key="viewCategory"
                                                                          bundle="${lang}"/></a></li>
-                    <c:forEach items="${cateItems.listResult}" var="category">
+                    <c:forEach items="${cateItems.brandInCate}" var="category">
                         </li>
                         <li class="list-group-item clearfix dropdown">
                             <a href="shop-product-list.html">
                                 <i class="fa fa-angle-right"></i>
-                                    ${category.name}
+                                    ${category.key.name}
                             </a>
                             <ul class="dropdown-menu">
-                                <c:forEach items="${brandItems.listResult}" var="brand">
+                                <c:forEach items="${category.value}" var="brand">
                                     <li><a href="shop-product-list.html"><i
                                             class="fa fa-angle-right"></i> ${brand.name}</a></li>
                                 </c:forEach>
@@ -259,8 +256,6 @@
                                                                         type="currency"
                                                                         maxFractionDigits="0"
                                                                         currencySymbol="VNĐ"/></div>
-                                <a href="#" class="btn btn-default add2cart"> <fmt:message
-                                        key="addToCart" bundle="${lang}"/></a>
                                 <div class="sticker sticker-new"></div>
                             </div>
                         </div>

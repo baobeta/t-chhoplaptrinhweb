@@ -1,12 +1,9 @@
-<!-- BEGIN TOP BAR -->
-
 <c:url var="home" value="/home"/>
 <c:url var="login" value="/login"/>
 <c:url var="logout" value="/logout"/>
 <c:url var="search" value="/search"/>
-<c:url var="checkout" value="/checkout"/>
 <c:url var="cart" value="/cart"/>
-<c:url var="cart" value="/cart"/>
+<c:url var="register" value="/register"/>
 
 <div class="pre-header">
     <div class="container">
@@ -23,15 +20,14 @@
             <!-- BEGIN TOP BAR MENU -->
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
-                    <li><a href="shop-account.html">My Account</a></li>
+                    <li><a href="${register}"><fmt:message key="register" bundle="${lang}"/></a></li>
                     <c:if test="${sessionScope.loginedUser != null}">
                         <li><a href="#">${sessionScope.loginedUser.lastName}</a></li>
-                        <li><a href="${logout}">Log out</a></li>
+                        <li><a href="${logout}"><fmt:message key="logout" bundle="${lang}"/></a></li>
                     </c:if>
                     <c:if test="${sessionScope.loginedUser == null}">
-                        <li><a href="${login}">Log In</a></li>
+                        <li><a href="${login}"><fmt:message key="login" bundle="${lang}"/> </a></li>
                     </c:if>
-
                 </ul>
             </div>
             <!-- END TOP BAR MENU -->
@@ -45,33 +41,12 @@
     <div class="container">
         <a class="site-logo" href="${home}"><img src="<c:url value='/static/assets/frontend/layout/img/logos/logo-shop-red.png'/>" alt="Metronic Shop UI"></a>
 
-        <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
-
         <!-- BEGIN CART -->
         <div class="top-cart-block">
             <div class="top-cart-info">
-                <a href="javascript:void(0);" class="top-cart-info-count">3 items</a>
-                <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
+                <a href="${cart}" class="top-cart-info-count">${applicationScope.pQuantity} <fmt:message key="product" bundle="${lang}"/></a>
             </div>
-            <i class="fa fa-shopping-cart"></i>
-            <div class="top-cart-content-wrapper">
-                <div class="top-cart-content">
-                    <ul class="scroller" style="height: 250px;">
-                        <li>
-                            <a href="shop-item.html"><img src="<c:url value='/static/assets/frontend/pages/img/cart-img.jpg'/>" alt="Rolex Classic Watch" width="37" height="34"></a>
-                            <span class="cart-content-count">x 1</span>
-                            <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                            <em>$1230</em>
-                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a> <!-- Xoa san pham ra khoi cart-->
-                        </li>
-
-                    </ul>
-                    <div class="text-right">
-                        <a href="${cart}" class="btn btn-default">View Cart</a>
-                        <a href="${checkout}" class="btn btn-primary">Checkout</a>
-                    </div>
-                </div>
-            </div>
+            <a class="fa fa-shopping-cart" href="${cart}"></a>
         </div>
         <!--END CART -->
 

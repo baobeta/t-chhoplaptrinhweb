@@ -3,24 +3,8 @@
 <%@ page pageEncoding="UTF-8" %>
 <c:url value="/home" var="home"/>
 
-<%--<c:set var="cusId"--%>
-<%--       value="${sessionScope.loginedUser.userId}"/>--%>
-
-<%--<c:if test="${sessionScope.loginedUser.userId != null}">--%>
-<%--    <c:set var="cusId"--%>
-<%--           value="${sessionScope.loginedUser.userId}"/>--%>
-<%--</c:if>--%>
-<%--<c:if test="${sessionScope.loginedUser.userId == null}">--%>
-<%--    <c:set var="cusId" value="0"/>--%>
-<%--</c:if>--%>
-
 <div class="main">
     <div class="container">
-        <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="${home}"> <fmt:message key="store" bundle="${lang}"/> </a></li>
-            <li class="active">Cool green dress with red bell</li>
-        </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
             <!-- BEGIN SIDEBAR -->
@@ -76,27 +60,38 @@
                             <h1>${product.name}</h1>
                             <div class="price-availability-block clearfix">
                                 <div class="price">
-                                    <strong>${product.price} VNĐ</strong>
-                                    <%--                                    <em>$<span>62.00</span></em>--%>
+                                    <fmt:setLocale value="fr_CA"/>
+                                    <strong><fmt:formatNumber value="${product.price}"
+                                                              type="currency"
+                                                              maxFractionDigits="0"
+                                                              currencySymbol="VNĐ"/></strong>
                                 </div>
                                 <div class="availability">
-                                    <fmt:message key="state" bundle="${lang}"/><strong>: <fmt:message
-                                        key="available"
-                                        bundle="${lang}"/></strong>
+                                    <fmt:message key="state" bundle="${lang}"/><strong>:
+
+                                    <c:if test="${product.quantity>0}">
+                                        <fmt:message
+                                                key="available"
+                                                bundle="${lang}"/>
+                                    </c:if>
+                                    <c:if test="${product.quantity<=0}">
+                                        <fmt:message
+                                                key="runout"
+                                                bundle="${lang}"/>
+                                    </c:if>
+
+                                    </strong>
                                 </div>
                             </div>
                             <div class="description">
                                 <p>${product.description}</p>
                             </div>
                             <div class="product-page-cart">
-                                <div class="product-quantity">
-                                    <input id="product-quantity" type="text" value="1" readonly
-                                           class="form-control input-sm">
-                                </div>
-                                <button class="btn btn-primary" type="submit" id="btnAddToCart">
+                                <button class="btn btn-primary" type="submit" id="btnAddToCart"
+                                        onclick="addToCart()">
                                     <fmt:message
                                             key="addToCart" bundle="${lang}"/>
-                                    </button>
+                                </button>
                             </div>
                             <div class="review">
                                 <input type="range" value="4" step="0.25" id="backing4">
@@ -107,18 +102,6 @@
                                 <a href="#">7 reviews</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Write
                                 a review</a>
                             </div>
-                            <ul class="social-icons">
-                                <li><a class="facebook" data-original-title="facebook" href="#"></a>
-                                </li>
-                                <li><a class="twitter" data-original-title="twitter" href="#"></a>
-                                </li>
-                                <li><a class="googleplus" data-original-title="googleplus"
-                                       href="#"></a></li>
-                                <li><a class="evernote" data-original-title="evernote" href="#"></a>
-                                </li>
-                                <li><a class="tumblr" data-original-title="tumblr" href="#"></a>
-                                </li>
-                            </ul>
                         </div>
 
                         <div class="product-page-content">
