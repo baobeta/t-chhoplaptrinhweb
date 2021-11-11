@@ -24,8 +24,6 @@ public class UserController extends HttpServlet {
         command.setTotalItems((STServiceUtil.getUserService().CountUser()/ command.getMaxPageItems())+1);
 
         request.setAttribute("users",users);
-
-
         checkMessage(request);
         request.setAttribute("pojo",command);
         RequestDispatcher dispatcher

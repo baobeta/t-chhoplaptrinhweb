@@ -1,6 +1,16 @@
 package com.example.techshop.controller.admin.product;
 
+import com.example.techshop.command.ProductCommand;
+import com.example.techshop.dto.BrandDTO;
+import com.example.techshop.dto.CategoryDTO;
+import com.example.techshop.dto.ProductDTO;
+import com.example.techshop.dto.UserDTO;
+import com.example.techshop.utils.FormUtil;
+import com.example.techshop.utils.STRepoUtil;
+import com.example.techshop.utils.STServiceUtil;
+
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,11 +24,44 @@ public class EditProductController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-//        List<UserDTO> users = STServiceUtil.getUserService().getUser();
-//        request.setAttribute("users",users);
+    ProductCommand command = FormUtil.populate(ProductCommand.class,request);
+    if(request.getParameter("productId") != null) {
+      Integer id = Integer.valueOf(request.getParameter("productId"));
+      ProductDTO dto = STServiceUtil.getProductService().findEqualUnique("id",id);
+      request.setAttribute("product",dto);
+
+    }
+    List<BrandDTO> listBrand = STServiceUtil.getBrandService().getAllBrand();
+    List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().getAllCategory();
+    request.setAttribute("brands",listBrand);
+    request.setAttribute("categorys",listCategory);
     RequestDispatcher dispatcher
         = this.getServletContext().getRequestDispatcher("/views/admin/product/editProduct.jsp");
     dispatcher.forward(request, response);
+  }
+
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    ProductCommand command = FormUtil.populate(ProductCommand.class,req);
+    Integer idCategory = Integer.valueOf(command.getCategoryDTO());
+    Integer idBrand = Integer.valueOf(command.getBrandDTO());
+
+    if(command.getPojo().getProductId() != null) {
+      ProductDTO productUpdate = command.getPojo();
+      productUpdate.setCategoryDTO(STServiceUtil.getCategoryService().findById(idCategory));
+      productUpdate.setBrandDTO(STServiceUtil.getBrandService().findById(idBrand));
+      STServiceUtil.getProductService().productUpdate(productUpdate);
+      resp.sendRedirect("/admin/product?message=updateSuccess");
+    }
+    else {
+      ProductDTO dto = command.getPojo();
+      dto.setCategoryDTO(STServiceUtil.getCategoryService().findById(idCategory));
+      dto.setBrandDTO(STServiceUtil.getBrandService().findById(idBrand));
+      STServiceUtil.getProductService().save(dto);
+      resp.sendRedirect("/admin/product?message=updateSuccess");
+
+    }
+
   }
 }
 

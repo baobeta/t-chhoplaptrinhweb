@@ -22,10 +22,10 @@ public class UserDeleteController extends HttpServlet {
             List ids = new ArrayList();
             ids.add(command.getIdDelete());
             STServiceUtil.getUserService().deleteUser(ids);
-            resp.sendRedirect("/user?message=delSuccess");
+            resp.sendRedirect("/admin/user?message=delSuccess");
         }
         else {
-            resp.sendRedirect("/user");
+            resp.sendRedirect("/admin/user");
         }
 
     }
