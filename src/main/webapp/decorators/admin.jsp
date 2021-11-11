@@ -33,9 +33,6 @@
     <!-- BEGIN PAGE STYLES -->
     <link href="<c:url value='/static/assets/admin/pages/css/tasks.css'/>" rel="stylesheet"
           type="text/css"/>
-    <!-- END PAGE STYLES -->
-    <!-- BEGIN THEME STYLES -->
-    <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
     <link href="<c:url value='/static/assets/global/css/components-rounded.css'/>"
           id="style_components"
           rel="stylesheet" type="text/css">
@@ -63,6 +60,12 @@
           rel="stylesheet" type="text/css"/>
     <!-- END PAGE LEVEL STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+
+
 
 </head>
 <body>

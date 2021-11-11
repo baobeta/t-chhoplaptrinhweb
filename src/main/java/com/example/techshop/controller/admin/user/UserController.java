@@ -24,12 +24,10 @@ public class UserController extends HttpServlet {
         command.setTotalItems((STServiceUtil.getUserService().CountUser()/ command.getMaxPageItems())+1);
 
         request.setAttribute("users",users);
-
-
         checkMessage(request);
         request.setAttribute("pojo",command);
         RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/views/admin/user/userInfo.jsp");
+                = this.getServletContext().getRequestDispatcher("/views/admin/user/userManager.jsp");
         dispatcher.forward(request, response);
     }
 

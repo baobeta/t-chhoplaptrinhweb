@@ -1,6 +1,7 @@
-package com.example.techshop.controller.admin.user;
+package com.example.techshop.controller.admin.product;
 
-import com.example.techshop.command.UserCommand;
+
+import com.example.techshop.command.ProductCommand;
 import com.example.techshop.utils.FormUtil;
 import com.example.techshop.utils.STServiceUtil;
 
@@ -13,20 +14,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/user-delete")
-public class UserDeleteController extends HttpServlet {
+@WebServlet("/admin/product/delete")
+public class ProductDeleteController extends HttpServlet  {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserCommand command = FormUtil.populate(UserCommand.class,req);
+        ProductCommand command = FormUtil.populate(ProductCommand.class,req);
         if(command.getIdDelete()!=null) {
             List ids = new ArrayList();
             ids.add(command.getIdDelete());
-            STServiceUtil.getUserService().deleteUser(ids);
-            resp.sendRedirect("/admin/user?message=delSuccess");
+            STServiceUtil.getProductService().deleteProduct(ids);
+            resp.sendRedirect("/admin/product?message=delSuccess");
         }
         else {
-            resp.sendRedirect("/admin/user");
+            resp.sendRedirect("/admin/product");
         }
-
     }
 }
