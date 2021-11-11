@@ -18,18 +18,13 @@ public class AddToCartController extends HttpServlet {
     Integer productId = Integer.parseInt(req.getParameter("productId"));
     Integer cusId = Integer.parseInt(req.getParameter("cusId"));
     boolean successfulAdding = false;
-    if (cusId == -1){
-      successfulAdding = STServiceUtil.getCartItemService().addCartItemToCookie(productId,resp);
-    }else {
-      successfulAdding = STServiceUtil.getCartItemService().addProductToCart(cusId,productId);
+    if (cusId != -1) {
+      successfulAdding = STServiceUtil.getCartItemService().addProductToCart(cusId, productId);
     }
-
-
-    if(successfulAdding){
+    if (successfulAdding) {
       System.out.println("them thanh cong");
     } else {
       System.out.println("them that bai");
     }
-
   }
 }

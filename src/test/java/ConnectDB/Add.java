@@ -18,7 +18,10 @@ public class Add {
 
   }
 
+  @Test
+  public void testFindAll(){
 
+  }
   @Test
   public void addBrand(){
     BrandEntity brand = new BrandEntity();
@@ -62,7 +65,7 @@ public class Add {
   public void TestInsertUserEntity() {
     RoleEntity role = STRepoUtil.getRoleRepo().findById(1);
     UserEntity userEntity = new UserEntity();
-    userEntity.setEmail("alion2.com");
+    userEntity.setEmail("alion3.com");
     userEntity.setPassword("tong");
     userEntity.setPhotos("789.jpg");
     userEntity.setFirstName("Tong");

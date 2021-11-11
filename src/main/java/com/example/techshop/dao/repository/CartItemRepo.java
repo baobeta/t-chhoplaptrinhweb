@@ -1,12 +1,15 @@
 package com.example.techshop.dao.repository;
 
 import com.example.techshop.dao.AbstractDao;
+import com.example.techshop.dto.CartItemDTO;
+import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.CartItemEntity;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.entity.ShoppingSessionEntity;
 import com.example.techshop.utils.HibernateUtil;
 
 import com.example.techshop.utils.STRepoUtil;
+import com.example.techshop.utils.STServiceUtil;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,7 +28,6 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
 
   public boolean addProductToCart(Integer cusId, Integer productId) {
     try {
-
       ShoppingSessionEntity sessionEntity = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
       if (sessionEntity == null) {
         //Neu khong tim thay session thi tao moi
@@ -34,18 +36,21 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
         sessionEntity.setTotal(0);
         STRepoUtil.getShoppingSessionRepo().save(sessionEntity);
       }
+      //Kiem tra xem da ton tai cart cua san pham do hay chua
       CartItemEntity cartItem = findCartItem(sessionEntity.getSessionId(), productId);
-      // Kiem tra co du so luong khong, neu co thi tang len 1
+      //Neu co thi tang len 1
       if (cartItem != null) {
         int newQuantity = cartItem.getQuantity() + 1;
-        if (isEnoughAmount(productId, newQuantity)) {
+        if (isEnoughAmount(productId, 1)) {
           cartItem.setQuantity(cartItem.getQuantity() + 1);
           STRepoUtil.getCartItemRepo().update(cartItem);
+          updateProductQuantity(productId, 1);
           return true;
         } else {
           return false;
         }
       }
+      //Neu chua co thi tao moi
       if (isEnoughAmount(productId, 1)) {
         cartItem = new CartItemEntity();
         cartItem.setShoppingSessionEntity(sessionEntity);
@@ -53,25 +58,10 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
         cartItem.setQuantity(1);
         cartItem.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
         STRepoUtil.getCartItemRepo().save(cartItem);
+        updateProductQuantity(productId, 1);
         return true;
       }
     } catch (HibernateException e) {
-      throw e;
-    }
-    return false;
-  }
-
-  public boolean addCartItemToCookie(Integer productId, HttpServletResponse response) {
-    try {
-      if (productId != null) {
-        Cookie cookie = new Cookie("productId", productId.toString());
-        cookie.setMaxAge(60 * 60 * 24);
-//        cookie.setDomain("http://localhost:8080");
-        cookie.setPath("http://localhost:8080/cart");
-        response.addCookie(cookie);
-        return true;
-      }
-    } catch (Exception e) {
       throw e;
     }
     return false;
@@ -82,9 +72,12 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
       if (sessionId != null) {
         //Tim item trong session
         CartItemEntity cartItem = findCartItem(sessionId, productId);
-        if (cartItem != null && isEnoughAmount(productId, quantity)) {
+        //Lay so thay doi cua san pham
+        int changedQuantity = quantity - cartItem.getQuantity();
+        if (cartItem != null && isEnoughAmount(productId, changedQuantity)) {
           cartItem.setQuantity(quantity);
           STRepoUtil.getCartItemRepo().update(cartItem);
+          updateProductQuantity(productId, changedQuantity);
           return true;
         }
       }
@@ -92,6 +85,12 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
       throw e;
     }
     return false;
+  }
+
+  public void updateProductQuantity(Integer productId, int changedQuantity) {
+    ProductEntity product = STRepoUtil.getProductRepo().findById(productId);
+    product.setQuantity(product.getQuantity() - changedQuantity);
+    STRepoUtil.getProductRepo().update(product);
   }
 
   public boolean deleteCartItem(Integer sessionId, Integer productId) {
@@ -116,6 +115,8 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
       }
     } catch (HibernateException e) {
       throw e;
+    } finally {
+      session.close();
     }
   }
 
@@ -138,9 +139,31 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
       Query query = session.createQuery(queryString);
       query.setParameter("sessionId", sessionId);
       cartItems = (List<CartItemEntity>) query.getResultList();
+
     } catch (HibernateException e) {
       throw e;
+    } finally {
+      session.close();
     }
     return cartItems;
+  }
+
+  public void addCartInCookieToCus(Integer cusId, HttpServletRequest request,
+      HttpServletResponse response) {
+    Cookie[] cookies = request.getCookies();
+    ShoppingSessionEntity sessionEntity = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
+    for (Cookie cookie : cookies) {
+      if (cookie.getName().contains("productId")) {
+        Integer productId = Integer.parseInt(cookie.getValue());
+        addProductToCart(cusId, productId);
+      }
+    }
+    for (Cookie cookie: cookies) {
+      if(cookie.getName().contains("productId")){
+        cookie.setMaxAge(0);
+        cookie.setPath("/cart");
+        response.addCookie(cookie);
+      }
+    }
   }
 }

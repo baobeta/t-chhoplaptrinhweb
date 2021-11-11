@@ -1,8 +1,12 @@
 package ConnectDB;
 
+import com.example.techshop.command.CategoryCommand;
 import com.example.techshop.dto.CartItemDTO;
+import com.example.techshop.entity.BrandEntity;
 import com.example.techshop.entity.CartItemEntity;
+import com.example.techshop.entity.RoleEntity;
 import com.example.techshop.entity.ShoppingSessionEntity;
+import com.example.techshop.utils.FormUtil;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
 import java.util.ArrayList;
@@ -18,7 +22,7 @@ public class TestCart {
 
   @Test
   public void testUpdateCartItem(){
-    STRepoUtil.getCartItemRepo().updateCartItem(1,1,6);
+    STRepoUtil.getCartItemRepo().updateCartItem(2,1,2);
   }
 
   @Test
@@ -32,7 +36,20 @@ public class TestCart {
     if (cartItemDTOS != null){
       System.out.println("duoc roi ne");
     }
+  }
 
+  @Test
+  public void getRole(){
+    RoleEntity roleEntity = STRepoUtil.getRoleRepo().getRoleByName("USER");
+    System.out.println("duoc roi ne");
+  }
+
+  @Test
+  public void testGetBrandByCate(){
+//    CategoryCommand command = new CategoryCommand();
+//    command.
+//    List<BrandEntity> brandEntities = STRepoUtil.getCategoryRepo().getBrandInCate(1);
+//    System.out.println("duoc roi ne");
   }
 
 }

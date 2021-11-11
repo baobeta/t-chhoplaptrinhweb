@@ -14,13 +14,11 @@ public class UserCommand extends AbstractCommand<UserDTO> {
 
     private String role;
 
-
     private Integer idDelete;
 
     public UserCommand (){
         this.pojo = new UserDTO();
     }
-
 
     public String getRole() {
         return role;

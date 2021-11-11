@@ -5,7 +5,6 @@
     <pattern>/404-page.html</pattern>
     <pattern>/ajax*</pattern>
     <pattern>/error</pattern>
-    <pattern>/get-product-list</pattern>
 <!--    <pattern>/ckfinder*</pattern>-->
   </excludes>
   <!-- apply Sitemesh default template -->
@@ -17,17 +16,5 @@
   </decorator>
   <decorator name="web" page="web.jsp">
     <pattern>/*</pattern>
-  </decorator>
-<!--  <decorator name="login" page="login.jsp">-->
-<!--    <pattern>/login*</pattern>-->
-<!--  </decorator>-->
-  <decorator name="product" page="product.jsp">
-    <pattern>/danh-sach*</pattern>
-  </decorator>
-  <decorator name="product" page="product.jsp">
-    <pattern>/bai-tap*</pattern>
-  </decorator>
-  <decorator name="product" page="product.jsp">
-    <pattern>/bai-thi*</pattern>
   </decorator>
 </decorators>

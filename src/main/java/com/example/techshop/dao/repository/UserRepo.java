@@ -4,6 +4,7 @@ import com.example.techshop.dao.AbstractDao;
 import com.example.techshop.entity.ShoppingSessionEntity;
 import com.example.techshop.entity.UserEntity;
 import com.example.techshop.utils.HibernateUtil;
+import com.example.techshop.utils.STRepoUtil;
 import javax.persistence.Query;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -26,6 +27,8 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> {
       }
     } catch (HibernateException e) {
       e.printStackTrace();
+    } finally {
+      session.close();
     }
     return null;
   }
@@ -43,7 +46,38 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> {
       }
     } catch (HibernateException e) {
       throw e;
+    } finally {
+      session.close();
     }
     return null;
+  }
+
+  public boolean isUniqueEmail(String email) {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    try {
+      String queryString = "FROM UserEntity u WHERE u.email = :email";
+      org.hibernate.query.Query query = session.createQuery(queryString);
+      query.setParameter("email", email);
+      if (query.getResultList().size() > 0) {
+        return false;
+      }
+    } catch (HibernateException e) {
+      throw e;
+    } finally {
+      session.close();
+    }
+    return true;
+  }
+
+  public boolean register(UserEntity user) {
+    try {
+      if (isUniqueEmail(user.getEmail())) {
+        STRepoUtil.getUserRepo().save(user);
+        return true;
+      }
+    } catch (HibernateException e) {
+      throw e;
+    }
+    return false;
   }
 }
