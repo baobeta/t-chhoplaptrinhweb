@@ -7,7 +7,7 @@
         <div class="container">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Manage Brand <small>Brand listing</small></h1>
+                <h1>Manage category <small>Category listing</small></h1>
             </div>
             <!-- END PAGE TITLE -->
         </div>
@@ -26,7 +26,7 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
-                    Manage Brands
+                    Manage Category
                 </li>
             </ul>
             <!-- END PAGE BREADCRUMB -->
@@ -43,12 +43,12 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="fa fa-gift font-green-sharp"></i>
-                                <span class="caption-subject font-green-sharp bold uppercase">Brand</span>
-                                <span class="caption-helper">manage brand...</span>
+                                <span class="caption-subject font-green-sharp bold uppercase">Category</span>
+                                <span class="caption-helper">manage category...</span>
                             </div>
                             <div class="col-md-6">
                                 <div class="btn-group">
-                                    <a class="btn green"href="<c:url value='/admin/brand/edit'/>">Thêm thương hiệu</a>
+                                    <a class="btn green"href="<c:url value='/admin/category/edit'/>">Thêm loại hàng</a>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                             ID
                                         </th>
                                         <th width="50%">
-                                            Brand name
+                                            Category name
                                         </th>
                                         <th width="30%">
                                             Description
@@ -70,19 +70,19 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="brand" items="${brands}">
+                                    <c:forEach var="category" items="${categorys}">
                                         <tr>
-                                            <td>${brand.brandId}</td>
-                                            <td>${brand.name}</td>
-                                            <td>${brand.description}</td>
+                                            <td>${category.categoryId}</td>
+                                            <td>${category.name}</td>
+                                            <td>${category.description}</td>
                                             <td>
-                                                <c:url value="/admin/brand/edit" var="updateURL">
-                                                    <c:param name="brandId" value="${brand.brandId}"/>
+                                                <c:url value="/admin/category/edit" var="updateURL">
+                                                    <c:param name="categoryId" value="${category.categoryId}"/>
                                                     <c:param name="page" value="1"/>
                                                 </c:url>
                                                 <a class="btn green" href="${updateURL}">Sửa</a>
-                                                <form action="<c:url value="/admin/brand/delete"/>" method="post">
-                                                    <input type="hidden" name="idDelete" value="${brand.brandId}"/>
+                                                <form action="<c:url value="/admin/category/delete"/>" method="post">
+                                                    <input type="hidden" name="idDelete" value="${category.categoryId}"/>
                                                     <button type="submit" class="btn btn-primary">Xóa</button>
                                                 </form>
                                             </td>
@@ -101,7 +101,7 @@
                     <ul class="pagination justify-content-center=">
 
                         <li class="page-item ">
-                            <c:url var="urlPageBegin" value="/admin/brand">
+                            <c:url var="urlPageBegin" value="/admin/category">
                                 <c:param name="page" value="${(pojo.page-1) < 1 ? 1 : (pojo.page-1) }"/>
                             </c:url>
                             <a class="page-link" href="${urlPageBegin}">Previous</a>
@@ -114,7 +114,7 @@
                             </c:if>
                             <c:if test="${i!=pojo.page}">
                                 <li class="page-item">
-                                    <c:url var="urlPage" value="/admin/brand">
+                                    <c:url var="urlPage" value="/admin/category">
                                         <c:param name="page" value="${i}"/>
                                     </c:url>
                                     <a class="page-link" href="${urlPage}">${i}</a>
@@ -122,7 +122,7 @@
                             </c:if>
                         </c:forEach>
                         <li class="page-item">
-                            <c:url var="urlPageEnd" value="/admin/brand">
+                            <c:url var="urlPageEnd" value="/admin/category">
                                 <c:param name="page" value="${(pojo.page+1)> pojo.totalItems ? pojo.totalItems : (pojo.page+1) }"/>
                             </c:url>
                             <a class="page-link" href="${urlPageEnd}">Next</a>

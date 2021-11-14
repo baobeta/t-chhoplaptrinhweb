@@ -1,0 +1,47 @@
+package com.example.techshop.controller.admin.category;
+
+
+import com.example.techshop.command.BrandCommand;
+import com.example.techshop.command.CategoryCommand;
+import com.example.techshop.dto.BrandDTO;
+import com.example.techshop.dto.CategoryDTO;
+import com.example.techshop.utils.FormUtil;
+import com.example.techshop.utils.STServiceUtil;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/admin/category/edit")
+public class EditCategoryController extends HttpServlet  {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       CategoryCommand command = FormUtil.populate(CategoryCommand.class,req);
+        if(req.getParameter("categoryId") != null) {
+            Integer id = Integer.valueOf(req.getParameter("categoryId"));
+            CategoryDTO dto = STServiceUtil.getCategoryService().findEqualUnique("id",id);
+            req.setAttribute("category",dto);
+        }
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/views/admin/category/editCategory.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        CategoryCommand command = FormUtil.populate(CategoryCommand.class,req);
+        if(command.getPojo().getCategoryId() != null) {
+            STServiceUtil.getCategoryService().update(command.getPojo());
+            resp.sendRedirect("/admin/category?message=updateSuccess");
+        }
+        else {
+            STServiceUtil.getCategoryService().save(command.getPojo());
+            resp.sendRedirect("/admin/category?message=updateSuccess");
+        }
+    }
+}

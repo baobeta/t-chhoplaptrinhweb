@@ -81,7 +81,6 @@
                                                             <input type="submit" value="Save" class="btn btn-primary margin-top-10"/>
                                                             <input type="button" value="Cancel" class="btn btn-secondary margin-top-10" id="buttonCancel"/>
                                                         </div>
-                                                    </div>
                                                 </form>
 
                                             </c:if>
