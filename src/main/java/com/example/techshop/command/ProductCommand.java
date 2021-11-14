@@ -16,6 +16,10 @@ public class ProductCommand extends AbstractCommand<ProductDTO> {
   private Integer idDelete;
   private BrandDTO brand;
   private CategoryDTO category;
+  private String sort ="name-ASC";
+  private String searchName;
+  private int minPrice = 0;
+  private int maxPrice = 0 ;
 
   public ProductCommand() {
     this.pojo = new ProductDTO();

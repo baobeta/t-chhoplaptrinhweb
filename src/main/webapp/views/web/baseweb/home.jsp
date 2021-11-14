@@ -218,7 +218,7 @@
                                                                          bundle="${lang}"/></a></li>
                     <c:forEach items="${cateItems.brandInCate}" var="category">
                         <li class="list-group-item clearfix dropdown">
-                            <a href="shop-product-list.html">
+                            <a href="#">
                                 <i class="fa fa-angle-right"></i>
                                     ${category.key.name}
                             </a>

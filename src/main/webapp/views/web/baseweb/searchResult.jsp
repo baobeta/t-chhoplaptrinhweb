@@ -21,7 +21,8 @@
                                 <c:forEach items="${category.value}" var="brand">
                                     <c:url var="search" value="/search">
                                         <c:param name="brand.brandId" value="${brand.brandId}"/>
-                                        <c:param name="category.categoryId" value="${category.key.categoryId}"/>
+                                        <c:param name="category.categoryId"
+                                                 value="${category.key.categoryId}"/>
                                     </c:url>
                                     <li><a href="${search}">${brand.name}</a></li>
                                 </c:forEach>
@@ -41,52 +42,47 @@
                     <div class="content-search margin-bottom-20">
                         <div class="row">
                             <div class="col-md-6">
-                                <h1><fmt:message key="searchResult" bundle="${lang}"/> <em>KET QUA</em></h1>
+                                <h1><fmt:message key="searchResult" bundle="${lang}"/> <em>${productItems.searchName}</em></h1>
                             </div>
                             <div class="col-md-6">
-                                <form action="#">
+                                <form action="${searchInfilter}" method="get">
+                                    <input type="hidden" name="brand.brandId"
+                                           value="${productItems.brand.brandId}">
+                                    <input type="hidden" name="category.categoryId"
+                                           value="${productItems.category.categoryId}">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Search again" class="form-control">
+                                        <input type="text" placeholder="Tìm kiếm trong danh sách" name = "searchName"
+                                               value="${productItems.searchName}"
+                                               class="form-control">
                                         <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit"><fmt:message key="search" bundle="${lang}"/></button>
+                        <button class="btn btn-primary" type="submit"><fmt:message key="search"
+                                                                                   bundle="${lang}"/></button>
                       </span>
+                                    </div>
+                                    <div class="col-md-10 col-sm-10">
+                                        <div class="pull-right">
+                                            <label class="control-label">Sort&nbsp;By:</label>
+                                            <select class="form-control input-sm" name="sort">
+                                                <option value="name-ASC" selected="selected">
+                                                    Name (A - Z)
+                                                </option>
+                                                <option value="name-DESC">
+                                                    Name (Z - A)
+                                                </option>
+                                                <option value="price-ASC">
+                                                    Price (Low &gt; High)
+                                                </option>
+                                                <option value="price-DESC">
+                                                    Price (High &gt;Low)
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-10 col-sm-10">
-                        <div class="pull-right">
-                            <label class="control-label">Show:</label>
-                            <select class="form-control input-sm">
-                                <option value="#?limit=24" selected="selected">24</option>
-                                <option value="#?limit=25">25</option>
-                                <option value="#?limit=50">50</option>
-                                <option value="#?limit=75">75</option>
-                                <option value="#?limit=100">100</option>
-                            </select>
-                        </div>
-                        <div class="pull-right">
-                            <label class="control-label">Sort&nbsp;By:</label>
-                            <select class="form-control input-sm">
-                                <option value="#?sort=p.sort_order&amp;order=ASC"
-                                        selected="selected">Default
-                                </option>
-                                <option value="#?sort=pd.name&amp;order=ASC">Name (A - Z)</option>
-                                <option value="#?sort=pd.name&amp;order=DESC">Name (Z - A)</option>
-                                <option value="#?sort=p.price&amp;order=ASC">Price (Low &gt; High)
-                                </option>
-                                <option value="#?sort=p.price&amp;order=DESC">Price (High &gt;
-                                    Low)
-                                </option>
-                                <option value="#?sort=rating&amp;order=DESC">Rating (Highest)
-                                </option>
-                                <option value="#?sort=rating&amp;order=ASC">Rating (Lowest)</option>
-                                <option value="#?sort=p.model&amp;order=ASC">Model (A - Z)</option>
-                                <option value="#?sort=p.model&amp;order=DESC">Model (Z - A)</option>
-                            </select>
-                        </div>
-                    </div>
+
                 </div>
 
                 <!-- BEGIN PRODUCT LIST -->
@@ -95,7 +91,7 @@
                     <div id="product-item">
                         <!-- PRODUCT ITEMS START -->
                         <c:forEach items="${productItems.listResult}" var="product">
-                            <div class="col-md-4 col-sm-6 col-xs-12" >
+                            <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">
                                         <img src="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
@@ -117,7 +113,7 @@
                                                                             type="currency"
                                                                             maxFractionDigits="0"
                                                                             currencySymbol="VNĐ"/></div>
-<%--                                    <a href="#" class="btn btn-default add2cart">Add to cart</a>--%>
+                                        <%--                                    <a href="#" class="btn btn-default add2cart">Add to cart</a>--%>
                                 </div>
                             </div>
                         </c:forEach>
@@ -134,7 +130,8 @@
                             <c:forEach var="page" begin="1" end="${productItems.totalPages}">
                                 <c:choose>
                                     <c:when test="${page == 1 }">
-                                        <li class="paginationItem"><span><a href="#">${page}</a></span></li>
+                                        <li class="paginationItem"><span><a
+                                                href="#">${page}</a></span></li>
                                     </c:when>
                                     <c:otherwise>
                                         <li class="paginationItem"><a href="#">${page}</a></li>

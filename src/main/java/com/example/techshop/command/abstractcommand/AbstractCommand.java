@@ -14,10 +14,9 @@ public class AbstractCommand<T>{
     private String tableId = "tableList";
     private int maxPageItems = 6;
     private int totalItems = 0;
-    private int firstItem = 0;
+    private int firstIndex = 0;
     private int totalPages = 5;
-    private String sortExpression;
-    private String sortDirection;
+    private String sort;
     private String[] checkList;
     private String messageResponse;
     private int page = 1;

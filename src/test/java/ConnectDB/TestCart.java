@@ -11,7 +11,9 @@ import com.example.techshop.utils.FormUtil;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.Test;
 
 public class TestCart {
@@ -55,7 +57,8 @@ public class TestCart {
 
   @Test
   public void testPagination(){
-    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(4,1,2);
+    Map<String, Object> properties = new HashMap<String,Object>();
+    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(properties);
     System.out.println("duoc roi ne");
 
   }

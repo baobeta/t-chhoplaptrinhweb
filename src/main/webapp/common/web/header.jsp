@@ -66,7 +66,7 @@
                     <div class="search-box">
                         <form action="${search}">
                             <div class="input-group">
-                                <input type="text" placeholder="Search" class="form-control">
+                                <input type="text" name="searchName" placeholder="Search" class="form-control" required>
                                 <span class="input-group-btn">
                       <button class="btn btn-primary" type="submit">Search</button>
                     </span>

@@ -4,8 +4,11 @@ import com.example.techshop.command.BrandCommand;
 import com.example.techshop.command.CategoryCommand;
 import com.example.techshop.command.ProductCommand;
 import com.example.techshop.utils.FormUtil;
+import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,17 +34,18 @@ public class SearchController extends HttpServlet {
   void setCommandAttribute(CategoryCommand categoryCommand,
       ProductCommand productCommand,
       HttpServletRequest request) {
+    productCommand.setFirstIndex(0);
     categoryCommand.setListResult(STServiceUtil.getCategoryService().getAllCategory());
     categoryCommand.setBrandInCate(
         STServiceUtil.getCategoryService().buildBrandInCate(categoryCommand));
 
-    Integer brandId = productCommand.getBrand().getBrandId();
-    Integer categoryId = productCommand.getCategory().getCategoryId();
+    Map<String, Object> properties = STRepoUtil.getProductRepo().searchProperties(productCommand);
 
     productCommand.setListResult(
         STServiceUtil.getProductService()
-            .getSomeFirstProducts(brandId, categoryId));
+            .getSomeFirstProducts(productCommand, properties));
     request.setAttribute("cateItems", categoryCommand);
     request.setAttribute("productItems", productCommand);
   }
+
 }

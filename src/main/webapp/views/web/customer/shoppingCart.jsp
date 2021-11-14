@@ -33,8 +33,6 @@
                                     <c:set var="total"
                                            value="${item.productDTO.price*item.quantity}"/>
                                     <c:set var="totalAll" value="${totalAll +total}"/>
-<%--                                    <c:set var="pQuantity" value="${pQuantity+1}"/>--%>
-<%--                                    ${totalAll=totalAll+total}--%>
                                     <tr>
                                         <td class="goods-page-image">
                                             <a href="#"><img
@@ -49,9 +47,12 @@
                                         <td class="goods-page-quantity">
                                             <div class="product-quantity">
                                                 <input id="product-quantity" type="text"
-                                                       value="${item.quantity}" readonly
+                                                       value="${item.quantity}"
                                                        class="form-control input-sm">
                                             </div>
+                                            <button class="btn btn-default" onclick="updateCart(${item.productDTO.productId})">
+                                                <fmt:message key="update" bundle="${lang}"/> <i
+                                                    class="fa fa-shopping-cart"></i></button>
                                         </td>
                                         <td class="goods-page-price">
                                             <fmt:setLocale value="fr_CA"/>
