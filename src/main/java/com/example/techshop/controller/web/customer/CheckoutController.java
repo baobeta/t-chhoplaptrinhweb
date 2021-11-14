@@ -1,7 +1,11 @@
 package com.example.techshop.controller.web.customer;
 
+import com.example.techshop.command.OrderDetailCommand;
+import com.example.techshop.command.OrderItemCommand;
 import com.example.techshop.dto.CartItemDTO;
+import com.example.techshop.dto.OrderDetailDTO;
 import com.example.techshop.dto.UserDTO;
+import com.example.techshop.utils.FormUtil;
 import com.example.techshop.utils.STServiceUtil;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +29,7 @@ public class CheckoutController extends HttpServlet {
     if (cusId == -1) {
       cartItems = STServiceUtil.getCartItemService().inCookieCartItems(request);
     } else {
-      STServiceUtil.getCartItemService().addCartInCookieToCus(cusId, request,response);
+      STServiceUtil.getCartItemService().addCartInCookieToCus(cusId, request, response);
       cartItems = STServiceUtil.getCartItemService().getCartItemsByCusId(cusId);
     }
     request.setAttribute("cartItems", cartItems);
@@ -34,4 +38,12 @@ public class CheckoutController extends HttpServlet {
     dispatcher.forward(request, response);
   }
 
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    OrderDetailCommand order = FormUtil.populate(OrderDetailCommand.class,request);
+    STServiceUtil.getOrderItemService().convertCartItemToOrderItem(order);
+
+    response.sendRedirect("/home");
+  }
 }

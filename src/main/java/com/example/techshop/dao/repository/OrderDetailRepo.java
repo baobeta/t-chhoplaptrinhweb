@@ -5,4 +5,6 @@ import com.example.techshop.entity.OrderDetailEntity;
 
 public class OrderDetailRepo extends AbstractDao<Integer, OrderDetailEntity> {
 
+
+
 }

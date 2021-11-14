@@ -70,7 +70,11 @@
                                                                       currencySymbol="VNĐ "/></strong>
                                         </td>
                                         <td class="del-goods-col">
-                                            <a class="del-goods" href="#">&nbsp;</a>
+                                            <c:url var="delete" value="/delete-cart-item">
+                                                <c:param name="productId" value="${item.productDTO.productId}"/>
+                                                <c:param name="cusId" value="${sessionScope.loginedUser.userId}"/>
+                                            </c:url>
+                                            <a class="del-goods" href="${delete}">&nbsp;</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

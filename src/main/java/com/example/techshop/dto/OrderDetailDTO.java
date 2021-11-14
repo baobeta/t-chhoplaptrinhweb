@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 public class OrderDetailDTO {
   
-  private Integer orderDetailsId;
+  private Integer orderDetailId;
 
   private int total;
 
@@ -19,5 +19,10 @@ public class OrderDetailDTO {
   private List<OrderItemDTO> orderItemDTOList;
 
   private UserDTO userDTO;
+
+  private String phoneNumber;
+
+  private String address;
+
 
 }

@@ -63,7 +63,6 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
   }
 
   public boolean updateCartItem(Integer cusId, Integer productId, int quantity) {
-
     try {
       ShoppingSessionEntity session = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
       Integer sessionId = session.getSessionId();
@@ -86,15 +85,26 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
   }
 
   public void updateProductQuantity(Integer productId, int changedQuantity) {
-    ProductEntity product = STRepoUtil.getProductRepo().findById(productId);
-    product.setQuantity(product.getQuantity() - changedQuantity);
-    STRepoUtil.getProductRepo().update(product);
+    try {
+      ProductEntity product = STRepoUtil.getProductRepo().findById(productId);
+      product.setQuantity(product.getQuantity() - changedQuantity);
+      STRepoUtil.getProductRepo().update(product);
+    }catch (HibernateException e){
+      throw e;
+    }
+
   }
 
-  public boolean deleteCartItem(Integer sessionId, Integer productId) {
-    Integer cartItemId = findCartItem(sessionId, productId).getCartItemId();
-    STRepoUtil.getCartItemRepo().delete(Collections.singletonList(cartItemId));
-    return true;
+  public boolean deleteCartItem(Integer cusId, Integer productId) {
+    try {
+      ShoppingSessionEntity session = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
+      Integer sessionId = session.getSessionId();
+      Integer cartItemId = findCartItem(sessionId, productId).getCartItemId();
+      STRepoUtil.getCartItemRepo().delete(Collections.singletonList(cartItemId));
+      return true;
+    }catch (HibernateException e){
+      throw e;
+    }
   }
 
   public CartItemEntity findCartItem(Integer sessionId, Integer productId) {
