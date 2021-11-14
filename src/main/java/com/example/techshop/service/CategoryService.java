@@ -22,6 +22,7 @@ public class CategoryService {
     CategoryEntity categoryEntity = STRepoUtil.getCategoryRepo().findById(id);
     dto = CategoryConverter.entity2Dto(categoryEntity);
     return dto;
+  }
   public List<BrandDTO> getBrandByCate(Integer cateId){
     List<BrandEntity> entities = STRepoUtil.getCategoryRepo().getBrandInCate(cateId);
     List<BrandDTO> dtos = BrandListConverter.entity2Dto(entities);
