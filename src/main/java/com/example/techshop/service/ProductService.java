@@ -40,13 +40,13 @@ public class ProductService {
   }
 
   public List<ProductDTO> getProducts( Map<String, Object> properties){
-    List<ProductEntity> entities = STRepoUtil.getProductRepo().search(properties);
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().searchResult(properties);
     return ProductListConverter.entity2Dto(entities);
   }
 
   public List<ProductDTO> getSomeFirstProducts(ProductCommand command, Map<String, Object> properties){
     command.setFirstIndex(0);
-    List<ProductEntity> entities = STRepoUtil.getProductRepo().search(properties);
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().searchResult(properties);
     return ProductListConverter.entity2Dto(entities);
   }
 

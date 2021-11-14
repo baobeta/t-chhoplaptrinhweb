@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 
@@ -109,6 +110,7 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
 
   public CartItemEntity findCartItem(Integer sessionId, Integer productId) {
     Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = session.beginTransaction();
     try {
       String queryString = "FROM CartItemEntity c WHERE c.productEntity.productId = :productId "
           + "and c.shoppingSessionEntity.sessionId = : sessionId";
@@ -116,11 +118,8 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
       query.setParameter("productId", productId);
       query.setParameter("sessionId", sessionId);
       CartItemEntity cartItem = (CartItemEntity) query.uniqueResult();
-      if (cartItem != null) {
-        return cartItem;
-      } else {
-        return null;
-      }
+      transaction.commit();
+      return cartItem;
     } catch (HibernateException e) {
       throw e;
     } finally {
@@ -140,6 +139,7 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
 
   public List<CartItemEntity> getCartItemsByCusId(Integer cusId) {
     Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = session.beginTransaction();
     Integer sessionId = STRepoUtil.getUserRepo().findSessionByCusId(cusId).getSessionId();
     List<CartItemEntity> cartItems = new ArrayList<CartItemEntity>();
     try {
@@ -148,7 +148,9 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
       query.setParameter("sessionId", sessionId);
       cartItems = (List<CartItemEntity>) query.getResultList();
 
+      transaction.commit();
     } catch (HibernateException e) {
+      transaction.rollback();
       throw e;
     } finally {
       session.close();

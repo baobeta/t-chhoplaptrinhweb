@@ -19,11 +19,11 @@ import org.hibernate.criterion.Restrictions;
 
 public class ProductRepo extends AbstractDao<Integer, ProductEntity> {
 
-  public List<ProductEntity> search(Map<String, Object> properties) {
-    List<ProductEntity> products = new ArrayList<ProductEntity>();
+  public List<ProductEntity> searchResult(Map<String, Object> properties) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Criteria criteria = session.createCriteria(ProductEntity.class);
     Transaction transaction = session.beginTransaction();
+    List<ProductEntity> products = new ArrayList<ProductEntity>();
     try {
       for (Map.Entry property : properties.entrySet()) {
         String name = property.getKey().toString();
