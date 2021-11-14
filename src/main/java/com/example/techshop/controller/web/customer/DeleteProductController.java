@@ -17,7 +17,7 @@ public class DeleteProductController extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     CartItemCommand command = FormUtil.populate(CartItemCommand.class,request);
-    STServiceUtil.getCartItemService().deleteCartItem(command.getCusId(),command.getProductId());
+    STServiceUtil.getCartItemService().deleteCartItem(command.getCusId(),command.getProductId(),request,response);
     response.sendRedirect("/cart");
   }
 }

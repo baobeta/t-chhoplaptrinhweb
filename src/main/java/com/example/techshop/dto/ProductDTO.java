@@ -4,6 +4,7 @@ import com.example.techshop.dto.BrandDTO;
 import com.example.techshop.dto.CartItemDTO;
 import com.example.techshop.dto.CategoryDTO;
 import com.example.techshop.dto.OrderItemDTO;
+import java.sql.Timestamp;
 import java.util.List;
 
 import lombok.Getter;
@@ -26,6 +27,10 @@ public class ProductDTO {
   private Integer quantity;
 
   private String photo;
+
+  private Timestamp createdDate;
+
+  private boolean isSale;
 
   private List<CartItemDTO> cartItemDTOList;
 

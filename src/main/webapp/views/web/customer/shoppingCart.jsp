@@ -44,16 +44,19 @@
                                             <p><strong>Item 1</strong> - Color: Green; Size: S</p>
                                             <em>More info is here</em>
                                         </td>
-                                        <td class="goods-page-quantity">
-                                            <div class="product-quantity">
-                                                <input id="product-quantity" type="text"
-                                                       value="${item.quantity}"
-                                                       class="form-control input-sm">
-                                            </div>
-                                            <button class="btn btn-default" onclick="updateCart(${item.productDTO.productId})">
-                                                <fmt:message key="update" bundle="${lang}"/> <i
-                                                    class="fa fa-shopping-cart"></i></button>
-                                        </td>
+                                        <c:if test="${not empty sessionScope.loginedUser}">
+                                            <td class="goods-page-quantity">
+                                                <div class="product-quantity">
+                                                    <input id="product-quantity" type="text"
+                                                           value="${item.quantity}"
+                                                           class="form-control input-sm">
+                                                </div>
+                                                <button class="btn btn-default"
+                                                        onclick="updateCart(${item.productDTO.productId})">
+                                                    <fmt:message key="update" bundle="${lang}"/> <i
+                                                        class="fa fa-shopping-cart"></i></button>
+                                            </td>
+                                        </c:if>
                                         <td class="goods-page-price">
                                             <fmt:setLocale value="fr_CA"/>
                                             <strong><fmt:formatNumber
@@ -71,8 +74,10 @@
                                         </td>
                                         <td class="del-goods-col">
                                             <c:url var="delete" value="/delete-cart-item">
-                                                <c:param name="productId" value="${item.productDTO.productId}"/>
-                                                <c:param name="cusId" value="${sessionScope.loginedUser.userId}"/>
+                                                <c:param name="productId"
+                                                         value="${item.productDTO.productId}"/>
+                                                <c:param name="cusId"
+                                                         value="${sessionScope.loginedUser.userId}"/>
                                             </c:url>
                                             <a class="del-goods" href="${delete}">&nbsp;</a>
                                         </td>
@@ -102,10 +107,16 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="btn btn-default" type="submit">Continue shopping <i
-                            class="fa fa-shopping-cart"></i></button>
+                    <a class="btn btn-default" href="${home}"><fmt:message key="home" bundle="${lang}"/> <i
+                            class="fa fa-shopping-cart"></i></a>
+                    <c:if test="${not empty sessionScope.loginedUser}">
                     <a href="${checkout}" class="btn btn-primary" type="submit"><fmt:message
                             key="checkout" bundle="${lang}"/><i class="fa fa-check"></i></a>
+                    </c:if>
+                    <c:if test="${empty sessionScope.loginedUser}">
+                        <a href="${checkout}" class="btn btn-primary" type="submit" disabled="true"><fmt:message
+                                key="checkout" bundle="${lang}"/><i class="fa fa-check"></i></a>
+                    </c:if>
                 </div>
             </div>
             <!-- END CONTENT -->

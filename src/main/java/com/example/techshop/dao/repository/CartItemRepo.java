@@ -24,7 +24,7 @@ import org.hibernate.query.Query;
 public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
 
   public boolean addProductToCart(Integer cusId, Integer productId) {
-    try { 
+    try {
       ShoppingSessionEntity sessionEntity = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
       if (sessionEntity == null) {
         //Neu khong tim thay session thi tao moi
@@ -90,20 +90,29 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
       ProductEntity product = STRepoUtil.getProductRepo().findById(productId);
       product.setQuantity(product.getQuantity() - changedQuantity);
       STRepoUtil.getProductRepo().update(product);
-    }catch (HibernateException e){
+    } catch (HibernateException e) {
       throw e;
     }
 
   }
 
-  public boolean deleteCartItem(Integer cusId, Integer productId) {
+  public boolean deleteCartItem(Integer cusId, Integer productId, HttpServletRequest request,
+      HttpServletResponse response) {
     try {
-      ShoppingSessionEntity session = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
-      Integer sessionId = session.getSessionId();
-      Integer cartItemId = findCartItem(sessionId, productId).getCartItemId();
-      STRepoUtil.getCartItemRepo().delete(Collections.singletonList(cartItemId));
-      return true;
-    }catch (HibernateException e){
+      if (cusId > 0) {
+        ShoppingSessionEntity session = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
+        Integer sessionId = session.getSessionId();
+        Integer cartItemId = findCartItem(sessionId, productId).getCartItemId();
+        STRepoUtil.getCartItemRepo().delete(Collections.singletonList(cartItemId));
+        return true;
+      } else {
+        Cookie cookie = new Cookie("productId" + productId, "");
+        cookie.setMaxAge(0);
+        cookie.setPath("/cart");
+        response.addCookie(cookie);
+        return true;
+      }
+    } catch (HibernateException e) {
       throw e;
     }
   }
@@ -168,8 +177,8 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
         addProductToCart(cusId, productId);
       }
     }
-    for (Cookie cookie: cookies) {
-      if(cookie.getName().contains("productId")){
+    for (Cookie cookie : cookies) {
+      if (cookie.getName().contains("productId")) {
         cookie.setMaxAge(0);
         cookie.setPath("/cart");
         response.addCookie(cookie);
