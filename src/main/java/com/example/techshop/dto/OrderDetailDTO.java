@@ -1,5 +1,6 @@
 package com.example.techshop.dto;
 
+import java.sql.Timestamp;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,8 @@ public class OrderDetailDTO {
   private int total;
 
   private Boolean ispaid;
+
+  private Timestamp createdDate;
 
   private List<OrderItemDTO> orderItemDTOList;
 

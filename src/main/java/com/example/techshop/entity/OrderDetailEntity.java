@@ -1,5 +1,6 @@
 package com.example.techshop.entity;
 
+import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,9 @@ public class OrderDetailEntity {
 
     @Column(name = "phone_number",length = 10)
     private String phoneNumber;
+
+    @Column(name = "created_date")
+    private Timestamp createdDate;
 
     @Column(name="address")
     private String address;
