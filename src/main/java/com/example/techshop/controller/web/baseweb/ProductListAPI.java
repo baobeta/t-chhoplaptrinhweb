@@ -23,11 +23,11 @@ public class ProductListAPI extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    ProductCommand command = FormUtil.populate(ProductCommand.class,request);
-    setProperties(request,command);
-    Map<String,Object> properties = STServiceUtil.getProductService().searchProperties(command);
+    ProductCommand command = FormUtil.populate(ProductCommand.class, request);
+    setProperties(request, command);
+    Map<String, Object> properties = STServiceUtil.getProductService().searchProperties(command);
     List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(properties);
-    String viewURL ="/pDetail?pojo.productId=";
+    String viewURL = "/pDetail?pojo.productId=";
     response.setContentType("text/html");
     response.setCharacterEncoding("UTF-8");
     PrintWriter out = response.getWriter();
@@ -40,12 +40,13 @@ public class ProductListAPI extends HttpServlet {
           + "                                        <div>\n"
           + "                                            <a href=\"<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>\"\n"
           + "                                               class=\"btn btn-default fancybox-button\">Zoom</a>\n"
-          + "                                            <a href=\""+viewURL+product.getProductId()+"\"\n"
+          + "                                            <a href=\"" + viewURL
+          + product.getProductId() + "\"\n"
           + "                                               class=\"btn btn-default fancybox-fast-view\">View</a>\n"
           + "                                        </div>\n"
           + "                                    </div>\n"
           + "                                    <h3><a href=\"shop-item.html\">"
-          +                                           product.getName() + "</a></h3>\n"
+          + product.getName() + "</a></h3>\n"
           + "                                    <div class=\"pi-price\">" + product.getPrice()
           + "                                         </div>\n"
           + "                                    <a href=\"#\" class=\"btn btn-default add2cart\">Add to cart</a>\n"
@@ -54,21 +55,21 @@ public class ProductListAPI extends HttpServlet {
     }
   }
 
-  void setProperties(HttpServletRequest request, ProductCommand command){
+  void setProperties(HttpServletRequest request, ProductCommand command) {
     Integer brandId = Integer.parseInt(request.getParameter("brandId"));
     Integer categoryId = Integer.parseInt(request.getParameter("categoryId"));
     String searchName = request.getParameter("searchName");
     String sort = request.getParameter("sort");
-    if(brandId>-1){
+    if (brandId > 0 && brandId!=null) {
       command.setBrand(STServiceUtil.getBrandService().findById(brandId));
     }
-    if(categoryId >-1){
+    if (categoryId > 0 && categoryId!=null) {
       command.setCategory(STServiceUtil.getCategoryService().findById(categoryId));
     }
-    if(!searchName.isEmpty()){
+    if (!searchName.isEmpty() && searchName != null) {
       command.setSearchName(searchName);
     }
-    if(!sort.isEmpty()){
+    if (!sort.isEmpty() && sort != null) {
       command.setSort(sort);
     }
   }

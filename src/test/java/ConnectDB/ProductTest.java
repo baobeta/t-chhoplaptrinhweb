@@ -46,7 +46,7 @@ public class ProductTest {
         properties.put("name","asus 2");
         properties.put("minPrice",100000);
         properties.put("maxPrice",200000);
-        List<ProductEntity> products = STRepoUtil.getProductRepo().search(properties);
+        List<ProductEntity> products = STRepoUtil.getProductRepo().searchResult(properties);
         System.out.println("khong biet");
     }
 }

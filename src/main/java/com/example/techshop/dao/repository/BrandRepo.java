@@ -6,5 +6,4 @@ import javax.persistence.EntityManager;
 
 public class BrandRepo extends AbstractDao<Integer, BrandEntity> {
 
-
 }

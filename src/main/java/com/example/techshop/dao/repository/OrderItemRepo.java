@@ -17,10 +17,7 @@ import org.hibernate.Transaction;
 
 public class OrderItemRepo extends AbstractDao<Integer, OrderItemEntity> {
 
-  public void convertCartItemToOrderItem(
-      OrderDetailCommand command) {
-    Session session = HibernateUtil.getSessionFactory().openSession();
-    Transaction transaction = session.beginTransaction();
+  public void convertCartItemToOrderItem(OrderDetailCommand command) {
     try {
       Integer cusId = command.getCusId();
       List<CartItemEntity> cartItems = STRepoUtil.getCartItemRepo().getCartItemsByCusId(cusId);
@@ -36,9 +33,7 @@ public class OrderItemRepo extends AbstractDao<Integer, OrderItemEntity> {
         STRepoUtil.getOrderItemRepo().save(orderItem);
       }
       STRepoUtil.getCartItemRepo().delete(delCartIds);
-      transaction.commit();
     } catch (HibernateException e) {
-      transaction.rollback();
       throw e;
     }
   }

@@ -197,7 +197,6 @@
         sort: sort
       },
       success: function (value) {
-        alert(searchName);
         var productList = $("#product-list").find("#product-item");
         productList.empty();
         productList.append(value);
