@@ -19,4 +19,6 @@ public class CategoryCommand extends AbstractCommand<CategoryDTO> {
   }
   private Map<CategoryDTO, List<BrandDTO>> brandInCate;
 
+  private Integer idDelete;
+
 }
