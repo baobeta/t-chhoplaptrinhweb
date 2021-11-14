@@ -7,9 +7,11 @@ public class OrderDetailConverter {
 
   public static OrderDetailDTO entity2Dto(OrderDetailEntity entity) {
     OrderDetailDTO dto = new OrderDetailDTO();
-    dto.setOrderDetailsId(entity.getOrderDetailsId());
+    dto.setOrderDetailId(entity.getOrderDetailId());
     dto.setIspaid(entity.getIspaid());
     dto.setTotal(entity.getTotal());
+    dto.setPhoneNumber(entity.getPhoneNumber());
+    dto.setAddress(entity.getAddress());
     dto.setUserDTO(UserConverter.entity2Dto(entity.getUserEntity()));
     dto.setUserDTO(UserConverter.entity2Dto(entity.getUserEntity()));
     return dto;
@@ -17,9 +19,11 @@ public class OrderDetailConverter {
 
   public static OrderDetailEntity dto2Entity(OrderDetailDTO dto){
     OrderDetailEntity entity = new OrderDetailEntity();
-    entity.setOrderDetailsId(dto.getOrderDetailsId());
+    entity.setOrderDetailId(dto.getOrderDetailId());
     entity.setIspaid(dto.getIspaid());
     entity.setTotal(dto.getTotal());
+    entity.setPhoneNumber(dto.getPhoneNumber());
+    entity.setAddress(dto.getAddress()  );
     entity.setUserEntity(UserConverter.dto2Entity(dto.getUserDTO()));
     entity.setUserEntity(UserConverter.dto2Entity(dto.getUserDTO()));
     return entity;

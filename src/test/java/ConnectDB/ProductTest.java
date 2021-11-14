@@ -2,6 +2,8 @@ package ConnectDB;
 
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.utils.STRepoUtil;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -33,6 +35,18 @@ public class ProductTest {
         List<Integer> ids = new ArrayList<>();
         ids.add(12);
         STRepoUtil.getProductRepo().delete(ids);
+    }
 
+    @Test
+    public void testCriteria(){
+        Map<String, Object> properties = new HashMap<String, Object>();
+        properties.put("cusId",1);
+        properties.put("cateId",2);
+        properties.put("sort","price-ASC");
+        properties.put("name","asus 2");
+        properties.put("minPrice",100000);
+        properties.put("maxPrice",200000);
+        List<ProductEntity> products = STRepoUtil.getProductRepo().search(properties);
+        System.out.println("khong biet");
     }
 }

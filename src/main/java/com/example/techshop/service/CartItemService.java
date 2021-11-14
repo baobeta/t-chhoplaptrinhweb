@@ -25,8 +25,8 @@ public class CartItemService {
     STRepoUtil.getCartItemRepo().updateCartItem(cusId, productId, quantity);
   }
 
-  public void deleteCartItem(Integer sessionId, Integer productId) {
-
+  public void deleteCartItem(Integer cusId, Integer productId) {
+    STRepoUtil.getCartItemRepo().deleteCartItem(cusId,productId);
   }
 
   public void addCartInCookieToCus(Integer cusId, HttpServletRequest request,

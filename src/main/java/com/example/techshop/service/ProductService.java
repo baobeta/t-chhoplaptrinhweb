@@ -1,5 +1,6 @@
 package com.example.techshop.service;
 
+import com.example.techshop.command.ProductCommand;
 import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.ProductEntity;
@@ -11,6 +12,8 @@ import com.example.techshop.utils.convert.UserConverter;
 import com.example.techshop.utils.convert.list.ProductListConverter;
 import com.example.techshop.utils.convert.list.UserListConverter;
 import java.util.List;
+import java.util.Map;
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 public class ProductService {
 
@@ -36,9 +39,19 @@ public class ProductService {
     STRepoUtil.getProductRepo().delete(ids);
   }
 
-  public List<ProductDTO> getProducts(int firstIndex){
-    List<ProductEntity> entities = STRepoUtil.getProductRepo().getProducts(firstIndex);
+  public List<ProductDTO> getProducts( Map<String, Object> properties){
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().search(properties);
     return ProductListConverter.entity2Dto(entities);
+  }
+
+  public List<ProductDTO> getSomeFirstProducts(ProductCommand command, Map<String, Object> properties){
+    command.setFirstIndex(0);
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().search(properties);
+    return ProductListConverter.entity2Dto(entities);
+  }
+
+  public Map<String,Object> searchProperties(ProductCommand command){
+    return STRepoUtil.getProductRepo().searchProperties(command);
   }
 
   public  ProductDTO  findEqualUnique(String property, Object value) {
@@ -53,10 +66,7 @@ public class ProductService {
 
   }
 
-  public List<ProductDTO> getSomeFirstProducts(){
-    List<ProductEntity> entities = STRepoUtil.getProductRepo().getProducts(0);
-    return ProductListConverter.entity2Dto(entities);
-  }
+
 
   public Integer CountProduct() {
     return STRepoUtil.getProductRepo().Count("productId");
