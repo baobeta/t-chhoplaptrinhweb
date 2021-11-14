@@ -204,31 +204,31 @@
       }
     })
   })
+
+
 </script>
 
 <script type="text/javascript">
-   function updateCart (productId) {
+   function updateCart(productId) {
     var cusId = ${sessionScope.loginedUser.userId};
     var quantity = document.getElementById('product-quantity').value;
-     // var params = JSON.stringify({ cusId: cusId },{productId: productId}, {quantity: quantity});
-    var params = 'cusId='+cusId+'&productId='+productId+'&quantity='+quantity;
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST","api/update-cart",true);
-    xhttp.send(params);
-    // xhttp.responseText
-    //  $.ajax({
-    //   url: "/api/update-cart",
-    //   type: "POST",
-    //   data: {
-    //     productId : productId,
-    //     cusId: cusId,
-    //     quantity: quantity
-    //   },
-    //   success: function (value) {
-    //     alert("update thanh cong");
-    //   }
-    // })
+    $.ajax({
+      url: "/api/update-cart",
+      type: "POST",
+      data: {
+        cusId: cusId,
+        quantity: quantity,
+        productId: productId
+      },
+      success: function (value) {
+        alert(quantity);
+      }
+    });
+  }
+
+  function getProductId(productId){
+    return productId;
   }
 </script>
 

@@ -62,8 +62,11 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
     return false;
   }
 
-  public boolean updateCartItem(Integer sessionId, Integer productId, int quantity) {
+  public boolean updateCartItem(Integer cusId, Integer productId, int quantity) {
+
     try {
+      ShoppingSessionEntity session = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
+      Integer sessionId = session.getSessionId();
       if (sessionId != null) {
         //Tim item trong session
         CartItemEntity cartItem = findCartItem(sessionId, productId);
