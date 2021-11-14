@@ -30,7 +30,7 @@ public class TestCart {
 
   @Test
   public void testDeleteCartItem(){
-    STRepoUtil.getCartItemRepo().deleteCartItem(1,1);
+//    STRepoUtil.getCartItemRepo().deleteCartItem(1,1);
   }
 
   @Test

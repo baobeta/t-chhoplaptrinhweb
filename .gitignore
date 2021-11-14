@@ -32,7 +32,7 @@ nb-configuration.xml
 .idea/
 *.iml
 *.iws
-
+!hibernate.cfg.xml
 # Mac
 .DS_Store
 
