@@ -37,23 +37,9 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="product-main-image">
-                                <img src="<c:url value='/static/assets/frontend/pages/img/products/model7.jpg'/>"
+                                <img src="${product.photo}"
                                      alt="Cool green dress with red bell" class="img-responsive"
-                                     data-BigImgsrc="<c:url value='/static/assets/frontend/pages/img/products/model7.jpg'/>">
-                            </div>
-                            <div class="product-other-images">
-                                <a href="<c:url value='/static/assets/frontend/pages/img/products/model3.jpg'/>"
-                                   class="fancybox-button" rel="photos-lib"><img
-                                        alt="Berry Lace Dress"
-                                        src="<c:url value='/static/assets/frontend/pages/img/products/model3.jpg'/>"></a>
-                                <a href="<c:url value='/static/assets/frontend/pages/img/products/model4.jpg'/>"
-                                   class="fancybox-button" rel="photos-lib"><img
-                                        alt="Berry Lace Dress"
-                                        src="<c:url value='/static/assets/frontend/pages/img/products/model4.jpg'/>"></a>
-                                <a href="<c:url value='/static/assets/frontend/pages/img/products/model5.jpg'/>"
-                                   class="fancybox-button" rel="photos-lib"><img
-                                        alt="Berry Lace Dress"
-                                        src="<c:url value='/static/assets/frontend/pages/img/products/model5.jpg'/>"></a>
+                                     data-BigImgsrc="${product.photo}">
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
@@ -215,3 +201,35 @@
         <!-- END SIDEBAR & CONTENT -->
     </div>
 </div>
+
+<!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
+<!--[if lt IE 9]>
+<script src="<c:url value='/static/assets/global/plugins/respond.min.js'/>"></script>
+<![endif]-->
+<script src="<c:url value='/static/assets/global/plugins/jquery.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-migrate.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/layout/scripts/back-to-top.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'/>" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<script src="<c:url value='/static/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js'/>" type="text/javascript"></script><!-- pop up -->
+<script src="<c:url value='/static/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js'/>" type="text/javascript"></script><!-- slider for products -->
+<script src="<c:url value='/static/assets/global/plugins/zoom/jquery.zoom.min.js'/>" type="text/javascript"></script><!-- product zoom -->
+<script src="<c:url value='/static/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js'/>" type="text/javascript"></script><!-- Quantity -->
+<script src="<c:url value='/static/assets/global/plugins/uniform/jquery.uniform.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/rateit/src/jquery.rateit.js'/>" type="text/javascript"></script>
+
+<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>" type="text/javascript"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    Layout.init();
+    Layout.initOWL();
+    Layout.initTwitter();
+    Layout.initImageZoom();
+    Layout.initTouchspin();
+    Layout.initUniform();
+  });
+</script>
+<!-- END PAGE LEVEL JAVASCRIPTS -->

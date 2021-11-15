@@ -5,6 +5,7 @@ import com.example.techshop.dto.CartItemDTO;
 import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.BrandEntity;
 import com.example.techshop.entity.CartItemEntity;
+import com.example.techshop.entity.OrderItemEntity;
 import com.example.techshop.entity.RoleEntity;
 import com.example.techshop.entity.ShoppingSessionEntity;
 import com.example.techshop.utils.FormUtil;
@@ -61,6 +62,12 @@ public class TestCart {
     List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(properties);
     System.out.println("duoc roi ne");
 
+  }
+
+  @Test
+  public void testOrderDetail(){
+    List<OrderItemEntity> orderItems = STRepoUtil.getOrderItemRepo().getOrderItemsByOrderId(1);
+    System.out.println("duoc roi ne");
   }
 
 }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder.In;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -59,4 +60,22 @@ public class OrderItemRepo extends AbstractDao<Integer, OrderItemEntity> {
     }
   }
 
+  public List<OrderItemEntity> getOrderItemsByOrderId(Integer orderId){
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = session.beginTransaction();
+    List<OrderItemEntity> orderItems = new ArrayList<OrderItemEntity>();
+    try {
+      String queryString = "FROM OrderItemEntity o WHERE o.orderDetailEntity.orderDetailId=: orderId";
+      Query query = session.createQuery(queryString);
+      query.setParameter("orderId",orderId);
+      orderItems = query.list();
+      transaction.commit();
+      return orderItems;
+    }catch (HibernateException e){
+      transaction.rollback();
+      throw e;
+    } finally {
+      session.close();
+    }
+  }
 }

@@ -5,7 +5,6 @@ import com.example.techshop.entity.CartItemEntity;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.entity.ShoppingSessionEntity;
 import com.example.techshop.utils.HibernateUtil;
-
 import com.example.techshop.utils.STRepoUtil;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -19,7 +18,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 
 public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
 

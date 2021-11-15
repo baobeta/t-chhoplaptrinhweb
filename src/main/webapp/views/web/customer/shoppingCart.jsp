@@ -34,15 +34,18 @@
                                            value="${item.productDTO.price*item.quantity}"/>
                                     <c:set var="totalAll" value="${totalAll +total}"/>
                                     <tr>
+                                        <c:url var="pDetail" value="/pDetail">
+                                            <c:param name="pojo.productId"
+                                                     value="${item.productDTO.productId}"/>
+                                        </c:url>
                                         <td class="goods-page-image">
-                                            <a href="#"><img
-                                                    src="<c:url value ='/static/assets/frontend/pages/img/products/model3.jpg'/>"
+                                            <a href="${pDetail}"><img
+                                                    src="${item.productDTO.photo}"
                                                     alt="Berry Lace Dress'/>"></a>
                                         </td>
                                         <td class="goods-page-description">
                                             <h3><a href="#">${item.productDTO.name}</a></h3>
-                                            <p><strong>Item 1</strong> - Color: Green; Size: S</p>
-                                            <em>More info is here</em>
+                                            <p>${item.productDTO.description}</p>
                                         </td>
                                         <c:if test="${not empty sessionScope.loginedUser}">
                                             <td class="goods-page-quantity">
@@ -124,3 +127,37 @@
         <!-- END SIDEBAR & CONTENT -->
     </div>
 </div>
+
+<!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
+<!--[if lt IE 9]>
+<script src="<c:url value='/static/assets/global/plugins/respond.min.js'/>"></script>
+<![endif]-->
+<script src="<c:url value='/static/assets/global/plugins/jquery.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-migrate.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/layout/scripts/back-to-top.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'/>" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<script src="<c:url value='/static/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js'/>" type="text/javascript"></script><!-- pop up -->
+<script src="<c:url value='/static/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js'/>" type="text/javascript"></script><!-- slider for products -->
+<script src="<c:url value='/static/assets/global/plugins/zoom/jquery.zoom.min.js'/>" type="text/javascript"></script><!-- product zoom -->
+<script src="<c:url value='/static/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js'/>" type="text/javascript"></script><!-- Quantity -->
+<script src="<c:url value='/static/assets/global/plugins/uniform/jquery.uniform.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/rateit/src/jquery.rateit.js'/>" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js'/>" type="text/javascript"></script><!-- for slider-range -->
+
+<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>" type="text/javascript"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    Layout.init();
+    Layout.initOWL();
+    Layout.initTwitter();
+    Layout.initImageZoom();
+    Layout.initTouchspin();
+    Layout.initUniform();
+    Layout.initSliderRange();
+  });
+</script>
+<!-- END PAGE LEVEL JAVASCRIPTS -->
