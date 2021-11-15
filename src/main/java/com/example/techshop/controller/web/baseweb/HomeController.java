@@ -43,7 +43,8 @@ public class HomeController extends HttpServlet {
     categoryCommand.setListResult(STServiceUtil.getCategoryService().getAllCategory());
     categoryCommand.setBrandInCate(
         STServiceUtil.getCategoryService().buildBrandInCate(categoryCommand));
-    productCommand.setListResult(STServiceUtil.getProductService().getAllProduct());
+    productCommand.setNewProducts(STServiceUtil.getProductService().getNewProducts());
+    productCommand.setIsSaleProducts(STServiceUtil.getProductService().getIsSaleProducts());
     request.setAttribute("cateItems", categoryCommand);
     request.setAttribute("productItems", productCommand);
   }

@@ -23,6 +23,11 @@ public class CategoryService {
     return dtos;
   }
 
+  public CategoryDTO getCategoryByName(String name){
+    CategoryEntity category = STRepoUtil.getCategoryRepo().findCategoryByName(name);
+    return CategoryConverter.entity2Dto(category);
+  }
+
   public CategoryDTO findById(Integer id) {
     CategoryDTO dto = new CategoryDTO();
     CategoryEntity categoryEntity = STRepoUtil.getCategoryRepo().findById(id);

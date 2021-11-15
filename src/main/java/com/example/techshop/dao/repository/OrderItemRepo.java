@@ -8,6 +8,8 @@ import com.example.techshop.entity.OrderItemEntity;
 import com.example.techshop.entity.UserEntity;
 import com.example.techshop.utils.HibernateUtil;
 import com.example.techshop.utils.STRepoUtil;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder.In;
@@ -47,6 +49,7 @@ public class OrderItemRepo extends AbstractDao<Integer, OrderItemEntity> {
       orderDetail.setPhoneNumber(command.getPojo().getPhoneNumber());
       orderDetail.setTotal(command.getTotal());
       orderDetail.setUserEntity(user);
+      orderDetail.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
       orderDetail.setIspaid(false);
 
       STRepoUtil.getOrderDetailRepo().save(orderDetail);

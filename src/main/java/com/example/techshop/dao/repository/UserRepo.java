@@ -74,9 +74,9 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> {
         return false;
       }
     } catch (HibernateException e) {
+      transaction.rollback();
       throw e;
     } finally {
-      transaction.rollback();
       session.close();
     }
     return true;

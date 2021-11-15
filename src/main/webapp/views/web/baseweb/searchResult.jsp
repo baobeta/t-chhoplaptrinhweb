@@ -42,7 +42,8 @@
                     <div class="content-search margin-bottom-20">
                         <div class="row">
                             <div class="col-md-6">
-                                <h1><fmt:message key="searchResult" bundle="${lang}"/> <em>${productItems.searchName}</em></h1>
+                                <h1><fmt:message key="searchResult" bundle="${lang}"/>
+                                    <em>${productItems.searchName}</em></h1>
                             </div>
                             <div class="col-md-6">
                                 <form action="${searchInfilter}" method="get">
@@ -51,7 +52,8 @@
                                     <input type="hidden" name="category.categoryId"
                                            value="${productItems.category.categoryId}">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Tìm kiếm trong danh sách" name = "searchName"
+                                        <input type="text" placeholder="Tìm kiếm trong danh sách"
+                                               name="searchName"
                                                value="${productItems.searchName}"
                                                class="form-control">
                                         <span class="input-group-btn">
@@ -113,7 +115,9 @@
                                                                             type="currency"
                                                                             maxFractionDigits="0"
                                                                             currencySymbol="VNĐ"/></div>
-                                        <%--                                    <a href="#" class="btn btn-default add2cart">Add to cart</a>--%>
+                                    <c:if test="${product.sale}">
+                                        <div class="sticker sticker-sale"></div>
+                                    </c:if>
                                 </div>
                             </div>
                         </c:forEach>

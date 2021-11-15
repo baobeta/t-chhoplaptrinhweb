@@ -52,16 +52,17 @@ public class ConvertTest {
   }
   @Test
   public void TestConvertList(){
-    List<CartItemDTO> cartItemDTOS = CartItemListConverter.entity2Dto(STRepoUtil.getCartItemRepo()
+//    List<CartItemDTO> cartItemDTOS = CartItemListConverter.entity2Dto(STRepoUtil.getCartItemRepo()
+//        .findAll());
+    List<ProductDTO> productDTOS = ProductListConverter.entity2Dto(STRepoUtil.getProductRepo()
         .findAll());
-
-    List<OrderDetailDTO> orderDetailDTOS = OrderDetailListConverter.entity2Dto(STRepoUtil.getOrderDetailRepo()
-        .findAll());
-
-    List<OrderItemDTO> orderItemDTOS = OrderItemListConverter.entity2Dto(STRepoUtil.getOrderItemRepo()
-        .findAll());
-
-    List<UserDTO> userDTOS = UserListConverter.entity2Dto(STRepoUtil.getUserRepo().findAll());
+//    List<OrderDetailDTO> orderDetailDTOS = OrderDetailListConverter.entity2Dto(STRepoUtil.getOrderDetailRepo()
+//        .findAll());
+//
+//    List<OrderItemDTO> orderItemDTOS = OrderItemListConverter.entity2Dto(STRepoUtil.getOrderItemRepo()
+//        .findAll());
+//
+//    List<UserDTO> userDTOS = UserListConverter.entity2Dto(STRepoUtil.getUserRepo().findAll());
 
     System.out.println("done!!!");
   }

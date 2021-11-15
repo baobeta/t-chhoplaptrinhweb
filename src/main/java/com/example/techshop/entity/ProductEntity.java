@@ -38,7 +38,7 @@ public class ProductEntity {
     private String photo;
 
     @Column(name= "is_sale")
-    private boolean isSale;
+    private boolean sale;
 
     @Column(name = "created_date")
     private Timestamp createdDate;
