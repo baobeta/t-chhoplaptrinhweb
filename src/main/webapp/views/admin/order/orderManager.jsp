@@ -72,7 +72,7 @@
                                         <th width="10%">
                                             User
                                         </th>
-                                        <th width="10%">
+                                        <th width="30%">
                                             Product
                                         </th>
                                         <th width="10%">
@@ -89,7 +89,7 @@
                                             <td>${order.total}</td>
                                             <td>${order.userDTO.firstName}  ${order.userDTO.lastName}</td>
                                             <td><c:forEach items="${order.orderItemDTOList}" var="item" >
-                                                ${item.productDTO.name} : ${item.quantity}
+                                               <p>${item.productDTO.name} : ${item.quantity}</p>
                                             </c:forEach></td>
                                             <td>
                                                 <form action="<c:url value="/admin/order/edit"/>" method="post">
