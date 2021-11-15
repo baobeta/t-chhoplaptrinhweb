@@ -1,6 +1,8 @@
 package com.example.techshop.entity;
 
 
+import java.sql.Timestamp;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,6 +36,12 @@ public class ProductEntity {
 
     @Column(name = "photo")
     private String photo;
+
+    @Column(name= "is_sale")
+    private boolean sale;
+
+    @Column(name = "created_date")
+    private Timestamp createdDate;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "productEntity", cascade = CascadeType.ALL)
     private List<CartItemEntity> cartItemEntityList;

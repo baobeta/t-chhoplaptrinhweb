@@ -29,34 +29,25 @@ public class HomeController extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     CategoryCommand categoryCommand = FormUtil.populate(CategoryCommand.class, request);
-    BrandCommand brandCommand = FormUtil.populate(BrandCommand.class, request);
     ProductCommand productCommand = FormUtil.populate(ProductCommand.class, request);
-    setCommandAttribute(categoryCommand, brandCommand, productCommand, request);
+    setCommandAttribute(categoryCommand, productCommand, request);
 
     RequestDispatcher dispatcher //
         = this.getServletContext().getRequestDispatcher("/views/web/baseweb/home.jsp");
     dispatcher.forward(request, response);
   }
 
-
-  void setCommandAttribute(CategoryCommand categoryCommand, BrandCommand brandCommand,
+  void setCommandAttribute(CategoryCommand categoryCommand,
       ProductCommand productCommand,
       HttpServletRequest request) {
     categoryCommand.setListResult(STServiceUtil.getCategoryService().getAllCategory());
-    categoryCommand.setBrandInCate(buildBrandInCate(categoryCommand));
-    productCommand.setListResult(STServiceUtil.getProductService().getAllProduct());
-    brandCommand.setListResult(STServiceUtil.getBrandService().getAllBrand());
+    categoryCommand.setBrandInCate(
+        STServiceUtil.getCategoryService().buildBrandInCate(categoryCommand));
+    productCommand.setNewProducts(STServiceUtil.getProductService().getNewProducts());
+    productCommand.setIsSaleProducts(STServiceUtil.getProductService().getIsSaleProducts());
     request.setAttribute("cateItems", categoryCommand);
-    request.setAttribute("brandItems", brandCommand);
     request.setAttribute("productItems", productCommand);
   }
 
-  Map<CategoryDTO, List<BrandDTO>> buildBrandInCate(CategoryCommand command) {
-    Map<CategoryDTO, List<BrandDTO>> brandInCate = new HashMap<CategoryDTO, List<BrandDTO>>();
-    for (CategoryDTO category : command.getListResult()) {
-      brandInCate.put(category,
-          STServiceUtil.getCategoryService().getBrandByCate(category.getCategoryId()));
-    }
-    return brandInCate;
-  }
+
 }

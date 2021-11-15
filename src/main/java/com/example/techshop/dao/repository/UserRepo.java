@@ -41,34 +41,15 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> {
       org.hibernate.query.Query query = session.createQuery(queryString);
       query.setParameter("cusId", cusId);
       ShoppingSessionEntity shoppingSession = (ShoppingSessionEntity) query.uniqueResult();
-      if (shoppingSession != null) {
-        return shoppingSession;
-      }
+      transaction.commit();
+      return shoppingSession;
     } catch (HibernateException e) {
+      transaction.rollback();
       throw e;
     } finally {
       session.close();
     }
-    return null;
   }
-
-  public boolean isUniqueEmail(String email) {
-    Session session = HibernateUtil.getSessionFactory().openSession();
-    try {
-      String queryString = "FROM UserEntity u WHERE u.email = :email";
-      org.hibernate.query.Query query = session.createQuery(queryString);
-      query.setParameter("email", email);
-      if (query.getResultList().size() > 0) {
-        return false;
-      }
-    } catch (HibernateException e) {
-      throw e;
-    } finally {
-      session.close();
-    }
-    return true;
-  }
-
   public boolean register(UserEntity user) {
     try {
       if (isUniqueEmail(user.getEmail())) {
@@ -79,5 +60,25 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> {
       throw e;
     }
     return false;
+  }
+
+  public boolean isUniqueEmail(String email) {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = session.beginTransaction();
+    try {
+      String queryString = "FROM UserEntity u WHERE u.email = :email";
+      org.hibernate.query.Query query = session.createQuery(queryString);
+      query.setParameter("email", email);
+      if (query.getResultList().size() > 0) {
+        transaction.commit();
+        return false;
+      }
+    } catch (HibernateException e) {
+      transaction.rollback();
+      throw e;
+    } finally {
+      session.close();
+    }
+    return true;
   }
 }

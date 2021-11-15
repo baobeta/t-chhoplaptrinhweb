@@ -20,12 +20,15 @@
             <!-- BEGIN TOP BAR MENU -->
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
-                    <li><a href="${register}"><fmt:message key="register" bundle="${lang}"/></a></li>
+
                     <c:if test="${sessionScope.loginedUser != null}">
                         <li><a href="#">${sessionScope.loginedUser.lastName}</a></li>
-                        <li><a href="${logout}"><fmt:message key="logout" bundle="${lang}"/></a></li>
+                        <li><a href="${logout}"><fmt:message key="logout" bundle="${lang}"/></a>
+                        </li>
                     </c:if>
                     <c:if test="${sessionScope.loginedUser == null}">
+                        <li><a href="${register}"><fmt:message key="register" bundle="${lang}"/></a>
+                        </li>
                         <li><a href="${login}"><fmt:message key="login" bundle="${lang}"/> </a></li>
                     </c:if>
                 </ul>
@@ -39,12 +42,15 @@
 <!-- BEGIN HEADER -->
 <div class="header">
     <div class="container">
-        <a class="site-logo" href="${home}"><img src="<c:url value='/static/assets/frontend/layout/img/logos/logo-shop-red.png'/>" alt="Metronic Shop UI"></a>
+        <a class="site-logo" href="${home}"><img
+                src="<c:url value='/static/assets/frontend/layout/img/logos/logo-shop-red.png'/>"
+                alt="Metronic Shop UI"></a>
 
         <!-- BEGIN CART -->
         <div class="top-cart-block">
             <div class="top-cart-info">
-                <a href="${cart}" class="top-cart-info-count">${applicationScope.pQuantity} <fmt:message key="product" bundle="${lang}"/></a>
+                <a href="${cart}" class="top-cart-info-count">${applicationScope.pQuantity}
+                    <fmt:message key="product" bundle="${lang}"/></a>
             </div>
             <a class="fa fa-shopping-cart" href="${cart}"></a>
         </div>
@@ -60,7 +66,7 @@
                     <div class="search-box">
                         <form action="${search}">
                             <div class="input-group">
-                                <input type="text" placeholder="Search" class="form-control">
+                                <input type="text" name="searchName" placeholder="Search" class="form-control" required>
                                 <span class="input-group-btn">
                       <button class="btn btn-primary" type="submit">Search</button>
                     </span>

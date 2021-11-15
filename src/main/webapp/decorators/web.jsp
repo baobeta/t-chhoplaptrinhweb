@@ -115,7 +115,8 @@
         type="text/javascript"></script><!-- LayerSlider script files -->
 <script src="<c:url value='/static/assets/frontend/pages/scripts/layerslider-init.js'/>"
         type="text/javascript"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script><!-- for slider-range -->
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
+<!-- for slider-range -->
 
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
@@ -176,34 +177,69 @@
   });
 </script>
 
-<script>
+<script type="text/javascript">
   $("body").on("click", ".paginationItem", function () {
     var currentPage = $(this).text();
     var firstIndex = (currentPage - 1) *${productItems.maxPageItems};
+    var sort = '${empty productItems.sort?'':productItems.sort}';
+    var searchName = '${empty productItems.searchName?'':productItems.searchName}';
+    var brandId = ${empty productItems.brand.brandId?-1:productItems.brand.brandId};
+    var categoryId = ${empty productItems.category.categoryId?-1:productItems.category.categoryId};
 
     $.ajax({
       url: "/api/get-product-list",
       type: "GET",
       data: {
         firstIndex: firstIndex,
+        brandId: brandId,
+        categoryId: categoryId,
+        searchName: searchName,
+        sort: sort
       },
       success: function (value) {
         var productList = $("#product-list").find("#product-item");
         productList.empty();
         productList.append(value);
-
       }
     })
   })
+
+
 </script>
+
+<script type="text/javascript">
+   function updateCart(productId) {
+    var cusId = ${sessionScope.loginedUser.userId};
+    var quantity = document.getElementById('product-quantity').value;
+
+    $.ajax({
+      url: "/api/update-cart",
+      type: "POST",
+      data: {
+        cusId: cusId,
+        quantity: quantity,
+        productId: productId
+      },
+      success: function (value) {
+        alert(quantity);
+      }
+    });
+  }
+
+  function getProductId(productId){
+    return productId;
+  }
+</script>
+
 <script>
   function setCookie(cname, cvalue, exdays) {
     const d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    let expires = "expires="+ d.toUTCString();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/cart";
   }
-  function addToCart (){
+
+  function addToCart() {
     var productId = ${product.productId};
     var cusId = ${empty sessionScope.loginedUser.userId ? -1: sessionScope.loginedUser.userId };
     $.ajax({
@@ -214,8 +250,8 @@
         productId: productId
       },
       success: function (value) {
-        if (cusId == -1){
-          setCookie('productId'+productId,productId,1);
+        if (cusId == -1) {
+          setCookie('productId' + productId, productId, 1);
         }
         alert("them thanh cong")
       }
@@ -241,7 +277,14 @@
   });
 </script>
 
+<%--<script type="text/javascript">--%>
 
+<%--  function sortFunction() {--%>
+<%--    var selectBox = document.getElementById("sortBox");--%>
+<%--    var selectedValue = selectBox.options[selectBox.selectedIndex].value;--%>
+<%--    document.getElementById("sortInput").value=selectedValue;--%>
+<%--  }--%>
+<%--</script>--%>
 
 <!-- END CORE PLUGINS -->
 <!-- END PAGE LEVEL JAVASCRIPTS -->

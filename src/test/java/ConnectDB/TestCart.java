@@ -2,6 +2,7 @@ package ConnectDB;
 
 import com.example.techshop.command.CategoryCommand;
 import com.example.techshop.dto.CartItemDTO;
+import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.BrandEntity;
 import com.example.techshop.entity.CartItemEntity;
 import com.example.techshop.entity.RoleEntity;
@@ -10,7 +11,9 @@ import com.example.techshop.utils.FormUtil;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.Test;
 
 public class TestCart {
@@ -27,7 +30,7 @@ public class TestCart {
 
   @Test
   public void testDeleteCartItem(){
-    STRepoUtil.getCartItemRepo().deleteCartItem(1,1);
+//    STRepoUtil.getCartItemRepo().deleteCartItem(1,1);
   }
 
   @Test
@@ -50,6 +53,14 @@ public class TestCart {
 //    command.
 //    List<BrandEntity> brandEntities = STRepoUtil.getCategoryRepo().getBrandInCate(1);
 //    System.out.println("duoc roi ne");
+  }
+
+  @Test
+  public void testPagination(){
+    Map<String, Object> properties = new HashMap<String,Object>();
+    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(properties);
+    System.out.println("duoc roi ne");
+
   }
 
 }

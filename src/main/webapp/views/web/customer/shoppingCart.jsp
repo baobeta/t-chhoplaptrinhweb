@@ -2,9 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <c:url value="/home" var="home"/>
+<c:url value="/checkout" var="checkout"/>
 
 <c:set var="totalAll" value="0"/>
-<c:set var="pQuantity" value="0" scope="application"/>
+<%--<c:set var="pQuantity" value="0" scope="application"/>--%>
 <div class="main">
     <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->
@@ -31,8 +32,7 @@
                                 <c:forEach var="item" items="${cartItems}">
                                     <c:set var="total"
                                            value="${item.productDTO.price*item.quantity}"/>
-                                    ${pQuantity = pQuantity +1}
-                                    ${totalAll=totalAll+total}
+                                    <c:set var="totalAll" value="${totalAll +total}"/>
                                     <tr>
                                         <td class="goods-page-image">
                                             <a href="#"><img
@@ -44,13 +44,19 @@
                                             <p><strong>Item 1</strong> - Color: Green; Size: S</p>
                                             <em>More info is here</em>
                                         </td>
-                                        <td class="goods-page-quantity">
-                                            <div class="product-quantity">
-                                                <input id="product-quantity" type="text"
-                                                       value="${item.quantity}" readonly
-                                                       class="form-control input-sm">
-                                            </div>
-                                        </td>
+                                        <c:if test="${not empty sessionScope.loginedUser}">
+                                            <td class="goods-page-quantity">
+                                                <div class="product-quantity">
+                                                    <input id="product-quantity" type="text"
+                                                           value="${item.quantity}"
+                                                           class="form-control input-sm">
+                                                </div>
+                                                <button class="btn btn-default"
+                                                        onclick="updateCart(${item.productDTO.productId})">
+                                                    <fmt:message key="update" bundle="${lang}"/> <i
+                                                        class="fa fa-shopping-cart"></i></button>
+                                            </td>
+                                        </c:if>
                                         <td class="goods-page-price">
                                             <fmt:setLocale value="fr_CA"/>
                                             <strong><fmt:formatNumber
@@ -67,11 +73,16 @@
                                                                       currencySymbol="VNĐ "/></strong>
                                         </td>
                                         <td class="del-goods-col">
-                                            <a class="del-goods" href="#">&nbsp;</a>
+                                            <c:url var="delete" value="/delete-cart-item">
+                                                <c:param name="productId"
+                                                         value="${item.productDTO.productId}"/>
+                                                <c:param name="cusId"
+                                                         value="${sessionScope.loginedUser.userId}"/>
+                                            </c:url>
+                                            <a class="del-goods" href="${delete}">&nbsp;</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
-
                             </table>
                         </div>
 
@@ -96,10 +107,16 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="btn btn-default" type="submit">Continue shopping <i
-                            class="fa fa-shopping-cart"></i></button>
-                    <button class="btn btn-primary" type="submit" onclick="test()"><fmt:message
-                            key="checkout" bundle="${lang}"/><i class="fa fa-check"></i></button>
+                    <a class="btn btn-default" href="${home}"><fmt:message key="home" bundle="${lang}"/> <i
+                            class="fa fa-shopping-cart"></i></a>
+                    <c:if test="${not empty sessionScope.loginedUser}">
+                    <a href="${checkout}" class="btn btn-primary" type="submit"><fmt:message
+                            key="checkout" bundle="${lang}"/><i class="fa fa-check"></i></a>
+                    </c:if>
+                    <c:if test="${empty sessionScope.loginedUser}">
+                        <a href="${checkout}" class="btn btn-primary" type="submit" disabled="true"><fmt:message
+                                key="checkout" bundle="${lang}"/><i class="fa fa-check"></i></a>
+                    </c:if>
                 </div>
             </div>
             <!-- END CONTENT -->

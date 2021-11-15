@@ -30,7 +30,7 @@ public class RegisterController extends HttpServlet {
     request.setCharacterEncoding("UTF-8");
     UserCommand command = FormUtil.populate(UserCommand.class,request);
     UserDTO user = command.getPojo();
-    user.setRoleDTO(STServiceUtil.getRoleService().getRoleByName("USER"));
+    user.setRoleDTO(STServiceUtil.getRoleService().getRoleByName("CUSTOMER"));
     STServiceUtil.getUserService().register(user);
     response.sendRedirect("/login");
   }

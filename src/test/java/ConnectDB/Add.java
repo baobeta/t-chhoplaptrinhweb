@@ -8,6 +8,8 @@ import com.example.techshop.entity.RoleEntity;
 import com.example.techshop.entity.UserEntity;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import org.junit.Test;
 
 import java.util.List;
@@ -25,31 +27,31 @@ public class Add {
   @Test
   public void addBrand(){
     BrandEntity brand = new BrandEntity();
-    brand.setName("ASUS");
-    brand.setDescription("tao la ASUS");
+    brand.setName("LENOVO");
+    brand.setDescription("sản phẩm của LENOVO");
     STRepoUtil.getBrandRepo().save(brand);
   }
 
   @Test
   public void addCate(){
     CategoryEntity category = new CategoryEntity();
-    category.setName("BAN PHIM");
-    category.setDescription("tao la BAN PHIM");
+    category.setName("CHUỘT");
+    category.setDescription("đây là MÀN HÌNH");
     STRepoUtil.getCategoryRepo().save(category);
   }
 
   @Test
   public void addProduct(){
     ProductEntity product = new ProductEntity();
-    BrandEntity brand = STRepoUtil.getBrandRepo().findById(1);
-    CategoryEntity category = STRepoUtil.getCategoryRepo().findById(3);
-    product.setName("Ban phim ASUS");
-    product.setDescription("tao la ban phim Asus");
-    product.setPrice(1234555);
-    product.setQuantity(5);
-    product.setPhoto("456.jpg");
+    CategoryEntity category = STRepoUtil.getCategoryRepo().findCategoryByName("MÀN HÌNH");
+    BrandEntity brand = STRepoUtil.getBrandRepo().findBrandByName("ACER");
+    product.setName("MÀN HÌNH ACER KHÔNG CHÊ ĐƯỢC LUÔN");
+    product.setDescription("MÀN HÌNH như này không mua hơi phí ");
+    product.setPrice(50);
+    product.setQuantity(20);
     product.setBrandEntity(brand);
     product.setCategoryEntity(category);
+    product.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
     STRepoUtil.getProductRepo().save(product);
   }
   @Test
@@ -114,20 +116,20 @@ public class Add {
   @Test
   public void addRole(){
     RoleEntity roleEntity = new RoleEntity();
-    roleEntity.setName("CUSTOMER");
-    roleEntity.setDescription("tao la CUSTOMER");
+    roleEntity.setName("ADMIN");
+    roleEntity.setDescription("tao la ADMIN");
     STRepoUtil.getRoleRepo().save(roleEntity);
   }
 
     @Test
   public void TestInsertUserEntity() {
-    RoleEntity role = STRepoUtil.getRoleRepo().findById(1);
+    RoleEntity role = STRepoUtil.getRoleRepo().getRoleByName("ADMIN");
     UserEntity userEntity = new UserEntity();
-    userEntity.setEmail("alion3.com");
-    userEntity.setPassword("tong");
+    userEntity.setEmail("tong2@gmail.com");
+    userEntity.setPassword("123");
     userEntity.setPhotos("789.jpg");
-    userEntity.setFirstName("Tong");
-    userEntity.setLastName("Huynh Duc");
+    userEntity.setFirstName("Tòng");
+    userEntity.setLastName("Huỳnh Đức");
     userEntity.setRoleEntity(role);
     STRepoUtil.getUserRepo().save(userEntity);
   }
@@ -155,10 +157,10 @@ public class Add {
       System.out.println(count);
     }
 
-    @Test
-  public void testPagination2(){
-    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(10);
-      List<ProductDTO> list = productDTOS;
-    }
+//    @Test
+//  public void testPagination2(){
+//    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(10);
+//      List<ProductDTO> list = productDTOS;
+//    }
 
 }
