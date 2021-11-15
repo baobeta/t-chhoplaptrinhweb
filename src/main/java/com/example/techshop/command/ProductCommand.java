@@ -4,6 +4,7 @@ import com.example.techshop.command.abstractcommand.AbstractCommand;
 import com.example.techshop.dto.BrandDTO;
 import com.example.techshop.dto.CategoryDTO;
 import com.example.techshop.dto.ProductDTO;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,8 @@ public class ProductCommand extends AbstractCommand<ProductDTO> {
   private String searchName;
   private int minPrice = 0;
   private int maxPrice = 0 ;
+  private List<ProductDTO> newProducts;
+  private List<ProductDTO> isSaleProducts;
 
   public ProductCommand() {
     this.pojo = new ProductDTO();

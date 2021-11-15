@@ -173,9 +173,9 @@
         <div class="row margin-bottom-40">
             <!-- BEGIN SALE PRODUCT -->
             <div class="col-md-12 sale-product">
-                <h2><fmt:message key="newProduct" bundle="${lang}"/></h2>
+                <h2><fmt:message key="isSale" bundle="${lang}"/></h2>
                 <div class="owl-carousel owl-carousel5">
-                    <c:forEach items="${productItems.listResult}" var="product">
+                    <c:forEach items="${productItems.isSaleProducts}" var="product">
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
@@ -239,9 +239,9 @@
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             <div class="col-md-9 col-sm-8">
-                <h2><fmt:message key="symbolItem" bundle="${lang}"/></h2>
+                <h2><fmt:message key="newProducts" bundle="${lang}"/></h2>
                 <div class="owl-carousel owl-carousel3">
-                    <c:forEach items="${productItems.listResult}" var="product">
+                    <c:forEach items="${productItems.newProducts}" var="product">
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">

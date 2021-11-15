@@ -2,8 +2,12 @@ package com.example.techshop.dao.repository;
 
 import com.example.techshop.command.ProductCommand;
 import com.example.techshop.dao.AbstractDao;
+import com.example.techshop.entity.BrandEntity;
+import com.example.techshop.entity.CategoryEntity;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.utils.HibernateUtil;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -88,6 +92,44 @@ public class ProductRepo extends AbstractDao<Integer, ProductEntity> {
     properties.put("firstIndex", command.getFirstIndex());
     properties.put("maxResult", command.getMaxPageItems());
     return properties;
+  }
+
+  public List<ProductEntity> getNewProducts() {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Criteria criteria = session.createCriteria(ProductEntity.class);
+    Transaction transaction = session.beginTransaction();
+    List<ProductEntity> products = new ArrayList<ProductEntity>();
+    try {
+      criteria.addOrder(Order.desc("createdDate"));
+      criteria.setFirstResult(0);
+      criteria.setMaxResults(5);
+      products = criteria.list();
+      transaction.commit();
+    } catch (HibernateException e) {
+      transaction.rollback();
+      throw e;
+    }finally {
+      session.close();
+    }
+    return products;
+  }
+
+  public List<ProductEntity> getIsSaleOffProducts(){
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Criteria criteria = session.createCriteria(ProductEntity.class);
+    Transaction transaction = session.beginTransaction();
+    List<ProductEntity> products = new ArrayList<ProductEntity>();
+    try {
+      criteria.add(Restrictions.eq("sale",true));
+      products = criteria.list();
+      transaction.commit();
+    } catch (HibernateException e) {
+      transaction.rollback();
+      throw e;
+    }finally {
+      session.close();
+    }
+    return products;
   }
 
 }

@@ -54,6 +54,16 @@ public class ProductService {
     return STRepoUtil.getProductRepo().searchProperties(command);
   }
 
+  public List<ProductDTO> getNewProducts(){
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().getNewProducts();
+    return ProductListConverter.entity2Dto(entities);
+  }
+
+  public List<ProductDTO> getIsSaleProducts(){
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().getIsSaleOffProducts();
+    return ProductListConverter.entity2Dto(entities);
+  }
+
   public  ProductDTO  findEqualUnique(String property, Object value) {
     ProductEntity productEntity = STRepoUtil.getProductRepo().findEqualUnique(property,value);
     ProductDTO productDTO = ProductConverter.entity2Dto(productEntity);

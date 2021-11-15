@@ -30,7 +30,7 @@ public class ProductDTO {
 
   private Timestamp createdDate;
 
-  private boolean isSale;
+  private boolean sale;
 
   private List<CartItemDTO> cartItemDTOList;
 

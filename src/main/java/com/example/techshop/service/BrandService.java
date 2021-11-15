@@ -20,6 +20,10 @@ public class BrandService {
     return dtos;
   }
 
+  public BrandDTO getBrandByName(String name){
+    BrandEntity brand = STRepoUtil.getBrandRepo().findBrandByName(name);
+    return BrandConverter.entity2Dto(brand);
+  }
   public BrandDTO findById(Integer id) {
      BrandDTO dto = new BrandDTO();
      BrandEntity entity = STRepoUtil.getBrandRepo().findById(id);

@@ -39,7 +39,7 @@ public class SearchController extends HttpServlet {
     categoryCommand.setBrandInCate(
         STServiceUtil.getCategoryService().buildBrandInCate(categoryCommand));
 
-    Map<String, Object> properties = STRepoUtil.getProductRepo().searchProperties(productCommand);
+    Map<String, Object> properties = STServiceUtil.getProductService().searchProperties(productCommand);
 
     productCommand.setListResult(
         STServiceUtil.getProductService()
