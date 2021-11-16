@@ -6,4 +6,10 @@ public class CoreConstant {
 
     public static final String FOLDER_UPLOAD = "fileupload";
 
+    public static final  String USER_IS_NOT_UNIQUE = "EMAIL ĐÃ ĐƯỢC SỬ DỤNG";
+    public static final  String SUCCESSFUL_REGISTER = "ĐĂNG KÝ THÀNH CÔNG";
+    public static final  String SOLD_OUT = "MẶT HÀNG NÀY HIỆN KHÔNG ĐỦ SỐ LƯỢNG";
+    public static final  String SUCCESSFUL_ADD_TO_CART = "THÊM VÀO GIỎ THÀNH CÔNG";
+
+
 }

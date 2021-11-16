@@ -28,13 +28,18 @@ public class HomeController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    CategoryCommand categoryCommand = FormUtil.populate(CategoryCommand.class, request);
-    ProductCommand productCommand = FormUtil.populate(ProductCommand.class, request);
-    setCommandAttribute(categoryCommand, productCommand, request);
 
-    RequestDispatcher dispatcher //
-        = this.getServletContext().getRequestDispatcher("/views/web/baseweb/home.jsp");
-    dispatcher.forward(request, response);
+    try {
+      CategoryCommand categoryCommand = FormUtil.populate(CategoryCommand.class, request);
+      ProductCommand productCommand = FormUtil.populate(ProductCommand.class, request);
+      setCommandAttribute(categoryCommand, productCommand, request);
+
+      RequestDispatcher dispatcher //
+          = this.getServletContext().getRequestDispatcher("/views/web/baseweb/home.jsp");
+      dispatcher.forward(request, response);
+    }catch (Exception e){
+      response.sendRedirect("/error");
+    }
   }
 
   void setCommandAttribute(CategoryCommand categoryCommand,

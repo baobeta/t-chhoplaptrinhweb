@@ -77,14 +77,15 @@
 <%@ include file="/common/web/footer.jsp" %>
 <!-- end footer -->
 
+<!---PAGINATION--->
 <script type="text/javascript">
   $("body").on("click", ".paginationItem", function () {
     var currentPage = $(this).text();
     var firstIndex = (currentPage - 1) *${productItems.maxPageItems};
     var sort = '${empty productItems.sort?'':productItems.sort}';
     var searchName = '${empty productItems.searchName?'':productItems.searchName}';
-    var brandId = ${empty productItems.brand.brandId?-1:productItems.brand.brandId};
-    var categoryId = ${empty productItems.category.categoryId?-1:productItems.category.categoryId};
+    var brandId = ${empty productItems.brand.brandId?0:productItems.brand.brandId};
+    var categoryId = ${empty productItems.category.categoryId?0:productItems.category.categoryId};
 
     $.ajax({
       url: "/api/get-product-list",
@@ -105,6 +106,8 @@
   })
 </script>
 
+
+<!---UPDATE CART QUANTITY--->
 <script type="text/javascript">
    function updateCart(productId) {
     var cusId = ${sessionScope.loginedUser.userId};
@@ -118,8 +121,8 @@
         quantity: quantity,
         productId: productId
       },
-      success: function (value) {
-        alert(quantity);
+      success: function () {
+        alert('Cập nhật thành công');
       }
     });
   }
@@ -129,6 +132,7 @@
   }
 </script>
 
+<!--ADD PRODUCT TO CART--->
 <script>
   function setCookie(cname, cvalue, exdays) {
     const d = new Date();
@@ -151,13 +155,18 @@
         if (cusId == -1) {
           setCookie('productId' + productId, productId, 1);
         }
-        alert("them thanh cong")
+        document.getElementById('successful-add').innerHTML='THÊM THÀNH CÔNG';
+      },
+      error :function (value){
+        document.getElementById('successful-add').innerHTML='THÊM THẤT BẠI';
       }
     })
   }
 </script>
 
-<script>
+
+<!--CHECK PASSWORD--->
+<script  type="text/javascript">
   $(document).ready(function () {
     $('#pass, #re_pass').on('keyup', function () {
       if ($('#pass').val() != '' && $('#re_pass').val() != '') {

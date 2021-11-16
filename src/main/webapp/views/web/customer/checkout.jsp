@@ -2,6 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 
+<fmt:setLocale value="vi_VN"/>
+
 <c:set var="totalAll" value="0"/>
 
 <c:url value="/checkout" var="checkout"/>
@@ -118,22 +120,18 @@
                                                         </td>
                                                         <td class="checkout-quantity">${item.quantity}</td>
                                                         <td class="checkout-price">
-                                                            <fmt:setLocale value="fr_CA"/>
                                                             <strong>
                                                                 <fmt:formatNumber
                                                                         value="${item.productDTO.price}"
                                                                         type="currency"
-                                                                        maxFractionDigits="0"
-                                                                        currencySymbol="VNĐ "/>
+                                                                        maxFractionDigits="0"/>
                                                             </strong>
                                                         </td>
                                                         <td class="checkout-total">
-                                                            <fmt:setLocale value="fr_CA"/>
                                                             <strong>
                                                                 <fmt:formatNumber value="${total}"
                                                                                   type="currency"
-                                                                                  maxFractionDigits="0"
-                                                                                  currencySymbol="VNĐ "/>
+                                                                                  maxFractionDigits="0"/>
                                                             </strong>
                                                         </td>
                                                     </tr>
@@ -145,12 +143,10 @@
                                                 <li class="checkout-total-price">
                                                     <em><fmt:message key="total"
                                                                      bundle="${lang}"/> </em>
-                                                    <fmt:setLocale value="fr_CA"/>
                                                     <strong class="price">
                                                         <fmt:formatNumber value="${totalAll}"
                                                                           type="currency"
-                                                                          maxFractionDigits="0"
-                                                                          currencySymbol="VNĐ "/>
+                                                                          maxFractionDigits="0"/>
                                                     </strong>
                                                 </li>
                                             </ul>

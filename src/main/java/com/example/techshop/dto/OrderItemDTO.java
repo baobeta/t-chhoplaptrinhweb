@@ -14,7 +14,7 @@ public class OrderItemDTO {
 
   private Integer orderItemId;
 
-  private Integer quantiy;
+  private Integer quantity;
 
   private ProductDTO productDTO;
 

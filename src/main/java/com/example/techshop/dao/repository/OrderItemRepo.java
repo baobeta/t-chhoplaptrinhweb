@@ -31,7 +31,7 @@ public class OrderItemRepo extends AbstractDao<Integer, OrderItemEntity> {
         OrderItemEntity orderItem = new OrderItemEntity();
         orderItem.setOrderDetailEntity(orderDetail);
         orderItem.setProductEntity(cartItem.getProductEntity());
-        orderItem.setQuantiy(cartItem.getQuantity());
+        orderItem.setQuantity(cartItem.getQuantity());
         delCartIds.add(cartItem.getCartItemId());
         STRepoUtil.getOrderItemRepo().save(orderItem);
       }

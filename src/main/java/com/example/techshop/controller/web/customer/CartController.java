@@ -22,21 +22,23 @@ public class CartController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    response.setContentType("text/html");
-    UserDTO cus = (UserDTO) request.getSession().getAttribute("loginedUser");
-    List<CartItemDTO> cartItems = new ArrayList<CartItemDTO>();
-    Integer cusId = cus != null ? cus.getUserId() : -1;
-    if (cusId == -1) {
-      cartItems = STServiceUtil.getCartItemService().inCookieCartItems(request);
-    } else {
-      STServiceUtil.getCartItemService().addCartInCookieToCus(cusId, request,response);
-      cartItems = STServiceUtil.getCartItemService().getCartItemsByCusId(cusId);
+    try {
+      UserDTO cus = (UserDTO) request.getSession().getAttribute("loginedUser");
+      List<CartItemDTO> cartItems = new ArrayList<CartItemDTO>();
+      Integer cusId = cus != null ? cus.getUserId() : -1;
+      if (cusId == -1) {
+        cartItems = STServiceUtil.getCartItemService().inCookieCartItems(request);
+      } else {
+        STServiceUtil.getCartItemService().addCartInCookieToCus(cusId, request, response);
+        cartItems = STServiceUtil.getCartItemService().getCartItemsByCusId(cusId);
+      }
+      request.setAttribute("cartItems", cartItems);
+      RequestDispatcher dispatcher //
+          = request.getServletContext()
+          .getRequestDispatcher("/views/web/customer/shoppingCart.jsp");
+      dispatcher.forward(request, response);
+    } catch (Exception e) {
+      response.sendRedirect("/error");
     }
-
-    request.setAttribute("cartItems", cartItems);
-    RequestDispatcher dispatcher //
-        = request.getServletContext().getRequestDispatcher("/views/web/customer/shoppingCart.jsp");
-    dispatcher.forward(request, response);
   }
-
 }

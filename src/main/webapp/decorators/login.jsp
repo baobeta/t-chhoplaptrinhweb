@@ -1,5 +1,5 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <html>
 <head>
@@ -24,7 +24,6 @@
 
     <!-- Fonts START -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css"><!--- fonts for slider on the index page -->
     <!-- Fonts END -->
 
     <!-- Global styles START -->
@@ -34,18 +33,16 @@
 
     <!-- Page level plugin styles START -->
     <link href="<c:url value='/static/assets/global/plugins/fancybox/source/jquery.fancybox.css'/>" rel="stylesheet">
-    <link href="<c:url value='/static/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css'/>" rel="stylesheet">
-    <link href="<c:url value='/static/assets/global/plugins/slider-layer-slider/css/layerslider.css'/>" rel="stylesheet">
+    <link href="<c:url value='/static/assets/global/plugins/uniform/css/uniform.default.css'/>" rel="stylesheet" type="text/css">
     <!-- Page level plugin styles END -->
 
     <!-- Theme styles START -->
     <link href="<c:url value='/static/assets/global/css/components.css'/>" rel="stylesheet">
     <link href="<c:url value='/static/assets/frontend/layout/css/style.css'/>" rel="stylesheet">
-    <link href="<c:url value='/static/assets/frontend/pages/css/style-shop.css'/>" rel="stylesheet" type="text/css">
-    <link href="<c:url value='/static/assets/frontend/pages/css/style-layer-slider.css'/>" rel="stylesheet">
     <link href="<c:url value='/static/assets/frontend/layout/css/style-responsive.css'/>" rel="stylesheet">
     <link href="<c:url value='/static/assets/frontend/layout/css/themes/red.css'/>" rel="stylesheet" id="style-color">
     <link href="<c:url value='/static/assets/frontend/layout/css/custom.css'/>" rel="stylesheet">
+    <!-- Theme styles END -->
 </head>
 <body class="ecommerce">
 <!-- Header -->
@@ -60,5 +57,30 @@
 <%@ include file="/common/web/footer.jsp" %>
 <!-- end footer -->
 
+
+<!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
+<!--[if lt IE 9]>
+<script src="<c:url value='/static/assets/global/plugins/respond.min.js'/>"></script>
+<![endif]-->
+<script src="<c:url value='/static/assets/global/plugins/jquery.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-migrate.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/layout/scripts/back-to-top.js'/>" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<script src="<c:url value='/static/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js'/>" type="text/javascript"></script><!-- pop up -->
+<script src="<c:url value='/static/assets/global/plugins/uniform/jquery.uniform.min.js'/>" type="text/javascript"></script>
+
+<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>" type="text/javascript"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    Layout.init();
+    Layout.initUniform();
+    Layout.initTwitter();
+  });
+</script>
+<!-- END PAGE LEVEL JAVASCRIPTS -->
 </body>
+
 </html>

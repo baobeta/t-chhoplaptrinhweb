@@ -2,6 +2,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 
+<fmt:setLocale value="vi_VN"/>
 <!-- BEGIN SLIDER -->
 <div class="page-slider margin-bottom-35">
     <!-- LayerSlider start -->
@@ -194,11 +195,11 @@
                                     </div>
                                 </div>
                                 <h3><a href="shop-item.html">${product.name}</a></h3>
-                                <fmt:setLocale value="fr_CA"/>
+
                                 <div class="pi-price"><fmt:formatNumber value="${product.price}"
                                                                         type="currency"
                                                                         maxFractionDigits="0"
-                                                                        currencySymbol="VNĐ"/></div>
+                                                                        /></div>
                                 <div class="sticker sticker-sale"></div>
                             </div>
                         </div>
@@ -260,10 +261,11 @@
                                     </div>
                                 </div>
                                 <h3><a href="shop-item.html">${product.name}</a></h3>
+
                                 <div class="pi-price"><fmt:formatNumber value="${product.price}"
                                                                         type="currency"
                                                                         maxFractionDigits="0"
-                                                                        currencySymbol="VNĐ"/></div>
+                                                                        /></div>
                                 <div class="sticker sticker-new"></div>
                             </div>
                         </div>

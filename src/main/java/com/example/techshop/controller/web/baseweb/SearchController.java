@@ -3,11 +3,13 @@ package com.example.techshop.controller.web.baseweb;
 import com.example.techshop.command.BrandCommand;
 import com.example.techshop.command.CategoryCommand;
 import com.example.techshop.command.ProductCommand;
+import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.utils.FormUtil;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,13 +24,17 @@ public class SearchController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    CategoryCommand categoryCommand = FormUtil.populate(CategoryCommand.class, request);
-    ProductCommand productCommand = FormUtil.populate(ProductCommand.class, request);
-    setCommandAttribute(categoryCommand, productCommand, request);
+    try {
+      CategoryCommand categoryCommand = FormUtil.populate(CategoryCommand.class, request);
+      ProductCommand productCommand = FormUtil.populate(ProductCommand.class, request);
+      setCommandAttribute(categoryCommand, productCommand, request);
 
-    RequestDispatcher dispatcher //
-        = request.getServletContext().getRequestDispatcher("/views/web/baseweb/searchResult.jsp");
-    dispatcher.forward(request, response);
+      RequestDispatcher dispatcher
+          = request.getServletContext().getRequestDispatcher("/views/web/baseweb/searchResult.jsp");
+      dispatcher.forward(request, response);
+    }catch (Exception e){
+      response.sendRedirect("/error");
+    }
   }
 
   void setCommandAttribute(CategoryCommand categoryCommand,
@@ -39,11 +45,10 @@ public class SearchController extends HttpServlet {
     categoryCommand.setBrandInCate(
         STServiceUtil.getCategoryService().buildBrandInCate(categoryCommand));
 
-    Map<String, Object> properties = STServiceUtil.getProductService().searchProperties(productCommand);
-
-    productCommand.setListResult(
-        STServiceUtil.getProductService()
-            .getSomeFirstProducts(productCommand, properties));
+    Map<String, Object> properties = STServiceUtil.getProductService()
+        .searchProperties(productCommand);
+    List<ProductDTO> products = STServiceUtil.getProductService().getSomeFirstProducts(properties);
+    productCommand.setListResult(products);
     request.setAttribute("cateItems", categoryCommand);
     request.setAttribute("productItems", productCommand);
   }

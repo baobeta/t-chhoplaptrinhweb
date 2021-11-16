@@ -54,11 +54,10 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
         STRepoUtil.getCartItemRepo().save(cartItem);
         updateProductQuantity(productId, 1);
         return true;
-      }
+      } else return false;
     } catch (HibernateException e) {
-      e.printStackTrace();
+      throw e;
     }
-    return false;
   }
 
   public boolean updateCartItem(Integer cusId, Integer productId, int quantity) {
@@ -100,7 +99,9 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
       if (cusId > 0) {
         ShoppingSessionEntity session = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
         Integer sessionId = session.getSessionId();
-        Integer cartItemId = findCartItem(sessionId, productId).getCartItemId();
+        CartItemEntity cartItem = findCartItem(sessionId, productId);
+        Integer cartItemId = cartItem.getCartItemId();
+        updateProductQuantity(productId,-cartItem.getQuantity());
         STRepoUtil.getCartItemRepo().delete(Collections.singletonList(cartItemId));
         return true;
       } else {

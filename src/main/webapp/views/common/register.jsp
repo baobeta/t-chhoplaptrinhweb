@@ -21,6 +21,9 @@
             <div class="col-md-9 col-sm-9">
                 <h1><fmt:message
                         key="createAccount" bundle="${lang}"/></h1>
+                <c:if test="${not empty isNotUniqueNotification}">
+                <h4 class="block" style="color: red">${isNotUniqueNotification}</h4>
+                </c:if>
                 <div class="content-form-page">
                     <div class="row">
                         <div class="col-md-7 col-sm-7">
@@ -112,3 +115,26 @@
         <!-- END SIDEBAR & CONTENT -->
     </div>
 </div>
+<!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
+<!--[if lt IE 9]>
+<script src="<c:url value='/static/assets/global/plugins/respond.min.js'/>"></script>
+<![endif]-->
+<script src="<c:url value='/static/assets/global/plugins/jquery.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-migrate.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/layout/scripts/back-to-top.js'/>" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<script src="<c:url value='/static/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js'/>" type="text/javascript"></script><!-- pop up -->
+<script src="<c:url value='/static/assets/global/plugins/uniform/jquery.uniform.min.js'/>" type="text/javascript"></script>
+
+<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>" type="text/javascript"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    Layout.init();
+    Layout.initUniform();
+    Layout.initTwitter();
+  });
+</script>
+<!-- END PAGE LEVEL JAVASCRIPTS -->
