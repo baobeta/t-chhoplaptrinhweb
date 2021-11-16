@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.hibernate.*;
+import org.hibernate.criterion.Order;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -303,10 +304,16 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
     Session session = HibernateUtil.getSessionFactory().openSession();
     try {
       session.beginTransaction();
+      String term = getPersistenceClassName();
+      term =term.split("Entity")[0];
+      String firstLetter = term.substring(0, 1);
+      String remainingLetters = term.substring(1, term.length());
+      firstLetter = firstLetter.toLowerCase();
 
       Criteria criteria = session.createCriteria(persistenceClass);
       criteria.setFirstResult((pageNumber - 1) * pageSize);
       criteria.setMaxResults(pageSize);
+      criteria.addOrder(Order.asc(firstLetter +remainingLetters +"Id"));
 
       listResult = (List<T>) criteria.list();
       session.getTransaction().commit();
