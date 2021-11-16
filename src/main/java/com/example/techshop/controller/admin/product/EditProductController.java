@@ -61,8 +61,7 @@ public class EditProductController extends HttpServlet {
       dto.setBrandDTO(STServiceUtil.getBrandService().findById(idBrand));
       dto.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
       STServiceUtil.getProductService().save(dto);
-      resp.sendRedirect("/admin/product?message=updateSuccess");
-
+      resp.sendRedirect("/admin/product?message=addSuccess");
     }
 
   }

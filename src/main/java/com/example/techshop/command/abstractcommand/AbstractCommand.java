@@ -20,6 +20,5 @@ public class AbstractCommand<T>{
     private String[] checkList;
     private String messageResponse;
     private int page = 1;
-
 }
 

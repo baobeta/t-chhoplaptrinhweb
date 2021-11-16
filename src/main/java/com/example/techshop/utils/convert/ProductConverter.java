@@ -15,6 +15,7 @@ public class ProductConverter {
     dto.setQuantity(entity.getQuantity());
     dto.setSale(entity.isSale());
     dto.setBrandDTO(BrandConverter.entity2Dto(entity.getBrandEntity()));
+    dto.setCreatedDate(entity.getCreatedDate());
     dto.setCategoryDTO(CategoryConverter.entity2Dto(entity.getCategoryEntity()));
     return dto;
   }
@@ -29,6 +30,7 @@ public class ProductConverter {
     entity.setSale(dto.isSale());
     entity.setQuantity(dto.getQuantity());
     entity.setBrandEntity(BrandConverter.dto2Entity(dto.getBrandDTO()));
+    entity.setCreatedDate(dto.getCreatedDate());
     entity.setCategoryEntity(CategoryConverter.dto2Entity(dto.getCategoryDTO()));
     return entity;
   }
