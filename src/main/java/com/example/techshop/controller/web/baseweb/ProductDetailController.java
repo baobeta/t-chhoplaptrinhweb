@@ -20,27 +20,32 @@ public class ProductDetailController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    CategoryCommand categoryCommand = FormUtil.populate(CategoryCommand.class, request);
-    BrandCommand brandCommand = FormUtil.populate(BrandCommand.class, request);
-    ProductCommand productCommand = FormUtil.populate(ProductCommand.class, request);
-    setCommandAttribute(categoryCommand,brandCommand,request);
+    try {
+      CategoryCommand categoryCommand = FormUtil.populate(CategoryCommand.class, request);
+      BrandCommand brandCommand = FormUtil.populate(BrandCommand.class, request);
+      ProductCommand productCommand = FormUtil.populate(ProductCommand.class, request);
+      setCommandAttribute(categoryCommand, brandCommand, request);
 
-    int productId = productCommand.getPojo().getProductId();
-    if (productId!= 0){
-      ProductDTO dto = STServiceUtil.getProductService().findById(productId);
-      request.setAttribute("product", dto);
-    } else {
-      response.sendRedirect("error");
+      int productId = productCommand.getPojo().getProductId();
+      if (productId != 0) {
+        ProductDTO dto = STServiceUtil.getProductService().findById(productId);
+        request.setAttribute("product", dto);
+      } else {
+        response.sendRedirect("error");
+      }
+
+      response.setCharacterEncoding("UTF-8");
+      request.setCharacterEncoding("UTF-8");
+      RequestDispatcher dispatcher //
+          = this.getServletContext().getRequestDispatcher("/views/web/baseweb/productDetail.jsp");
+      dispatcher.forward(request, response);
+    } catch (Exception e) {
+      response.sendRedirect("/error");
     }
-
-    response.setCharacterEncoding("UTF-8");
-    request.setCharacterEncoding("UTF-8");
-    RequestDispatcher dispatcher //
-        = this.getServletContext().getRequestDispatcher("/views/web/baseweb/productDetail.jsp");
-    dispatcher.forward(request, response);
   }
 
-  void setCommandAttribute(CategoryCommand categoryCommand, BrandCommand brandCommand, HttpServletRequest request) {
+  void setCommandAttribute(CategoryCommand categoryCommand, BrandCommand brandCommand,
+      HttpServletRequest request) {
     categoryCommand.setListResult(STServiceUtil.getCategoryService().getAllCategory());
     request.setAttribute("cateItems", categoryCommand);
     brandCommand.setListResult(STServiceUtil.getBrandService().getAllBrand());

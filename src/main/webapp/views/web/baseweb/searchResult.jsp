@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
+
+<fmt:setLocale value="vi_VN"/>
 <div class="main">
     <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->
@@ -96,25 +98,27 @@
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">
-                                        <img src="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
+                                        <img src="${product.photo}"
+                                             style="height: 165px;margin-left: auto;margin-right: auto;"
                                              class="img-responsive" alt="Berry Lace Dress">
                                         <div>
-                                            <a href="<c:url value='/static/assets/frontend/pages/img/products/model1.jpg'/>"
+                                            <a href="${product.photo}"
                                                class="btn btn-default fancybox-button">Zoom</a>
                                             <c:url var="pDetail" value="/pDetail">
                                                 <c:param name="pojo.productId"
                                                          value="${product.productId}"/>
                                             </c:url>
                                             <a href="${pDetail}"
-                                               class="btn btn-default fancybox-fast-view">View</a>
+                                               class="btn btn-default fancybox-fast-view"><fmt:message
+                                                    key="view" bundle="${lang}"/> </a>
                                         </div>
                                     </div>
                                     <h3><a href="shop-item.html">${product.name}</a></h3>
-                                    <fmt:setLocale value="fr_CA"/>
+
                                     <div class="pi-price"><fmt:formatNumber value="${product.price}"
                                                                             type="currency"
-                                                                            maxFractionDigits="0"
-                                                                            currencySymbol="VNĐ"/></div>
+                                                                            maxFractionDigits="0"/>
+                                    </div>
                                     <c:if test="${product.sale}">
                                         <div class="sticker sticker-sale"></div>
                                     </c:if>
@@ -153,3 +157,54 @@
         <!-- END SIDEBAR & CONTENT -->
     </div>
 </div>
+
+<!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
+<!--[if lt IE 9]>
+<script src="<c:url value='/static/assets/global/plugins/respond.min.js'/>"></script>
+<![endif]-->
+<script src="<c:url value='/static/assets/global/plugins/jquery.min.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-migrate.min.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/bootstrap/js/bootstrap.min.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/layout/scripts/back-to-top.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'/>"
+        type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<script src="<c:url value='/static/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js'/>"
+        type="text/javascript"></script>
+<!-- pop up -->
+<script src="<c:url value='/static/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js'/>"
+        type="text/javascript"></script>
+<!-- slider for products -->
+<script src="<c:url value='/static/assets/global/plugins/zoom/jquery.zoom.min.js'/>"
+        type="text/javascript"></script>
+<!-- product zoom -->
+<script src="<c:url value='/static/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js'/>"
+        type="text/javascript"></script>
+<!-- Quantity -->
+<script src="<c:url value='/static/assets/global/plugins/uniform/jquery.uniform.min.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/rateit/src/jquery.rateit.js'/>"
+        type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js'/>" type="text/javascript"></script>
+<!-- for slider-range -->
+
+<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>"
+        type="text/javascript"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function () {
+    Layout.init();
+    Layout.initOWL();
+    Layout.initTwitter();
+    Layout.initImageZoom();
+    Layout.initTouchspin();
+    Layout.initUniform();
+    Layout.initSliderRange();
+  });
+</script>
+<!-- END PAGE LEVEL JAVASCRIPTS -->

@@ -23,27 +23,35 @@ public class CheckoutController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    UserDTO cus = (UserDTO) request.getSession().getAttribute("loginedUser");
-    List<CartItemDTO> cartItems = new ArrayList<CartItemDTO>();
-    Integer cusId = cus != null ? cus.getUserId() : -1;
-    if (cusId == -1) {
-      cartItems = STServiceUtil.getCartItemService().inCookieCartItems(request);
-    } else {
-      STServiceUtil.getCartItemService().addCartInCookieToCus(cusId, request, response);
-      cartItems = STServiceUtil.getCartItemService().getCartItemsByCusId(cusId);
+
+    try {
+      UserDTO cus = (UserDTO) request.getSession().getAttribute("loginedUser");
+      List<CartItemDTO> cartItems = new ArrayList<CartItemDTO>();
+      Integer cusId = cus != null ? cus.getUserId() : -1;
+      if (cusId == -1) {
+        cartItems = STServiceUtil.getCartItemService().inCookieCartItems(request);
+      } else {
+        STServiceUtil.getCartItemService().addCartInCookieToCus(cusId, request, response);
+        cartItems = STServiceUtil.getCartItemService().getCartItemsByCusId(cusId);
+      }
+      request.setAttribute("cartItems", cartItems);
+      RequestDispatcher dispatcher //
+          = request.getServletContext().getRequestDispatcher("/views/web/customer/checkout.jsp");
+      dispatcher.forward(request, response);
+    }catch (Exception e){
+      response.sendRedirect("/error");
     }
-    request.setAttribute("cartItems", cartItems);
-    RequestDispatcher dispatcher //
-        = request.getServletContext().getRequestDispatcher("/views/web/customer/checkout.jsp");
-    dispatcher.forward(request, response);
   }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    OrderDetailCommand order = FormUtil.populate(OrderDetailCommand.class,request);
-    STServiceUtil.getOrderItemService().convertCartItemToOrderItem(order);
-
-    response.sendRedirect("/home");
+    try{
+      OrderDetailCommand order = FormUtil.populate(OrderDetailCommand.class,request);
+      STServiceUtil.getOrderItemService().convertCartItemToOrderItem(order);
+      response.sendRedirect("/home");
+    }catch (Exception e){
+      response.sendRedirect("/error");
+    }
   }
 }

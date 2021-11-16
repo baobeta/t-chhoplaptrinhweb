@@ -2,9 +2,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 
+<fmt:setLocale value="vi_VN"/>
+
 <c:set var="totalAll" value="0"/>
 
 <c:url value="/checkout" var="checkout"/>
+<c:url var="cart" value="/cart"/>
 <div class="main">
     <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->
@@ -106,37 +109,29 @@
                                                     <tr>
                                                         <td class="checkout-image">
                                                             <a href="#"><img
-                                                                    src="<c:url value='/static/assets/frontend/pages/img/products/model3.jpg'/>"
+                                                                    src="${item.productDTO.photo}"
                                                                     alt="Berry Lace Dress"></a>
                                                         </td>
                                                         <td class="checkout-description">
                                                             <h3>
                                                                 <a href="#">${item.productDTO.name}</a>
                                                             </h3>
-                                                            <p><strong>Item 1</strong> - Color:
-                                                                Green;
-                                                                Size:
-                                                                S</p>
-                                                            <em>More info is here</em>
+                                                            <p>${item.productDTO.description}</p>
                                                         </td>
                                                         <td class="checkout-quantity">${item.quantity}</td>
                                                         <td class="checkout-price">
-                                                            <fmt:setLocale value="fr_CA"/>
                                                             <strong>
                                                                 <fmt:formatNumber
                                                                         value="${item.productDTO.price}"
                                                                         type="currency"
-                                                                        maxFractionDigits="0"
-                                                                        currencySymbol="VNĐ "/>
+                                                                        maxFractionDigits="0"/>
                                                             </strong>
                                                         </td>
                                                         <td class="checkout-total">
-                                                            <fmt:setLocale value="fr_CA"/>
                                                             <strong>
                                                                 <fmt:formatNumber value="${total}"
                                                                                   type="currency"
-                                                                                  maxFractionDigits="0"
-                                                                                  currencySymbol="VNĐ "/>
+                                                                                  maxFractionDigits="0"/>
                                                             </strong>
                                                         </td>
                                                     </tr>
@@ -148,12 +143,10 @@
                                                 <li class="checkout-total-price">
                                                     <em><fmt:message key="total"
                                                                      bundle="${lang}"/> </em>
-                                                    <fmt:setLocale value="fr_CA"/>
                                                     <strong class="price">
                                                         <fmt:formatNumber value="${totalAll}"
                                                                           type="currency"
-                                                                          maxFractionDigits="0"
-                                                                          currencySymbol="VNĐ "/>
+                                                                          maxFractionDigits="0"/>
                                                     </strong>
                                                 </li>
                                             </ul>
@@ -168,7 +161,7 @@
                                         </button>
                                         <button type="button"
                                                 class="btn btn-default pull-right margin-right-20">
-                                            <fmt:message key="cancel" bundle="${lang}"/>
+                                            <a href="${cart}"><fmt:message key="cancel" bundle="${lang}"/></a>
                                         </button>
                                     </div>
                                 </div>
@@ -184,3 +177,36 @@
         <!-- END SIDEBAR & CONTENT -->
     </div>
 </div>
+
+<!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
+<!--[if lt IE 9]>
+<script src="<c:url value='/static/assets/global/plugins/respond.min.js'/>"></script>
+<![endif]-->
+<script src="<c:url value='/static/assets/global/plugins/jquery.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-migrate.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/layout/scripts/back-to-top.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'/>" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<script src="<c:url value='/static/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js'/>" type="text/javascript"></script><!-- pop up -->
+<script src="<c:url value='/static/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js'/>" type="text/javascript"></script><!-- slider for products -->
+<script src="<c:url value='/static/assets/global/plugins/zoom/jquery.zoom.min.js'/>" type="text/javascript"></script><!-- product zoom -->
+<script src="<c:url value='/static/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js'/>" type="text/javascript"></script><!-- Quantity -->
+<script src="<c:url value='/static/assets/global/plugins/uniform/jquery.uniform.min.js'/>" type="text/javascript"></script>
+
+<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/pages/scripts/checkout.js'/>" type="text/javascript"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    Layout.init();
+    Layout.initOWL();
+    Layout.initTwitter();
+    Layout.initImageZoom();
+    Layout.initTouchspin();
+    Layout.initUniform();
+    Checkout.init();
+  });
+</script>
+<!-- END PAGE LEVEL JAVASCRIPTS -->

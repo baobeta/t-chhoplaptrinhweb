@@ -68,7 +68,6 @@ public class ProductRepo extends AbstractDao<Integer, ProductEntity> {
             criteria.setMaxResults(Integer.parseInt(value));
           }
         }
-
       }
       products = criteria.list();
       transaction.commit();

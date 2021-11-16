@@ -18,8 +18,8 @@ public class OrderItemEntity {
     @Column(name = "order_item_id")
     private Integer orderItemId;
 
-    @Column(name = "quantiy")
-    private Integer quantiy;
+    @Column(name = "quantity")
+    private Integer quantity;
 
     @ManyToOne
     @JoinColumn(name = "product_id")

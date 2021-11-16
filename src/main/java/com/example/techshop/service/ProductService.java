@@ -44,8 +44,7 @@ public class ProductService {
     return ProductListConverter.entity2Dto(entities);
   }
 
-  public List<ProductDTO> getSomeFirstProducts(ProductCommand command, Map<String, Object> properties){
-    command.setFirstIndex(0);
+  public List<ProductDTO> getSomeFirstProducts(Map<String, Object> properties){
     List<ProductEntity> entities = STRepoUtil.getProductRepo().searchResult(properties);
     return ProductListConverter.entity2Dto(entities);
   }

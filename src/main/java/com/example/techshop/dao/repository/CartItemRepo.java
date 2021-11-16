@@ -5,7 +5,6 @@ import com.example.techshop.entity.CartItemEntity;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.entity.ShoppingSessionEntity;
 import com.example.techshop.utils.HibernateUtil;
-
 import com.example.techshop.utils.STRepoUtil;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -19,7 +18,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 
 public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
 
@@ -56,11 +54,10 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
         STRepoUtil.getCartItemRepo().save(cartItem);
         updateProductQuantity(productId, 1);
         return true;
-      }
+      } else return false;
     } catch (HibernateException e) {
-      e.printStackTrace();
+      throw e;
     }
-    return false;
   }
 
   public boolean updateCartItem(Integer cusId, Integer productId, int quantity) {
@@ -102,7 +99,9 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
       if (cusId > 0) {
         ShoppingSessionEntity session = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
         Integer sessionId = session.getSessionId();
-        Integer cartItemId = findCartItem(sessionId, productId).getCartItemId();
+        CartItemEntity cartItem = findCartItem(sessionId, productId);
+        Integer cartItemId = cartItem.getCartItemId();
+        updateProductQuantity(productId,-cartItem.getQuantity());
         STRepoUtil.getCartItemRepo().delete(Collections.singletonList(cartItemId));
         return true;
       } else {
