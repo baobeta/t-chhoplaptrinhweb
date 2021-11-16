@@ -10,6 +10,8 @@ import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,7 +31,6 @@ public class EditProductController extends HttpServlet {
       Integer id = Integer.valueOf(request.getParameter("productId"));
       ProductDTO dto = STServiceUtil.getProductService().findEqualUnique("id",id);
       request.setAttribute("product",dto);
-
     }
     List<BrandDTO> listBrand = STServiceUtil.getBrandService().getAllBrand();
     List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().getAllCategory();
@@ -57,6 +58,7 @@ public class EditProductController extends HttpServlet {
       ProductDTO dto = command.getPojo();
       dto.setCategoryDTO(STServiceUtil.getCategoryService().findById(idCategory));
       dto.setBrandDTO(STServiceUtil.getBrandService().findById(idBrand));
+      dto.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
       STServiceUtil.getProductService().save(dto);
       resp.sendRedirect("/admin/product?message=updateSuccess");
 
