@@ -34,6 +34,7 @@ public class EditCategoryController extends HttpServlet  {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      req.setCharacterEncoding("UTF-8");
         CategoryCommand command = FormUtil.populate(CategoryCommand.class,req);
         if(command.getPojo().getCategoryId() != null) {
             STServiceUtil.getCategoryService().update(command.getPojo());
