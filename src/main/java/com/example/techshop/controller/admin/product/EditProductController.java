@@ -43,6 +43,7 @@ public class EditProductController extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    req.setCharacterEncoding("UTF-8");
     ProductCommand command = FormUtil.populate(ProductCommand.class,req);
     Integer idCategory = Integer.valueOf(command.getCategoryDTO());
     Integer idBrand = Integer.valueOf(command.getBrandDTO());

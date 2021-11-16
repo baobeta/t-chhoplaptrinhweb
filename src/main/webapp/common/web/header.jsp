@@ -1,3 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@include file="/common/taglib.jsp" %>
+
 <c:url var="home" value="/home"/>
 <c:url var="login" value="/login"/>
 <c:url var="logout" value="/logout"/>
