@@ -9,6 +9,7 @@ import com.example.techshop.utils.STServiceUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
@@ -31,7 +32,7 @@ public class ProductListAPI extends HttpServlet {
       ProductCommand command = FormUtil.populate(ProductCommand.class, request);
       setProperties(request, command);
       Map<String, Object> properties = STServiceUtil.getProductService().searchProperties(command);
-      List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(properties);
+      List<ProductDTO> productDTOS = (List<ProductDTO>) STServiceUtil.getProductService().getProducts(properties)[0];
       String viewURL = "/pDetail?pojo.productId=";
       response.setContentType("text/html");
       response.setCharacterEncoding("UTF-8");
@@ -70,22 +71,21 @@ public class ProductListAPI extends HttpServlet {
       response.sendRedirect("/error");
     }
   }
-
   void setProperties(HttpServletRequest request, ProductCommand command) {
     Integer brandId = Integer.parseInt(request.getParameter("brandId"));
     Integer categoryId = Integer.parseInt(request.getParameter("categoryId"));
     String searchName = request.getParameter("searchName");
     String sort = request.getParameter("sort");
-    if (brandId > 0 && brandId != null) {
+    if (brandId != null && brandId > 0) {
       command.setBrand(STServiceUtil.getBrandService().findById(brandId));
     }
-    if (categoryId > 0 && categoryId != null) {
+    if (categoryId != null && categoryId > 0 ) {
       command.setCategory(STServiceUtil.getCategoryService().findById(categoryId));
     }
-    if (!searchName.isEmpty() && searchName != null) {
+    if (searchName != null && !searchName.isEmpty()) {
       command.setSearchName(searchName);
     }
-    if (!sort.isEmpty() && sort != null) {
+    if (sort != null && !sort.isEmpty()) {
       command.setSort(sort);
     }
   }

@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
-<html>
+<!DOCTYPE html>
+<html lang="vi">
 <head>
     <meta charset="utf-8">
     <title>TechShop</title>
@@ -123,6 +124,7 @@
         productId: productId
       },
       success: function () {
+        window.location.href = '/cart';
         alert('Cập nhật thành công');
       }
     });

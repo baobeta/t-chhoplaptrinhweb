@@ -32,7 +32,7 @@ public class SearchController extends HttpServlet {
       RequestDispatcher dispatcher
           = request.getServletContext().getRequestDispatcher("/views/web/baseweb/searchResult.jsp");
       dispatcher.forward(request, response);
-    }catch (Exception e){
+    } catch (Exception e) {
       response.sendRedirect("/error");
     }
   }
@@ -47,10 +47,21 @@ public class SearchController extends HttpServlet {
 
     Map<String, Object> properties = STServiceUtil.getProductService()
         .searchProperties(productCommand);
-    List<ProductDTO> products = STServiceUtil.getProductService().getSomeFirstProducts(properties);
+    List<ProductDTO> products = (List<ProductDTO>) STServiceUtil.getProductService()
+        .getProducts(properties)[0];
     productCommand.setListResult(products);
+    productCommand.setTotalItems(
+        (Integer) STServiceUtil.getProductService().getProducts(properties)[1]);
+    productCommand.setTotalPages(totalPages(productCommand));
     request.setAttribute("cateItems", categoryCommand);
     request.setAttribute("productItems", productCommand);
+  }
+
+  int totalPages(ProductCommand command) {
+    int totalItems = command.getTotalItems();
+    int maxPageItems = command.getMaxPageItems();
+    return totalItems % maxPageItems == 0 ? totalItems / maxPageItems
+        : totalItems / maxPageItems + 1;
   }
 
 }

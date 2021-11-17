@@ -134,7 +134,7 @@
                     <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10 total</div>
                     <div class="col-md-8 col-sm-8">
                         <ul class="pagination pull-right">
-                            <li class="paginationItem"><a href="#">&laquo;</a></li>
+                            <li class="paginationItem" ><a href="#">&laquo;</a></li>
                             <c:forEach var="page" begin="1" end="${productItems.totalPages}">
                                 <c:choose>
                                     <c:when test="${page == 1 }">
