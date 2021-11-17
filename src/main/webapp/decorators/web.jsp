@@ -22,6 +22,8 @@
     <meta property="og:url" content="-CUSTOMER VALUE-">
 
     <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon"
+          href="<c:url value='/static/assets/frontend/layout/img/logos/logo-shop-red.png'/>">
 
     <!-- Fonts START -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all"
@@ -65,16 +67,28 @@
     <link href="<c:url value='/static/assets/frontend/layout/css/themes/red.css'/>" rel="stylesheet"
           id="style-color">
     <link href="<c:url value='/static/assets/frontend/layout/css/custom.css'/>" rel="stylesheet">
+    <style>
+      body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+
+      #content {
+        flex: 1;
+      }
+    </style>
 </head>
 <body class="ecommerce">
+
 <!-- Header -->
 <%@ include file="/common/web/header.jsp" %>
 <!-- End Header -->
-
-<!-- Begin body -->
-<dec:body/>
-<!-- End body -->
-
+<div id="content">
+    <!-- Begin body -->
+    <dec:body/>
+    <!-- End body -->
+</div>
 <!-- Begin footer -->
 <%@ include file="/common/web/footer.jsp" %>
 <!-- end footer -->
@@ -85,7 +99,7 @@
     var currentPage = $(this).text();
     var totalPages = ${productItems.totalPages};
     var maxPageItems = ${productItems.maxPageItems};
-    var firstIndex = (currentPage - 1) *maxPageItems;
+    var firstIndex = (currentPage - 1) * maxPageItems;
     var totalItems = ${productItems.totalItems};
     var sort = '${empty productItems.sort?'':productItems.sort}';
     var searchName = '${empty productItems.searchName?'':productItems.searchName}';
@@ -106,24 +120,27 @@
         var productList = $("#product-list").find("#product-item");
         productList.empty();
         productList.append(value);
-        displayPagination(currentPage,totalPages);
-        changeNotification(firstIndex,maxPageItems,totalItems);
+        displayPagination(currentPage, totalPages);
+        changeNotification(firstIndex, maxPageItems, totalItems);
       }
     })
   })
 
-  function displayPagination(currentPage, totalPages){
-    document.getElementById("pagination-bar").innerHTML ='';
+  function displayPagination(currentPage, totalPages) {
+    document.getElementById("pagination-bar").innerHTML = '';
 
     var nHTML = '';
-    pagination(currentPage,totalPages).forEach(function (i){
-      nHTML += '<li class="paginationItem"><a href="#">'+i+'</a></li>';
+    pagination(currentPage, totalPages).forEach(function (i) {
+      nHTML += '<li class="paginationItem"><a href="#">' + i + '</a></li>';
     });
-    document.getElementById("pagination-bar").innerHTML =  '<ul class="pagination pull-right">' + nHTML + '</ul>'
+    document.getElementById("pagination-bar").innerHTML = '<ul class="pagination pull-right">'
+        + nHTML + '</ul>'
   }
-  function changeNotification(firstIndex,maxPageItems,totalItems){
-    document.getElementById("quantity-notification").innerHTML = 'Items '+ firstIndex+' to '+ Number(firstIndex + maxPageItems)
-        +' of '+ totalItems+' total'
+
+  function changeNotification(firstIndex, maxPageItems, totalItems) {
+    document.getElementById("quantity-notification").innerHTML = 'Items ' + firstIndex + ' to '
+        + Number(firstIndex + maxPageItems)
+        + ' of ' + totalItems + ' total'
   }
 
   function pagination(c, m) {
