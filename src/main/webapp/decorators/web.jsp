@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
-<html>
+<!DOCTYPE html>
+<html lang="vi">
 <head>
     <meta charset="utf-8">
     <title>TechShop</title>
@@ -82,7 +83,10 @@
 <script type="text/javascript">
   $("body").on("click", ".paginationItem", function () {
     var currentPage = $(this).text();
-    var firstIndex = (currentPage - 1) *${productItems.maxPageItems};
+    var totalPages = ${productItems.totalPages};
+    var maxPageItems = ${productItems.maxPageItems};
+    var firstIndex = (currentPage - 1) *maxPageItems;
+    var totalItems = ${productItems.totalItems};
     var sort = '${empty productItems.sort?'':productItems.sort}';
     var searchName = '${empty productItems.searchName?'':productItems.searchName}';
     var brandId = ${empty productItems.brand.brandId?0:productItems.brand.brandId};
@@ -102,16 +106,62 @@
         var productList = $("#product-list").find("#product-item");
         productList.empty();
         productList.append(value);
+        displayPagination(currentPage,totalPages);
+        changeNotification(firstIndex,maxPageItems,totalItems);
       }
     })
   })
-</script>
 
+  function displayPagination(currentPage, totalPages){
+    document.getElementById("pagination-bar").innerHTML ='';
+
+    var nHTML = '';
+    pagination(currentPage,totalPages).forEach(function (i){
+      nHTML += '<li class="paginationItem"><a href="#">'+i+'</a></li>';
+    });
+    document.getElementById("pagination-bar").innerHTML =  '<ul class="pagination pull-right">' + nHTML + '</ul>'
+  }
+  function changeNotification(firstIndex,maxPageItems,totalItems){
+    document.getElementById("quantity-notification").innerHTML = 'Items '+ firstIndex+' to '+ Number(firstIndex + maxPageItems)
+        +' of '+ totalItems+' total'
+  }
+
+  function pagination(c, m) {
+    var current = c,
+        last = m,
+        delta = 2,
+        left = current - delta,
+        right = current + delta + 1,
+        range = [],
+        rangeWithDots = [],
+        l;
+
+    for (let i = 1; i <= last; i++) {
+      if (i == 1 || i == last || i >= left && i < right) {
+        range.push(i);
+      }
+    }
+
+    for (let i of range) {
+      if (l) {
+        if (i - l === 2) {
+          rangeWithDots.push(l + 1);
+        } else if (i - l !== 1) {
+          rangeWithDots.push('...');
+        }
+      }
+      rangeWithDots.push(i);
+      l = i;
+    }
+
+    return rangeWithDots;
+  }
+</script>
 
 <!---UPDATE CART QUANTITY--->
 <script type="text/javascript">
-   function updateCart(productId) {
-    var cusId = ${sessionScope.loginedUser.userId};
+  function updateCart(productId) {
+    var cusId = ${empty sessionScope.loginedUser.userId?-1:sessionScope.loginedUser.userId};
     var quantity = document.getElementById('product-quantity').value;
 
     $.ajax({
@@ -123,14 +173,12 @@
         productId: productId
       },
       success: function () {
+        window.location.href = '/cart';
         alert('Cập nhật thành công');
       }
     });
   }
 
-  function getProductId(productId){
-    return productId;
-  }
 </script>
 
 <!--ADD PRODUCT TO CART--->
@@ -143,7 +191,7 @@
   }
 
   function addToCart() {
-    var productId = ${product.productId};
+    var productId = ${empty product.productId?-1:product.productId};
     var cusId = ${empty sessionScope.loginedUser.userId ? -1: sessionScope.loginedUser.userId };
     $.ajax({
       url: "/api/add-to-cart",
@@ -156,10 +204,10 @@
         if (cusId == -1) {
           setCookie('productId' + productId, productId, 1);
         }
-        document.getElementById('successful-add').innerHTML='THÊM THÀNH CÔNG';
+        document.getElementById('successful-add').innerHTML = 'THÊM THÀNH CÔNG';
       },
-      error :function (value){
-        document.getElementById('successful-add').innerHTML='THÊM THẤT BẠI';
+      error: function (value) {
+        document.getElementById('successful-add').innerHTML = 'THÊM THẤT BẠI';
       }
     })
   }
@@ -167,7 +215,7 @@
 
 
 <!--CHECK PASSWORD--->
-<script  type="text/javascript">
+<script type="text/javascript">
   $(document).ready(function () {
     $('#pass, #re_pass').on('keyup', function () {
       if ($('#pass').val() != '' && $('#re_pass').val() != '') {

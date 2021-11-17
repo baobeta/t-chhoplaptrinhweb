@@ -79,13 +79,15 @@
                                     <div class="form-group">
                                         <label for="re_pass"
                                                class="col-lg-4 control-label"><fmt:message
-                                                key="rePassWord" bundle="${lang}"/><span
-                                                class="require" id="check_matching"></span></label>
+                                                key="rePassWord" bundle="${lang}"/></label>
                                         <div class="col-lg-8">
                                             <input type="password" class="form-control"
                                                    id="re_pass" required>
+                                            <span
+                                                    class="require" id="check_matching"></span>
                                         </div>
                                     </div>
+
                                 </fieldset>
                                 <div class="row">
                                     <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">

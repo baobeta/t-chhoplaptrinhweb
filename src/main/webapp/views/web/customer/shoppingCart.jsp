@@ -3,6 +3,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <c:url value="/home" var="home"/>
 <c:url value="/checkout" var="checkout"/>
+<c:url value="/cart" var="cart"/>
 
 <c:set var="totalAll" value="0"/>
 <fmt:setLocale value="vi_VN"/>
@@ -18,7 +19,7 @@
                     <c:if test="${empty cartItems}">
                         <div class="shopping-cart-page">
                             <div class="shopping-cart-data clearfix">
-                                <p><fmt:message key="emptyCart" bundle="${lang}"/> </p>
+                                <p><fmt:message key="emptyCart" bundle="${lang}"/></p>
                             </div>
                         </div>
                     </c:if>
@@ -63,7 +64,6 @@
                                                                value="${item.quantity}"
                                                                class="form-control input-sm">
                                                     </div>
-                                                    <c:set var="originQuantity" value="${item.quantity}"/>
                                                     <button class="btn btn-default"
                                                             onclick="updateCart(${item.productDTO.productId})">
                                                         <fmt:message key="update" bundle="${lang}"/>

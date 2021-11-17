@@ -1,9 +1,12 @@
 package ConnectDB;
 
+import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.utils.STRepoUtil;
+import com.example.techshop.utils.STServiceUtil;
 import java.util.HashMap;
 import java.util.Map;
+import javax.persistence.criteria.CriteriaBuilder.In;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -40,14 +43,42 @@ public class ProductTest {
   @Test
   public void testCriteria() {
     Map<String, Object> properties = new HashMap<String, Object>();
-    properties.put("cusId", 1);
-    properties.put("cateId", 2);
+//    properties.put("brandId", 2);
+    properties.put("cateId", 1);
     properties.put("sort", "price-ASC");
-    properties.put("name", "asus 2");
-    properties.put("minPrice", 100000);
-    properties.put("maxPrice", 200000);
-    List<ProductEntity> products = STRepoUtil.getProductRepo().searchResult(properties);
+    properties.put("name", "laptop");
+    properties.put("firstIndex",0);
+    properties.put("maxResult",6);
+//    List<ProductEntity> products = (List<ProductEntity>) STRepoUtil.getProductRepo().searchResult(properties)[0];
+    List<ProductDTO> dtos = (List<ProductDTO>) STServiceUtil.getProductService().getProducts(properties)[0];
     System.out.println("khong biet");
+  }
+
+  @Test
+  public void testPropertiesMap(){
+    Map<String, Object> properties = new HashMap<String, Object>();
+    properties.put("name","laptop");
+    properties.put("sort","price-ASC");
+    properties.put("cusId",1);
+
+    String name = "";
+    String sort ="";
+    Integer cusId =0;
+
+    if(properties.containsKey("name")){
+      name = (String) properties.get("name");
+    }
+    if(properties.containsKey("sort")){
+      sort = (String) properties.get("sort");
+    }
+    if(properties.containsKey("cusId")){
+      cusId = (Integer) properties.get("cusId");
+    }
+
+    System.out.println(name+sort+cusId);
+
+    System.out.println("khong biet");
+
   }
 
   @Test

@@ -38,15 +38,23 @@ public class ProductService {
   public void deleteProduct(List<Integer> ids) {
     STRepoUtil.getProductRepo().delete(ids);
   }
+//
+//  public List<ProductDTO> getProducts( Map<String, Object> properties){
+//    List<ProductEntity> entities = STRepoUtil.getProductRepo().searchResult(properties);
+//    return ProductListConverter.entity2Dto(entities);
+//  }
+//
+//  public List<ProductDTO> getSomeFirstProducts(Map<String, Object> properties){
+//    List<ProductEntity> entities = STRepoUtil.getProductRepo().searchResult(properties);
+//    return ProductListConverter.entity2Dto(entities);
+//  }
 
-  public List<ProductDTO> getProducts( Map<String, Object> properties){
-    List<ProductEntity> entities = STRepoUtil.getProductRepo().searchResult(properties);
-    return ProductListConverter.entity2Dto(entities);
-  }
 
-  public List<ProductDTO> getSomeFirstProducts(Map<String, Object> properties){
-    List<ProductEntity> entities = STRepoUtil.getProductRepo().searchResult(properties);
-    return ProductListConverter.entity2Dto(entities);
+  public Object[] getProducts( Map<String, Object> properties){
+    Object[] entities = STRepoUtil.getProductRepo().searchResult(properties);
+    List<ProductDTO> dtos = ProductListConverter.entity2Dto((List<ProductEntity>) entities[0]);
+    Integer productCount = (Integer) entities[1];
+    return new Object[]{dtos,productCount};
   }
 
   public Map<String,Object> searchProperties(ProductCommand command){

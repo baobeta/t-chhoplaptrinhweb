@@ -64,7 +64,7 @@ public class TestCart {
   @Test
   public void testPagination(){
     Map<String, Object> properties = new HashMap<String,Object>();
-    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(properties);
+//    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(properties);
     System.out.println("duoc roi ne");
 
   }

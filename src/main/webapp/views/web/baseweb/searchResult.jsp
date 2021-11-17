@@ -3,6 +3,9 @@
 <%@include file="/common/taglib.jsp" %>
 
 <fmt:setLocale value="vi_VN"/>
+<script>window.onload = function () {
+  displayPagination(1, ${productItems.totalPages})
+};</script>
 <div class="main">
     <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->
@@ -131,23 +134,17 @@
                 <!-- END PRODUCT LIST -->
                 <!-- BEGIN PAGINATOR -->
                 <div class="row">
-                    <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10 total</div>
+                    <div class="col-md-4 col-sm-4 items-info" id="quantity-notification">
+                        Items ${productItems.firstIndex}
+                        to ${productItems.firstIndex + productItems.maxPageItems}
+                        of ${productItems.totalItems} total
+                    </div>
                     <div class="col-md-8 col-sm-8">
-                        <ul class="pagination pull-right">
-                            <li class="paginationItem"><a href="#">&laquo;</a></li>
-                            <c:forEach var="page" begin="1" end="${productItems.totalPages}">
-                                <c:choose>
-                                    <c:when test="${page == 1 }">
-                                        <li class="paginationItem"><span><a
-                                                href="#">${page}</a></span></li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li class="paginationItem"><a href="#">${page}</a></li>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                            <li class="paginationItem"><a href="#">&raquo;</a></li>
-                        </ul>
+                        <div id="pagination-bar">
+                            <%--                                        <li class="paginationItem"><span><a--%>
+                            <%--                                                href="#">${page}</a></span></li>--%>
+
+                        </div>
                     </div>
                 </div>
                 <!-- END PAGINATOR -->
