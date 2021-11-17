@@ -49,9 +49,23 @@
         <a class="site-logo" href="${home}"><img
                 src="<c:url value='/static/assets/frontend/layout/img/logos/logo-shop-red.png'/>"
                 alt="Metronic Shop UI"></a>
-
+        <div class="search-box" style="display: inline-block!important; max-width: 50%;
+                                        position: absolute;
+                                         top: 50%;
+                                         -ms-transform: translateY(-50%);
+                                         transform: translateY(-50%);">
+            <form action="${search}">
+                <div class="input-group">
+                    <input type="text" name="searchName" placeholder="Search" class="form-control"
+                           required>
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">Search</button>
+                    </span>
+                </div>
+            </form>
+        </div>
         <!-- BEGIN CART -->
-        <div class="top-cart-block">
+        <div class="top-cart-block" style="margin-top: 50px">
             <div class="top-cart-info">
                 <a href="${cart}" class="top-cart-info-count">${applicationScope.pQuantity}
                     <fmt:message key="product" bundle="${lang}"/></a>
@@ -61,26 +75,18 @@
         <!--END CART -->
 
         <!-- BEGIN NAVIGATION -->
-        <div class="header-navigation">
-            <ul>
-                <!-- BEGIN TOP SEARCH -->
-                <li class="menu-search">
-                    <span class="sep"></span>
-                    <i class="fa fa-search search-btn"></i>
-                    <div class="search-box">
-                        <form action="${search}">
-                            <div class="input-group">
-                                <input type="text" name="searchName" placeholder="Search" class="form-control" required>
-                                <span class="input-group-btn">
-                      <button class="btn btn-primary" type="submit">Search</button>
-                    </span>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-                <!-- END TOP SEARCH -->
-            </ul>
-        </div>
+        <%--        <div class="header-navigation">--%>
+        <%--            <ul>--%>
+        <%--                <!-- BEGIN TOP SEARCH -->--%>
+        <%--                <li class="menu-search">--%>
+        <%--                    <span class="sep"></span>--%>
+        <%--                    <i class="fa fa-search search-btn"></i>--%>
+
+        <%--                </li>--%>
+        <%--                <!-- END TOP SEARCH -->--%>
+        <%--            </ul>--%>
+
+        <%--        </div>--%>
         <!-- END NAVIGATION -->
     </div>
 </div>

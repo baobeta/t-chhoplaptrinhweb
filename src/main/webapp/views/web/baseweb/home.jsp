@@ -218,8 +218,9 @@
                     <li class="list-group-item clearfix"><a><fmt:message key="viewCategory"
                                                                          bundle="${lang}"/></a></li>
                     <c:forEach items="${cateItems.brandInCate}" var="category">
+                        </li>
                         <li class="list-group-item clearfix dropdown">
-                            <a href="#">
+                            <a href="shop-product-list.html">
                                 <i class="fa fa-angle-right"></i>
                                     ${category.key.name}
                             </a>
@@ -230,10 +231,17 @@
                                         <c:param name="category.categoryId"
                                                  value="${category.key.categoryId}"/>
                                     </c:url>
-                                    <li><a href="${search}"><i
-                                            class="fa fa-angle-right"></i>${brand.name}</a></li>
+                                    <div>
+                                        <button class="btn btn-link" style="color: #555; text-decoration: none" onclick='open123("${search}")'>${brand.name}</button>
+                                    </div>
                                 </c:forEach>
                             </ul>
+                            <script>
+                              function open123(url) {
+                                // alert(url)
+                                window.location.replace(url);
+                              }
+                            </script>
                         </li>
                     </c:forEach>
                 </ul>
