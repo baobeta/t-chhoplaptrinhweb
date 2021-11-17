@@ -29,9 +29,19 @@
                                         <c:param name="category.categoryId"
                                                  value="${category.key.categoryId}"/>
                                     </c:url>
-                                    <li><a href="${search}">${brand.name}</a></li>
+                                    <div>
+                                        <button class="btn btn-link"
+                                                style="color: #555; text-decoration: none"
+                                                onclick='open123("${search}")'>${brand.name}</button>
+                                    </div>
                                 </c:forEach>
                             </ul>
+                            <script>
+                              function open123(url) {
+                                // alert(url)
+                                window.location.replace(url);
+                              }
+                            </script>
                         </li>
                     </c:forEach>
                 </ul>
@@ -62,12 +72,14 @@
                                                value="${productItems.searchName}"
                                                class="form-control">
                                         <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit"><fmt:message key="search"
-                                                                                   bundle="${lang}"/></button>
-                      </span>
+                                              <button class="btn btn-primary"
+                                                      type="submit"><fmt:message
+                                                      key="search"
+                                                      bundle="${lang}"/></button>
+                                        </span>
                                     </div>
-                                    <div class="col-md-10 col-sm-10">
-                                        <div class="pull-right">
+                                    <div class="input-group-btn" style="justify-content: left!important; padding-top: 10px">
+                                        <div class="pull-left">
                                             <label class="control-label">Sort&nbsp;By:</label>
                                             <select class="form-control input-sm" name="sort">
                                                 <option value="name-ASC" selected="selected">
@@ -204,4 +216,5 @@
     Layout.initSliderRange();
   });
 </script>
+
 <!-- END PAGE LEVEL JAVASCRIPTS -->
