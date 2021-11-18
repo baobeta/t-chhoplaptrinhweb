@@ -13,19 +13,33 @@
                 <ul class="list-group margin-bottom-25 sidebar-menu">
                     <li class="list-group-item clearfix"><a><fmt:message key="viewCategory"
                                                                          bundle="${lang}"/></a></li>
-                    <c:forEach items="${cateItems.listResult}" var="category">
+                    <c:forEach items="${cateItems.brandInCate}" var="category">
                         </li>
                         <li class="list-group-item clearfix dropdown">
                             <a href="shop-product-list.html">
                                 <i class="fa fa-angle-right"></i>
-                                    ${category.name}
+                                    ${category.key.name}
                             </a>
                             <ul class="dropdown-menu">
-                                <c:forEach items="${brandItems.listResult}" var="brand">
-                                    <li><a href="shop-product-list.html"><i
-                                            class="fa fa-angle-right"></i> ${brand.name}</a></li>
+                                <c:forEach items="${category.value}" var="brand">
+                                    <c:url var="search" value="/search">
+                                        <c:param name="brand.brandId" value="${brand.brandId}"/>
+                                        <c:param name="category.categoryId"
+                                                 value="${category.key.categoryId}"/>
+                                    </c:url>
+                                    <div>
+                                        <button class="btn btn-link"
+                                                style="color: #555; text-decoration: none"
+                                                onclick='open123("${search}")'>${brand.name}</button>
+                                    </div>
                                 </c:forEach>
                             </ul>
+                            <script>
+                              function open123(url) {
+                                // alert(url)
+                                window.location.replace(url);
+                              }
+                            </script>
                         </li>
                     </c:forEach>
                 </ul>

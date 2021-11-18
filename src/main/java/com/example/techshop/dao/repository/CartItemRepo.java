@@ -4,6 +4,7 @@ import com.example.techshop.dao.AbstractDao;
 import com.example.techshop.entity.CartItemEntity;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.entity.ShoppingSessionEntity;
+import com.example.techshop.entity.UserEntity;
 import com.example.techshop.utils.HibernateUtil;
 import com.example.techshop.utils.STRepoUtil;
 import java.sql.Timestamp;
@@ -54,7 +55,9 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
         STRepoUtil.getCartItemRepo().save(cartItem);
         updateProductQuantity(productId, 1);
         return true;
-      } else return false;
+      } else {
+        return false;
+      }
     } catch (HibernateException e) {
       throw e;
     }
@@ -101,7 +104,7 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
         Integer sessionId = session.getSessionId();
         CartItemEntity cartItem = findCartItem(sessionId, productId);
         Integer cartItemId = cartItem.getCartItemId();
-        updateProductQuantity(productId,-cartItem.getQuantity());
+        updateProductQuantity(productId, -cartItem.getQuantity());
         STRepoUtil.getCartItemRepo().delete(Collections.singletonList(cartItemId));
         return true;
       } else {
@@ -148,14 +151,22 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
   public List<CartItemEntity> getCartItemsByCusId(Integer cusId) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
-    Integer sessionId = STRepoUtil.getUserRepo().findSessionByCusId(cusId).getSessionId();
     List<CartItemEntity> cartItems = new ArrayList<CartItemEntity>();
+    ShoppingSessionEntity shoppingSession = new ShoppingSessionEntity();
     try {
-      String queryString = "FROM CartItemEntity c WHERE c.shoppingSessionEntity.sessionId = :sessionId ";
-      Query query = session.createQuery(queryString);
-      query.setParameter("sessionId", sessionId);
-      cartItems = (List<CartItemEntity>) query.getResultList();
-
+      shoppingSession = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
+      if (shoppingSession != null) {
+        String queryString = "FROM CartItemEntity c WHERE c.shoppingSessionEntity.sessionId = :sessionId ";
+        Query query = session.createQuery(queryString);
+        query.setParameter("sessionId", shoppingSession.getSessionId());
+        cartItems = (List<CartItemEntity>) query.getResultList();
+      } else {
+        ShoppingSessionEntity sessionEntity = new ShoppingSessionEntity();
+        UserEntity user = STRepoUtil.getUserRepo().findById(cusId);
+        sessionEntity.setUserEntity(user);
+        sessionEntity.setTotal(0);
+        STRepoUtil.getShoppingSessionRepo().save(sessionEntity);
+      }
       transaction.commit();
     } catch (HibernateException e) {
       transaction.rollback();

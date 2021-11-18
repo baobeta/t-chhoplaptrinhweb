@@ -128,19 +128,29 @@
 
   function displayPagination(currentPage, totalPages) {
     document.getElementById("pagination-bar").innerHTML = '';
+    var current = '<li class="paginationItem"><span><a href="#">' + currentPage + '</a></span></li>';
 
     var nHTML = '';
     pagination(currentPage, totalPages).forEach(function (i) {
-      nHTML += '<li class="paginationItem"><a href="#">' + i + '</a></li>';
+      if (i==currentPage){
+        nHTML+=current;
+      } else {
+        nHTML += '<li class="paginationItem"><a href="#">' + i + '</a></li>';
+      }
     });
     document.getElementById("pagination-bar").innerHTML = '<ul class="pagination pull-right">'
         + nHTML + '</ul>'
   }
 
   function changeNotification(firstIndex, maxPageItems, totalItems) {
-    document.getElementById("quantity-notification").innerHTML = 'Items ' + firstIndex + ' to '
-        + Number(firstIndex + maxPageItems)
-        + ' of ' + totalItems + ' total'
+    if(totalItems > maxPageItems){
+      document.getElementById("quantity-notification").innerHTML = 'Sản phẩm ' + Number(firstIndex+1) + ' đến '
+          + Number(firstIndex + maxPageItems )
+          + ' với tổng ' + totalItems ;
+    } else {
+      document.getElementById("quantity-notification").innerHTML = totalItems + ' sản phẩm được tìm thấy';
+    }
+
   }
 
   function pagination(c, m) {

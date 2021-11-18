@@ -16,7 +16,7 @@
             <div class="col-md-6 col-sm-6 additional-shop-info">
                 <ul class="list-unstyled list-inline">
                     <li><i class="fa fa-phone"></i><span>0918975776</span></li>
-                    <li><i class="fa fa-envelope-o"></i><span>techshopservlet@gmail.com</span></li>
+                    <li><i class="fa fa-envelope-o"></i><span>techshopservletg13@gmail.com</span></li>
                     <!-- END LANGS -->
                 </ul>
             </div>

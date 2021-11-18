@@ -54,14 +54,14 @@
                                                    required>
                                         </div>
                                     </div>
-<%--                                    <div class="col-md-12">--%>
-<%--                                        <button class="btn btn-primary  pull-right" type="submit"--%>
-<%--                                                id="button-shipping-address" data-toggle="collapse"--%>
-<%--                                                data-parent="#checkout-page"--%>
-<%--                                                data-target="#shipping-method-content">--%>
-<%--                                            <fmt:message key="continue" bundle="${lang}"/>--%>
-<%--                                        </button>--%>
-<%--                                    </div>--%>
+                                    <%--                                    <div class="col-md-12">--%>
+                                    <%--                                        <button class="btn btn-primary  pull-right" type="submit"--%>
+                                    <%--                                                id="button-shipping-address" data-toggle="collapse"--%>
+                                    <%--                                                data-parent="#checkout-page"--%>
+                                    <%--                                                data-target="#shipping-method-content">--%>
+                                    <%--                                            <fmt:message key="continue" bundle="${lang}"/>--%>
+                                    <%--                                        </button>--%>
+                                    <%--                                    </div>--%>
                                 </div>
                             </div>
                         </div>
@@ -151,17 +151,31 @@
                                                 </li>
                                             </ul>
                                         </div>
-<%--                                        <input type="hidden" name="cartItems" value="${cartItems}"/>--%>
+                                        <%--                                        <input type="hidden" name="cartItems" value="${cartItems}"/>--%>
                                         <input type="hidden" name="total" value="${totalAll}"/>
-                                        <input type="hidden" name="cusId" value="${sessionScope.loginedUser.userId}"/>
+                                        <input type="hidden" name="cusId"
+                                               value="${sessionScope.loginedUser.userId}"/>
                                         <div class="clearfix"></div>
-                                        <button class="btn btn-primary pull-right" type="submit"
-                                                id="button-confirm">
-                                            <fmt:message key="confirmOrder" bundle="${lang}"/>
-                                        </button>
+
+                                        <c:if test="${empty cartItems}">
+                                            <button class="btn btn-primary pull-right" type="submit"
+                                                    id="button-confirm" disabled="disabled">
+                                                <fmt:message key="confirmOrder" bundle="${lang}"/>
+                                            </button>
+                                        </c:if>
+                                        <c:if test="${not empty cartItems}">
+                                            <button class="btn btn-primary pull-right" type="submit"
+                                                    id="button-confirm">
+                                                <fmt:message key="confirmOrder" bundle="${lang}"/>
+                                            </button>
+
+                                        </c:if>
+
+
                                         <button type="button"
                                                 class="btn btn-default pull-right margin-right-20">
-                                            <a href="${cart}"><fmt:message key="cancel" bundle="${lang}"/></a>
+                                            <a href="${cart}"><fmt:message key="cancel"
+                                                                           bundle="${lang}"/></a>
                                         </button>
                                     </div>
                                 </div>
@@ -182,24 +196,40 @@
 <!--[if lt IE 9]>
 <script src="<c:url value='/static/assets/global/plugins/respond.min.js'/>"></script>
 <![endif]-->
-<script src="<c:url value='/static/assets/global/plugins/jquery.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/static/assets/global/plugins/jquery-migrate.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/static/assets/global/plugins/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/static/assets/frontend/layout/scripts/back-to-top.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/static/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery.min.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-migrate.min.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/bootstrap/js/bootstrap.min.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/layout/scripts/back-to-top.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'/>"
+        type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
 <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
-<script src="<c:url value='/static/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js'/>" type="text/javascript"></script><!-- pop up -->
-<script src="<c:url value='/static/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js'/>" type="text/javascript"></script><!-- slider for products -->
-<script src="<c:url value='/static/assets/global/plugins/zoom/jquery.zoom.min.js'/>" type="text/javascript"></script><!-- product zoom -->
-<script src="<c:url value='/static/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js'/>" type="text/javascript"></script><!-- Quantity -->
-<script src="<c:url value='/static/assets/global/plugins/uniform/jquery.uniform.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js'/>"
+        type="text/javascript"></script>
+<!-- pop up -->
+<script src="<c:url value='/static/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js'/>"
+        type="text/javascript"></script>
+<!-- slider for products -->
+<script src="<c:url value='/static/assets/global/plugins/zoom/jquery.zoom.min.js'/>"
+        type="text/javascript"></script>
+<!-- product zoom -->
+<script src="<c:url value='/static/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js'/>"
+        type="text/javascript"></script>
+<!-- Quantity -->
+<script src="<c:url value='/static/assets/global/plugins/uniform/jquery.uniform.min.js'/>"
+        type="text/javascript"></script>
 
-<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/static/assets/frontend/pages/scripts/checkout.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/pages/scripts/checkout.js'/>"
+        type="text/javascript"></script>
 <script type="text/javascript">
-  jQuery(document).ready(function() {
+  jQuery(document).ready(function () {
     Layout.init();
     Layout.initOWL();
     Layout.initTwitter();

@@ -17,9 +17,28 @@
                 <h1>Shopping cart</h1>
                 <div class="goods-page">
                     <c:if test="${empty cartItems}">
-                        <div class="shopping-cart-page">
-                            <div class="shopping-cart-data clearfix">
-                                <p><fmt:message key="emptyCart" bundle="${lang}"/></p>
+                        <div class="container-fluid mt-100">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <c:if test="${empty thankForPayment}">
+                                            <div class="col-sm-12 empty-cart-cls text-center"><img
+                                                    src="https://i.imgur.com/dCdflKN.png"
+                                                    width="130" height="130"
+                                                    class="img-fluid mb-4 mr-3">
+                                                <h3><strong><fmt:message key="emptyCart" bundle="${lang}"/></strong></h3>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${not empty thankForPayment}">
+                                            <div class="col-sm-12 empty-cart-cls text-center"><img
+                                                    src="https://www.pngrepo.com/download/212733/check-payment.png"
+                                                    width="130" height="130"
+                                                    class="img-fluid mb-4 mr-3">
+                                                <h3><strong>${thankForPayment}</strong></h3>
+                                            </div>
+                                        </c:if>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </c:if>
@@ -120,19 +139,9 @@
                     <a class="btn btn-default" href="${home}"><fmt:message key="home"
                                                                            bundle="${lang}"/> <i
                             class="fa fa-shopping-cart"></i></a>
-                    <c:if test="${not empty sessionScope.loginedUser}">
-                        <c:if test="${not empty cartItems}">
-                            <a href="${checkout}" class="btn btn-primary" type="submit"><fmt:message
-                                    key="checkout" bundle="${lang}"/><i class="fa fa-check"></i></a>
-                        </c:if>
-                        <c:if test="${empty cartItems}">
-                            <a href="${checkout}" class="btn btn-primary" type="submit"
-                               disabled="true"><fmt:message
-                                    key="checkout" bundle="${lang}"/><i class="fa fa-check"></i></a>
-                        </c:if>
-                    </c:if>
-                    <c:if test="${empty sessionScope.loginedUser}">
-                        <a href="${checkout}" class="btn btn-primary" type="submit" disabled="true"><fmt:message
+
+                    <c:if test="${not empty cartItems && not empty sessionScope.loginedUser}">
+                        <a href="${checkout}" class="btn btn-primary" type="submit"><fmt:message
                                 key="checkout" bundle="${lang}"/><i class="fa fa-check"></i></a>
                     </c:if>
                 </div>

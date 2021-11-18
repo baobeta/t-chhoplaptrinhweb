@@ -4,8 +4,10 @@
 
 <fmt:setLocale value="vi_VN"/>
 <script>window.onload = function () {
-  displayPagination(1, ${productItems.totalPages})
-};</script>
+  displayPagination(1, ${productItems.totalPages});
+  changeNotification(${productItems.firstIndex},${productItems.maxPageItems},${productItems.totalItems});
+};
+</script>
 <div class="main">
     <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->
@@ -78,21 +80,22 @@
                                                       bundle="${lang}"/></button>
                                         </span>
                                     </div>
-                                    <div class="input-group-btn" style="justify-content: left!important; padding-top: 10px">
+                                    <div class="input-group-btn"
+                                         style="justify-content: left!important; padding-top: 10px">
                                         <div class="pull-left">
-                                            <label class="control-label">Sort&nbsp;By:</label>
+                                            <label class="control-label"><fmt:message key="sort" bundle="${lang}"/> </label>
                                             <select class="form-control input-sm" name="sort">
                                                 <option value="name-ASC" selected="selected">
-                                                    Name (A - Z)
+                                                    <fmt:message key="sort.name-AZ" bundle="${lang}"/>
                                                 </option>
                                                 <option value="name-DESC">
-                                                    Name (Z - A)
+                                                    <fmt:message key="sort.name-ZA" bundle="${lang}"/>
                                                 </option>
                                                 <option value="price-ASC">
-                                                    Price (Low &gt; High)
+                                                    <fmt:message key="sort.price-L-H" bundle="${lang}"/>
                                                 </option>
                                                 <option value="price-DESC">
-                                                    Price (High &gt;Low)
+                                                    <fmt:message key="sort.price-H-L" bundle="${lang}"/>
                                                 </option>
                                             </select>
                                         </div>
@@ -111,7 +114,7 @@
                         <!-- PRODUCT ITEMS START -->
                         <c:forEach items="${productItems.listResult}" var="product">
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="product-item">
+                                <div class="product-item" style="height: 280px">
                                     <div class="pi-img-wrapper">
                                         <img src="${product.photo}"
                                              style="height: 165px;margin-left: auto;margin-right: auto;"
@@ -147,14 +150,12 @@
                 <!-- BEGIN PAGINATOR -->
                 <div class="row">
                     <div class="col-md-4 col-sm-4 items-info" id="quantity-notification">
-                        Items ${productItems.firstIndex}
-                        to ${productItems.firstIndex + productItems.maxPageItems}
-                        of ${productItems.totalItems} total
+
                     </div>
                     <div class="col-md-8 col-sm-8">
                         <div id="pagination-bar">
-                            <%--                                        <li class="paginationItem"><span><a--%>
-                            <%--                                                href="#">${page}</a></span></li>--%>
+                            <li class="paginationItem"><span><a
+                                    href="#">${page}</a></span></li>
 
                         </div>
                     </div>

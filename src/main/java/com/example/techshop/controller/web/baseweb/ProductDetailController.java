@@ -47,6 +47,8 @@ public class ProductDetailController extends HttpServlet {
   void setCommandAttribute(CategoryCommand categoryCommand, BrandCommand brandCommand,
       HttpServletRequest request) {
     categoryCommand.setListResult(STServiceUtil.getCategoryService().getAllCategory());
+    categoryCommand.setBrandInCate(
+        STServiceUtil.getCategoryService().buildBrandInCate(categoryCommand));
     request.setAttribute("cateItems", categoryCommand);
     brandCommand.setListResult(STServiceUtil.getBrandService().getAllBrand());
     request.setAttribute("brandItems", brandCommand);
