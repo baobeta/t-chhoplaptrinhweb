@@ -43,7 +43,7 @@ public class RegisterController extends HttpServlet {
       } else {
         request.setAttribute("successfulRegister", CoreConstant.SUCCESSFUL_REGISTER);
         RequestDispatcher dispatcher
-            = request.getRequestDispatcher("/views/common/login.jsp");
+            = request.getRequestDispatcher("/views/common/register.jsp");
         dispatcher.forward(request, response);
       }
     }catch (Exception e){

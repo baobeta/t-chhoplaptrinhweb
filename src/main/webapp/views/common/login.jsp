@@ -21,9 +21,6 @@
             <div class="col-md-9 col-sm-9">
                 <h1><fmt:message
                         key="login" bundle="${lang}"/></h1>
-                <c:if test="${not empty successfulRegister}">
-                    <h4 class="block" style="color: forestgreen">${successfulRegister}</h4>
-                </c:if>
                 <div class="content-form-page">
                     <div class="row">
                         <div class="col-md-7 col-sm-7">

@@ -1,20 +1,15 @@
 package com.example.techshop.controller.web.baseweb;
 
 import com.example.techshop.command.ProductCommand;
-import com.example.techshop.dto.BrandDTO;
-import com.example.techshop.dto.CategoryDTO;
 import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.utils.FormUtil;
 import com.example.techshop.utils.STServiceUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +35,7 @@ public class ProductListAPI extends HttpServlet {
 
       for (ProductDTO product : productDTOS) {
         out.println("<div class=\"col-md-4 col-sm-6 col-xs-12\">\n"
-            + "                                <div class=\"product-item\">\n"
+            + "                                <div class=\"product-item \"style=\"height: 280px\">\n"
             + "                                    <div class=\"pi-img-wrapper\">\n"
             + "                                        <img src=\"" + product.getPhoto() + "\"\n"
             + "                                             style=\"height: 165px;margin-left: auto;margin-right: auto;\"\n"
@@ -95,17 +90,5 @@ public class ProductListAPI extends HttpServlet {
     NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
     numberFormat.setMaximumFractionDigits(0);
     return numberFormat.format(price);
-  }
-
-  public int getTotalPages(List<ProductDTO> products, ProductCommand command){
-    int totalPages = 0;
-    int productsSize = products.size();
-    int maxPageItems = command.getMaxPageItems();
-
-    totalPages = productsSize/maxPageItems;
-    if(productsSize%maxPageItems!=0){
-      totalPages+=1;
-    }
-    return totalPages;
   }
 }

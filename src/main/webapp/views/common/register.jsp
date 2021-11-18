@@ -24,6 +24,9 @@
                 <c:if test="${not empty isNotUniqueNotification}">
                 <h4 class="block" style="color: red">${isNotUniqueNotification}</h4>
                 </c:if>
+                <c:if test="${not empty successfulRegister}">
+                    <h4 class="block" style="color: forestgreen">${successfulRegister}</h4>
+                </c:if>
                 <div class="content-form-page">
                     <div class="row">
                         <div class="col-md-7 col-sm-7">

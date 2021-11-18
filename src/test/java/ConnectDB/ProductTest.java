@@ -1,7 +1,9 @@
 package ConnectDB;
 
 import com.example.techshop.dto.ProductDTO;
+import com.example.techshop.entity.OrderDetailEntity;
 import com.example.techshop.entity.ProductEntity;
+import com.example.techshop.utils.MailUtils;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
 import java.util.HashMap;
@@ -16,14 +18,14 @@ public class ProductTest {
 
   @Test
   public void testAddUserRepo() {
-    ProductEntity productEntity = new ProductEntity();
-    productEntity.setName("Bàn phím K3");
-    productEntity.setDescription("Đây là bàn phím");
-    productEntity.setPrice(25);
-    productEntity.setQuantity(7);
-    productEntity.setBrandEntity(STRepoUtil.getBrandRepo().findById(1));
-    productEntity.setCategoryEntity(STRepoUtil.getCategoryRepo().findById(1));
-    STRepoUtil.getProductRepo().save(productEntity);
+//    ProductEntity productEntity = new ProductEntity();
+//    productEntity.setName("Bàn phím K3");
+//    productEntity.setDescription("Đây là bàn phím");
+//    productEntity.setPrice(25);
+//    productEntity.setQuantity(7);
+//    productEntity.setBrandEntity(STRepoUtil.getBrandRepo().findById(1));
+//    productEntity.setCategoryEntity(STRepoUtil.getCategoryRepo().findById(1));
+//    STRepoUtil.getProductRepo().save(productEntity);
   }
 
   @Test
@@ -35,9 +37,9 @@ public class ProductTest {
 
   @Test
   public void testDeleteProdcutRepo() {
-    List<Integer> ids = new ArrayList<>();
-    ids.add(12);
-    STRepoUtil.getProductRepo().delete(ids);
+//    List<Integer> ids = new ArrayList<>();
+//    ids.add(12);
+//    STRepoUtil.getProductRepo().delete(ids);
   }
 
   @Test
@@ -90,6 +92,20 @@ public class ProductTest {
   public void testIsSaleProduct() {
     List<ProductEntity> products = STRepoUtil.getProductRepo().getIsSaleOffProducts();
     System.out.println("khong biet");
+  }
+
+  @Test
+  public void sendMail(){
+    MailUtils mailUtils = new MailUtils("alion160801@gmail.com");
+    mailUtils.sendMail("hihi");
+  }
+
+  @Test
+  public void testOrder (){
+    OrderDetailEntity orderDetail = new OrderDetailEntity();
+    orderDetail.setUserEntity(STRepoUtil.getUserRepo().findById(1));
+    STRepoUtil.getOrderDetailRepo().save(orderDetail);
+    System.out.println(orderDetail.getOrderDetailId());
   }
 
 }
