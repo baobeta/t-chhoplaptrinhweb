@@ -3,7 +3,7 @@
 <%@include file="/common/taglib.jsp" %>
 
 
-<c:url var="addUser" value="/admin/user/edit"/>
+<c:url var="addProduct" value="/admin/product/edit"/>
 <!-- BEGIN PAGE CONTAINER -->
 <div class="page-container">
     <!-- BEGIN PAGE HEAD -->

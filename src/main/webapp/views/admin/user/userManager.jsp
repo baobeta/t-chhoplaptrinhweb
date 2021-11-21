@@ -38,55 +38,88 @@
               </div>
             </c:if>
 
-            <div class="portlet-body">
-              <div class="table-toolbar">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="btn-group">
-                      <a class="btn green"href="<c:url value='/admin/user/edit'/>">Thêm User</a>
+
+            <div class="row">
+              <div class="col-md-12">
+                <!-- Begin: life time stats -->
+                <div class="portlet light">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      <i class="fa fa-gift font-green-sharp"></i>
+                      <span class="caption-subject font-green-sharp bold uppercase">Products</span>
+                      <span class="caption-helper">manage products...</span>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="btn-group">
+                        <a class="btn green"href="<c:url value='/admin/user/edit'/>">Thêm User</a>
+                      </div>
                     </div>
                   </div>
+                  <div class="portlet-body">
+                    <div class="table-container">
+                      <table class="table table-striped table-bordered table-hover" id="datatable_products">
+                        <thead>
+                        <tr role="row" class="heading">
+                          <th width="10%">
+                            Id
+                          </th>
+                          <th width="15%">
+                            Email
+                          </th>
+                          <th width="15%">
+                            Password
+                          </th>
+                          <th width="10%">
+                            Firstname
+                          </th>
+                          <th width="10%">
+                            Lastname
+                          </th>
+                          <th width="10%">
+                            Photo
+                          </th>
+                          <th width="15%">
+                            Photo
+                          </th>
+                          <th width="10%">
+                            Role
+                          </th>
+                          <th width="10%">
+
+                          </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="user" items="${users}">
+                          <tr>
+                            <td>${user.userId}</td>
+                            <td>${user.email}</td>
+                            <td>${user.password}</td>
+                            <td>${user.firstName}</td>
+                            <td>${user.lastName}</td>
+                            <td><img src="${user.photos}"  alt="" id="image" style="width:200px;height:300px;"></td>
+                            <td>${user.roleDTO}</td>
+                            <td>
+                              <c:url value="/user-form" var="updateURL">
+                                <c:param name="userId" value="${user.userId}"/>
+                                <c:param name="page" value="1"/>
+                              </c:url>
+                              <a class="btn green" href="${updateURL}">Sửa</a>
+                              <form action="<c:url value="/user-delete"/>" method="post">
+                                <input type="hidden" name="idDelete" value="${user.userId}"/>
+                                <button type="submit" class="btn btn-primary">Xóa</button>
+                              </form>
+                            </td>
+                          </tr>
+                        </c:forEach>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- End: life time stats -->
               </div>
-              <table class="table table-striped table-bordered table-hover" id="sample_1">
-                <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Firstname</th>
-                  <th>Lastname</th>
-                  <th>Photo</th>
-                  <th>Role</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="user" items="${users}">
-                  <tr>
-                    <td>${user.userId}</td>
-                    <td>${user.email}</td>
-                    <td>${user.password}</td>
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td>
-                    <td><img src="${user.photos}"  alt="" id="image" style="width:200px;height:300px;"></td>
-                    <td>${user.roleDTO}</td>
-                    <td>
-                      <c:url value="/user-form" var="updateURL">
-                        <c:param name="userId" value="${user.userId}"/>
-                        <c:param name="page" value="1"/>
-                      </c:url>
-                      <a class="btn green" href="${updateURL}">Sửa</a>
-                      <form action="<c:url value="/user-delete"/>" method="post">
-                        <input type="hidden" name="idDelete" value="${user.userId}"/>
-                        <button type="submit" class="btn btn-primary">Xóa</button>
-                      </form>
-                    </td>
-                  </tr>
-                </c:forEach>
-                </tbody>
-              </table>
             </div>
-          </div>
         </div>
       </div>
     </div>
