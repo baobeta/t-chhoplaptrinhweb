@@ -1,5 +1,6 @@
 package ConnectDB;
 
+import com.example.techshop.dto.CategoryDTO;
 import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.BrandEntity;
 import com.example.techshop.entity.CategoryEntity;
@@ -21,8 +22,9 @@ public class Add {
   }
 
   @Test
-  public void testFindAll(){
-
+  public void testFindAllCategory(){
+    List<CategoryDTO> dtos =STServiceUtil.getCategoryService().getAllCategory();
+    System.out.println("");
   }
   @Test
   public void addBrand(){

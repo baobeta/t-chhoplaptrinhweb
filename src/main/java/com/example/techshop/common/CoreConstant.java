@@ -1,10 +1,7 @@
 package com.example.techshop.common;
 
 public class CoreConstant {
-    public static final String SORT_ASC ="1";
-    public static final String SORT_DESC ="2";
 
-    public static final String FOLDER_UPLOAD = "fileupload";
 
     public static final  String USER_IS_NOT_UNIQUE = "EMAIL ĐÃ ĐƯỢC SỬ DỤNG";
     public static final  String SUCCESSFUL_REGISTER = "ĐĂNG KÝ THÀNH CÔNG";
