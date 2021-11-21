@@ -20,3 +20,4 @@ var Checkout = function () {
     };
 
 }();
+

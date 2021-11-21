@@ -42,6 +42,4 @@ public class OrderDetailEntity {
     @JoinColumn(name = "cus_id")
     private UserEntity userEntity;
 
-
-
 }

@@ -24,7 +24,5 @@ public class DeleteProductController extends HttpServlet {
       response.sendRedirect("/error");
 
     }
-
-
   }
 }
