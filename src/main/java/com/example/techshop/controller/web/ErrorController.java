@@ -15,7 +15,7 @@ public class ErrorController extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     RequestDispatcher dispatcher //
-        = request.getServletContext().getRequestDispatcher("/views/common/accessDenied.jsp");
+        = request.getServletContext().getRequestDispatcher("/views/common/error.jsp");
     dispatcher.forward(request, response);
   }
 

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <!-- Head BEGIN -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="/common/taglib.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
 <head>
     <meta charset="utf-8">
     <title>Page Not Founded | Metronic Frontend</title>
@@ -54,14 +56,16 @@
             <div class="col-md-12 col-sm-12">
                 <div class="content-page page-404">
                     <div class="number">
-                        403
+                        LỖI
                     </div>
                     <div class="details">
-                        <h3>Oops!  You're lost.</h3>
-                        <p>
-                           You are not permit to access this page<br>
-                            <a href="index.html" class="link">Return home</a> or try the search bar below.
-                        </p>
+                        <h1>
+                           Có lỗi xảy ra!<br>
+                        </h1>
+                        <h2>
+                            <a href="<c:url value="/home"/>" class="link">Về trang chủ</a>
+                        </h2>
+
                     </div>
                 </div>
             </div>

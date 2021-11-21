@@ -13,7 +13,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CartItemEntity {
+public class CartItemEntity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

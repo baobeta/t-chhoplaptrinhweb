@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import javax.persistence.criteria.CriteriaBuilder.In;
 import org.junit.Test;
 
 public class TestCart {
@@ -86,5 +87,11 @@ public class TestCart {
     NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
     numberFormat.setMaximumFractionDigits(0);
     return numberFormat.format(currencyAmount);
+  }
+
+  @Test
+  public void testIncome(){
+    List<Object> income = STRepoUtil.getOrderDetailRepo().getIncomeInMonth(2021);
+    System.out.println("duoc roi ne");
   }
 }
