@@ -100,7 +100,7 @@
                                                         <div class="col-md-10">
                                                             <input type="file" id="file" accept=".jpg, .png">
                                                             <progress id="progress_bar" value="0" max="100"></progress>
-                                                            <img src="${user.photo}" alt="" id="image"
+                                                            <img src="${user.photos}" alt="" id="image"
                                                                  style="width:300px;height:400px;">
                                                             <input type="hidden" name="pojo.photos" id="pathImage"
                                                                    value=""/>

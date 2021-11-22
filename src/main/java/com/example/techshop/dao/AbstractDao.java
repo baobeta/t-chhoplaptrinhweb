@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.hibernate.*;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -341,6 +343,32 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
       session.getTransaction().rollback();
     }
     return count;
+  }
+
+  public List<T> pagination(Integer pageNumber, Integer pageSize, String col, String value ){
+    List<T> listResult = new ArrayList<>();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    try {
+      session.beginTransaction();
+      String term = getPersistenceClassName();
+      term =term.split("Entity")[0];
+      String firstLetter = term.substring(0, 1);
+      String remainingLetters = term.substring(1, term.length());
+      firstLetter = firstLetter.toLowerCase();
+      Criteria criteria = session.createCriteria(persistenceClass);
+      criteria.setFirstResult((pageNumber - 1) * pageSize);
+      criteria.setMaxResults(pageSize);
+      criteria.addOrder(Order.asc(firstLetter +remainingLetters +"Id"));
+      criteria.add(Restrictions.ilike(col,value, MatchMode.ANYWHERE));
+
+      listResult = (List<T>) criteria.list();
+      session.getTransaction().commit();
+    }
+    catch (HibernateException e) {
+      e.printStackTrace();
+      session.getTransaction().rollback();
+    }
+    return listResult;
   }
 
 }

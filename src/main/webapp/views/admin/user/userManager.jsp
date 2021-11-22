@@ -23,6 +23,14 @@
               </div>
             </c:if>
 
+            <form class="search-form" action="extra_search.html" method="GET">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="query">
+                <span class="input-group-btn">
+					<a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+					</span>
+              </div>
+            </form>
 
             <div class="row">
               <div class="col-md-12">
@@ -84,12 +92,12 @@
                             <td><img src="${user.photos}"  alt="" id="image" style="width:300px;height:300px;"></td>
                             <td>${user.roleDTO}</td>
                             <td>
-                              <c:url value="/user-form" var="updateURL">
+                              <c:url value="/admin/user/edit" var="updateURL">
                                 <c:param name="userId" value="${user.userId}"/>
                                 <c:param name="page" value="1"/>
                               </c:url>
                               <a class="btn green" href="${updateURL}">Sửa</a>
-                              <form action="<c:url value="/user-delete"/>" method="post">
+                              <form action="<c:url value="/admin/user/delete"/>" method="post">
                                 <input type="hidden" name="idDelete" value="${user.userId}"/>
                                 <button type="submit" class="btn btn-primary">Xóa</button>
                               </form>
