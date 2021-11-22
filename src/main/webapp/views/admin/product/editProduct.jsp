@@ -9,26 +9,13 @@
     <!-- BEGIN PAGE HEAD -->
     <div class="page-head">
         <div class="container">
-            <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Product Edit <small>create & edit product</small></h1>
+                <h1>Chỉnh sửa sản phẩm <small>Thêm và sửa sản phẩm</small></h1>
             </div>
         </div>
     </div>
-    <!-- END PAGE HEAD -->
-    <!-- BEGIN PAGE CONTENT -->
     <div class="page-content">
         <div class="container">
-            <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="<c:url value="/admin"/>">Home</a><i class="fa fa-circle"></i>
-                </li>
-                <li class="active">
-                    Product Edit
-                </li>
-            </ul>
-            <!-- END PAGE BREADCRUMB -->
-            <!-- BEGIN PAGE CONTENT INNER -->
             <div class="row">
                 <div class="col-md-12">
                         <div class="portlet light">
@@ -41,7 +28,7 @@
                                                     <form action="<c:url value="/admin/product/edit" />" method="post" style="max-width: 800px; margin: 0 auto">
                                                        <input type="hidden" value="${product.productId}" name="pojo.productId">
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Name:
+                                                            <label class="col-md-2 control-label">Tên:
                                                                 <span class="required">* </span>
                                                             </label>
                                                             <div class="col-md-10">
@@ -49,7 +36,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Description: <span class="required">
+                                                            <label class="col-md-2 control-label">Mô tả: <span class="required">
 													* </span>
                                                             </label>
                                                             <div class="col-md-10">
@@ -57,20 +44,20 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Price
+                                                            <label class="col-md-2 control-label">Giá
                                                                 <span class="required"> * </span></label>
                                                             <div class="col-md-10">
                                                                 <input type="text" class="form-control" value="${product.price}" name="pojo.price" placeholder="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Quantity: <span class="required">* </span></label>
+                                                            <label class="col-md-2 control-label">Số lượng: <span class="required">* </span></label>
                                                             <div class="col-md-10">
                                                                 <input type="text" class="form-control" value="${product.quantity}" name="pojo.quantity" placeholder="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Photo: </label>
+                                                            <label class="col-md-2 control-label">Hình ảnh: </label>
                                                             <div class="col-md-10">
                                                                 <div>
                                                                     <input type="file" id="file" accept=".jpg, .png">
@@ -84,7 +71,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Category: <span class="required">
+                                                            <label class="col-md-2 control-label">Loại sản phẩm: <span class="required">
 													* </span>
                                                             </label>
                                                             <div class="col-md-10 ">
@@ -102,7 +89,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Brand: <span class="required">
+                                                            <label class="col-md-2 control-label">Thương hiệu: <span class="required">
 													* </span>
                                                             </label>
                                                             <div class="col-md-10">
@@ -127,7 +114,7 @@
                                                 <c:if test="${product == null}">
                                                     <form action="${addProduct}" method="post" style="max-width: 800px; margin: 0 auto">
                                                         <div class="form-group">
-                                                            <label class="col-md-2 control-label">Name:
+                                                            <label class="col-md-2 control-label">Tên:
                                                                 <span class="required">* </span>
                                                             </label>
                                                             <div class="col-md-10 margin-bottom-10">
@@ -135,7 +122,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Description: <span class="required">
+                                                            <label class="col-md-2 control-label">Mô tả: <span class="required">
 													* </span>
                                                             </label>
                                                             <div class="col-md-10">
@@ -143,20 +130,20 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Price
+                                                            <label class="col-md-2 control-label">Giá
                                                                 <span class="required"> * </span></label>
                                                             <div class="col-md-10">
                                                                 <input type="text" class="form-control" name="pojo.price" placeholder="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Quantity: <span class="required">* </span></label>
+                                                            <label class="col-md-2 control-label">Số lượng: <span class="required">* </span></label>
                                                             <div class="col-md-10">
                                                                 <input type="text" class="form-control" name="pojo.quantity" placeholder="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Photo: </label>
+                                                            <label class="col-md-2 control-label">Hình ảnh: </label>
                                                             <div class="col-md-10">
                                                                 <div>
                                                                     <input type="file" id="file" accept=".jpg, .png">
@@ -170,7 +157,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
-                                                            <label class="col-md-2 control-label">Category: <span class="required">
+                                                            <label class="col-md-2 control-label">Loại mặt hàng: <span class="required">
 													* </span>
                                                             </label>
                                                             <div class="col-md-10">
@@ -183,7 +170,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-md-2 control-label">Brand: <span class="required">
+                                                            <label class="col-md-2 control-label">Thương hiệu: <span class="required">
 													* </span>
                                                             </label>
                                                             <div class="col-md-10">

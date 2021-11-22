@@ -8,85 +8,102 @@
     <div class="container">
       <!-- BEGIN PAGE TITLE -->
       <div class="page-title">
-        <h1>Managed Datatables <small>managed datatable samples</small></h1>
+        <h1>Quản lí tài khoản </h1>
       </div>
     </div>
   </div>
-  <!-- END PAGE HEAD -->
-  <!-- BEGIN PAGE CONTENT -->
   <div class="page-content">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <!-- BEGIN EXAMPLE TABLE PORTLET-->
           <div class="portlet light">
-            <div class="portlet-title">
-              <div class="caption">
-                <i class="fa fa-cogs font-green-sharp"></i>
-                <span class="caption-subject font-green-sharp bold uppercase">Managed Table</span>
-              </div>
-              <div class="tools">
-                <a href="javascript:;" class="collapse">
-                </a>
-                </a>
-              </div>
-            </div>
-
             <c:if test="${message != null}">
               <div class="alert alert-success text-center">
                 <c:out value="${message}"></c:out>
               </div>
             </c:if>
 
-            <div class="portlet-body">
-              <div class="table-toolbar">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="btn-group">
-                      <a class="btn green"href="<c:url value='/admin/user/edit'/>">Thêm User</a>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="portlet light">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      <i class="fa fa-gift font-green-sharp"></i>
+                      <span class="caption-subject font-green-sharp bold uppercase">Tài khoản</span>
+                      <span class="caption-helper">Quản lí tài khoản...</span>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="btn-group">
+                        <a class="btn green"href="<c:url value='/admin/user/edit'/>">Thêm User</a>
+                      </div>
                     </div>
                   </div>
+                  <div class="portlet-body">
+                    <div class="table-container">
+                      <table class="table table-striped table-bordered table-hover" id="datatable_products">
+                        <thead>
+                        <tr role="row" class="heading">
+                          <th width="10%">
+                            Id
+                          </th>
+                          <th width="15%">
+                            Email
+                          </th>
+                          <th width="15%">
+                            Mật khẩu
+                          </th>
+                          <th width="10%">
+                            Họ và tên đệm
+                          </th>
+                          <th width="10%">
+                            Tên
+                          </th>
+                          <th width="10%">
+                            Hình ảnh
+                          </th>
+                          <th width="15%">
+                            Photo
+                          </th>
+                          <th width="10%">
+                            Quyền
+                          </th>
+                          <th width="10%">
+
+                          </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="user" items="${users}">
+                          <tr>
+                            <td>${user.userId}</td>
+                            <td>${user.email}</td>
+                            <td>${user.password}</td>
+                            <td>${user.firstName}</td>
+                            <td>${user.lastName}</td>
+                            <td><img src="${user.photos}"  alt="" id="image" style="width:300px;height:300px;"></td>
+                            <td>${user.roleDTO}</td>
+                            <td>
+                              <c:url value="/user-form" var="updateURL">
+                                <c:param name="userId" value="${user.userId}"/>
+                                <c:param name="page" value="1"/>
+                              </c:url>
+                              <a class="btn green" href="${updateURL}">Sửa</a>
+                              <form action="<c:url value="/user-delete"/>" method="post">
+                                <input type="hidden" name="idDelete" value="${user.userId}"/>
+                                <button type="submit" class="btn btn-primary">Xóa</button>
+                              </form>
+                            </td>
+                          </tr>
+                        </c:forEach>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- End: life time stats -->
               </div>
-              <table class="table table-striped table-bordered table-hover" id="sample_1">
-                <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Firstname</th>
-                  <th>Lastname</th>
-                  <th>Photo</th>
-                  <th>Role</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="user" items="${users}">
-                  <tr>
-                    <td>${user.userId}</td>
-                    <td>${user.email}</td>
-                    <td>${user.password}</td>
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td>
-                    <td><img src="${user.photos}"  alt="" id="image" style="width:200px;height:300px;"></td>
-                    <td>${user.roleDTO}</td>
-                    <td>
-                      <c:url value="/user-form" var="updateURL">
-                        <c:param name="userId" value="${user.userId}"/>
-                        <c:param name="page" value="1"/>
-                      </c:url>
-                      <a class="btn green" href="${updateURL}">Sửa</a>
-                      <form action="<c:url value="/user-delete"/>" method="post">
-                        <input type="hidden" name="idDelete" value="${user.userId}"/>
-                        <button type="submit" class="btn btn-primary">Xóa</button>
-                      </form>
-                    </td>
-                  </tr>
-                </c:forEach>
-                </tbody>
-              </table>
             </div>
-          </div>
         </div>
       </div>
     </div>

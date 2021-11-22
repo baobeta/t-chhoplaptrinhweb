@@ -91,7 +91,7 @@ public class TestCart {
 
   @Test
   public void testIncome(){
-    List<Object> income = STRepoUtil.getOrderDetailRepo().getIncomeInMonth(2021);
+
     System.out.println("duoc roi ne");
   }
 }

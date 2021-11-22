@@ -63,7 +63,7 @@
           rel="stylesheet" type="text/css"/>
     <!-- END PAGE LEVEL STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>

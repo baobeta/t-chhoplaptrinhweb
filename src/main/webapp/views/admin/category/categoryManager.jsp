@@ -8,44 +8,26 @@
         <div class="container">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Manage category <small>Category listing</small></h1>
+                <h1>Quản lí loại sản phẩn <small>Danh sách loại sản phẩm</small></h1>
             </div>
-            <!-- END PAGE TITLE -->
         </div>
     </div>
-    <!-- END PAGE HEAD -->
-    <!-- BEGIN PAGE CONTENT -->
+
     <div class="page-content">
         <div class="container">
-            <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-            <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="#">Home</a><i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <a href="ecommerce_products.html">Features</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li class="active">
-                    Manage Category
-                </li>
-            </ul>
-            <!-- END PAGE BREADCRUMB -->
             <c:if test="${message != null}">
                 <div class="alert alert-success text-center">
                     <c:out value="${message}"></c:out>
                 </div>
             </c:if>
-            <!-- BEGIN PAGE CONTENT INNER -->
             <div class="row">
                 <div class="col-md-12">
-                    <!-- Begin: life time stats -->
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="fa fa-gift font-green-sharp"></i>
-                                <span class="caption-subject font-green-sharp bold uppercase">Category</span>
-                                <span class="caption-helper">manage category...</span>
+                                <span class="caption-subject font-green-sharp bold uppercase">Loại sản phẩm</span>
+                                <span class="caption-helper">Quản lí loại sản phẩm...</span>
                             </div>
                             <div class="col-md-6">
                                 <div class="btn-group">
@@ -62,10 +44,10 @@
                                             ID
                                         </th>
                                         <th width="50%">
-                                            Category name
+                                           Tên loại sản phẩm
                                         </th>
                                         <th width="30%">
-                                            Description
+                                            Mô tả
                                         </th>
 
                                     </tr>
@@ -132,9 +114,6 @@
                     </ul>
                 </nav>
             </div>
-            <!-- END PAGE CONTENT INNER -->
         </div>
     </div>
-    <!-- END PAGE CONTENT -->
 </div>
-<!-- END PAGE CONTAINER -->
