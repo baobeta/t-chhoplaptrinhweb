@@ -6,37 +6,18 @@
     <!-- BEGIN PAGE HEAD -->
     <div class="page-head">
         <div class="container">
-            <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Manage Brand <small>Brand listing</small></h1>
+                <h1>Quản lí thương hiệu <small>Thương hiệu</small></h1>
             </div>
-            <!-- END PAGE TITLE -->
         </div>
     </div>
-    <!-- END PAGE HEAD -->
-    <!-- BEGIN PAGE CONTENT -->
     <div class="page-content">
         <div class="container">
-            <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-            <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="#">Home</a><i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <a href="ecommerce_products.html">Features</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li class="active">
-                    Manage Brands
-                </li>
-            </ul>
-            <!-- END PAGE BREADCRUMB -->
             <c:if test="${message != null}">
                 <div class="alert alert-success text-center">
                     <c:out value="${message}"></c:out>
                 </div>
             </c:if>
-            <!-- BEGIN PAGE CONTENT INNER -->
             <div class="row">
                 <div class="col-md-12">
                     <!-- Begin: life time stats -->
@@ -44,8 +25,8 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="fa fa-gift font-green-sharp"></i>
-                                <span class="caption-subject font-green-sharp bold uppercase">Brand</span>
-                                <span class="caption-helper">manage brand...</span>
+                                <span class="caption-subject font-green-sharp bold uppercase">Quản lí thương hiệu</span>
+                                <span class="caption-helper">Quản lí thương hiệu...</span>
                             </div>
                             <div class="col-md-6">
                                 <div class="btn-group">
@@ -62,10 +43,10 @@
                                             ID
                                         </th>
                                         <th width="50%">
-                                            Brand name
+                                            Tên thương hiệu
                                         </th>
                                         <th width="30%">
-                                            Description
+                                            Mô tả
                                         </th>
 
                                     </tr>

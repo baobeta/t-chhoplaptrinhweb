@@ -8,7 +8,7 @@
         <div class="container">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Manage Products <small>order listing</small></h1>
+                <h1>Quản lí đơn hàng <small>Danh sách đơn hàng</small></h1>
             </div>
             <!-- END PAGE TITLE -->
         </div>
@@ -17,20 +17,6 @@
     <!-- BEGIN PAGE CONTENT -->
     <div class="page-content">
         <div class="container">
-            <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-            <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="#">Home</a><i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <a href="ecommerce_orders.html">Features</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li class="active">
-                    Manage Products
-                </li>
-            </ul>
-            <!-- END PAGE BREADCRUMB -->
             <c:if test="${message != null}">
                 <div class="alert alert-success text-center">
                     <c:out value="${message}"></c:out>
@@ -44,8 +30,8 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="fa fa-gift font-green-sharp"></i>
-                                <span class="caption-subject font-green-sharp bold uppercase">Products</span>
-                                <span class="caption-helper">manage orders...</span>
+                                <span class="caption-subject font-green-sharp bold uppercase">Đơn hàng</span>
+                                <span class="caption-helper">quản lí đơn hàng...</span>
                             </div>
                             <div class="col-md-6">
                                 <div class="btn-group">
@@ -62,22 +48,22 @@
                                             ID
                                         </th>
                                         <th width="15%">
-                                            Phone
+                                            SĐT
                                         </th>
                                         <th width="15%">
-                                            Address
+                                            Địa chỉ
                                         </th>
                                         <th width="10%">
-                                            Total
+                                            Tổng
                                         </th>
                                         <th width="10%">
-                                            User
+                                            Người mua
                                         </th>
                                         <th width="30%">
-                                            Product
+                                            Sản phẩm
                                         </th>
                                         <th width="10%">
-                                            Paid
+                                            Xác nhận đơn hàng
                                         </th>
                                     </tr>
                                     </thead>
@@ -90,7 +76,7 @@
                                             <td>${order.total}</td>
                                             <td>${order.userDTO.firstName}  ${order.userDTO.lastName}</td>
                                             <td><c:forEach items="${order.orderItemDTOList}" var="item" >
-                                               <p>${item.productDTO.name} : ${item.quantity}</p>
+                                               <p>${item.productDTO.name}  :  ${item.quantity} sản phẩm </p>
                                             </c:forEach></td>
                                             <td>
                                                 <form action="<c:url value="/admin/order/edit"/>" method="post">

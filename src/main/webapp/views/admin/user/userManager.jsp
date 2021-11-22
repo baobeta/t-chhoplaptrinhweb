@@ -8,30 +8,15 @@
     <div class="container">
       <!-- BEGIN PAGE TITLE -->
       <div class="page-title">
-        <h1>Managed Datatables <small>managed datatable samples</small></h1>
+        <h1>Quản lí tài khoản </h1>
       </div>
     </div>
   </div>
-  <!-- END PAGE HEAD -->
-  <!-- BEGIN PAGE CONTENT -->
   <div class="page-content">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <!-- BEGIN EXAMPLE TABLE PORTLET-->
           <div class="portlet light">
-            <div class="portlet-title">
-              <div class="caption">
-                <i class="fa fa-cogs font-green-sharp"></i>
-                <span class="caption-subject font-green-sharp bold uppercase">Managed Table</span>
-              </div>
-              <div class="tools">
-                <a href="javascript:;" class="collapse">
-                </a>
-                </a>
-              </div>
-            </div>
-
             <c:if test="${message != null}">
               <div class="alert alert-success text-center">
                 <c:out value="${message}"></c:out>
@@ -41,13 +26,12 @@
 
             <div class="row">
               <div class="col-md-12">
-                <!-- Begin: life time stats -->
                 <div class="portlet light">
                   <div class="portlet-title">
                     <div class="caption">
                       <i class="fa fa-gift font-green-sharp"></i>
-                      <span class="caption-subject font-green-sharp bold uppercase">Products</span>
-                      <span class="caption-helper">manage products...</span>
+                      <span class="caption-subject font-green-sharp bold uppercase">Tài khoản</span>
+                      <span class="caption-helper">Quản lí tài khoản...</span>
                     </div>
                     <div class="col-md-6">
                       <div class="btn-group">
@@ -67,22 +51,22 @@
                             Email
                           </th>
                           <th width="15%">
-                            Password
+                            Mật khẩu
                           </th>
                           <th width="10%">
-                            Firstname
+                            Họ và tên đệm
                           </th>
                           <th width="10%">
-                            Lastname
+                            Tên
                           </th>
                           <th width="10%">
-                            Photo
+                            Hình ảnh
                           </th>
                           <th width="15%">
                             Photo
                           </th>
                           <th width="10%">
-                            Role
+                            Quyền
                           </th>
                           <th width="10%">
 
@@ -97,7 +81,7 @@
                             <td>${user.password}</td>
                             <td>${user.firstName}</td>
                             <td>${user.lastName}</td>
-                            <td><img src="${user.photos}"  alt="" id="image" style="width:200px;height:300px;"></td>
+                            <td><img src="${user.photos}"  alt="" id="image" style="width:300px;height:300px;"></td>
                             <td>${user.roleDTO}</td>
                             <td>
                               <c:url value="/user-form" var="updateURL">

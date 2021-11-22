@@ -3,12 +3,9 @@
 <%@include file="/common/taglib.jsp" %>
 
 
-<!-- BEGIN PAGE CONTAINER -->
 <div class="page-container">
-    <!-- BEGIN PAGE HEAD -->
     <div class="page-head">
         <div class="container">
-            <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
                 <h1>Dashboard <small>statistics & reports</small></h1>
             </div>

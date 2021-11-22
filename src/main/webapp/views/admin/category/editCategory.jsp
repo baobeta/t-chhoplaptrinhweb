@@ -8,7 +8,7 @@
     <div class="page-head">
         <div class="container">
             <div class="page-title">
-                <h1>Product Edit <small>create & edit category</small></h1>
+                <h1>Chỉnh sửa loại sản phẩm <small>Thêm và chỉnh sửa sản phẩm</small></h1>
             </div>
         </div>
     </div>
@@ -16,10 +16,10 @@
         <div class="container">
             <ul class="page-breadcrumb breadcrumb">
                 <li>
-                    <a href="<c:url value="/admin"/>">Home</a><i class="fa fa-circle"></i>
+                    <a href="<c:url value="/admin"/>">Trang chủ</a><i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
-                    Product Edit
+                    Chỉnh sửa sản phẩm
                 </li>
             </ul>
             <div class="row">
@@ -34,7 +34,7 @@
                                                 <form action="<c:url value="/admin/category/edit" />" method="post" style="max-width: 800px; margin: 0 auto">
                                                     <input type="hidden" value="${category.categoryId}" name="pojo.categoryId">
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label">Name:
+                                                        <label class="col-md-2 control-label">Tên :
                                                             <span class="required">* </span>
                                                         </label>
                                                         <div class="col-md-10">
@@ -42,7 +42,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label">Description: <span class="required">
+                                                        <label class="col-md-2 control-label">Mô tả: <span class="required">
 													* </span>
                                                         </label>
                                                         <div class="col-md-10">
@@ -58,7 +58,7 @@
                                             <c:if test="${category == null}">
                                             <form action="${addCategory}" method="post" style="max-width: 800px; margin: 0 auto">
                                                 <div class="form-group margin-bottom-10">
-                                                    <label class="col-md-2 control-label">Name:
+                                                    <label class="col-md-2 control-label">Tên:
                                                         <span class="required">* </span>
                                                     </label>
                                                     <div class="col-md-10 margin-bottom-10">
@@ -66,7 +66,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group margin-bottom-10">
-                                                    <label class="col-md-2 control-label">Description: <span class="required">
+                                                    <label class="col-md-2 control-label">Mô tả: <span class="required">
 													* </span>
                                                     </label>
                                                     <div class="col-md-10 ">
