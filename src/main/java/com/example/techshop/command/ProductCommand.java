@@ -23,6 +23,7 @@ public class ProductCommand extends AbstractCommand<ProductDTO> {
   private int maxPrice = 0 ;
   private List<ProductDTO> newProducts;
   private List<ProductDTO> isSaleProducts;
+  private String value = "";
 
   public ProductCommand() {
     this.pojo = new ProductDTO();

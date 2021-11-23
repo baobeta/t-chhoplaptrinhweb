@@ -20,7 +20,10 @@ import java.io.IOException;
 public class EditCategoryController extends HttpServlet  {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       CategoryCommand command = FormUtil.populate(CategoryCommand.class,req);
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
+        CategoryCommand command = FormUtil.populate(CategoryCommand.class,req);
         if(req.getParameter("categoryId") != null) {
             Integer id = Integer.valueOf(req.getParameter("categoryId"));
             CategoryDTO dto = STServiceUtil.getCategoryService().findEqualUnique("id",id);
@@ -34,15 +37,27 @@ public class EditCategoryController extends HttpServlet  {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
         CategoryCommand command = FormUtil.populate(CategoryCommand.class,req);
         if(command.getPojo().getCategoryId() != null) {
-            STServiceUtil.getCategoryService().update(command.getPojo());
-            resp.sendRedirect("/admin/category?message=updateSuccess");
+            try {
+                STServiceUtil.getCategoryService().update(command.getPojo());
+                resp.sendRedirect("/admin/category?message=updateSuccess");
+            } catch (Exception exception) {
+                resp.sendRedirect("/admin/category?message=updateError");
+            }
+
         }
         else {
-            STServiceUtil.getCategoryService().save(command.getPojo());
-            resp.sendRedirect("/admin/category?message=updateSuccess");
+            try {
+                STServiceUtil.getCategoryService().save(command.getPojo());
+                resp.sendRedirect("/admin/category?message=updateSuccess");
+            } catch (Exception exception) {
+                resp.sendRedirect("/admin/category?message=updateError");
+            }
+
         }
     }
 }

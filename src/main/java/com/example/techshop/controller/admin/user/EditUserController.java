@@ -22,6 +22,8 @@ public class EditUserController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
     List<RoleDTO> roles=  STServiceUtil.getRoleService().getRole();
     request.setAttribute("roles",roles);
     UserCommand command = FormUtil.populate(UserCommand.class,request);
@@ -36,18 +38,28 @@ public class EditUserController extends HttpServlet {
   }
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    req.setCharacterEncoding("UTF-8");
+    resp.setCharacterEncoding("UTF-8");
     UserCommand command = FormUtil.populate(UserCommand.class,req);
     if(command.getPojo().getUserId() != null) {
       RoleDTO role = RoleConverter.entity2Dto(STRepoUtil.getRoleRepo().findEqualUnique("name",command.getRole()));
       command.getPojo().setRoleDTO(role);
-      STServiceUtil.getUserService().updateUser(command.getPojo());
-//            req.setAttribute("message","Chỉnh sửa tài khoản thành công");
-      resp.sendRedirect("/admin/user?message=updateSuccess");
+      try {
+        STServiceUtil.getUserService().updateUser(command.getPojo());
+        resp.sendRedirect("/admin/user?message=updateSuccess");
+      } catch (Exception exception) {
+        resp.sendRedirect("/admin/user?message=updateError");
+      }
     } else {
       RoleDTO role = RoleConverter.entity2Dto(STRepoUtil.getRoleRepo().findEqualUnique("name",command.getRole()));
       command.getPojo().setRoleDTO(role);
-      STServiceUtil.getUserService().saveUser(command.getPojo());
-      resp.sendRedirect("/admin/user?message=addSuccess");
+      try {
+        STServiceUtil.getUserService().saveUser(command.getPojo());
+        resp.sendRedirect("/admin/user?message=addSuccess");
+      } catch (Exception exception) {
+        resp.sendRedirect("/admin/user?message=updateError");
+      }
+
     }
   }
 

@@ -26,6 +26,9 @@ public class EditProductController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    response.setContentType("text/html");
+    response.setCharacterEncoding("UTF-8");
+    request.setCharacterEncoding("UTF-8");
     ProductCommand command = FormUtil.populate(ProductCommand.class,request);
     if(request.getParameter("productId") != null) {
       Integer id = Integer.valueOf(request.getParameter("productId"));
@@ -43,7 +46,9 @@ public class EditProductController extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    req.setCharacterEncoding("UTF-8");
+      resp.setContentType("text/html");
+      resp.setCharacterEncoding("UTF-8");
+      req.setCharacterEncoding("UTF-8");
     ProductCommand command = FormUtil.populate(ProductCommand.class,req);
     Integer idCategory = Integer.valueOf(command.getCategoryDTO());
     Integer idBrand = Integer.valueOf(command.getBrandDTO());
@@ -52,16 +57,26 @@ public class EditProductController extends HttpServlet {
       ProductDTO productUpdate = command.getPojo();
       productUpdate.setCategoryDTO(STServiceUtil.getCategoryService().findById(idCategory));
       productUpdate.setBrandDTO(STServiceUtil.getBrandService().findById(idBrand));
-      STServiceUtil.getProductService().productUpdate(productUpdate);
-      resp.sendRedirect("/admin/product?message=updateSuccess");
+      try {
+        STServiceUtil.getProductService().productUpdate(productUpdate);
+        resp.sendRedirect("/admin/product?message=updateSuccess");
+      } catch (Exception exception) {
+        resp.sendRedirect("/admin/product?message=updateError");
+      }
+
     }
     else {
       ProductDTO dto = command.getPojo();
       dto.setCategoryDTO(STServiceUtil.getCategoryService().findById(idCategory));
       dto.setBrandDTO(STServiceUtil.getBrandService().findById(idBrand));
       dto.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
-      STServiceUtil.getProductService().save(dto);
-      resp.sendRedirect("/admin/product?message=addSuccess");
+      try {
+        STServiceUtil.getProductService().save(dto);
+        resp.sendRedirect("/admin/product?message=addSuccess");
+      } catch (Exception exception) {
+        resp.sendRedirect("/admin/product?message=updateError");
+      }
+
     }
 
   }

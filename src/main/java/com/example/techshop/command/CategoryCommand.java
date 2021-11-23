@@ -18,6 +18,7 @@ public class CategoryCommand extends AbstractCommand<CategoryDTO> {
     this.pojo = new CategoryDTO();
   }
   private Map<CategoryDTO, List<BrandDTO>> brandInCate;
+  private String value = "";
 
   private Integer idDelete;
 

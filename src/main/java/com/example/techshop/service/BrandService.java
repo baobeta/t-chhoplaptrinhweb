@@ -35,6 +35,14 @@ public class BrandService {
       return BrandListConverter.entity2Dto(entities);
   }
 
+    public List<BrandDTO> pagination(Integer pageNumber, Integer pageSize, String col, String value) {
+        List<BrandEntity> entities = STRepoUtil.getBrandRepo().pagination(pageNumber,pageSize, col,value);
+        return BrandListConverter.entity2Dto(entities);
+    }
+    public Integer countBrand (String col, String value) {
+        return STRepoUtil.getBrandRepo().Count("brandId",col, value);
+    }
+
   public Integer countBrand () {
       return STRepoUtil.getBrandRepo().Count("brandId");
   }

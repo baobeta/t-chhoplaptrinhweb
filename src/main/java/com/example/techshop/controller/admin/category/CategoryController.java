@@ -1,9 +1,5 @@
 package com.example.techshop.controller.admin.category;
-
-
-import com.example.techshop.command.BrandCommand;
 import com.example.techshop.command.CategoryCommand;
-import com.example.techshop.dto.BrandDTO;
 import com.example.techshop.dto.CategoryDTO;
 import com.example.techshop.utils.FormUtil;
 import com.example.techshop.utils.STServiceUtil;
@@ -21,9 +17,12 @@ import java.util.List;
 public class CategoryController  extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
         CategoryCommand command = FormUtil.populate(CategoryCommand.class,req);
-        List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().pagination(command.getPage(), command.getMaxPageItems());
-        command.setTotalItems((STServiceUtil.getCategoryService().countCategory()/ command.getMaxPageItems())+1);
+        List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().pagination(command.getPage(), command.getMaxPageItems(),"name", command.getValue());
+        command.setTotalItems((STServiceUtil.getCategoryService().countCategory("name", command.getValue())/ command.getMaxPageItems())+1);
         checkMessage(req);
         req.setAttribute("categorys",listCategory);
         req.setAttribute("pojo",command);
@@ -42,6 +41,9 @@ public class CategoryController  extends HttpServlet {
             } else if (message.trim().equals("delSuccess")) {
                 request.setAttribute("message","Xóa phân loại thành công");
             }
+        }
+        else {
+            request.setAttribute("message","Có lỗi xảy ra");
         }
     }
 }

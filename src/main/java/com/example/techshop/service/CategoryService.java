@@ -57,10 +57,19 @@ public class CategoryService {
     return CategoryListConverter.entity2Dto(entities);
   }
 
+  public List<CategoryDTO> pagination(Integer pageNumber, Integer pageSize, String col, String value) {
+    List<CategoryEntity> entities = STRepoUtil.getCategoryRepo().pagination(pageNumber,pageSize, col, value);
+    return CategoryListConverter.entity2Dto(entities);
+  }
+
+
   public Integer countCategory () {
     return STRepoUtil.getCategoryRepo().Count("categoryId");
   }
 
+  public Integer countCategory (String col, String value) {
+    return STRepoUtil.getCategoryRepo().Count("categoryId", col, value);
+  }
 
   public  CategoryDTO  findEqualUnique(String property, Object value) {
     CategoryEntity entity = STRepoUtil.getCategoryRepo().findEqualUnique(property,value);
@@ -68,15 +77,21 @@ public class CategoryService {
     return categoryDTO;
   }
 
-  public void save(CategoryDTO dto) {
+  public void save(CategoryDTO dto) throws Exception {
     CategoryEntity entity = CategoryConverter.dto2Entity(dto);
-    STRepoUtil.getCategoryRepo().save(entity);
+    entity= STRepoUtil.getCategoryRepo().save(entity);
+    if(entity==null) {
+      throw new Exception("Not save");
+    }
 
   }
 
-  public CategoryDTO update(CategoryDTO dto) {
+  public CategoryDTO update(CategoryDTO dto) throws Exception {
     CategoryEntity entity = CategoryConverter.dto2Entity(dto);
     entity = STRepoUtil.getCategoryRepo().update(entity);
+    if(entity == null){
+      throw new Exception("Not update");
+    }
     return  CategoryConverter.entity2Dto(entity);
   }
 

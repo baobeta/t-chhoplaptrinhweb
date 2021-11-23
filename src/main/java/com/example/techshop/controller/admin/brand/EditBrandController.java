@@ -20,6 +20,9 @@ public class EditBrandController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
         BrandCommand command = FormUtil.populate(BrandCommand.class,req);
         if(req.getParameter("brandId") != null) {
             Integer id = Integer.valueOf(req.getParameter("brandId"));
@@ -34,6 +37,9 @@ public class EditBrandController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
         BrandCommand command = FormUtil.populate(BrandCommand.class,req);
         if(command.getPojo().getBrandId() != null) {

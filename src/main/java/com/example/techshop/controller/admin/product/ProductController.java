@@ -22,9 +22,16 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         ProductCommand command = FormUtil.populate(ProductCommand.class,request);
-        List<ProductDTO> listProduct = STServiceUtil.getProductService().pagingnation(command.getPage(), command.getMaxPageItems());
-        command.setTotalItems((STServiceUtil.getProductService().CountProduct()/ command.getMaxPageItems())+1);
+
+        List<ProductDTO> listProduct =
+                STServiceUtil.getProductService().pagingnation(command.getPage(),
+                        command.getMaxPageItems(),"name", command.getValue());
+
+        command.setTotalItems((STServiceUtil.getProductService().CountProduct("name", command.getValue())/ command.getMaxPageItems())+1);
 
         List<BrandDTO> listBrand = STServiceUtil.getBrandService().getAllBrand();
         List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().getAllCategory();
@@ -50,6 +57,9 @@ public class ProductController extends HttpServlet {
                 request.setAttribute("message","Sửa sản phẩm thành công");
             } else if (message.trim().equals("delSuccess")) {
                 request.setAttribute("message","Xóa sản phẩm thành công");
+            }
+            else {
+                request.setAttribute("message","Có lỗi xảy ra");
             }
         }
     }

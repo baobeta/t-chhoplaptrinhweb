@@ -19,9 +19,12 @@ import java.util.List;
 public class OrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
         OrderDetailCommand command = FormUtil.populate(OrderDetailCommand.class,req);
-        List<OrderDetailDTO> listOrder = STServiceUtil.getOrderDetailService().pagingnation(command.getPage(), command.getMaxPageItems());
-        command.setTotalItems((STServiceUtil.getOrderDetailService().CountOrderDetailList()/ command.getMaxPageItems())+1);
+        List<OrderDetailDTO> listOrder = STServiceUtil.getOrderDetailService().pagingnation(command.getPage(), command.getMaxPageItems(),"phoneNumber", command.getValue());
+        command.setTotalItems((STServiceUtil.getOrderDetailService().CountOrderDetailList("phoneNumber", command.getValue())/ command.getMaxPageItems())+1);
         for(OrderDetailDTO order :listOrder){
             order.setOrderItemDTOList(STServiceUtil.getOrderItemService().findByOrderDetail(order.getOrderDetailId()));
         }

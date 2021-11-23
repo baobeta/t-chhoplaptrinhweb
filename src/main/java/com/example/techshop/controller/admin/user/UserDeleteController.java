@@ -17,6 +17,9 @@ import java.util.List;
 public class UserDeleteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
         UserCommand command = FormUtil.populate(UserCommand.class,req);
         if(command.getIdDelete()!=null) {
             List ids = new ArrayList();
