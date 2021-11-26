@@ -48,7 +48,7 @@ public class EditUserController extends HttpServlet {
         STServiceUtil.getUserService().updateUser(command.getPojo());
         resp.sendRedirect("/admin/user?message=updateSuccess");
       } catch (Exception exception) {
-        resp.sendRedirect("/admin/user?message=updateError");
+        resp.sendRedirect("/admin/user?message=Error");
       }
     } else {
       RoleDTO role = RoleConverter.entity2Dto(STRepoUtil.getRoleRepo().findEqualUnique("name",command.getRole()));
@@ -57,7 +57,7 @@ public class EditUserController extends HttpServlet {
         STServiceUtil.getUserService().saveUser(command.getPojo());
         resp.sendRedirect("/admin/user?message=addSuccess");
       } catch (Exception exception) {
-        resp.sendRedirect("/admin/user?message=updateError");
+        resp.sendRedirect("/admin/user?message=Error");
       }
 
     }

@@ -61,7 +61,7 @@ public class EditProductController extends HttpServlet {
         STServiceUtil.getProductService().productUpdate(productUpdate);
         resp.sendRedirect("/admin/product?message=updateSuccess");
       } catch (Exception exception) {
-        resp.sendRedirect("/admin/product?message=updateError");
+        resp.sendRedirect("/admin/product?message=Error");
       }
 
     }
@@ -74,7 +74,7 @@ public class EditProductController extends HttpServlet {
         STServiceUtil.getProductService().save(dto);
         resp.sendRedirect("/admin/product?message=addSuccess");
       } catch (Exception exception) {
-        resp.sendRedirect("/admin/product?message=updateError");
+        resp.sendRedirect("/admin/product?message=Error");
       }
 
     }

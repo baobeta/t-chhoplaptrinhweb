@@ -25,9 +25,18 @@ public class OrderDetailService {
         return OrderDetailListConverter.entity2Dto(entities);
 
     }
+    public List<OrderDetailDTO> pagingnation(Integer pageNumber, Integer pageSize, boolean value) {
+        List<OrderDetailEntity> entities = STRepoUtil.getOrderDetailRepo().pagination(pageNumber,pageSize, "ispaid", value);
+        return OrderDetailListConverter.entity2Dto(entities);
+
+    }
+
 
     public Integer CountOrderDetailList(String col, String value) {
         return STRepoUtil.getOrderDetailRepo().Count("orderDetailId", col, value);
+    }
+    public Integer CountOrderDetailList( boolean value) {
+        return STRepoUtil.getOrderDetailRepo().Count("orderDetailId", "isPaid", value);
     }
 
 
@@ -63,5 +72,8 @@ public class OrderDetailService {
 
     public List<Integer> getYear() {
         return STRepoUtil.getOrderDetailRepo().getYears();
+    }
+    public Integer CountOrderDetailNotConFirmed() {
+        return STRepoUtil.getOrderDetailRepo().Count("orderDetailId","ispaid",false);
     }
 }

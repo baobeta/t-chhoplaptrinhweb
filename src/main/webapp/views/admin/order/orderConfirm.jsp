@@ -22,15 +22,6 @@
                     <c:out value="${message}"></c:out>
                 </div>
             </c:if>
-
-            <form class="search-form" action="<c:url value="/admin/order" />" method="GET">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="value" value="${pojo.value}">
-                    <span class="input-group-btn">
-					<button  type="submit" href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></button>
-					</span>
-                </div>
-            </form>
             <!-- BEGIN PAGE CONTENT INNER -->
             <div class="row">
                 <div class="col-md-12">
@@ -44,7 +35,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="btn-group">
-                                    <a class="btn green" href="<c:url value="/admin/order/confirm" />"> Xác nhận đơn hàng</a>
+
                                 </div>
                             </div>
                         </div>
@@ -85,7 +76,7 @@
                                             <td>${order.total}</td>
                                             <td>${order.userDTO.firstName}  ${order.userDTO.lastName}</td>
                                             <td><c:forEach items="${order.orderItemDTOList}" var="item" >
-                                               <p>${item.productDTO.name}  :  ${item.quantity} sản phẩm </p>
+                                                <p>${item.productDTO.name}  :  ${item.quantity} sản phẩm </p>
                                             </c:forEach></td>
                                             <td>
                                                 <form action="<c:url value="/admin/order/edit"/>" method="post">
@@ -110,7 +101,7 @@
                     <ul class="pagination justify-content-center=">
 
                         <li class="page-item ">
-                            <c:url var="urlPageBegin" value="/admin/order">
+                            <c:url var="urlPageBegin" value="/admin/order/confirm">
                                 <c:param name="page" value="${(pojo.page-1) < 1 ? 1 : (pojo.page-1) }"/>
                                 <c:param name="value" value="${pojo.value}"/>
                             </c:url>
@@ -124,7 +115,7 @@
                             </c:if>
                             <c:if test="${i!=pojo.page}">
                                 <li class="page-item">
-                                    <c:url var="urlPage" value="/admin/order">
+                                    <c:url var="urlPage" value="/admin/order/confirm">
                                         <c:param name="page" value="${i}"/>
                                         <c:param name="value" value="${pojo.value}"/>
                                     </c:url>
@@ -133,7 +124,7 @@
                             </c:if>
                         </c:forEach>
                         <li class="page-item">
-                            <c:url var="urlPageEnd" value="/admin/order">
+                            <c:url var="urlPageEnd" value="/admin/order/confirm">
                                 <c:param name="page" value="${(pojo.page+1)> pojo.totalItems ? pojo.totalItems : (pojo.page+1) }"/>
                                 <c:param name="value" value="${pojo.value}"/>
                             </c:url>

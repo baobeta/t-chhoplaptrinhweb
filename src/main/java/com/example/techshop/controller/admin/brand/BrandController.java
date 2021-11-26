@@ -44,9 +44,10 @@ public class BrandController  extends HttpServlet {
             } else if (message.trim().equals("delSuccess")) {
                 request.setAttribute("message","Xóa thương hiệu thành công");
             }
+            else if (message.trim().equals("Error")) {
+                request.setAttribute("message","Xóa thương hiệu thành công");
+            }
         }
-        else {
-            request.setAttribute("message","Có lỗi xảy ra");
-        }
+
     }
 }

@@ -263,5 +263,60 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
     }
     return listResult;
   }
+  public List<T> pagination(Integer pageNumber, Integer pageSize, String col, boolean sale ){
+    List<T> listResult = new ArrayList<>();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    try {
+      session.beginTransaction();
+      String term = getPersistenceClassName();
+      term =term.split("Entity")[0];
+      String firstLetter = term.substring(0, 1);
+      String remainingLetters = term.substring(1, term.length());
+      firstLetter = firstLetter.toLowerCase();
+      Criteria criteria = session.createCriteria(persistenceClass);
+      criteria.setFirstResult((pageNumber - 1) * pageSize);
+      criteria.setMaxResults(pageSize);
+      criteria.add(Restrictions.eq(col,sale));
+      criteria.addOrder(Order.asc(firstLetter +remainingLetters +"Id"));
+
+
+      listResult = (List<T>) criteria.list();
+      session.getTransaction().commit();
+    }
+    catch (HibernateException e) {
+      e.printStackTrace();
+      session.getTransaction().rollback();
+    }
+    finally {
+      session.close();
+    }
+    return listResult;
+  }
+  public int Count(String params, String col,boolean sale) {
+    List<T> listResult = new ArrayList<>();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    try {
+      session.beginTransaction();
+      String term = getPersistenceClassName();
+      term =term.split("Entity")[0];
+      String firstLetter = term.substring(0, 1);
+      String remainingLetters = term.substring(1, term.length());
+      firstLetter = firstLetter.toLowerCase();
+
+      Criteria criteria = session.createCriteria(persistenceClass);
+      criteria.addOrder(Order.asc(firstLetter +remainingLetters +"Id"));
+      criteria.add(Restrictions.eq(col,sale));
+      listResult = (List<T>) criteria.list();
+      session.getTransaction().commit();
+    }
+    catch (HibernateException e) {
+      e.printStackTrace();
+      session.getTransaction().rollback();
+    }
+    finally {
+      session.close();
+    }
+    return listResult.size();
+  }
 
 }
