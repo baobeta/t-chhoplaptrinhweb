@@ -41,9 +41,10 @@ public class CategoryController  extends HttpServlet {
             } else if (message.trim().equals("delSuccess")) {
                 request.setAttribute("message","Xóa phân loại thành công");
             }
+            else if (message.trim().equals("Error")) {
+                request.setAttribute("message","Có lỗi xảy ra");
+            }
         }
-        else {
-            request.setAttribute("message","Có lỗi xảy ra");
-        }
+
     }
 }

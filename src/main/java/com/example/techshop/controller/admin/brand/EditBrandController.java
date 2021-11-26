@@ -48,7 +48,7 @@ public class EditBrandController extends HttpServlet {
         }
         else {
             STServiceUtil.getBrandService().save(command.getPojo());
-            resp.sendRedirect("/admin/brand?message=updateSuccess");
+            resp.sendRedirect("/admin/brand?message=addSuccess");
         }
     }
 }

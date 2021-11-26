@@ -46,6 +46,9 @@
                                 <div class="btn-group">
                                     <a class="btn green"href="<c:url value='/admin/product/edit'/>">Thêm sản phẩm</a>
                                 </div>
+                                <div class="btn-group">
+                                    <a class="btn green"href="<c:url value='/admin/product/sale'/>">Xem danh sách sản phẩm đang sale</a>
+                                </div>
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -98,6 +101,18 @@
                                                 <form action="<c:url value="/admin/product/delete"/>" method="post">
                                                     <input type="hidden" name="idDelete" value="${product.productId}"/>
                                                     <button type="submit" class="btn btn-primary">Xóa</button>
+                                                </form>
+                                                <form action="<c:url value="/admin/product/sale"/>" method="post">
+                                                    <input type="hidden" name="idDelete" value="${product.productId}"/>
+                                                    <input type="hidden" name="sale" value="${product.sale==true ? false : true}"/>
+                                                        <button type="submit" class="btn btn-primary">
+                                                            <c:if test="${product.sale == true}">
+                                                                Tắt sale
+                                                            </c:if>
+                                                            <c:if test="${product.sale != true}">
+                                                                Bật sale
+                                                            </c:if>
+                                                        </button>
                                                 </form>
                                             </td>
                                         </tr>

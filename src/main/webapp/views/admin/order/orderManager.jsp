@@ -89,6 +89,7 @@
                                             </c:forEach></td>
                                             <td>
                                                 <form action="<c:url value="/admin/order/edit"/>" method="post">
+                                                    <input type="hidden" name="page" value="${pojo.page}">
                                                     <input type="hidden" name="pojo.orderDetailId" value="${order.orderDetailId}"/>
                                                     <input type="hidden" name="isPaid" value="${order.ispaid ==true ? false : true}"/>
                                                     <button type="submit" class="btn btn-primary">${order.ispaid ==true ? "Hủy xác " : "Xác "}nhận đơn hàng</button>

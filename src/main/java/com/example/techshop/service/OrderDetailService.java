@@ -64,4 +64,7 @@ public class OrderDetailService {
     public List<Integer> getYear() {
         return STRepoUtil.getOrderDetailRepo().getYears();
     }
+    public Integer CountOrderDetailNotConFirmed() {
+        return STRepoUtil.getOrderDetailRepo().Count("orderDetailId","ispaid",false);
+    }
 }

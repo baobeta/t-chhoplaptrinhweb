@@ -35,7 +35,8 @@ public class AdminController extends HttpServlet {
       command.setYear(year);
     }
     Map<Integer, Integer> data = STServiceUtil.getOrderDetailService().getIncomeInMonth(command.getYear());
-
+    Integer countOrder = STServiceUtil.getOrderDetailService().CountOrderDetailNotConFirmed();
+    request.setAttribute("countOrder",countOrder);
     request.setAttribute("January",data.get(1));
     request.setAttribute("February",data.get(2));
     request.setAttribute("March",data.get(3));

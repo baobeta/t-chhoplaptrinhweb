@@ -46,16 +46,16 @@ public class EditCategoryController extends HttpServlet  {
                 STServiceUtil.getCategoryService().update(command.getPojo());
                 resp.sendRedirect("/admin/category?message=updateSuccess");
             } catch (Exception exception) {
-                resp.sendRedirect("/admin/category?message=updateError");
+                resp.sendRedirect("/admin/category?message=Error");
             }
 
         }
         else {
             try {
                 STServiceUtil.getCategoryService().save(command.getPojo());
-                resp.sendRedirect("/admin/category?message=updateSuccess");
+                resp.sendRedirect("/admin/category?message=addSuccess");
             } catch (Exception exception) {
-                resp.sendRedirect("/admin/category?message=updateError");
+                resp.sendRedirect("/admin/category?message=Error");
             }
 
         }

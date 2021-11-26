@@ -4,10 +4,24 @@
 
 
 <div class="page-container">
+
     <div class="page-head">
         <div class="container">
+            <c:if test="${countOrder != 0}">
+                <div class="alert alert-warning text-center">
+                    <c:out value="Bạn có ${countOrder} đơn hàng chưa xác nhận! Vui lòng vào xác nhận"></c:out>
+                </div>
+            </c:if>
+
             <div class="page-title">
                 <h1>Dashboard <small>statistics & reports</small></h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <a class="btn green"> Xóa các giỏ hàng đã quá 30 ngày</a>
+                    </div>
+                </div>
             </div>
 
             <div class="row">
@@ -29,7 +43,9 @@
                         </form>
 
                     </div>
+
                 </div>
+
                 <div>
                     <canvas id="bar-chart" width="800" height="450"></canvas>
                 </div>

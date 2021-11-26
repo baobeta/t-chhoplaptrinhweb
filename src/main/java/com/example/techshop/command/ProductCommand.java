@@ -24,6 +24,7 @@ public class ProductCommand extends AbstractCommand<ProductDTO> {
   private List<ProductDTO> newProducts;
   private List<ProductDTO> isSaleProducts;
   private String value = "";
+  private  boolean sale;
 
   public ProductCommand() {
     this.pojo = new ProductDTO();
