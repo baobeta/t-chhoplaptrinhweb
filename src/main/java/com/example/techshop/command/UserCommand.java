@@ -16,6 +16,8 @@ public class UserCommand extends AbstractCommand<UserDTO> {
 
     private Integer idDelete;
 
+    private  String value ="";
+
     public UserCommand (){
         this.pojo = new UserDTO();
     }
@@ -34,6 +36,13 @@ public class UserCommand extends AbstractCommand<UserDTO> {
 
     public void setIdDelete(Integer idDelete) {
         this.idDelete = idDelete;
+    }
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
 }

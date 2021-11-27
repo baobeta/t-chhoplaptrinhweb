@@ -41,14 +41,20 @@ public class UserService {
     return userDTO;
   }
 
-  public void saveUser(UserDTO userDTO) {
+  public void saveUser(UserDTO userDTO) throws Exception {
     UserEntity userEntity = UserConverter.dto2Entity(userDTO);
-    STRepoUtil.getUserRepo().save(userEntity);
+    UserEntity usersave = STRepoUtil.getUserRepo().save(userEntity);
+    if(usersave == null) {
+      throw new Exception("Not update");
+    }
   }
 
-  public UserDTO updateUser(UserDTO userDTO) {
+  public UserDTO updateUser(UserDTO userDTO) throws Exception {
     UserEntity userEntity = UserConverter.dto2Entity(userDTO);
     userEntity = STRepoUtil.getUserRepo().update(userEntity);
+    if(userEntity == null) {
+      throw new Exception("Not update");
+    }
     userDTO = UserConverter.entity2Dto(userEntity);
     return userDTO;
   }
@@ -69,8 +75,16 @@ public class UserService {
     return UserListConverter.entity2Dto(listEntity);
   }
 
+  public  List<UserDTO> pagingnation(Integer pageNumber, Integer pageSize, String col , String value) {
+    List<UserEntity> listEntity = STRepoUtil.getUserRepo().pagination(pageNumber,pageSize,col,value);
+    return  UserListConverter.entity2Dto(listEntity);
+  }
+
   public Integer CountUser() {
     return STRepoUtil.getUserRepo().Count("userId");
+  }
+  public Integer CountUser(String col, String value) {
+    return STRepoUtil.getUserRepo().Count("userId",col,value);
   }
 
 }

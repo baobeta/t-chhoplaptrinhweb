@@ -6,11 +6,15 @@
     <!-- BEGIN PAGE HEAD -->
     <div class="page-head">
         <div class="container">
+            <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Quản lí thương hiệu <small>Thương hiệu</small></h1>
+                <h1>Quản lí đơn hàng <small>Danh sách đơn hàng</small></h1>
             </div>
+            <!-- END PAGE TITLE -->
         </div>
     </div>
+    <!-- END PAGE HEAD -->
+    <!-- BEGIN PAGE CONTENT -->
     <div class="page-content">
         <div class="container">
             <c:if test="${message != null}">
@@ -18,14 +22,7 @@
                     <c:out value="${message}"></c:out>
                 </div>
             </c:if>
-            <form class="search-form" action="<c:url value="/admin/brand" />" method="GET">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="value" value="${pojo.value}">
-                    <span class="input-group-btn">
-					<button  type="submit" href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></button>
-					</span>
-                </div>
-            </form>
+            <!-- BEGIN PAGE CONTENT INNER -->
             <div class="row">
                 <div class="col-md-12">
                     <!-- Begin: life time stats -->
@@ -33,47 +30,60 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="fa fa-gift font-green-sharp"></i>
-                                <span class="caption-subject font-green-sharp bold uppercase">Quản lí thương hiệu</span>
-                                <span class="caption-helper">Quản lí thương hiệu...</span>
+                                <span class="caption-subject font-green-sharp bold uppercase">Đơn hàng</span>
+                                <span class="caption-helper">quản lí đơn hàng...</span>
                             </div>
                             <div class="col-md-6">
                                 <div class="btn-group">
-                                    <a class="btn green"href="<c:url value='/admin/brand/edit'/>">Thêm thương hiệu</a>
+
                                 </div>
                             </div>
                         </div>
                         <div class="portlet-body">
                             <div class="table-container">
-                                <table class="table table-striped table-bordered table-hover" id="datatable_products">
+                                <table class="table table-striped table-bordered table-hover" id="datatable_orders">
                                     <thead>
                                     <tr role="row" class="heading">
-                                        <th width="20%">
+                                        <th width="10%">
                                             ID
                                         </th>
-                                        <th width="50%">
-                                            Tên thương hiệu
+                                        <th width="15%">
+                                            SĐT
+                                        </th>
+                                        <th width="15%">
+                                            Địa chỉ
+                                        </th>
+                                        <th width="10%">
+                                            Tổng
+                                        </th>
+                                        <th width="10%">
+                                            Người mua
                                         </th>
                                         <th width="30%">
-                                            Mô tả
+                                            Sản phẩm
                                         </th>
-
+                                        <th width="10%">
+                                            Xác nhận đơn hàng
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="brand" items="${brands}">
+                                    <c:forEach var="order" items="${orders}">
                                         <tr>
-                                            <td>${brand.brandId}</td>
-                                            <td>${brand.name}</td>
-                                            <td>${brand.description}</td>
+                                            <td>${order.orderDetailId}</td>
+                                            <td>${order.phoneNumber}</td>
+                                            <td>${order.address}</td>
+                                            <td>${order.total}</td>
+                                            <td>${order.userDTO.firstName}  ${order.userDTO.lastName}</td>
+                                            <td><c:forEach items="${order.orderItemDTOList}" var="item" >
+                                                <p>${item.productDTO.name}  :  ${item.quantity} sản phẩm </p>
+                                            </c:forEach></td>
                                             <td>
-                                                <c:url value="/admin/brand/edit" var="updateURL">
-                                                    <c:param name="brandId" value="${brand.brandId}"/>
-                                                    <c:param name="page" value="1"/>
-                                                </c:url>
-                                                <a class="btn green" href="${updateURL}">Sửa</a>
-                                                <form action="<c:url value="/admin/brand/delete"/>" method="post">
-                                                    <input type="hidden" name="idDelete" value="${brand.brandId}"/>
-                                                    <button type="submit" class="btn btn-primary">Xóa</button>
+                                                <form action="<c:url value="/admin/order/edit"/>" method="post">
+                                                    <input type="hidden" name="page" value="${pojo.page}">
+                                                    <input type="hidden" name="pojo.orderDetailId" value="${order.orderDetailId}"/>
+                                                    <input type="hidden" name="isPaid" value="${order.ispaid ==true ? false : true}"/>
+                                                    <button type="submit" class="btn btn-primary">${order.ispaid ==true ? "Hủy xác " : "Xác "}nhận đơn hàng</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -91,7 +101,7 @@
                     <ul class="pagination justify-content-center=">
 
                         <li class="page-item ">
-                            <c:url var="urlPageBegin" value="/admin/brand">
+                            <c:url var="urlPageBegin" value="/admin/order/confirm">
                                 <c:param name="page" value="${(pojo.page-1) < 1 ? 1 : (pojo.page-1) }"/>
                                 <c:param name="value" value="${pojo.value}"/>
                             </c:url>
@@ -105,7 +115,7 @@
                             </c:if>
                             <c:if test="${i!=pojo.page}">
                                 <li class="page-item">
-                                    <c:url var="urlPage" value="/admin/brand">
+                                    <c:url var="urlPage" value="/admin/order/confirm">
                                         <c:param name="page" value="${i}"/>
                                         <c:param name="value" value="${pojo.value}"/>
                                     </c:url>
@@ -114,7 +124,7 @@
                             </c:if>
                         </c:forEach>
                         <li class="page-item">
-                            <c:url var="urlPageEnd" value="/admin/brand">
+                            <c:url var="urlPageEnd" value="/admin/order/confirm">
                                 <c:param name="page" value="${(pojo.page+1)> pojo.totalItems ? pojo.totalItems : (pojo.page+1) }"/>
                                 <c:param name="value" value="${pojo.value}"/>
                             </c:url>
@@ -124,9 +134,6 @@
                     </ul>
                 </nav>
             </div>
-            <!-- END PAGE CONTENT INNER -->
         </div>
     </div>
-    <!-- END PAGE CONTENT -->
 </div>
-<!-- END PAGE CONTAINER -->

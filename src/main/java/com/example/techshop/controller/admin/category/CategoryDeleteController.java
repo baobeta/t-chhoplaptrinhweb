@@ -19,6 +19,9 @@ import java.util.List;
 public class CategoryDeleteController  extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
         CategoryCommand command = FormUtil.populate(CategoryCommand.class,req);
         if(command.getIdDelete()!=null) {
             List ids = new ArrayList();

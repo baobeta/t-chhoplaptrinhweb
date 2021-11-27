@@ -23,14 +23,21 @@ public class ProductService {
     return dtos;
   }
 
-  public void save(ProductDTO productDTO) {
+  public void save(ProductDTO productDTO) throws Exception {
     ProductEntity entity = ProductConverter.dto2Entity(productDTO);
-    STRepoUtil.getProductRepo().save(entity);
+    entity = STRepoUtil.getProductRepo().save(entity);
+    if(entity == null) {
+      throw new Exception("Not save");
+    }
   }
 
-  public ProductDTO productUpdate(ProductDTO dto) {
+  public ProductDTO productUpdate(ProductDTO dto) throws Exception {
     ProductEntity entity = ProductConverter.dto2Entity(dto);
     entity = STRepoUtil.getProductRepo().update(entity);
+    if (entity == null) {
+      throw new Exception("Not update");
+    }
+
     dto = ProductConverter.entity2Dto(entity);
     return dto;
   }
@@ -82,13 +89,28 @@ public class ProductService {
     return ProductListConverter.entity2Dto(entities);
 
   }
+  public List<ProductDTO> pagingnation(Integer pageNumber, Integer pageSize, String col, String value) {
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().pagination(pageNumber,pageSize,col, value);
+    return ProductListConverter.entity2Dto(entities);
+
+  }
+  public List<ProductDTO> pagingnation(Integer pageNumber, Integer pageSize, String col, boolean sale) {
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().pagination(pageNumber,pageSize,col, sale);
+    return ProductListConverter.entity2Dto(entities);
+
+  }
 
 
 
   public Integer CountProduct() {
     return STRepoUtil.getProductRepo().Count("productId");
   }
-
+  public Integer CountProduct(String col, String value) {
+    return STRepoUtil.getProductRepo().Count("productId", col, value);
+  }
+  public Integer CountProduct(String col, boolean value) {
+    return STRepoUtil.getProductRepo().Count("productId", col, value);
+  }
 //  public ProductDTO findUser(String email, String password) {
 //    ProductEntity entity = STRepoUtil.getProductRepo().findUser(email, password);
 //    ProductDTO dto = UserConverter.entity2Dto(entity);

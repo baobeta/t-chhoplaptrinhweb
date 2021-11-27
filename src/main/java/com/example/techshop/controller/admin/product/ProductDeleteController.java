@@ -18,6 +18,9 @@ import java.util.List;
 public class ProductDeleteController extends HttpServlet  {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
         ProductCommand command = FormUtil.populate(ProductCommand.class,req);
         if(command.getIdDelete()!=null) {
             List ids = new ArrayList();

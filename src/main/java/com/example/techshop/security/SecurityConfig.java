@@ -27,6 +27,7 @@ public class SecurityConfig {
     adminUrlPattern.add("/admin/product");
     adminUrlPattern.add("/admin/product/edit");
     adminUrlPattern.add("/admin/product/delete");
+    adminUrlPattern.add("/admin/product/sale");
 
     adminUrlPattern.add("/admin/brand");
     adminUrlPattern.add("/admin/brand/edit");

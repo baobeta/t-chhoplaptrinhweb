@@ -18,12 +18,14 @@ public class EditOrderController  extends HttpServlet  {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
         OrderDetailCommand command = FormUtil.populate(OrderDetailCommand.class,req);
         OrderDetailDTO dto = STServiceUtil.getOrderDetailService().findById(command.getPojo().getOrderDetailId());
         dto.setIspaid(command.getIsPaid());
         STServiceUtil.getOrderDetailService().update(dto);
-        resp.sendRedirect("/admin/order");
+        resp.sendRedirect("/admin/order?page="+command.getPage()+"&value="+command.getValue());
 
 
     }

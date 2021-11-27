@@ -20,6 +20,14 @@
                     <c:out value="${message}"></c:out>
                 </div>
             </c:if>
+            <form class="search-form" action="<c:url value="/admin/category" />" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="value" value="${pojo.value}">
+                    <span class="input-group-btn">
+					<button  type="submit" href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></button>
+					</span>
+                </div>
+            </form>
             <div class="row">
                 <div class="col-md-12">
                     <div class="portlet light">
@@ -86,6 +94,7 @@
                         <li class="page-item ">
                             <c:url var="urlPageBegin" value="/admin/category">
                                 <c:param name="page" value="${(pojo.page-1) < 1 ? 1 : (pojo.page-1) }"/>
+                                <c:param name="value" value="${pojo.value}"/>
                             </c:url>
                             <a class="page-link" href="${urlPageBegin}">Previous</a>
                         </li>
@@ -99,6 +108,7 @@
                                 <li class="page-item">
                                     <c:url var="urlPage" value="/admin/category">
                                         <c:param name="page" value="${i}"/>
+                                        <c:param name="value" value="${pojo.value}"/>
                                     </c:url>
                                     <a class="page-link" href="${urlPage}">${i}</a>
                                 </li>
@@ -107,6 +117,7 @@
                         <li class="page-item">
                             <c:url var="urlPageEnd" value="/admin/category">
                                 <c:param name="page" value="${(pojo.page+1)> pojo.totalItems ? pojo.totalItems : (pojo.page+1) }"/>
+                                <c:param name="value" value="${pojo.value}"/>
                             </c:url>
                             <a class="page-link" href="${urlPageEnd}">Next</a>
                         </li>

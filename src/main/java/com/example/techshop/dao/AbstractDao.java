@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.hibernate.*;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -41,7 +43,6 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
     catch (HibernateException e)
     {
       transaction.rollback();
-//      log.error(e.getMessage(),e);
       throw e;
     }
     finally {
@@ -126,7 +127,6 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
     }
     catch (HibernateException e){
       transaction.rollback();
-//      log.error(e.getMessage(),e);
       throw e;
     }
     finally {
@@ -157,147 +157,6 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
     return result;
   }
 
-//  public UserEntity checkLogin(String email, String password)
-//  {
-//    UserEntity userEntity = new UserEntity() ;
-//    Session session =HibernateUtil.getSessionFactory().openSession();
-//    Transaction transaction = session.beginTransaction();
-//    boolean isUserExist = false;
-//    String roleName = null;
-//    try {
-//      StringBuilder sql = new StringBuilder("FROM UserEntity ue WHERE ue.email= :email AND ue.password= :password ");
-//      Query query = session.createQuery(sql.toString());
-//      query.setParameter("name",email);
-//      query.setParameter("password",password);
-//      if(query.getResultList().size()>0) {
-//        isUserExist = true;
-//        userEntity = (UserEntity) query.getSingleResult();
-//      }
-//
-//    } catch (HibernateException e)
-//    {
-//      transaction.rollback();
-//      throw e;
-//    }
-//    finally {
-//      session.close();
-//    }
-//    return userEntity;
-//  }
-
-//  // @page: 1, 2, ..
-//  public Map<String,Object> PaginationResult(String params, int page, int maxResult, int maxNavigationPage) {
-//
-//    int thistotalRecords;
-//    int thiscurrentPage;
-//    List<T> thislist;
-//    int thismaxResult;
-//    int thistotalPages;
-//    int thismaxNavigationPage;
-//    List<Integer> thisnavigationPages;
-//    Map<String, Object> returnValue = new HashMap<>();
-//    Session session = HibernateUtil.getSessionFactory().openSession();
-//    Transaction transaction = session.beginTransaction();
-//
-//
-//    String sql = "Select e from " + persistenceClass + " e " //
-//            + " Where e."+params+"> :"+"params";
-//    org.hibernate.query.Query<T> query = session.createQuery(sql,persistenceClass);
-//    query.setParameter(params, 100);
-//
-//
-//
-//    final int pageIndex = page - 1 < 0 ? 0 : page - 1;
-//
-//    int fromRecordIndex = pageIndex * maxResult;
-//    int maxRecordIndex = fromRecordIndex + maxResult;
-//
-//    ScrollableResults resultScroll = query.scroll(ScrollMode.SCROLL_INSENSITIVE  );
-//
-//    List<T> results = new ArrayList<T>();
-//
-//    boolean hasResult =   resultScroll.first();
-//
-//    if (hasResult) {
-//
-//      // Scroll to position:
-//      hasResult = resultScroll.scroll(fromRecordIndex);
-//
-//      if (hasResult) {
-//        do {
-//          T record = (T) resultScroll.get(0);
-//          results.add(record);
-//        } while (resultScroll.next()//
-//                && resultScroll.getRowNumber() >= fromRecordIndex
-//                && resultScroll.getRowNumber() < maxRecordIndex);
-//
-//      }
-//
-//      // Go to Last record.
-//      resultScroll.last();
-//    }
-//
-//    // Total Records
-//    thistotalRecords = resultScroll.getRowNumber() + 1;
-//    thiscurrentPage = pageIndex + 1;
-//    thislist = results;
-//    thismaxResult = maxResult;
-//
-//    if (thistotalRecords % thismaxResult == 0) {
-//      thistotalPages = thistotalRecords / thismaxResult;
-//    } else {
-//      thistotalPages = (thistotalRecords / thismaxResult) + 1;
-//    }
-//
-//    thismaxNavigationPage = maxNavigationPage;
-//
-//    if (maxNavigationPage < thistotalPages) {
-//      thismaxNavigationPage = maxNavigationPage;
-//    }
-//    resultScroll.close();
-//
-//    //=====================================================
-//    /// calc Navigation pages
-//    thisnavigationPages = new ArrayList<Integer>();
-//
-//    int current = thiscurrentPage > thistotalPages ? thistotalPages : thiscurrentPage;
-//
-//    int begin = current - thismaxNavigationPage / 2;
-//    int end = current + thismaxNavigationPage / 2;
-//
-//    // The first page
-//    thisnavigationPages.add(1);
-//    if (begin > 2) {
-//
-//
-//      // Using for '...'
-//      thisnavigationPages.add(-1);
-//    }
-//
-//    for (int i = begin; i < end; i++) {
-//      if (i > 1 && i < thistotalPages) {
-//        thisnavigationPages.add(i);
-//      }
-//    }
-//
-//    if (end < thistotalPages - 2) {
-//
-//      // Using for '...'
-//      thisnavigationPages.add(-1);
-//    }
-//
-//    // The last page.
-//    thisnavigationPages.add(thistotalPages);
-//
-//    returnValue.put("totalRecords",thistotalRecords);
-//    returnValue.put("currentPage",thiscurrentPage);
-//    returnValue.put("list",thislist);
-//    returnValue.put("maxResult",thismaxResult);
-//    returnValue.put("totalPages",thistotalPages);
-//    returnValue.put("maxNavigationPage",thismaxNavigationPage);
-//    returnValue.put("navigationPages",thisnavigationPages);
-//    return returnValue;
-//  }
 
   public List<T> pagination(Integer pageNumber, Integer pageSize){
     List<T> listResult = new ArrayList<>();
@@ -322,6 +181,9 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
       e.printStackTrace();
       session.getTransaction().rollback();
     }
+    finally {
+      session.close();
+    }
     return listResult;
   }
   public int Count(String params) {
@@ -340,7 +202,121 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID,T>
       e.printStackTrace();
       session.getTransaction().rollback();
     }
+    finally {
+      session.close();
+    }
     return count;
+  }
+  public int Count(String params, String col,String value) {
+    List<T> listResult = new ArrayList<>();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    try {
+      session.beginTransaction();
+      String term = getPersistenceClassName();
+      term =term.split("Entity")[0];
+      String firstLetter = term.substring(0, 1);
+      String remainingLetters = term.substring(1, term.length());
+      firstLetter = firstLetter.toLowerCase();
+
+      Criteria criteria = session.createCriteria(persistenceClass);
+      criteria.addOrder(Order.asc(firstLetter +remainingLetters +"Id"));
+      criteria.add(Restrictions.ilike(col,"%"+value+"%", MatchMode.ANYWHERE));
+      listResult = (List<T>) criteria.list();
+      session.getTransaction().commit();
+    }
+    catch (HibernateException e) {
+      e.printStackTrace();
+      session.getTransaction().rollback();
+    }
+    finally {
+      session.close();
+    }
+    return listResult.size();
+  }
+
+  public List<T> pagination(Integer pageNumber, Integer pageSize, String col, String value ){
+    List<T> listResult = new ArrayList<>();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    try {
+      session.beginTransaction();
+      String term = getPersistenceClassName();
+      term =term.split("Entity")[0];
+      String firstLetter = term.substring(0, 1);
+      String remainingLetters = term.substring(1, term.length());
+      firstLetter = firstLetter.toLowerCase();
+      Criteria criteria = session.createCriteria(persistenceClass);
+      criteria.setFirstResult((pageNumber - 1) * pageSize);
+      criteria.setMaxResults(pageSize);
+      criteria.add(Restrictions.ilike(col,"%"+value+"%", MatchMode.ANYWHERE));
+      criteria.addOrder(Order.asc(firstLetter +remainingLetters +"Id"));
+
+
+      listResult = (List<T>) criteria.list();
+      session.getTransaction().commit();
+    }
+    catch (HibernateException e) {
+      e.printStackTrace();
+      session.getTransaction().rollback();
+    }
+    finally {
+      session.close();
+    }
+    return listResult;
+  }
+  public List<T> pagination(Integer pageNumber, Integer pageSize, String col, boolean sale ){
+    List<T> listResult = new ArrayList<>();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    try {
+      session.beginTransaction();
+      String term = getPersistenceClassName();
+      term =term.split("Entity")[0];
+      String firstLetter = term.substring(0, 1);
+      String remainingLetters = term.substring(1, term.length());
+      firstLetter = firstLetter.toLowerCase();
+      Criteria criteria = session.createCriteria(persistenceClass);
+      criteria.setFirstResult((pageNumber - 1) * pageSize);
+      criteria.setMaxResults(pageSize);
+      criteria.add(Restrictions.eq(col,sale));
+      criteria.addOrder(Order.asc(firstLetter +remainingLetters +"Id"));
+
+
+      listResult = (List<T>) criteria.list();
+      session.getTransaction().commit();
+    }
+    catch (HibernateException e) {
+      e.printStackTrace();
+      session.getTransaction().rollback();
+    }
+    finally {
+      session.close();
+    }
+    return listResult;
+  }
+  public int Count(String params, String col,boolean sale) {
+    List<T> listResult = new ArrayList<>();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    try {
+      session.beginTransaction();
+      String term = getPersistenceClassName();
+      term =term.split("Entity")[0];
+      String firstLetter = term.substring(0, 1);
+      String remainingLetters = term.substring(1, term.length());
+      firstLetter = firstLetter.toLowerCase();
+
+      Criteria criteria = session.createCriteria(persistenceClass);
+      criteria.addOrder(Order.asc(firstLetter +remainingLetters +"Id"));
+      criteria.add(Restrictions.eq(col,sale));
+      listResult = (List<T>) criteria.list();
+      session.getTransaction().commit();
+    }
+    catch (HibernateException e) {
+      e.printStackTrace();
+      session.getTransaction().rollback();
+    }
+    finally {
+      session.close();
+    }
+    return listResult.size();
   }
 
 }

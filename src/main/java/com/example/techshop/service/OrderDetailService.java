@@ -20,11 +20,26 @@ public class OrderDetailService {
 
     }
 
-<<<<<<< HEAD
-    public List<Object> getIncomeInMonth(int year){
-        return STRepoUtil.getOrderDetailRepo().getIncomeInMonth(year);
+
+    public List<OrderDetailDTO> pagingnation(Integer pageNumber, Integer pageSize, String col, String value) {
+        List<OrderDetailEntity> entities = STRepoUtil.getOrderDetailRepo().pagination(pageNumber,pageSize, col, value);
+        return OrderDetailListConverter.entity2Dto(entities);
+
     }
-=======
+    public List<OrderDetailDTO> pagingnation(Integer pageNumber, Integer pageSize, boolean value) {
+        List<OrderDetailEntity> entities = STRepoUtil.getOrderDetailRepo().pagination(pageNumber,pageSize, "ispaid", value);
+        return OrderDetailListConverter.entity2Dto(entities);
+
+    }
+
+
+    public Integer CountOrderDetailList(String col, String value) {
+        return STRepoUtil.getOrderDetailRepo().Count("orderDetailId", col, value);
+    }
+    public Integer CountOrderDetailList( boolean value) {
+        return STRepoUtil.getOrderDetailRepo().Count("orderDetailId", "isPaid", value);
+    }
+
     public Map<Integer, Integer> getIncomeInMonth(int year){
         List<Object[]> list = STRepoUtil.getOrderDetailRepo().getIncomeInMonth(year);
         Map<Integer, Integer> data = new HashMap<>();
@@ -41,7 +56,7 @@ public class OrderDetailService {
         }
         return data;
     }    
->>>>>>> 7d42797f6c9cdbc3bec0ee6d77eb72827e95c8be
+
     public Integer CountOrderDetailList() {
         return STRepoUtil.getOrderDetailRepo().Count("orderDetailId");
     }
@@ -58,5 +73,8 @@ public class OrderDetailService {
 
     public List<Integer> getYear() {
         return STRepoUtil.getOrderDetailRepo().getYears();
+    }
+    public Integer CountOrderDetailNotConFirmed() {
+        return STRepoUtil.getOrderDetailRepo().Count("orderDetailId","ispaid",false);
     }
 }

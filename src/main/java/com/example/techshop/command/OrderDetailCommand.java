@@ -19,4 +19,5 @@ public class OrderDetailCommand extends AbstractCommand<OrderDetailDTO> {
   private Integer cusId;
   private Boolean isPaid;
   private Integer year ;
+  private String value = "";
 }

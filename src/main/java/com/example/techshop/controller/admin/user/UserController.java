@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/admin/user")
@@ -19,9 +20,14 @@ public class UserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         UserCommand command = FormUtil.populate(UserCommand.class,request);
-        List<UserDTO> users = STServiceUtil.getUserService().pagingnation(command.getPage(), command.getMaxPageItems());
-        command.setTotalItems((STServiceUtil.getUserService().CountUser()/ command.getMaxPageItems())+1);
+        List<UserDTO>  users = STServiceUtil.getUserService().pagingnation(command.getPage(), command.getMaxPageItems(),"firstName", command.getValue());
+        command.setTotalItems((STServiceUtil.getUserService().CountUser("firstName", command.getValue())/ command.getMaxPageItems())+1);
+
+
 
         request.setAttribute("users",users);
         checkMessage(request);
@@ -40,6 +46,8 @@ public class UserController extends HttpServlet {
                 request.setAttribute("message","Sửa thành viên thành công");
             } else if (message.trim().equals("delSuccess")) {
                 request.setAttribute("message","Xóa thành viên thành công");
+            } else if (message.trim().equals("Error")) {
+                request.setAttribute("message","Có lỗi xảy ra");
             }
         }
     }

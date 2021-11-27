@@ -84,4 +84,5 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> {
     }
     return true;
   }
+
 }
