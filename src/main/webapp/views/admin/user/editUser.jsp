@@ -3,7 +3,7 @@
 <%@include file="/common/taglib.jsp" %>
 
 
-<c:url var="addUser" value="/admin/user/edit"/>
+<c:url var="addProduct" value="/admin/product/edit"/>
 <!-- BEGIN PAGE CONTAINER -->
 <div class="page-container">
     <!-- BEGIN PAGE HEAD -->
@@ -11,24 +11,12 @@
         <div class="container">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Product Edit <small>create & edit product</small></h1>
+                <h1>Quản lí tài khoản <small>Thêm hoặc sửa sản phẩm</small></h1>
             </div>
         </div>
     </div>
-    <!-- END PAGE HEAD -->
-    <!-- BEGIN PAGE CONTENT -->
     <div class="page-content">
         <div class="container">
-            <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="<c:url value="/admin"/>">Home</a><i class="fa fa-circle"></i>
-                </li>
-                <li class="active">
-                    Product Edit
-                </li>
-            </ul>
-            <!-- END PAGE BREADCRUMB -->
-            <!-- BEGIN PAGE CONTENT INNER -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="portlet light">
@@ -51,7 +39,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label">First name: <span
+                                                        <label class="col-md-2 control-label">Tên: <span
                                                                 class="required">
 													* </span>
                                                         </label>
@@ -63,7 +51,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label">Last name
+                                                        <label class="col-md-2 control-label">Họ và tên đệm
                                                             <span class="required"> * </span></label>
                                                         <div class="col-md-10">
                                                             <input type="text" class=" form-control"
@@ -73,7 +61,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label">Password: <span
+                                                        <label class="col-md-2 control-label">Mật khẩu: <span
                                                                 class="required">* </span></label>
                                                         <div class="col-md-10">
                                                             <input type="password" class="form-control"
@@ -83,7 +71,7 @@
                                                     </div>
 
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label ">Roles</label>
+                                                        <label class="col-md-2 control-label ">Quyền</label>
                                                         <div class="col-md-10">
                                                             <block>
                                                                 <c:forEach var="role" items="${roles}">
@@ -108,7 +96,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label">Photo: </label>
+                                                        <label class="col-md-2 control-label">Hình ảnh: </label>
                                                         <div class="col-md-10">
                                                             <input type="file" id="file" accept=".jpg, .png">
                                                             <progress id="progress_bar" value="0" max="100"></progress>
@@ -142,7 +130,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label">First name: <span
+                                                        <label class="col-md-2 control-label">Tên: <span
                                                                 class="required">
 													* </span>
                                                         </label>
@@ -154,7 +142,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label">Last name
+                                                        <label class="col-md-2 control-label">Họ và tên đệm
                                                             <span class="required"> * </span></label>
                                                         <div class="col-md-10">
                                                             <input type="text" class=" form-control"
@@ -164,7 +152,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label">Password: <span
+                                                        <label class="col-md-2 control-label">Mật khẩu: <span
                                                                 class="required">* </span></label>
                                                         <div class="col-md-10">
                                                             <input type="password" class="form-control"
@@ -174,7 +162,7 @@
                                                     </div>
 
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label ">Roles</label>
+                                                        <label class="col-md-2 control-label ">Quyền</label>
                                                         <div class="col-md-10">
                                                             <block>
                                                                 <c:forEach var="role" items="${roles}">
@@ -190,7 +178,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group margin-bottom-10">
-                                                        <label class="col-md-2 control-label">Photo: </label>
+                                                        <label class="col-md-2 control-label">Hình ảnh: </label>
                                                         <div class="col-md-10">
                                                             <input type="file" id="file" accept=".jpg, .png">
                                                             <progress id="progress_bar" value="0" max="100"></progress>

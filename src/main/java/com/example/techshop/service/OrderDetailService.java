@@ -9,7 +9,9 @@ import com.example.techshop.utils.convert.OrderDetailConverter;
 import com.example.techshop.utils.convert.list.OrderDetailListConverter;
 import com.example.techshop.utils.convert.list.ProductListConverter;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderDetailService {
     public List<OrderDetailDTO> pagingnation(Integer pageNumber, Integer pageSize) {
@@ -18,9 +20,28 @@ public class OrderDetailService {
 
     }
 
+<<<<<<< HEAD
     public List<Object> getIncomeInMonth(int year){
         return STRepoUtil.getOrderDetailRepo().getIncomeInMonth(year);
     }
+=======
+    public Map<Integer, Integer> getIncomeInMonth(int year){
+        List<Object[]> list = STRepoUtil.getOrderDetailRepo().getIncomeInMonth(year);
+        Map<Integer, Integer> data = new HashMap<>();
+        for(int i=1;i<=12;i++) {
+            data.put(i,0);
+        }
+        for(Object[] item : list){
+            Integer  index = Integer.valueOf(item[0].toString());
+            Integer value = Integer.valueOf(item[1].toString());
+            data.replace(index,value);
+            System.out.println(index);
+
+
+        }
+        return data;
+    }    
+>>>>>>> 7d42797f6c9cdbc3bec0ee6d77eb72827e95c8be
     public Integer CountOrderDetailList() {
         return STRepoUtil.getOrderDetailRepo().Count("orderDetailId");
     }
@@ -33,5 +54,9 @@ public class OrderDetailService {
     }
     public OrderDetailDTO findById(Integer id) {
         return OrderDetailConverter.entity2Dto(STRepoUtil.getOrderDetailRepo().findById(id));
+    }
+
+    public List<Integer> getYear() {
+        return STRepoUtil.getOrderDetailRepo().getYears();
     }
 }
