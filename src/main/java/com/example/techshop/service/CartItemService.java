@@ -61,4 +61,17 @@ public class CartItemService {
     return cartItemList;
   }
 
+  public Integer deleteCartItemGreater30Day() {
+    List<CartItemEntity> listcart = STRepoUtil.getCartItemRepo().getCartGreater30Day();
+    List<Integer> ids = new ArrayList<>();
+    for( CartItemEntity cart : listcart) {
+      ids.add(cart.getCartItemId());
+    }
+    return STRepoUtil.getCartItemRepo().delete(ids);
+  }
+
+  public Integer countCartItemsGreater30Day(){
+    return STRepoUtil.getCartItemRepo().getCartGreater30Day().size();
+  }
+
 }

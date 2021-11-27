@@ -12,6 +12,7 @@ public class OrderDetailConverter {
     dto.setTotal(entity.getTotal());
     dto.setPhoneNumber(entity.getPhoneNumber());
     dto.setAddress(entity.getAddress());
+    dto.setCreatedDate(entity.getCreatedDate());
     dto.setUserDTO(UserConverter.entity2Dto(entity.getUserEntity()));
     dto.setUserDTO(UserConverter.entity2Dto(entity.getUserEntity()));
     return dto;
@@ -24,6 +25,7 @@ public class OrderDetailConverter {
     entity.setTotal(dto.getTotal());
     entity.setPhoneNumber(dto.getPhoneNumber());
     entity.setAddress(dto.getAddress()  );
+    entity.setCreatedDate(dto.getCreatedDate());
     entity.setUserEntity(UserConverter.dto2Entity(dto.getUserDTO()));
     entity.setUserEntity(UserConverter.dto2Entity(dto.getUserDTO()));
     return entity;

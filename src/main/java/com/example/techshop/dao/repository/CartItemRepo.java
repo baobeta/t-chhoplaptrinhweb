@@ -8,16 +8,23 @@ import com.example.techshop.entity.UserEntity;
 import com.example.techshop.utils.HibernateUtil;
 import com.example.techshop.utils.STRepoUtil;
 import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
@@ -136,6 +143,30 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
     } finally {
       session.close();
     }
+  }
+  public List<CartItemEntity> getCartGreater30Day( ){
+    List<CartItemEntity> listResult = new ArrayList<>();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    try {
+      session.beginTransaction();
+      Criteria criteria = session.createCriteria(CartItemEntity.class);
+
+      Instant now = Instant.now(); //current date
+      Instant before = now.minus(Duration.ofDays(30));
+      Date dateBefore = Date.from(before);
+      Timestamp ts=new Timestamp(dateBefore.getTime());
+      criteria.add(Restrictions.lt("createdDate",ts));
+      listResult = (List<CartItemEntity>) criteria.list();
+      session.getTransaction().commit();
+    }
+    catch (HibernateException e) {
+      e.printStackTrace();
+      session.getTransaction().rollback();
+    }
+    finally {
+      session.close();
+    }
+    return listResult;
   }
 
   public boolean isEnoughAmount(Integer productId, int quantity) {

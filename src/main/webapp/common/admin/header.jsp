@@ -26,22 +26,25 @@
             <div class="hor-menu ">
                 <ul class="nav navbar-nav" style="text-align:center">
                     <li class="" style="margin-right: 50px">
+                        <a href="<c:url value="/admin"/>">Trang chủ</a>
+                    </li>
+                    <li class="" style="margin-right: 50px">
                         <a href="<c:url value="/admin"/>">Dashboard</a>
                     </li>
                     <li class="" style="margin-right: 50px">
-                        <a href="<c:url value="/admin/user"/>">User</a>
+                        <a href="<c:url value="/admin/user"/>">Tài khoản</a>
                     </li>
                     <li class=" " style="margin-right: 50px">
-                        <a href="<c:url value="/admin/product"/>">Product</a>
+                        <a href="<c:url value="/admin/product"/>">Sản phẩm</a>
                     </li>
                     <li class=" " style="margin-right: 50px">
-                        <a href="<c:url value="/admin/category"/>">Category</a>
+                        <a href="<c:url value="/admin/category"/>">Loại sản phẩm</a>
                     </li>
                     <li class=" " style="margin-right: 50px">
-                        <a href="<c:url value="/admin/brand"/>">Brand</a>
+                        <a href="<c:url value="/admin/brand"/>">Thương hiệu</a>
                     </li>
                     <li class="" style="margin-right: 50px">
-                        <a href="<c:url value="/admin/order"/>">Order</a>
+                        <a href="<c:url value="/admin/order"/>">Đơn hàng</a>
                     </li>
                 </ul>
             </div>

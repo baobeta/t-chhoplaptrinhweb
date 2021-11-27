@@ -14,5 +14,6 @@ public class BrandCommand extends AbstractCommand<BrandDTO> {
   }
 
   private Integer idDelete;
+  private String value =  "";
 
 }

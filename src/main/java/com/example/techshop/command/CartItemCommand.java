@@ -17,5 +17,6 @@ public class CartItemCommand extends AbstractCommand<CartItemDTO> {
   private Integer cusId;
 
   private Integer productId;
+  private String value= "";
 
 }
