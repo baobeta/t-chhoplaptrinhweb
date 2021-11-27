@@ -1,5 +1,6 @@
 package com.example.techshop.controller.login;
 
+import com.example.techshop.common.CoreConstant;
 import com.example.techshop.dto.UserDTO;
 import com.example.techshop.utils.AppUtils;
 import com.example.techshop.utils.STServiceUtil;
@@ -38,8 +39,7 @@ public class LoginController extends HttpServlet {
     UserDTO userAccount = STServiceUtil.getUserService().findUser(email, password);
 
     if (userAccount == null) {
-      String errorMessage = "Invalid email or Password";
-      request.setAttribute("errorMessage", errorMessage);
+      request.setAttribute("errorMessage", CoreConstant.LOGIN_ERROR);
       RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/views/common/login.jsp");
       dispatcher.forward(request, response);
       return;

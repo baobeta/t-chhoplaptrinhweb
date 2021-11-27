@@ -49,7 +49,7 @@ public class ProductListAPI extends HttpServlet {
             + "Xem" + "</a>\n"
             + "                                        </div>\n"
             + "                                    </div>\n"
-            + "                                    <h3><a href=\"shop-item.html\">"
+            + "                                    <h3><a href=\""+viewURL+ product.getProductId()+"\">"
             + product.getName() + "</a></h3>\n"
             + "\n"
             + "                                    <div class=\"pi-price\">" + formatCurrency(

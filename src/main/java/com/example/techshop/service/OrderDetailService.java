@@ -20,7 +20,7 @@ public class OrderDetailService {
 
     public List<Object> getIncomeInMonth(int year){
         return STRepoUtil.getOrderDetailRepo().getIncomeInMonth(year);
-    }    
+    }
     public Integer CountOrderDetailList() {
         return STRepoUtil.getOrderDetailRepo().Count("orderDetailId");
     }

@@ -15,19 +15,20 @@ import java.util.Map;
 
 public class UserService {
 
-  public boolean register(UserDTO userDTO){
+  public boolean register(UserDTO userDTO) {
     UserEntity userEntity = UserConverter.dto2Entity(userDTO);
     return STRepoUtil.getUserRepo().register(userEntity);
   }
 
   public UserDTO findUser(String email, String password) {
     UserEntity entity = STRepoUtil.getUserRepo().findUser(email, password);
-    UserDTO dto = UserConverter.entity2Dto(entity);
-    if (dto != null) {
+    if (entity != null) {
+      UserDTO dto = UserConverter.entity2Dto(entity);
       return dto;
     }
     return null;
-  }
+}
+
   public List<UserDTO> getUser() {
     List<UserEntity> entities = STRepoUtil.getUserRepo().findAll();
     List<UserDTO> dtos = UserListConverter.entity2Dto(entities);
@@ -57,16 +58,17 @@ public class UserService {
   }
 
   public UserDTO findEqualUnique(String property, Object value) {
-    UserEntity userEntity = STRepoUtil.getUserRepo().findEqualUnique(property,value);
+    UserEntity userEntity = STRepoUtil.getUserRepo().findEqualUnique(property, value);
     UserDTO userDTO = UserConverter.entity2Dto(userEntity);
     return userDTO;
 
   }
 
   public List<UserDTO> pagingnation(Integer pageNumber, Integer pageSize) {
-    List<UserEntity> listEntity = STRepoUtil.getUserRepo().pagination(pageNumber,pageSize);
+    List<UserEntity> listEntity = STRepoUtil.getUserRepo().pagination(pageNumber, pageSize);
     return UserListConverter.entity2Dto(listEntity);
   }
+
   public Integer CountUser() {
     return STRepoUtil.getUserRepo().Count("userId");
   }

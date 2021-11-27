@@ -73,7 +73,7 @@
                                                         alt="Berry Lace Dress'/>"></a>
                                             </td>
                                             <td class="goods-page-description">
-                                                <h3><a href="#">${item.productDTO.name}</a></h3>
+                                                <h3><a href="${pDetail}">${item.productDTO.name}</a></h3>
                                                 <p>${item.productDTO.description}</p>
                                             </td>
                                             <c:if test="${not empty sessionScope.loginedUser}">

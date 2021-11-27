@@ -107,14 +107,18 @@
                                                     <c:set var="totalAll"
                                                            value="${totalAll +total}"/>
                                                     <tr>
+                                                        <c:url var="pDetail" value="/pDetail">
+                                                            <c:param name="pojo.productId"
+                                                                     value="${item.productDTO.productId}"/>
+                                                        </c:url>
                                                         <td class="checkout-image">
-                                                            <a href="#"><img
+                                                            <a href="${pDetail}"><img
                                                                     src="${item.productDTO.photo}"
                                                                     alt="Berry Lace Dress"></a>
                                                         </td>
                                                         <td class="checkout-description">
                                                             <h3>
-                                                                <a href="#">${item.productDTO.name}</a>
+                                                                <a href="${pDetail}">${item.productDTO.name}</a>
                                                             </h3>
                                                             <p>${item.productDTO.description}</p>
                                                         </td>
