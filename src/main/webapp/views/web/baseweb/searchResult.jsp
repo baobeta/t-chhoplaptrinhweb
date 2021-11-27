@@ -131,7 +131,7 @@
                                                     key="view" bundle="${lang}"/> </a>
                                         </div>
                                     </div>
-                                    <h3><a href="shop-item.html">${product.name}</a></h3>
+                                    <h3><a href="${pDetail}">${product.name}</a></h3>
 
                                     <div class="pi-price"><fmt:formatNumber value="${product.price}"
                                                                             type="currency"

@@ -24,6 +24,9 @@
                 <div class="content-form-page">
                     <div class="row">
                         <div class="col-md-7 col-sm-7">
+                            <c:if test="${not empty errorMessage}">
+                                <h4 class="block" style="color: red">${errorMessage}</h4>
+                            </c:if>
                             <form action="${login}" method="post"
                                   class="form-horizontal form-without-legend" role="form">
                                 <div class="form-group">

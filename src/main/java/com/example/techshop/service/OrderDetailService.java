@@ -20,6 +20,7 @@ public class OrderDetailService {
 
     }
 
+
     public List<OrderDetailDTO> pagingnation(Integer pageNumber, Integer pageSize, String col, String value) {
         List<OrderDetailEntity> entities = STRepoUtil.getOrderDetailRepo().pagination(pageNumber,pageSize, col, value);
         return OrderDetailListConverter.entity2Dto(entities);
@@ -39,7 +40,6 @@ public class OrderDetailService {
         return STRepoUtil.getOrderDetailRepo().Count("orderDetailId", "isPaid", value);
     }
 
-
     public Map<Integer, Integer> getIncomeInMonth(int year){
         List<Object[]> list = STRepoUtil.getOrderDetailRepo().getIncomeInMonth(year);
         Map<Integer, Integer> data = new HashMap<>();
@@ -56,6 +56,7 @@ public class OrderDetailService {
         }
         return data;
     }    
+
     public Integer CountOrderDetailList() {
         return STRepoUtil.getOrderDetailRepo().Count("orderDetailId");
     }
