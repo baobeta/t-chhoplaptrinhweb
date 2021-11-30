@@ -1,9 +1,10 @@
-package com.example.techshop.service;
+package com.example.techshop.service.serviceimpl;
 
 import com.example.techshop.dto.CartItemDTO;
 import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.CartItemEntity;
 import com.example.techshop.entity.ProductEntity;
+import com.example.techshop.service.iservice.ICartItemService;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
 import com.example.techshop.utils.convert.list.CartItemListConverter;
@@ -15,7 +16,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CartItemService {
+public class CartItemService implements ICartItemService {
 
   public boolean addProductToCart(Integer cusId, Integer productId) {
     return STRepoUtil.getCartItemRepo().addProductToCart(cusId, productId);

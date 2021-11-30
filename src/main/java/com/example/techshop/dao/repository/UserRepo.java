@@ -1,6 +1,7 @@
 package com.example.techshop.dao.repository;
 
 import com.example.techshop.dao.AbstractDao;
+import com.example.techshop.dao.idao.IUserRepo;
 import com.example.techshop.entity.ShoppingSessionEntity;
 import com.example.techshop.entity.UserEntity;
 import com.example.techshop.utils.HibernateUtil;
@@ -11,7 +12,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class UserRepo extends AbstractDao<Integer, UserEntity> {
+public class UserRepo extends AbstractDao<Integer, UserEntity> implements IUserRepo {
 
   public UserEntity findUser(String email, String password) {
     Session session = HibernateUtil.getSessionFactory().openSession();

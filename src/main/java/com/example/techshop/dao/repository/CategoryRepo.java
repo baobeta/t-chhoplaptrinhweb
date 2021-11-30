@@ -1,20 +1,19 @@
 package com.example.techshop.dao.repository;
 
 import com.example.techshop.dao.AbstractDao;
+import com.example.techshop.dao.idao.ICategoryRepo;
 import com.example.techshop.entity.BrandEntity;
 import com.example.techshop.entity.CategoryEntity;
-import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.utils.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
-public class CategoryRepo extends AbstractDao<Integer, CategoryEntity> {
+public class CategoryRepo extends AbstractDao<Integer, CategoryEntity> implements
+    ICategoryRepo {
 
   public List<BrandEntity> getBrandInCate(Integer cateId) {
     Session session = HibernateUtil.getSessionFactory().openSession();

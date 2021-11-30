@@ -1,23 +1,23 @@
-package com.example.techshop.service;
+package com.example.techshop.service.serviceimpl;
 
 import com.example.techshop.command.CategoryCommand;
 import com.example.techshop.dto.BrandDTO;
 import com.example.techshop.dto.CategoryDTO;
 import com.example.techshop.entity.BrandEntity;
 import com.example.techshop.entity.CategoryEntity;
+import com.example.techshop.service.iservice.ICategoryService;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
 import com.example.techshop.utils.convert.CategoryConverter;
-import com.example.techshop.utils.convert.BrandConverter;
 import com.example.techshop.utils.convert.list.BrandListConverter;
 import com.example.techshop.utils.convert.list.CategoryListConverter;
-import java.util.Collection;
-import java.util.Collections;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
-public class CategoryService {
+public class CategoryService implements ICategoryService {
 
   public List<CategoryDTO> getAllCategory() {
     List<CategoryEntity> entities = STRepoUtil.getCategoryRepo().findAll();
@@ -43,13 +43,15 @@ public class CategoryService {
     return dtos;
   }
 
-  public Map<CategoryDTO, List<BrandDTO>> buildBrandInCate(CategoryCommand command) {
+  public Map<CategoryDTO, List<BrandDTO>> buildBrandInCate(List<CategoryDTO> categoryDTOS) {
     Map<CategoryDTO, List<BrandDTO>> brandInCate = new HashMap<CategoryDTO, List<BrandDTO>>();
-    for (CategoryDTO category : command.getListResult()) {
+    for (CategoryDTO category : categoryDTOS) {
       brandInCate.put(category,
           STServiceUtil.getCategoryService().getBrandByCate(category.getCategoryId()));
     }
-    return brandInCate;
+    TreeMap<CategoryDTO, List<BrandDTO>> sortedList = new TreeMap<>();
+    sortedList.putAll(brandInCate);
+    return sortedList;
   }
 
   public List<CategoryDTO> pagination(Integer pageNumber, Integer pageSize) {

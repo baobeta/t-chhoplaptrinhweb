@@ -1,18 +1,17 @@
 package com.example.techshop.dao.repository;
 
 import com.example.techshop.dao.AbstractDao;
+import com.example.techshop.dao.idao.IOrderDetailRepo;
 import com.example.techshop.entity.OrderDetailEntity;
 import com.example.techshop.utils.HibernateUtil;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class OrderDetailRepo extends AbstractDao<Integer, OrderDetailEntity> {
+public class OrderDetailRepo extends AbstractDao<Integer, OrderDetailEntity> implements
+    IOrderDetailRepo {
 
 
   public List<Object[]> getIncomeInMonth(int year) {

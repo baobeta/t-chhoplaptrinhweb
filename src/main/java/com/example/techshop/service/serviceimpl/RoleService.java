@@ -1,8 +1,9 @@
-package com.example.techshop.service;
+package com.example.techshop.service.serviceimpl;
 
 import com.example.techshop.dto.RoleDTO;
 import com.example.techshop.entity.RoleEntity;
 import com.example.techshop.entity.UserEntity;
+import com.example.techshop.service.iservice.IRoleService;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.convert.RoleConverter;
 import com.example.techshop.utils.convert.UserConverter;
@@ -10,7 +11,7 @@ import com.example.techshop.utils.convert.UserConverter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleService {
+public class RoleService implements IRoleService {
 
     public RoleDTO getRoleByName(String roleName){
         RoleEntity roleEntity = STRepoUtil.getRoleRepo().getRoleByName(roleName);

@@ -12,7 +12,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CategoryEntity implements Comparable<CategoryEntity> {
+public class CategoryEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +27,4 @@ public class CategoryEntity implements Comparable<CategoryEntity> {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoryEntity", cascade = CascadeType.ALL)
     private List<ProductEntity> productEntityList;
-
-
-    @Override
-    public int compareTo(CategoryEntity category) {
-        return this.getCategoryId().compareTo(category.getCategoryId());
-    }
 }

@@ -1,9 +1,10 @@
-package com.example.techshop.service;
+package com.example.techshop.service.serviceimpl;
 
 import com.example.techshop.dto.BrandDTO;
 import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.BrandEntity;
 import com.example.techshop.entity.ProductEntity;
+import com.example.techshop.service.iservice.IBrandService;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.convert.BrandConverter;
 import com.example.techshop.utils.convert.ProductConverter;
@@ -13,7 +14,7 @@ import com.example.techshop.utils.convert.list.ProductListConverter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BrandService {
+public class BrandService implements IBrandService {
   public List<BrandDTO> getAllBrand() {
     List<BrandEntity> entities = STRepoUtil.getBrandRepo().findAll();
     List<BrandDTO> dtos = BrandListConverter.entity2Dto(entities);

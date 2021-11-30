@@ -3,6 +3,7 @@ package com.example.techshop.dao.repository;
 import com.example.techshop.command.ProductCommand;
 import com.example.techshop.dao.AbstractDao;
 
+import com.example.techshop.dao.idao.IProductRepo;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.utils.HibernateUtil;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-public class ProductRepo extends AbstractDao<Integer, ProductEntity> {
+public class ProductRepo extends AbstractDao<Integer, ProductEntity> implements IProductRepo {
 
   public Object[] searchResult(Map<String, Object> properties) {
     Session session = HibernateUtil.getSessionFactory().openSession();

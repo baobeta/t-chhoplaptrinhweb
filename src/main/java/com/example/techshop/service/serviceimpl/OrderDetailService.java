@@ -1,9 +1,11 @@
-package com.example.techshop.service;
+package com.example.techshop.service.serviceimpl;
 
 import com.example.techshop.dto.OrderDetailDTO;
 import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.OrderDetailEntity;
 import com.example.techshop.entity.ProductEntity;
+import com.example.techshop.service.iservice.IOrderDetailService;
+import com.example.techshop.utils.MailUtils;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.convert.OrderDetailConverter;
 import com.example.techshop.utils.convert.list.OrderDetailListConverter;
@@ -13,13 +15,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OrderDetailService {
+public class OrderDetailService implements IOrderDetailService {
     public List<OrderDetailDTO> pagingnation(Integer pageNumber, Integer pageSize) {
         List<OrderDetailEntity> entities = STRepoUtil.getOrderDetailRepo().pagination(pageNumber,pageSize);
         return OrderDetailListConverter.entity2Dto(entities);
 
     }
-
 
     public List<OrderDetailDTO> pagingnation(Integer pageNumber, Integer pageSize, String col, String value) {
         List<OrderDetailEntity> entities = STRepoUtil.getOrderDetailRepo().pagination(pageNumber,pageSize, col, value);
@@ -76,5 +77,11 @@ public class OrderDetailService {
     }
     public Integer CountOrderDetailNotConFirmed() {
         return STRepoUtil.getOrderDetailRepo().Count("orderDetailId","ispaid",false);
+    }
+
+    @Override
+    public void sendConfirmationMail(OrderDetailDTO orderDetail) {
+        MailUtils mailSender = new MailUtils(orderDetail.getUserDTO().getEmail());
+        mailSender.sendMail(MailUtils.mailHeaders()+MailUtils.mailContent(orderDetail)+MailUtils.mailFooter());
     }
 }

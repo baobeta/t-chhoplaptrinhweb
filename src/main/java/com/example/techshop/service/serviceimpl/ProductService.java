@@ -1,4 +1,4 @@
-package com.example.techshop.service;
+package com.example.techshop.service.serviceimpl;
 
 import com.example.techshop.command.ProductCommand;
 import com.example.techshop.dto.ProductDTO;
@@ -6,6 +6,7 @@ import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.entity.UserEntity;
+import com.example.techshop.service.iservice.IProductService;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.convert.ProductConverter;
 import com.example.techshop.utils.convert.UserConverter;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.criteria.CriteriaBuilder.In;
 
-public class ProductService {
+public class ProductService implements IProductService {
 
   public List<ProductDTO> getAllProduct() {
     List<ProductEntity> entities = STRepoUtil.getProductRepo().findAll();

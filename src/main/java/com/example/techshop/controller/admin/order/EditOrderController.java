@@ -25,6 +25,9 @@ public class EditOrderController  extends HttpServlet  {
         OrderDetailDTO dto = STServiceUtil.getOrderDetailService().findById(command.getPojo().getOrderDetailId());
         dto.setIspaid(command.getIsPaid());
         STServiceUtil.getOrderDetailService().update(dto);
+        if(dto.getIspaid()){
+            STServiceUtil.getOrderDetailService().sendConfirmationMail(dto);
+        }
         resp.sendRedirect("/admin/order?page="+command.getPage()+"&value="+command.getValue());
 
 
