@@ -1,6 +1,7 @@
 package com.example.techshop.dao.repository;
 
 import com.example.techshop.dao.AbstractDao;
+import com.example.techshop.dao.idao.ICartItemRepo;
 import com.example.techshop.entity.CartItemEntity;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.entity.ShoppingSessionEntity;
@@ -23,11 +24,11 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
-public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> {
+public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> implements
+    ICartItemRepo {
 
   public boolean addProductToCart(Integer cusId, Integer productId) {
     try {

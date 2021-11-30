@@ -43,7 +43,7 @@ public class SearchController extends HttpServlet {
     productCommand.setFirstIndex(0);
     categoryCommand.setListResult(STServiceUtil.getCategoryService().getAllCategory());
     categoryCommand.setBrandInCate(
-        STServiceUtil.getCategoryService().buildBrandInCate(categoryCommand));
+        STServiceUtil.getCategoryService().buildBrandInCate(categoryCommand.getListResult()));
 
     Map<String, Object> properties = STServiceUtil.getProductService()
         .searchProperties(productCommand);

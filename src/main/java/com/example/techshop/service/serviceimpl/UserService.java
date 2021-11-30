@@ -1,8 +1,9 @@
-package com.example.techshop.service;
+package com.example.techshop.service.serviceimpl;
 
 import com.example.techshop.command.UserCommand;
 import com.example.techshop.dto.UserDTO;
 import com.example.techshop.entity.UserEntity;
+import com.example.techshop.service.iservice.IUserService;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.convert.UserConverter;
 import com.example.techshop.utils.convert.list.UserListConverter;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UserService {
+public class UserService implements IUserService {
 
   public boolean register(UserDTO userDTO) {
     UserEntity userEntity = UserConverter.dto2Entity(userDTO);

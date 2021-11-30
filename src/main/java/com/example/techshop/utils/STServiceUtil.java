@@ -1,14 +1,14 @@
 package com.example.techshop.utils;
 
-import com.example.techshop.service.BrandService;
-import com.example.techshop.service.CartItemService;
-import com.example.techshop.service.CategoryService;
-import com.example.techshop.service.OrderDetailService;
-import com.example.techshop.service.OrderItemService;
-import com.example.techshop.service.ProductService;
-import com.example.techshop.service.RoleService;
-import com.example.techshop.service.ShoppingSessionService;
-import com.example.techshop.service.UserService;
+import com.example.techshop.service.serviceimpl.BrandService;
+import com.example.techshop.service.serviceimpl.CartItemService;
+import com.example.techshop.service.serviceimpl.CategoryService;
+import com.example.techshop.service.serviceimpl.OrderDetailService;
+import com.example.techshop.service.serviceimpl.OrderItemService;
+import com.example.techshop.service.serviceimpl.ProductService;
+import com.example.techshop.service.serviceimpl.RoleService;
+import com.example.techshop.service.serviceimpl.ShoppingSessionService;
+import com.example.techshop.service.serviceimpl.UserService;
 
 public class STServiceUtil {
 

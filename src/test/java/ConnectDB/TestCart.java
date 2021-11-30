@@ -1,26 +1,21 @@
 package ConnectDB;
 
-import com.example.techshop.command.CategoryCommand;
+import com.example.techshop.dto.BrandDTO;
 import com.example.techshop.dto.CartItemDTO;
+import com.example.techshop.dto.CategoryDTO;
 import com.example.techshop.dto.OrderItemDTO;
-import com.example.techshop.dto.ProductDTO;
-import com.example.techshop.entity.BrandEntity;
-import com.example.techshop.entity.CartItemEntity;
+import com.example.techshop.entity.CategoryEntity;
 import com.example.techshop.entity.OrderItemEntity;
 import com.example.techshop.entity.RoleEntity;
-import com.example.techshop.entity.ShoppingSessionEntity;
-import com.example.techshop.utils.FormUtil;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
+import com.example.techshop.utils.convert.list.CategoryListConverter;
 import com.example.techshop.utils.convert.list.OrderItemListConverter;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import javax.persistence.criteria.CriteriaBuilder.In;
 import org.junit.Test;
 
 public class TestCart {
@@ -77,7 +72,6 @@ public class TestCart {
     System.out.println("duoc roi ne");
   }
 
-
   @Test
   public void testFormatNumber(){
     System.out.println(currency(10000));
@@ -91,7 +85,15 @@ public class TestCart {
 
   @Test
   public void testIncome(){
+    List<CategoryEntity> categoryEntities = STRepoUtil.getCategoryRepo().findAll();
+    System.out.println("duoc roi ne");
+  }
 
+  @Test
+  public void sortMap(){
+    List<CategoryEntity> entities = STRepoUtil.getCategoryRepo().findAll();
+    List<CategoryDTO> dtos = CategoryListConverter.entity2Dto(entities);
+    Map<CategoryDTO, List<BrandDTO>> map = STServiceUtil.getCategoryService().buildBrandInCate(dtos);
     System.out.println("duoc roi ne");
   }
 }
