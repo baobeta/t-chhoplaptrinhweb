@@ -19,26 +19,29 @@ import com.example.techshop.common.CoreConstant.*;
 
 
 public class MailUtils {
+
   private String userEmail;
+
   public MailUtils(String userEmail) {
     this.userEmail = userEmail;
   }
-  public void sendMail(String content){
+
+  public void sendMail(String content) {
     String emailSender = MAIL_SENDER;
-    String password  = PASS_MAIL_SENDER;
+    String password = PASS_MAIL_SENDER;
     Properties properties = this.propertiesMail();
 
-    Session session = Session.getDefaultInstance(properties,new javax.mail.Authenticator(){
-      protected PasswordAuthentication getPasswordAuthentication(){
-        return new PasswordAuthentication(emailSender,password);
+    Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+      protected PasswordAuthentication getPasswordAuthentication() {
+        return new PasswordAuthentication(emailSender, password);
       }
     });
 
-    try{
+    try {
       MimeMessage message = new MimeMessage(session);
       message.setFrom(new InternetAddress(emailSender));
-      message.addRecipient(Message.RecipientType.TO,new InternetAddress(userEmail));
-      message.setSubject("XÁC NHẬN ĐƠN HÀNG","utf-8");
+      message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
+      message.setSubject("XÁC NHẬN ĐƠN HÀNG", "utf-8");
       message.setContent(content, "text/html; charset=utf-8");
       Transport.send(message);
     } catch (Exception e) {
@@ -46,13 +49,13 @@ public class MailUtils {
     }
   }
 
-  private Properties propertiesMail(){
+  private Properties propertiesMail() {
     Properties properties = new Properties();
 
-    properties.put("mail.smtp.auth",true);
-    properties.put("mail.smtp.starttls.enable",true);
-    properties.put("mail.smtp.host","smtp.gmail.com");
-    properties.put("mail.smtp.port","587");
+    properties.put("mail.smtp.auth", true);
+    properties.put("mail.smtp.starttls.enable", true);
+    properties.put("mail.smtp.host", "smtp.gmail.com");
+    properties.put("mail.smtp.port", "587");
     properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
     properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
     return properties;
@@ -179,7 +182,8 @@ public class MailUtils {
 
   public static String mailContent(OrderDetailDTO orderDetail) {
     Integer orderId = orderDetail.getOrderDetailId();
-    List<OrderItemEntity> orderItems = STRepoUtil.getOrderItemRepo().getOrderItemsByOrderId(orderId);
+    List<OrderItemEntity> orderItems = STRepoUtil.getOrderItemRepo()
+        .getOrderItemsByOrderId(orderId);
     String content = "";
     Integer total = 0;
     for (OrderItemEntity item : orderItems) {
@@ -265,7 +269,9 @@ public class MailUtils {
         + "                                <td align=\"center\" style=\"padding: 25px 0 15px 0;\">\n"
         + "                                    <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n"
         + "                                        <tr>\n"
-        + "                                            <td align=\"center\" style=\"border-radius: 5px;\" bgcolor=\"##f44336\"> <a href=\""+shopURI+"\" target=\"_blank\" style=\"font-size: 18px; font-family: Open Sans, Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; background-color: #F44336; padding: 15px 30px; border: 1px solid #F44336; display: block;\">Quay lại</a> </td>\n"
+        + "                                            <td align=\"center\" style=\"border-radius: 5px;\" bgcolor=\"##f44336\"> <a href=\""
+        + shopURI
+        + "\" target=\"_blank\" style=\"font-size: 18px; font-family: Open Sans, Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; background-color: #F44336; padding: 15px 30px; border: 1px solid #F44336; display: block;\">Quay lại</a> </td>\n"
         + "                                        </tr>\n"
         + "                                    </table>\n"
         + "                                </td>\n"

@@ -27,7 +27,7 @@ public class ProductService implements IProductService {
   public void save(ProductDTO productDTO) throws Exception {
     ProductEntity entity = ProductConverter.dto2Entity(productDTO);
     entity = STRepoUtil.getProductRepo().save(entity);
-    if(entity == null) {
+    if (entity == null) {
       throw new Exception("Not save");
     }
   }
@@ -58,61 +58,69 @@ public class ProductService implements IProductService {
 //  }
 
 
-  public Object[] getProducts( Map<String, Object> properties){
+  public Object[] getProducts(Map<String, Object> properties) {
     Object[] entities = STRepoUtil.getProductRepo().searchResult(properties);
     List<ProductDTO> dtos = ProductListConverter.entity2Dto((List<ProductEntity>) entities[0]);
     Integer productCount = (Integer) entities[1];
-    return new Object[]{dtos,productCount};
+    return new Object[]{dtos, productCount};
   }
 
-  public Map<String,Object> searchProperties(ProductCommand command){
+  public Map<String, Object> searchProperties(ProductCommand command) {
     return STRepoUtil.getProductRepo().searchProperties(command);
   }
 
-  public List<ProductDTO> getNewProducts(){
+  public List<ProductDTO> getNewProducts() {
     List<ProductEntity> entities = STRepoUtil.getProductRepo().getNewProducts();
     return ProductListConverter.entity2Dto(entities);
   }
 
-  public List<ProductDTO> getIsSaleProducts(){
+  public List<ProductDTO> getIsSaleProducts() {
     List<ProductEntity> entities = STRepoUtil.getProductRepo().getIsSaleOffProducts();
     return ProductListConverter.entity2Dto(entities);
   }
 
-  public  ProductDTO  findEqualUnique(String property, Object value) {
-    ProductEntity productEntity = STRepoUtil.getProductRepo().findEqualUnique(property,value);
+  public ProductDTO findEqualUnique(String property, Object value) {
+    ProductEntity productEntity = STRepoUtil.getProductRepo().findEqualUnique(property, value);
     ProductDTO productDTO = ProductConverter.entity2Dto(productEntity);
     return productDTO;
   }
 
   public List<ProductDTO> pagingnation(Integer pageNumber, Integer pageSize) {
-    List<ProductEntity> entities = STRepoUtil.getProductRepo().pagination(pageNumber,pageSize);
-    return ProductListConverter.entity2Dto(entities);
-
-  }
-  public List<ProductDTO> pagingnation(Integer pageNumber, Integer pageSize, String col, String value) {
-    List<ProductEntity> entities = STRepoUtil.getProductRepo().pagination(pageNumber,pageSize,col, value);
-    return ProductListConverter.entity2Dto(entities);
-
-  }
-  public List<ProductDTO> pagingnation(Integer pageNumber, Integer pageSize, String col, boolean sale) {
-    List<ProductEntity> entities = STRepoUtil.getProductRepo().pagination(pageNumber,pageSize,col, sale);
+    List<ProductEntity> entities = STRepoUtil.getProductRepo().pagination(pageNumber, pageSize);
     return ProductListConverter.entity2Dto(entities);
 
   }
 
+  public List<ProductDTO> pagingnation(Integer pageNumber, Integer pageSize, String col,
+      String value) {
+    List<ProductEntity> entities = STRepoUtil.getProductRepo()
+        .pagination(pageNumber, pageSize, col, value);
+    return ProductListConverter.entity2Dto(entities);
+
+  }
+
+  public List<ProductDTO> pagingnation(Integer pageNumber, Integer pageSize, String col,
+      boolean sale) {
+    List<ProductEntity> entities = STRepoUtil.getProductRepo()
+        .pagination(pageNumber, pageSize, col, sale);
+    return ProductListConverter.entity2Dto(entities);
+
+  }
 
 
   public Integer CountProduct() {
     return STRepoUtil.getProductRepo().Count("productId");
   }
+
   public Integer CountProduct(String col, String value) {
     return STRepoUtil.getProductRepo().Count("productId", col, value);
   }
+
   public Integer CountProduct(String col, boolean value) {
     return STRepoUtil.getProductRepo().Count("productId", col, value);
   }
-//  public ProductDTO findUser(String email, String password) {
+
+  //  public ProductDTO findUser(String email, String password) {
 //    ProductEntity entity = STRepoUtil.getProductRepo().findUser(email, password);
 //    ProductDTO dto = UserConverter.entity2Dto(entity);
 //    if (dto != null) {

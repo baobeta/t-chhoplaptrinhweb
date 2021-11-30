@@ -29,31 +29,36 @@ public class EditProductController extends HttpServlet {
     response.setContentType("text/html");
     response.setCharacterEncoding("UTF-8");
     request.setCharacterEncoding("UTF-8");
-    ProductCommand command = FormUtil.populate(ProductCommand.class,request);
-    if(request.getParameter("productId") != null) {
-      Integer id = Integer.valueOf(request.getParameter("productId"));
-      ProductDTO dto = STServiceUtil.getProductService().findEqualUnique("id",id);
-      request.setAttribute("product",dto);
+    try {
+      ProductCommand command = FormUtil.populate(ProductCommand.class, request);
+      if (request.getParameter("productId") != null) {
+        Integer id = Integer.valueOf(request.getParameter("productId"));
+        ProductDTO dto = STServiceUtil.getProductService().findEqualUnique("id", id);
+        request.setAttribute("product", dto);
+      }
+      List<BrandDTO> listBrand = STServiceUtil.getBrandService().getAllBrand();
+      List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().getAllCategory();
+      request.setAttribute("brands", listBrand);
+      request.setAttribute("categorys", listCategory);
+      RequestDispatcher dispatcher
+          = this.getServletContext().getRequestDispatcher("/views/admin/product/editProduct.jsp");
+      dispatcher.forward(request, response);
+    } catch (Exception e) {
+      response.sendRedirect("/error");
     }
-    List<BrandDTO> listBrand = STServiceUtil.getBrandService().getAllBrand();
-    List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().getAllCategory();
-    request.setAttribute("brands",listBrand);
-    request.setAttribute("categorys",listCategory);
-    RequestDispatcher dispatcher
-        = this.getServletContext().getRequestDispatcher("/views/admin/product/editProduct.jsp");
-    dispatcher.forward(request, response);
   }
 
   @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      resp.setContentType("text/html");
-      resp.setCharacterEncoding("UTF-8");
-      req.setCharacterEncoding("UTF-8");
-    ProductCommand command = FormUtil.populate(ProductCommand.class,req);
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    resp.setContentType("text/html");
+    resp.setCharacterEncoding("UTF-8");
+    req.setCharacterEncoding("UTF-8");
+    ProductCommand command = FormUtil.populate(ProductCommand.class, req);
     Integer idCategory = Integer.valueOf(command.getCategoryDTO());
     Integer idBrand = Integer.valueOf(command.getBrandDTO());
 
-    if(command.getPojo().getProductId() != null) {
+    if (command.getPojo().getProductId() != null) {
       ProductDTO productUpdate = command.getPojo();
       productUpdate.setCategoryDTO(STServiceUtil.getCategoryService().findById(idCategory));
       productUpdate.setBrandDTO(STServiceUtil.getBrandService().findById(idBrand));
@@ -64,8 +69,7 @@ public class EditProductController extends HttpServlet {
         resp.sendRedirect("/admin/product?message=Error");
       }
 
-    }
-    else {
+    } else {
       ProductDTO dto = command.getPojo();
       dto.setCategoryDTO(STServiceUtil.getCategoryService().findById(idCategory));
       dto.setBrandDTO(STServiceUtil.getBrandService().findById(idBrand));

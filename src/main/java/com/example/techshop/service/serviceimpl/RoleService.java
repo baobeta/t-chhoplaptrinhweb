@@ -13,32 +13,34 @@ import java.util.List;
 
 public class RoleService implements IRoleService {
 
-    public RoleDTO getRoleByName(String roleName){
-        RoleEntity roleEntity = STRepoUtil.getRoleRepo().getRoleByName(roleName);
-        return RoleConverter.entity2Dto(roleEntity);
-    }
+  public RoleDTO getRoleByName(String roleName) {
+    RoleEntity roleEntity = STRepoUtil.getRoleRepo().getRoleByName(roleName);
+    return RoleConverter.entity2Dto(roleEntity);
+  }
 
-    public List<RoleDTO> getRole() {
-        List<RoleDTO> dtos = new ArrayList<>();
-        List<RoleEntity> entitys = STRepoUtil.getRoleRepo().findAll();
-        for(RoleEntity entity :entitys) {
-            dtos.add(RoleConverter.entity2Dto(entity));
-        }
-        return dtos;
+  public List<RoleDTO> getRole() {
+    List<RoleDTO> dtos = new ArrayList<>();
+    List<RoleEntity> entitys = STRepoUtil.getRoleRepo().findAll();
+    for (RoleEntity entity : entitys) {
+      dtos.add(RoleConverter.entity2Dto(entity));
     }
+    return dtos;
+  }
 
-    public void saveRole(RoleDTO dto) {
-        RoleEntity entity = RoleConverter.dto2Entity(dto);
-        STRepoUtil.getRoleRepo().save(entity);
-    }
-    public RoleDTO updateRole(RoleDTO dto) {
-        RoleEntity entity = RoleConverter.dto2Entity(dto);
-        entity = STRepoUtil.getRoleRepo().update(entity);
-        dto = RoleConverter.entity2Dto(entity);
-        return dto;
-    }
-    public void deleteRole(List<Integer> ids) {
-        STRepoUtil.getRoleRepo().delete(ids);
-    }
+  public void saveRole(RoleDTO dto) {
+    RoleEntity entity = RoleConverter.dto2Entity(dto);
+    STRepoUtil.getRoleRepo().save(entity);
+  }
+
+  public RoleDTO updateRole(RoleDTO dto) {
+    RoleEntity entity = RoleConverter.dto2Entity(dto);
+    entity = STRepoUtil.getRoleRepo().update(entity);
+    dto = RoleConverter.entity2Dto(entity);
+    return dto;
+  }
+
+  public void deleteRole(List<Integer> ids) {
+    STRepoUtil.getRoleRepo().delete(ids);
+  }
 
 }

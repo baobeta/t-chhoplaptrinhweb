@@ -8,9 +8,9 @@ import java.util.List;
 
 public class UserListConverter {
 
-  public static List<UserDTO> entity2Dto(List<UserEntity> entities){
+  public static List<UserDTO> entity2Dto(List<UserEntity> entities) {
     List<UserDTO> dtos = new ArrayList<UserDTO>();
-    for (UserEntity entity: entities) {
+    for (UserEntity entity : entities) {
       UserDTO dto = new UserDTO();
       dto = UserConverter.entity2Dto(entity);
       dtos.add(dto);
@@ -18,9 +18,9 @@ public class UserListConverter {
     return dtos;
   }
 
-  public static List<UserEntity> dto2Entity(List<UserDTO> dtos){
+  public static List<UserEntity> dto2Entity(List<UserDTO> dtos) {
     List<UserEntity> entities = new ArrayList<UserEntity>();
-    for (UserDTO dto: dtos) {
+    for (UserDTO dto : dtos) {
       UserEntity entity = new UserEntity();
       entity = UserConverter.dto2Entity(dto);
       entities.add(entity);

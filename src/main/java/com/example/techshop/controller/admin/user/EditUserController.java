@@ -19,30 +19,38 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/admin/user/edit")
 public class EditUserController extends HttpServlet {
+
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     request.setCharacterEncoding("UTF-8");
     response.setCharacterEncoding("UTF-8");
-    List<RoleDTO> roles=  STServiceUtil.getRoleService().getRole();
-    request.setAttribute("roles",roles);
-    UserCommand command = FormUtil.populate(UserCommand.class,request);
-    if(request.getParameter("userId")!=null) {
-      Integer id = Integer.valueOf(request.getParameter("userId"));
-      UserDTO dto = STServiceUtil.getUserService().findEqualUnique("id",id);
-      request.setAttribute("user",dto);
+    try {
+      List<RoleDTO> roles = STServiceUtil.getRoleService().getRole();
+      request.setAttribute("roles", roles);
+      UserCommand command = FormUtil.populate(UserCommand.class, request);
+      if (request.getParameter("userId") != null) {
+        Integer id = Integer.valueOf(request.getParameter("userId"));
+        UserDTO dto = STServiceUtil.getUserService().findEqualUnique("id", id);
+        request.setAttribute("user", dto);
+      }
+      RequestDispatcher dispatcher
+          = this.getServletContext().getRequestDispatcher("/views/admin/user/editUser.jsp");
+      dispatcher.forward(request, response);
+    } catch (Exception e) {
+      response.sendRedirect("/error");
     }
-    RequestDispatcher dispatcher
-        = this.getServletContext().getRequestDispatcher("/views/admin/user/editUser.jsp");
-    dispatcher.forward(request, response);
   }
+
   @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
     req.setCharacterEncoding("UTF-8");
     resp.setCharacterEncoding("UTF-8");
-    UserCommand command = FormUtil.populate(UserCommand.class,req);
-    if(command.getPojo().getUserId() != null) {
-      RoleDTO role = RoleConverter.entity2Dto(STRepoUtil.getRoleRepo().findEqualUnique("name",command.getRole()));
+    UserCommand command = FormUtil.populate(UserCommand.class, req);
+    if (command.getPojo().getUserId() != null) {
+      RoleDTO role = RoleConverter.entity2Dto(
+          STRepoUtil.getRoleRepo().findEqualUnique("name", command.getRole()));
       command.getPojo().setRoleDTO(role);
       try {
         STServiceUtil.getUserService().updateUser(command.getPojo());
@@ -51,7 +59,8 @@ public class EditUserController extends HttpServlet {
         resp.sendRedirect("/admin/user?message=Error");
       }
     } else {
-      RoleDTO role = RoleConverter.entity2Dto(STRepoUtil.getRoleRepo().findEqualUnique("name",command.getRole()));
+      RoleDTO role = RoleConverter.entity2Dto(
+          STRepoUtil.getRoleRepo().findEqualUnique("name", command.getRole()));
       command.getPojo().setRoleDTO(role);
       try {
         STServiceUtil.getUserService().saveUser(command.getPojo());

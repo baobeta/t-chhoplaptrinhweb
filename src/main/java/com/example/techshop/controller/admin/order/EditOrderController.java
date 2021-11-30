@@ -14,22 +14,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/admin/order/edit")
-public class EditOrderController  extends HttpServlet  {
+public class EditOrderController extends HttpServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        req.setCharacterEncoding("UTF-8");
-        OrderDetailCommand command = FormUtil.populate(OrderDetailCommand.class,req);
-        OrderDetailDTO dto = STServiceUtil.getOrderDetailService().findById(command.getPojo().getOrderDetailId());
-        dto.setIspaid(command.getIsPaid());
-        STServiceUtil.getOrderDetailService().update(dto);
-        if(dto.getIspaid()){
-            STServiceUtil.getOrderDetailService().sendConfirmationMail(dto);
-        }
-        resp.sendRedirect("/admin/order?page="+command.getPage()+"&value="+command.getValue());
-
-
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    resp.setContentType("text/html");
+    resp.setCharacterEncoding("UTF-8");
+    req.setCharacterEncoding("UTF-8");
+    try {
+      OrderDetailCommand command = FormUtil.populate(OrderDetailCommand.class, req);
+      OrderDetailDTO dto = STServiceUtil.getOrderDetailService()
+          .findById(command.getPojo().getOrderDetailId());
+      dto.setIspaid(command.getIsPaid());
+      STServiceUtil.getOrderDetailService().update(dto);
+      if (dto.getIspaid()) {
+        STServiceUtil.getOrderDetailService().sendConfirmationMail(dto);
+      }
+      resp.sendRedirect("/admin/order?page=" + command.getPage() + "&value=" + command.getValue());
+    } catch (Exception e) {
+      resp.sendRedirect("/error");
     }
+
+  }
 }

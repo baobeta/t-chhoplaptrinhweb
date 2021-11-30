@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 public class AppUtils {
+
   private static int REDIRECT_ID = 0;
 
   private static final Map<Integer, String> id_uri_map = new HashMap<Integer, String>();

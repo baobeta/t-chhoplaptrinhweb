@@ -145,7 +145,8 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> implement
       session.close();
     }
   }
-  public List<CartItemEntity> getCartGreater30Day( ){
+
+  public List<CartItemEntity> getCartGreater30Day() {
     List<CartItemEntity> listResult = new ArrayList<>();
     Session session = HibernateUtil.getSessionFactory().openSession();
     try {
@@ -155,16 +156,14 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> implement
       Instant now = Instant.now(); //current date
       Instant before = now.minus(Duration.ofDays(30));
       Date dateBefore = Date.from(before);
-      Timestamp ts=new Timestamp(dateBefore.getTime());
-      criteria.add(Restrictions.lt("createdDate",ts));
+      Timestamp ts = new Timestamp(dateBefore.getTime());
+      criteria.add(Restrictions.lt("createdDate", ts));
       listResult = (List<CartItemEntity>) criteria.list();
       session.getTransaction().commit();
-    }
-    catch (HibernateException e) {
+    } catch (HibernateException e) {
       e.printStackTrace();
       session.getTransaction().rollback();
-    }
-    finally {
+    } finally {
       session.close();
     }
     return listResult;

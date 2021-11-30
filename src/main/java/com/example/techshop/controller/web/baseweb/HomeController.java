@@ -37,7 +37,7 @@ public class HomeController extends HttpServlet {
       RequestDispatcher dispatcher //
           = this.getServletContext().getRequestDispatcher("/views/web/baseweb/home.jsp");
       dispatcher.forward(request, response);
-    }catch (Exception e){
+    } catch (Exception e) {
       response.sendRedirect("/error");
     }
   }

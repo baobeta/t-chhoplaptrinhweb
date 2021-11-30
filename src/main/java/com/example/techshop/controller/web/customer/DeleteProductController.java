@@ -17,10 +17,11 @@ public class DeleteProductController extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     try {
-      CartItemCommand command = FormUtil.populate(CartItemCommand.class,request);
-      STServiceUtil.getCartItemService().deleteCartItem(command.getCusId(),command.getProductId(),request,response);
+      CartItemCommand command = FormUtil.populate(CartItemCommand.class, request);
+      STServiceUtil.getCartItemService()
+          .deleteCartItem(command.getCusId(), command.getProductId(), request, response);
       response.sendRedirect("/cart");
-    } catch (Exception e){
+    } catch (Exception e) {
       response.sendRedirect("/error");
 
     }

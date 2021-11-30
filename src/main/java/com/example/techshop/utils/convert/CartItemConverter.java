@@ -10,16 +10,18 @@ public class CartItemConverter {
     dto.setCartItemId(entity.getCartItemId());
     dto.setQuantity(entity.getQuantity());
     dto.setProductDTO(ProductConverter.entity2Dto(entity.getProductEntity()));
-    dto.setShoppingSessionDTO(ShoppingSessionConverter.entity2Dto(entity.getShoppingSessionEntity()));
+    dto.setShoppingSessionDTO(
+        ShoppingSessionConverter.entity2Dto(entity.getShoppingSessionEntity()));
     return dto;
   }
 
-  public static CartItemEntity dto2Entity(CartItemDTO dto){
+  public static CartItemEntity dto2Entity(CartItemDTO dto) {
     CartItemEntity entity = new CartItemEntity();
     entity.setCartItemId(dto.getCartItemId());
     entity.setQuantity(dto.getQuantity());
     entity.setProductEntity(ProductConverter.dto2Entity(dto.getProductDTO()));
-    entity.setShoppingSessionEntity(ShoppingSessionConverter.dto2Entity(dto.getShoppingSessionDTO()));
+    entity.setShoppingSessionEntity(
+        ShoppingSessionConverter.dto2Entity(dto.getShoppingSessionDTO()));
     return entity;
   }
 

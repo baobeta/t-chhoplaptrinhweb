@@ -15,7 +15,7 @@ public class RoleConverter {
     return dto;
   }
 
-  public static RoleEntity dto2Entity(RoleDTO dto){
+  public static RoleEntity dto2Entity(RoleDTO dto) {
     RoleEntity entity = new RoleEntity();
     entity.setRoleId(dto.getRoleId());
     entity.setDescription(dto.getDescription());

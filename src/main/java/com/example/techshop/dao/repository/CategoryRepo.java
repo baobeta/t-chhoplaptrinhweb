@@ -34,21 +34,21 @@ public class CategoryRepo extends AbstractDao<Integer, CategoryEntity> implement
     return brandList;
   }
 
-  public CategoryEntity findCategoryByName(String name){
+  public CategoryEntity findCategoryByName(String name) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
     CategoryEntity category = null;
     String queryString = "FROM CategoryEntity c WHERE c.name = :name ";
-    try{
+    try {
       Query query = session.createQuery(queryString);
-      query.setParameter("name",name);
-      category = (CategoryEntity)query.uniqueResult();
+      query.setParameter("name", name);
+      category = (CategoryEntity) query.uniqueResult();
       transaction.commit();
-    }catch (HibernateException e){
+    } catch (HibernateException e) {
       transaction.rollback();
       throw e;
     }
-    return category ;
+    return category;
   }
 
 }

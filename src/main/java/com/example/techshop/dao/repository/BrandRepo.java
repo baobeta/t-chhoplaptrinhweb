@@ -11,20 +11,21 @@ import org.hibernate.query.Query;
 
 public class BrandRepo extends AbstractDao<Integer, BrandEntity> implements
     IBrandRepo {
-  public BrandEntity findBrandByName(String name){
+
+  public BrandEntity findBrandByName(String name) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
     BrandEntity brand = null;
     String queryString = "FROM BrandEntity b WHERE b.name = :name ";
-    try{
+    try {
       Query query = session.createQuery(queryString);
-      query.setParameter("name",name);
-      brand = (BrandEntity)query.uniqueResult();
+      query.setParameter("name", name);
+      brand = (BrandEntity) query.uniqueResult();
       transaction.commit();
-    }catch (HibernateException e){
+    } catch (HibernateException e) {
       transaction.rollback();
       throw e;
     }
-    return brand ;
+    return brand;
   }
 }

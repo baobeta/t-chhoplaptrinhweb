@@ -20,7 +20,7 @@ public class ProductConverter {
     return dto;
   }
 
-  public static ProductEntity dto2Entity(ProductDTO dto){
+  public static ProductEntity dto2Entity(ProductDTO dto) {
     ProductEntity entity = new ProductEntity();
     entity.setProductId(dto.getProductId());
     entity.setDescription(dto.getDescription());
@@ -34,5 +34,5 @@ public class ProductConverter {
     entity.setCategoryEntity(CategoryConverter.dto2Entity(dto.getCategoryDTO()));
     return entity;
   }
-  
+
 }

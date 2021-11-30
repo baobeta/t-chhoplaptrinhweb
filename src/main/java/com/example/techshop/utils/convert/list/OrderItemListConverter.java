@@ -8,9 +8,9 @@ import java.util.List;
 
 public class OrderItemListConverter {
 
-  public static List<OrderItemDTO> entity2Dto(List<OrderItemEntity> entities){
+  public static List<OrderItemDTO> entity2Dto(List<OrderItemEntity> entities) {
     List<OrderItemDTO> dtos = new ArrayList<OrderItemDTO>();
-    for (OrderItemEntity entity: entities) {
+    for (OrderItemEntity entity : entities) {
       OrderItemDTO dto = new OrderItemDTO();
       dto = OrderItemConverter.entity2Dto(entity);
       dtos.add(dto);
@@ -18,9 +18,9 @@ public class OrderItemListConverter {
     return dtos;
   }
 
-  public static List<OrderItemEntity> dto2Entity(List<OrderItemDTO> dtos){
+  public static List<OrderItemEntity> dto2Entity(List<OrderItemDTO> dtos) {
     List<OrderItemEntity> entities = new ArrayList<OrderItemEntity>();
-    for (OrderItemDTO dto: dtos) {
+    for (OrderItemDTO dto : dtos) {
       OrderItemEntity entity = new OrderItemEntity();
       entity = OrderItemConverter.dto2Entity(dto);
       entities.add(entity);

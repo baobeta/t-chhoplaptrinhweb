@@ -21,7 +21,7 @@ public class OrderDetailRepo extends AbstractDao<Integer, OrderDetailEntity> imp
     try {
       String queryString = "SELECT MONTH(o.createdDate), SUM(o.total) FROM OrderDetailEntity o WHERE YEAR(o.createdDate)= :year GROUP BY MONTH(o.createdDate)";
       Query query = session.createQuery(queryString);
-      query.setParameter("year",year);
+      query.setParameter("year", year);
       List<Object[]> income = query.list();
       transaction.commit();
       return income;

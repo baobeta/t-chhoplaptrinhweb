@@ -15,7 +15,7 @@ public class CategoryConverter {
     return dto;
   }
 
-  public static CategoryEntity dto2Entity(CategoryDTO dto){
+  public static CategoryEntity dto2Entity(CategoryDTO dto) {
     CategoryEntity entity = new CategoryEntity();
     entity.setDescription(dto.getDescription());
     entity.setName(dto.getName());

@@ -28,7 +28,7 @@ public class UserService implements IUserService {
       return dto;
     }
     return null;
-}
+  }
 
   public List<UserDTO> getUser() {
     List<UserEntity> entities = STRepoUtil.getUserRepo().findAll();
@@ -45,7 +45,7 @@ public class UserService implements IUserService {
   public void saveUser(UserDTO userDTO) throws Exception {
     UserEntity userEntity = UserConverter.dto2Entity(userDTO);
     UserEntity usersave = STRepoUtil.getUserRepo().save(userEntity);
-    if(usersave == null) {
+    if (usersave == null) {
       throw new Exception("Not update");
     }
   }
@@ -53,7 +53,7 @@ public class UserService implements IUserService {
   public UserDTO updateUser(UserDTO userDTO) throws Exception {
     UserEntity userEntity = UserConverter.dto2Entity(userDTO);
     userEntity = STRepoUtil.getUserRepo().update(userEntity);
-    if(userEntity == null) {
+    if (userEntity == null) {
       throw new Exception("Not update");
     }
     userDTO = UserConverter.entity2Dto(userEntity);
@@ -76,16 +76,19 @@ public class UserService implements IUserService {
     return UserListConverter.entity2Dto(listEntity);
   }
 
-  public  List<UserDTO> pagingnation(Integer pageNumber, Integer pageSize, String col , String value) {
-    List<UserEntity> listEntity = STRepoUtil.getUserRepo().pagination(pageNumber,pageSize,col,value);
-    return  UserListConverter.entity2Dto(listEntity);
+  public List<UserDTO> pagingnation(Integer pageNumber, Integer pageSize, String col,
+      String value) {
+    List<UserEntity> listEntity = STRepoUtil.getUserRepo()
+        .pagination(pageNumber, pageSize, col, value);
+    return UserListConverter.entity2Dto(listEntity);
   }
 
   public Integer CountUser() {
     return STRepoUtil.getUserRepo().Count("userId");
   }
+
   public Integer CountUser(String col, String value) {
-    return STRepoUtil.getUserRepo().Count("userId",col,value);
+    return STRepoUtil.getUserRepo().Count("userId", col, value);
   }
 
 }

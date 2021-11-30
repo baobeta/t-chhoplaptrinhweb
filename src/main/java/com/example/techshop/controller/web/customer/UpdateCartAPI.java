@@ -18,8 +18,8 @@ public class UpdateCartAPI extends HttpServlet {
       Integer cusId = Integer.parseInt(request.getParameter("cusId"));
       Integer productId = Integer.parseInt(request.getParameter("productId"));
       int quantity = Integer.parseInt(request.getParameter("quantity"));
-      STServiceUtil.getCartItemService().updateCartItem(cusId,productId,quantity);
-    } catch (Exception e){
+      STServiceUtil.getCartItemService().updateCartItem(cusId, productId, quantity);
+    } catch (Exception e) {
       response.sendRedirect("/error");
     }
   }

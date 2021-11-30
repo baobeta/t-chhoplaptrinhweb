@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/logout")
 public class LogoutController extends HttpServlet {
+
   private static final long serialVersionUID = 1L;
 
   public LogoutController() {
@@ -22,7 +23,7 @@ public class LogoutController extends HttpServlet {
 
     request.getSession().invalidate();
     // Redrect to Home Page.
-    response.sendRedirect( "/login");
+    response.sendRedirect("/login");
 
   }
 

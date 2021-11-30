@@ -10,14 +10,14 @@ import org.hibernate.Session;
 
 public class RoleRepo extends AbstractDao<Integer, RoleEntity> implements IRoleRepo {
 
-  public RoleEntity getRoleByName(String roleName){
+  public RoleEntity getRoleByName(String roleName) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     try {
-      String queryString ="FROM RoleEntity c WHERE c.name=: roleName" ;
+      String queryString = "FROM RoleEntity c WHERE c.name=: roleName";
       Query query = session.createQuery(queryString);
-      query.setParameter("roleName",roleName);
+      query.setParameter("roleName", roleName);
       return (RoleEntity) query.uniqueResult();
-    }catch (HibernateException e){
+    } catch (HibernateException e) {
       throw e;
     } finally {
       session.close();
