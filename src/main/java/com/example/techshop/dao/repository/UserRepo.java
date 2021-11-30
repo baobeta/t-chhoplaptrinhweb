@@ -29,7 +29,7 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> implements IUserR
     }
     transaction.commit();
     session.close();
-    if (entity!=null) {
+    if (entity != null) {
 
       return entity;
     } else {
@@ -54,6 +54,7 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> implements IUserR
       session.close();
     }
   }
+
   public boolean register(UserEntity user) {
     try {
       if (isUniqueEmail(user.getEmail())) {

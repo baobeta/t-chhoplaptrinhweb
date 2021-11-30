@@ -23,7 +23,7 @@ public class AddToCartAPI extends HttpServlet {
       if (cusId != -1) {
         STServiceUtil.getCartItemService().addProductToCart(cusId, productId);
       }
-    }catch (Exception e){
+    } catch (Exception e) {
       response.sendRedirect("/error");
     }
   }

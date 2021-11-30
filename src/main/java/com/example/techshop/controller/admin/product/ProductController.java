@@ -19,48 +19,55 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/admin/product")
 public class ProductController extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        ProductCommand command = FormUtil.populate(ProductCommand.class,request);
 
-        List<ProductDTO> listProduct =
-                STServiceUtil.getProductService().pagingnation(command.getPage(),
-                        command.getMaxPageItems(),"name", command.getValue());
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html");
+    response.setCharacterEncoding("UTF-8");
+    request.setCharacterEncoding("UTF-8");
+    try {
+      ProductCommand command = FormUtil.populate(ProductCommand.class, request);
 
-        command.setTotalItems((STServiceUtil.getProductService().CountProduct("name", command.getValue())/ command.getMaxPageItems())+1);
+      List<ProductDTO> listProduct =
+          STServiceUtil.getProductService().pagingnation(command.getPage(),
+              command.getMaxPageItems(), "name", command.getValue());
 
-        List<BrandDTO> listBrand = STServiceUtil.getBrandService().getAllBrand();
-        List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().getAllCategory();
+      command.setTotalItems(
+          (STServiceUtil.getProductService().CountProduct("name", command.getValue())
+              / command.getMaxPageItems()) + 1);
 
-        checkMessage(request);
+      List<BrandDTO> listBrand = STServiceUtil.getBrandService().getAllBrand();
+      List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().getAllCategory();
 
-        request.setAttribute("products",listProduct);
-        request.setAttribute("brands",listBrand);
-        request.setAttribute("category",listCategory);
-        request.setAttribute("pojo",command);
+      checkMessage(request);
 
-        RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/views/admin/product/productManager.jsp");
-        dispatcher.forward(request, response);
+      request.setAttribute("products", listProduct);
+      request.setAttribute("brands", listBrand);
+      request.setAttribute("category", listCategory);
+      request.setAttribute("pojo", command);
+
+      RequestDispatcher dispatcher
+          = this.getServletContext()
+          .getRequestDispatcher("/views/admin/product/productManager.jsp");
+      dispatcher.forward(request, response);
+    } catch (Exception e) {
+      response.sendRedirect("/error");
     }
+  }
 
-    public void checkMessage(HttpServletRequest request) {
-        String message = request.getParameter("message");
-        if(message != null) {
-            if(message.trim().equals("addSuccess")) {
-                request.setAttribute("message","Thêm sản phẩm thành công");
-            } else if (message.trim().equals("updateSuccess")){
-                request.setAttribute("message","Sửa sản phẩm thành công");
-            } else if (message.trim().equals("delSuccess")) {
-                request.setAttribute("message","Xóa sản phẩm thành công");
-            }
-            else if (message.trim().equals("Error")) {
-                request.setAttribute("message","Có lỗi xảy ra");
-            }
-        }
+  public void checkMessage(HttpServletRequest request) {
+    String message = request.getParameter("message");
+    if (message != null) {
+      if (message.trim().equals("addSuccess")) {
+        request.setAttribute("message", "Thêm sản phẩm thành công");
+      } else if (message.trim().equals("updateSuccess")) {
+        request.setAttribute("message", "Sửa sản phẩm thành công");
+      } else if (message.trim().equals("delSuccess")) {
+        request.setAttribute("message", "Xóa sản phẩm thành công");
+      } else if (message.trim().equals("Error")) {
+        request.setAttribute("message", "Có lỗi xảy ra");
+      }
     }
+  }
 }

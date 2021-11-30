@@ -26,9 +26,9 @@ public class CartItemService implements ICartItemService {
     STRepoUtil.getCartItemRepo().updateCartItem(cusId, productId, quantity);
   }
 
-  public void deleteCartItem(Integer cusId, Integer productId,HttpServletRequest request,
+  public void deleteCartItem(Integer cusId, Integer productId, HttpServletRequest request,
       HttpServletResponse response) {
-    STRepoUtil.getCartItemRepo().deleteCartItem(cusId,productId,request,response);
+    STRepoUtil.getCartItemRepo().deleteCartItem(cusId, productId, request, response);
   }
 
   public void addCartInCookieToCus(Integer cusId, HttpServletRequest request,
@@ -65,13 +65,13 @@ public class CartItemService implements ICartItemService {
   public Integer deleteCartItemGreater30Day() {
     List<CartItemEntity> listcart = STRepoUtil.getCartItemRepo().getCartGreater30Day();
     List<Integer> ids = new ArrayList<>();
-    for( CartItemEntity cart : listcart) {
+    for (CartItemEntity cart : listcart) {
       ids.add(cart.getCartItemId());
     }
     return STRepoUtil.getCartItemRepo().delete(ids);
   }
 
-  public Integer countCartItemsGreater30Day(){
+  public Integer countCartItemsGreater30Day() {
     return STRepoUtil.getCartItemRepo().getCartGreater30Day().size();
   }
 

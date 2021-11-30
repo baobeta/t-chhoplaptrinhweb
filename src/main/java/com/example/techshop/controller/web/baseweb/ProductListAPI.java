@@ -27,7 +27,8 @@ public class ProductListAPI extends HttpServlet {
       ProductCommand command = FormUtil.populate(ProductCommand.class, request);
       setProperties(request, command);
       Map<String, Object> properties = STServiceUtil.getProductService().searchProperties(command);
-      List<ProductDTO> productDTOS = (List<ProductDTO>) STServiceUtil.getProductService().getProducts(properties)[0];
+      List<ProductDTO> productDTOS = (List<ProductDTO>) STServiceUtil.getProductService()
+          .getProducts(properties)[0];
       String viewURL = "/pDetail?pojo.productId=";
       response.setContentType("text/html");
       response.setCharacterEncoding("UTF-8");
@@ -49,7 +50,8 @@ public class ProductListAPI extends HttpServlet {
             + "Xem" + "</a>\n"
             + "                                        </div>\n"
             + "                                    </div>\n"
-            + "                                    <h3><a href=\""+viewURL+ product.getProductId()+"\">"
+            + "                                    <h3><a href=\"" + viewURL
+            + product.getProductId() + "\">"
             + product.getName() + "</a></h3>\n"
             + "\n"
             + "                                    <div class=\"pi-price\">" + formatCurrency(
@@ -62,10 +64,11 @@ public class ProductListAPI extends HttpServlet {
             + "                            </div>");
 
       }
-    }catch (Exception e) {
+    } catch (Exception e) {
       response.sendRedirect("/error");
     }
   }
+
   void setProperties(HttpServletRequest request, ProductCommand command) {
     Integer brandId = Integer.parseInt(request.getParameter("brandId"));
     Integer categoryId = Integer.parseInt(request.getParameter("categoryId"));
@@ -74,7 +77,7 @@ public class ProductListAPI extends HttpServlet {
     if (brandId != null && brandId > 0) {
       command.setBrand(STServiceUtil.getBrandService().findById(brandId));
     }
-    if (categoryId != null && categoryId > 0 ) {
+    if (categoryId != null && categoryId > 0) {
       command.setCategory(STServiceUtil.getCategoryService().findById(categoryId));
     }
     if (searchName != null && !searchName.isEmpty()) {

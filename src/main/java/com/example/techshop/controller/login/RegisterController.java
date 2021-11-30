@@ -29,13 +29,13 @@ public class RegisterController extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     request.setCharacterEncoding("UTF-8");
-    UserCommand command = FormUtil.populate(UserCommand.class,request);
+    UserCommand command = FormUtil.populate(UserCommand.class, request);
     UserDTO user = command.getPojo();
 
-    try{
+    try {
       user.setRoleDTO(STServiceUtil.getRoleService().getRoleByName("CUSTOMER"));
       boolean checkUniqueEmail = STServiceUtil.getUserService().register(user);
-      if(!checkUniqueEmail){
+      if (!checkUniqueEmail) {
         request.setAttribute("isNotUniqueNotification", CoreConstant.USER_IS_NOT_UNIQUE);
         RequestDispatcher dispatcher
             = request.getRequestDispatcher("/views/common/register.jsp");
@@ -46,7 +46,7 @@ public class RegisterController extends HttpServlet {
             = request.getRequestDispatcher("/views/common/register.jsp");
         dispatcher.forward(request, response);
       }
-    }catch (Exception e){
+    } catch (Exception e) {
       response.sendRedirect("/error");
     }
 

@@ -7,6 +7,7 @@ import javax.servlet.ServletRegistration;
 import javax.servlet.http.HttpServletRequest;
 
 public class UrlPatternUtils {
+
   private static boolean hasUrlPattern(ServletContext servletContext, String urlPattern) {
 
     Map<String, ? extends ServletRegistration> map = servletContext.getServletRegistrations();

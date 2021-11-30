@@ -18,13 +18,13 @@ public class OrderDetailConverter {
     return dto;
   }
 
-  public static OrderDetailEntity dto2Entity(OrderDetailDTO dto){
+  public static OrderDetailEntity dto2Entity(OrderDetailDTO dto) {
     OrderDetailEntity entity = new OrderDetailEntity();
     entity.setOrderDetailId(dto.getOrderDetailId());
     entity.setIspaid(dto.getIspaid());
     entity.setTotal(dto.getTotal());
     entity.setPhoneNumber(dto.getPhoneNumber());
-    entity.setAddress(dto.getAddress()  );
+    entity.setAddress(dto.getAddress());
     entity.setCreatedDate(dto.getCreatedDate());
     entity.setUserEntity(UserConverter.dto2Entity(dto.getUserDTO()));
     entity.setUserEntity(UserConverter.dto2Entity(dto.getUserDTO()));

@@ -14,7 +14,7 @@ public class OrderItemConverter {
     return dto;
   }
 
-  public static OrderItemEntity dto2Entity(OrderItemDTO dto){
+  public static OrderItemEntity dto2Entity(OrderItemDTO dto) {
     OrderItemEntity entity = new OrderItemEntity();
     entity.setOrderItemId(dto.getOrderItemId());
     entity.setQuantity(dto.getQuantity());

@@ -13,7 +13,7 @@ public class ShoppingSessionConverter {
     return dto;
   }
 
-  public static ShoppingSessionEntity dto2Entity(ShoppingSessionDTO dto){
+  public static ShoppingSessionEntity dto2Entity(ShoppingSessionDTO dto) {
     ShoppingSessionEntity entity = new ShoppingSessionEntity();
     entity.setUserEntity(UserConverter.dto2Entity(dto.getUserDTO()));
     entity.setSessionId(dto.getShoppingSessionId());

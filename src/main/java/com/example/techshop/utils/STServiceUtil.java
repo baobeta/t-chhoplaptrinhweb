@@ -23,64 +23,64 @@ public class STServiceUtil {
   private static UserService userService = null;
 
   public static BrandService getBrandService() {
-    if (brandService == null){
-      brandService =new BrandService();
+    if (brandService == null) {
+      brandService = new BrandService();
     }
     return brandService;
   }
 
   public static CartItemService getCartItemService() {
-    if (cartItemService == null){
-      cartItemService =new CartItemService();
+    if (cartItemService == null) {
+      cartItemService = new CartItemService();
     }
     return cartItemService;
   }
 
   public static CategoryService getCategoryService() {
-    if (categoryService == null){
-      categoryService =new CategoryService();
+    if (categoryService == null) {
+      categoryService = new CategoryService();
     }
     return categoryService;
   }
 
   public static OrderDetailService getOrderDetailService() {
-    if (orderDetailService == null){
-      orderDetailService =new OrderDetailService();
+    if (orderDetailService == null) {
+      orderDetailService = new OrderDetailService();
     }
     return orderDetailService;
   }
 
   public static OrderItemService getOrderItemService() {
-    if (orderItemService == null){
-      orderItemService =new OrderItemService();
+    if (orderItemService == null) {
+      orderItemService = new OrderItemService();
     }
     return orderItemService;
   }
 
   public static ProductService getProductService() {
-    if (productService == null){
-      productService =new ProductService();
+    if (productService == null) {
+      productService = new ProductService();
     }
     return productService;
   }
 
   public static RoleService getRoleService() {
-    if (roleService == null){
-      roleService =new RoleService();
+    if (roleService == null) {
+      roleService = new RoleService();
     }
     return roleService;
   }
 
   public static ShoppingSessionService getShoppingSessionService() {
-    if (shoppingSessionService == null){
-      shoppingSessionService =new ShoppingSessionService();
+    if (shoppingSessionService == null) {
+      shoppingSessionService = new ShoppingSessionService();
     }
     return shoppingSessionService;
   }
 
   public static UserService getUserService() {
-    if (userService == null){
-      userService =new UserService();
+    if (userService == null) {
+      userService = new UserService();
     }
     return userService;
   }

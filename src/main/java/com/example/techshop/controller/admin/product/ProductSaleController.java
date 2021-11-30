@@ -19,49 +19,59 @@ import java.util.List;
 
 @WebServlet("/admin/product/sale")
 public class ProductSaleController extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        ProductCommand command = FormUtil.populate(ProductCommand.class,request);
 
-        List<ProductDTO> listProduct =
-                STServiceUtil.getProductService().pagingnation(command.getPage(),
-                        command.getMaxPageItems(),"sale", true);
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html");
+    response.setCharacterEncoding("UTF-8");
+    request.setCharacterEncoding("UTF-8");
+    try {
+      ProductCommand command = FormUtil.populate(ProductCommand.class, request);
 
-        command.setTotalItems((STServiceUtil.getProductService().CountProduct("sale",true)/ command.getMaxPageItems())+1);
+      List<ProductDTO> listProduct =
+          STServiceUtil.getProductService().pagingnation(command.getPage(),
+              command.getMaxPageItems(), "sale", true);
 
-        List<BrandDTO> listBrand = STServiceUtil.getBrandService().getAllBrand();
-        List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().getAllCategory();
+      command.setTotalItems(
+          (STServiceUtil.getProductService().CountProduct("sale", true) / command.getMaxPageItems())
+              + 1);
 
+      List<BrandDTO> listBrand = STServiceUtil.getBrandService().getAllBrand();
+      List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().getAllCategory();
 
-        request.setAttribute("products",listProduct);
-        request.setAttribute("brands",listBrand);
-        request.setAttribute("category",listCategory);
-        request.setAttribute("pojo",command);
+      request.setAttribute("products", listProduct);
+      request.setAttribute("brands", listBrand);
+      request.setAttribute("category", listCategory);
+      request.setAttribute("pojo", command);
 
-        RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/views/admin/product/productSale.jsp");
-        dispatcher.forward(request, response);
+      RequestDispatcher dispatcher
+          = this.getServletContext().getRequestDispatcher("/views/admin/product/productSale.jsp");
+      dispatcher.forward(request, response);
+    } catch (Exception e) {
+      response.sendRedirect("/error");
     }
+  }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        req.setCharacterEncoding("UTF-8");
-        ProductCommand command = FormUtil.populate(ProductCommand.class,req);
-        if(command.getIdDelete()!=null) {
-            ProductDTO productUpdate = STServiceUtil.getProductService().findById(command.getIdDelete());
-            productUpdate.setSale(command.isSale());
-            try {
-                STServiceUtil.getProductService().productUpdate(productUpdate);
-                resp.sendRedirect("/admin/product?message=updateSuccess");;
-            } catch (Exception exception) {
-                resp.sendRedirect("/admin/product?message=Error");;
-            }
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    resp.setContentType("text/html");
+    resp.setCharacterEncoding("UTF-8");
+    req.setCharacterEncoding("UTF-8");
+    ProductCommand command = FormUtil.populate(ProductCommand.class, req);
+    if (command.getIdDelete() != null) {
+      ProductDTO productUpdate = STServiceUtil.getProductService().findById(command.getIdDelete());
+      productUpdate.setSale(command.isSale());
+      try {
+        STServiceUtil.getProductService().productUpdate(productUpdate);
+        resp.sendRedirect("/admin/product?message=updateSuccess");
+        ;
+      } catch (Exception exception) {
+        resp.sendRedirect("/admin/product?message=Error");
+        ;
+      }
 
-        }
     }
+  }
 }

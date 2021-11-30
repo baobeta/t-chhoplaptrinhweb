@@ -15,59 +15,64 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BrandService implements IBrandService {
+
   public List<BrandDTO> getAllBrand() {
     List<BrandEntity> entities = STRepoUtil.getBrandRepo().findAll();
     List<BrandDTO> dtos = BrandListConverter.entity2Dto(entities);
     return dtos;
   }
 
-  public BrandDTO getBrandByName(String name){
+  public BrandDTO getBrandByName(String name) {
     BrandEntity brand = STRepoUtil.getBrandRepo().findBrandByName(name);
     return BrandConverter.entity2Dto(brand);
   }
+
   public BrandDTO findById(Integer id) {
-     BrandDTO dto = new BrandDTO();
-     BrandEntity entity = STRepoUtil.getBrandRepo().findById(id);
-     dto = BrandConverter.entity2Dto(entity);
-     return dto;
+    BrandDTO dto = new BrandDTO();
+    BrandEntity entity = STRepoUtil.getBrandRepo().findById(id);
+    dto = BrandConverter.entity2Dto(entity);
+    return dto;
   }
+
   public List<BrandDTO> pagination(Integer pageNumber, Integer pageSize) {
-      List<BrandEntity> entities = STRepoUtil.getBrandRepo().pagination(pageNumber,pageSize);
-      return BrandListConverter.entity2Dto(entities);
+    List<BrandEntity> entities = STRepoUtil.getBrandRepo().pagination(pageNumber, pageSize);
+    return BrandListConverter.entity2Dto(entities);
   }
 
-    public List<BrandDTO> pagination(Integer pageNumber, Integer pageSize, String col, String value) {
-        List<BrandEntity> entities = STRepoUtil.getBrandRepo().pagination(pageNumber,pageSize, col,value);
-        return BrandListConverter.entity2Dto(entities);
-    }
-    public Integer countBrand (String col, String value) {
-        return STRepoUtil.getBrandRepo().Count("brandId",col, value);
-    }
-
-  public Integer countBrand () {
-      return STRepoUtil.getBrandRepo().Count("brandId");
+  public List<BrandDTO> pagination(Integer pageNumber, Integer pageSize, String col, String value) {
+    List<BrandEntity> entities = STRepoUtil.getBrandRepo()
+        .pagination(pageNumber, pageSize, col, value);
+    return BrandListConverter.entity2Dto(entities);
   }
 
-    public  BrandDTO  findEqualUnique(String property, Object value) {
-        BrandEntity brandEntity = STRepoUtil.getBrandRepo().findEqualUnique(property,value);
-        BrandDTO brandDTO = BrandConverter.entity2Dto(brandEntity);
-        return brandDTO;
-    }
+  public Integer countBrand(String col, String value) {
+    return STRepoUtil.getBrandRepo().Count("brandId", col, value);
+  }
 
-    public void save(BrandDTO dto) {
-      BrandEntity entity = BrandConverter.dto2Entity(dto);
-      STRepoUtil.getBrandRepo().save(entity);
+  public Integer countBrand() {
+    return STRepoUtil.getBrandRepo().Count("brandId");
+  }
 
-    }
+  public BrandDTO findEqualUnique(String property, Object value) {
+    BrandEntity brandEntity = STRepoUtil.getBrandRepo().findEqualUnique(property, value);
+    BrandDTO brandDTO = BrandConverter.entity2Dto(brandEntity);
+    return brandDTO;
+  }
 
-    public BrandDTO update(BrandDTO dto) {
-      BrandEntity entity = BrandConverter.dto2Entity(dto);
-      entity = STRepoUtil.getBrandRepo().update(entity);
-      return BrandConverter.entity2Dto(entity);
-    }
+  public void save(BrandDTO dto) {
+    BrandEntity entity = BrandConverter.dto2Entity(dto);
+    STRepoUtil.getBrandRepo().save(entity);
 
-    public void delete(List<Integer> ids) {
-      STRepoUtil.getBrandRepo().delete(ids);
-    }
+  }
+
+  public BrandDTO update(BrandDTO dto) {
+    BrandEntity entity = BrandConverter.dto2Entity(dto);
+    entity = STRepoUtil.getBrandRepo().update(entity);
+    return BrandConverter.entity2Dto(entity);
+  }
+
+  public void delete(List<Integer> ids) {
+    STRepoUtil.getBrandRepo().delete(ids);
+  }
 
 }

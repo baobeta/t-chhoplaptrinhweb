@@ -15,21 +15,25 @@ import java.util.List;
 
 @WebServlet("/admin/user/delete")
 public class UserDeleteController extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        req.setCharacterEncoding("UTF-8");
-        UserCommand command = FormUtil.populate(UserCommand.class,req);
-        if(command.getIdDelete()!=null) {
-            List ids = new ArrayList();
-            ids.add(command.getIdDelete());
-            STServiceUtil.getUserService().deleteUser(ids);
-            resp.sendRedirect("/admin/user?message=delSuccess");
-        }
-        else {
-            resp.sendRedirect("/admin/user");
-        }
 
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    resp.setContentType("text/html");
+    resp.setCharacterEncoding("UTF-8");
+    req.setCharacterEncoding("UTF-8");
+    try {
+      UserCommand command = FormUtil.populate(UserCommand.class, req);
+      if (command.getIdDelete() != null) {
+        List ids = new ArrayList();
+        ids.add(command.getIdDelete());
+        STServiceUtil.getUserService().deleteUser(ids);
+        resp.sendRedirect("/admin/user?message=delSuccess");
+      } else {
+        resp.sendRedirect("/admin/user");
+      }
+    } catch (Exception e) {
+      resp.sendRedirect("/error");
     }
+  }
 }

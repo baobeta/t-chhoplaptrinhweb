@@ -15,21 +15,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/admin/product/delete")
-public class ProductDeleteController extends HttpServlet  {
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        req.setCharacterEncoding("UTF-8");
-        ProductCommand command = FormUtil.populate(ProductCommand.class,req);
-        if(command.getIdDelete()!=null) {
-            List ids = new ArrayList();
-            ids.add(command.getIdDelete());
-            STServiceUtil.getProductService().deleteProduct(ids);
-            resp.sendRedirect("/admin/product?message=delSuccess");
-        }
-        else {
-            resp.sendRedirect("/admin/product");
-        }
+public class ProductDeleteController extends HttpServlet {
+
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    resp.setContentType("text/html");
+    resp.setCharacterEncoding("UTF-8");
+    req.setCharacterEncoding("UTF-8");
+    try {
+      ProductCommand command = FormUtil.populate(ProductCommand.class, req);
+      if (command.getIdDelete() != null) {
+        List ids = new ArrayList();
+        ids.add(command.getIdDelete());
+        STServiceUtil.getProductService().deleteProduct(ids);
+        resp.sendRedirect("/admin/product?message=delSuccess");
+      } else {
+        resp.sendRedirect("/admin/product");
+      }
+    } catch (Exception e) {
+      resp.sendRedirect("/error");
     }
+
+  }
 }

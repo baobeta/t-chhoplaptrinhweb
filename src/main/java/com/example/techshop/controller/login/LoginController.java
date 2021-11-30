@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
+
   private static final long serialVersionUID = 1L;
 
   public LoginController() {
@@ -40,7 +41,8 @@ public class LoginController extends HttpServlet {
 
     if (userAccount == null) {
       request.setAttribute("errorMessage", CoreConstant.LOGIN_ERROR);
-      RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/views/common/login.jsp");
+      RequestDispatcher dispatcher = request.getServletContext()
+          .getRequestDispatcher("/views/common/login.jsp");
       dispatcher.forward(request, response);
       return;
     }
@@ -57,7 +59,7 @@ public class LoginController extends HttpServlet {
     if (requestUri != null) {
       response.sendRedirect(requestUri);
     } else {
-      response.sendRedirect( "/home");
+      response.sendRedirect("/home");
     }
   }
 }

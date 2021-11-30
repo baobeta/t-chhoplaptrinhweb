@@ -19,6 +19,7 @@ import javax.servlet.Filter;
 
 @WebFilter("/*")
 public class SecurityFilter implements Filter {
+
   public SecurityFilter() {
   }
 
@@ -68,7 +69,7 @@ public class SecurityFilter implements Filter {
         // Lưu trữ trang hiện tại để redirect đến sau khi đăng nhập thành công.
         int redirectId = AppUtils.storeRedirectAfterLoginUrl(request.getSession(), requestUri);
 
-        response.sendRedirect( "/login?redirectId=" + redirectId);
+        response.sendRedirect("/login?redirectId=" + redirectId);
         return;
       }
 

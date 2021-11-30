@@ -5,7 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.beanutils.BeanUtils;
 
 public class FormUtil {
-  public static <T> T populate(Class<T> clazz, HttpServletRequest request)  {
+
+  public static <T> T populate(Class<T> clazz, HttpServletRequest request) {
     T object = null;
     try {
       object = (T) clazz.newInstance();

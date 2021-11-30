@@ -15,12 +15,11 @@ import java.util.List;
 
 public class OrderItemService implements IOrderItemService {
 
-  public void convertCartItemToOrderItem(OrderDetailCommand command){
+  public void convertCartItemToOrderItem(OrderDetailCommand command) {
     STRepoUtil.getOrderItemRepo().convertCartItemToOrderItem(command);
   }
 
-  public List<OrderItemDTO> findByOrderDetail(Integer id)
-  {
+  public List<OrderItemDTO> findByOrderDetail(Integer id) {
     List<OrderItemEntity> entities = STRepoUtil.getOrderItemRepo().getOrderItemsByOrderId(id);
     return OrderItemListConverter.entity2Dto(entities);
   }

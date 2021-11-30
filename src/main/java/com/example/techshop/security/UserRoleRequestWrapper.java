@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 public class UserRoleRequestWrapper extends HttpServletRequestWrapper {
+
   private String user;
   private List<String> roles = null;
   private HttpServletRequest realRequest;

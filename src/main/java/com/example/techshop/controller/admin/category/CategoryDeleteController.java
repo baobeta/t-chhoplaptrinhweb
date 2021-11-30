@@ -16,21 +16,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/admin/category/delete")
-public class CategoryDeleteController  extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        req.setCharacterEncoding("UTF-8");
-        CategoryCommand command = FormUtil.populate(CategoryCommand.class,req);
-        if(command.getIdDelete()!=null) {
-            List ids = new ArrayList();
-            ids.add(command.getIdDelete());
-            STServiceUtil.getCategoryService().delete(ids);
-            resp.sendRedirect("/admin/category?message=delSuccess");
-        }
-        else {
-            resp.sendRedirect("/admin/category");
-        }
+public class CategoryDeleteController extends HttpServlet {
+
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    resp.setContentType("text/html");
+    resp.setCharacterEncoding("UTF-8");
+    req.setCharacterEncoding("UTF-8");
+    try {
+      CategoryCommand command = FormUtil.populate(CategoryCommand.class, req);
+      if (command.getIdDelete() != null) {
+        List ids = new ArrayList();
+        ids.add(command.getIdDelete());
+        STServiceUtil.getCategoryService().delete(ids);
+        resp.sendRedirect("/admin/category?message=delSuccess");
+      } else {
+        resp.sendRedirect("/admin/category");
+      }
+    } catch (Exception e) {
+      resp.sendRedirect("/error");
     }
+
+  }
 }

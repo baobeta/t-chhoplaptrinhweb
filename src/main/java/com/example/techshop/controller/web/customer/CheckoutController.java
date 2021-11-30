@@ -39,7 +39,7 @@ public class CheckoutController extends HttpServlet {
       RequestDispatcher dispatcher //
           = request.getServletContext().getRequestDispatcher("/views/web/customer/checkout.jsp");
       dispatcher.forward(request, response);
-    }catch (Exception e){
+    } catch (Exception e) {
       response.sendRedirect("/error");
     }
   }
@@ -48,16 +48,16 @@ public class CheckoutController extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     request.setCharacterEncoding("UTF-8");
-    try{
-      OrderDetailCommand order = FormUtil.populate(OrderDetailCommand.class,request);
-
+    try {
+      OrderDetailCommand order = FormUtil.populate(OrderDetailCommand.class, request);
 
       STServiceUtil.getOrderItemService().convertCartItemToOrderItem(order);
       request.setAttribute("thankForPayment", CoreConstant.THANH_FOR_PAYMENT);
       RequestDispatcher dispatcher //
-          = request.getServletContext().getRequestDispatcher("/views/web/customer/shoppingCart.jsp");
+          = request.getServletContext()
+          .getRequestDispatcher("/views/web/customer/shoppingCart.jsp");
       dispatcher.forward(request, response);
-    }catch (Exception e){
+    } catch (Exception e) {
       response.sendRedirect("/error");
     }
   }

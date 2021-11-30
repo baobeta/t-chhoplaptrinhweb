@@ -26,21 +26,21 @@ public class ProductRepo extends AbstractDao<Integer, ProductEntity> implements 
     try {
       if (properties.containsKey("brandId")) {
         Integer brandId = (Integer) properties.get("brandId");
-        if (brandId != null && brandId > 0 ) {
+        if (brandId != null && brandId > 0) {
           criteria.add(Restrictions.eq("brandEntity.brandId", brandId));
         }
       }
 
       if (properties.containsKey("cateId")) {
         Integer cateId = (Integer) properties.get("cateId");
-        if (cateId != null && cateId > 0 ) {
+        if (cateId != null && cateId > 0) {
           criteria.add(Restrictions.eq("categoryEntity.categoryId", cateId));
         }
       }
 
       if (properties.containsKey("sort")) {
         String sort = (String) properties.get("sort");
-        if (sort != null && !sort.isEmpty() ) {
+        if (sort != null && !sort.isEmpty()) {
           String[] orCriteria = sort.split("-");
           if (orCriteria[1].equals("ASC")) {
             criteria.addOrder(Order.asc(orCriteria[0]));
@@ -59,14 +59,14 @@ public class ProductRepo extends AbstractDao<Integer, ProductEntity> implements 
 
       if (properties.containsKey("minPrice")) {
         Integer minPrice = (Integer) properties.get("minPrice");
-        if ( minPrice != null &&minPrice > 0 ) {
+        if (minPrice != null && minPrice > 0) {
           criteria.add(Restrictions.gt("price", minPrice));
         }
       }
 
       if (properties.containsKey("maxPrice")) {
         Integer maxPrice = (Integer) properties.get("minPrice");
-        if ( maxPrice != null && maxPrice > 0) {
+        if (maxPrice != null && maxPrice > 0) {
           criteria.add(Restrictions.lt("price", maxPrice));
         }
       }
@@ -82,7 +82,7 @@ public class ProductRepo extends AbstractDao<Integer, ProductEntity> implements 
 
       if (properties.containsKey("maxResult")) {
         Integer maxResult = (Integer) properties.get("maxResult");
-        if ( maxResult != null &&maxResult >= 0) {
+        if (maxResult != null && maxResult >= 0) {
           criteria.setMaxResults(maxResult);
         }
       }
