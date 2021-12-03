@@ -2,14 +2,13 @@ package ConnectDB;
 
 import com.example.techshop.dto.CategoryDTO;
 import com.example.techshop.dto.ProductDTO;
-import com.example.techshop.entity.BrandEntity;
-import com.example.techshop.entity.CategoryEntity;
-import com.example.techshop.entity.ProductEntity;
-import com.example.techshop.entity.RoleEntity;
-import com.example.techshop.entity.UserEntity;
+import com.example.techshop.entity.*;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.STServiceUtil;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import org.junit.Test;
 
@@ -23,6 +22,22 @@ public class Add {
     List<Integer> list = STRepoUtil.getOrderDetailRepo().getYears();
     System.out.println("");
 
+  }
+
+  @Test
+  public void testcardItem() {
+
+    Instant now = Instant.now(); //current date
+    Instant before = now.minus(Duration.ofDays(30));
+    Date dateBefore = Date.from(before);
+    Timestamp ts=new Timestamp(dateBefore.getTime());
+    System.out.println(ts);
+    List<CartItemEntity> list = STRepoUtil.getCartItemRepo().getCartGreater30Day();
+    for(CartItemEntity cart :list) {
+      System.out.println(cart.getCartItemId());
+    }
+    System.out.println("sdfdsf");
+    System.out.println(STServiceUtil.getCartItemService().countCartItemsGreater30Day());
   }
 
   @Test
