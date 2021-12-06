@@ -30,6 +30,7 @@ import org.hibernate.query.Query;
 public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> implements
     ICartItemRepo {
 
+  @Override
   public boolean addProductToCart(Integer cusId, Integer productId) {
     try {
       ShoppingSessionEntity sessionEntity = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
@@ -71,6 +72,7 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> implement
     }
   }
 
+  @Override
   public boolean updateCartItem(Integer cusId, Integer productId, int quantity) {
     try {
       ShoppingSessionEntity session = STRepoUtil.getUserRepo().findSessionByCusId(cusId);
@@ -104,6 +106,7 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> implement
 
   }
 
+  @Override
   public boolean deleteCartItem(Integer cusId, Integer productId, HttpServletRequest request,
       HttpServletResponse response) {
     try {
@@ -127,6 +130,7 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> implement
     }
   }
 
+  @Override
   public CartItemEntity findCartItem(Integer sessionId, Integer productId) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
@@ -146,6 +150,7 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> implement
     }
   }
 
+  @Override
   public List<CartItemEntity> getCartGreater30Day() {
     List<CartItemEntity> listResult = new ArrayList<>();
     Session session = HibernateUtil.getSessionFactory().openSession();
@@ -179,6 +184,7 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> implement
     return false;
   }
 
+  @Override
   public List<CartItemEntity> getCartItemsByCusId(Integer cusId) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
@@ -208,6 +214,7 @@ public class CartItemRepo extends AbstractDao<Integer, CartItemEntity> implement
     return cartItems;
   }
 
+  @Override
   public void addCartInCookieToCus(Integer cusId, HttpServletRequest request,
       HttpServletResponse response) {
     Cookie[] cookies = request.getCookies();

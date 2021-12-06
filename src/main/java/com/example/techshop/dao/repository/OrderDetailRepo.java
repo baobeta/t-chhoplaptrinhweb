@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
 public class OrderDetailRepo extends AbstractDao<Integer, OrderDetailEntity> implements
     IOrderDetailRepo {
 
-
+  @Override
   public List<Object[]> getIncomeInMonth(int year) {
 
     Session session = HibernateUtil.getSessionFactory().openSession();

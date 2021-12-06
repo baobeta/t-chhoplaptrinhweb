@@ -4,6 +4,7 @@
 <c:url value="/home" var="home"/>
 
 <fmt:setLocale value="vi_VN"/>
+<title>${product.name}<sitemesh:title/></title>
 <div class="main">
     <div class="container">
         <!-- BEGIN SIDEBAR & CONTENT -->

@@ -7,6 +7,4 @@ public interface IUserRepo {
   UserEntity findUser(String email, String password);
   ShoppingSessionEntity findSessionByCusId(Integer cusId);
   boolean register(UserEntity user);
-  boolean isUniqueEmail(String email);
-
 }

@@ -3,6 +3,7 @@ package com.example.techshop.command;
 import com.example.techshop.command.abstractcommand.AbstractCommand;
 import com.example.techshop.dto.BrandDTO;
 import com.example.techshop.dto.CategoryDTO;
+import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.utils.STServiceUtil;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,8 @@ public class CategoryCommand extends AbstractCommand<CategoryDTO> {
     this.pojo = new CategoryDTO();
   }
   private Map<CategoryDTO, List<BrandDTO>> brandInCate;
+  private Map<CategoryDTO, List<ProductDTO>> productInCate;
+
   private String value = "";
 
   private Integer idDelete;

@@ -19,6 +19,7 @@ import org.hibernate.criterion.Restrictions;
 
 public class ProductRepo extends AbstractDao<Integer, ProductEntity> implements IProductRepo {
 
+  @Override
   public Object[] searchResult(Map<String, Object> properties) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Criteria criteria = session.createCriteria(ProductEntity.class);
@@ -96,6 +97,7 @@ public class ProductRepo extends AbstractDao<Integer, ProductEntity> implements 
     }
   }
 
+  @Override
   public Map<String, Object> searchProperties(ProductCommand command) {
     Map<String, Object> properties = new HashMap<String, Object>();
     properties.put("brandId", command.getBrand().getBrandId());
@@ -109,6 +111,7 @@ public class ProductRepo extends AbstractDao<Integer, ProductEntity> implements 
     return properties;
   }
 
+  @Override
   public List<ProductEntity> getNewProducts() {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Criteria criteria = session.createCriteria(ProductEntity.class);
@@ -129,6 +132,7 @@ public class ProductRepo extends AbstractDao<Integer, ProductEntity> implements 
     return products;
   }
 
+  @Override
   public List<ProductEntity> getIsSaleOffProducts() {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Criteria criteria = session.createCriteria(ProductEntity.class);

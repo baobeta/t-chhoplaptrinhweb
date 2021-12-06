@@ -9,8 +9,6 @@ import java.util.List;
  public interface IOrderItemRepo {
    void convertCartItemToOrderItem(OrderDetailCommand command);
 
-   OrderDetailEntity newOrderDetail(OrderDetailCommand command, Integer cusId);
-
    List<OrderItemEntity> getOrderItemsByOrderId(Integer orderId);
 
 }

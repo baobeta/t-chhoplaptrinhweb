@@ -21,8 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 
    List<CartItemEntity> getCartGreater30Day();
 
-   boolean isEnoughAmount(Integer productId, int quantity);
-
    List<CartItemEntity> getCartItemsByCusId(Integer cusId);
 
    void addCartInCookieToCus(Integer cusId, HttpServletRequest request,

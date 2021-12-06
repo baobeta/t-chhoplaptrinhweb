@@ -10,6 +10,7 @@ import org.hibernate.Session;
 
 public class RoleRepo extends AbstractDao<Integer, RoleEntity> implements IRoleRepo {
 
+  @Override
   public RoleEntity getRoleByName(String roleName) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     try {

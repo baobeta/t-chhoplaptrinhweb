@@ -1,6 +1,8 @@
 package ConnectDB;
 
+import com.example.techshop.dto.CategoryDTO;
 import com.example.techshop.dto.ProductDTO;
+import com.example.techshop.entity.CategoryEntity;
 import com.example.techshop.entity.OrderDetailEntity;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.utils.MailUtils;
@@ -108,4 +110,18 @@ public class ProductTest {
     System.out.println(orderDetail.getOrderDetailId());
   }
 
+  @Test
+  public void testProductsCategory(){
+    List<CategoryDTO> categories = STServiceUtil.getCategoryService().getAllCategory();
+    Map<CategoryDTO, List<ProductDTO>> productEntityList = STServiceUtil.getCategoryService().buildProductInCate(categories);
+    System.out.println("khong biet");
+
+  }
+
+  @Test
+  public void test(){
+    List<CategoryEntity> entities = STRepoUtil.getCategoryRepo().findAll();
+    System.out.println("khong biet");
+
+  }
 }

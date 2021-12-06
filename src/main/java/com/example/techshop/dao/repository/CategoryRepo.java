@@ -4,9 +4,13 @@ import com.example.techshop.dao.AbstractDao;
 import com.example.techshop.dao.idao.ICategoryRepo;
 import com.example.techshop.entity.BrandEntity;
 import com.example.techshop.entity.CategoryEntity;
+import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.utils.HibernateUtil;
+import com.example.techshop.utils.STRepoUtil;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,6 +19,7 @@ import org.hibernate.query.Query;
 public class CategoryRepo extends AbstractDao<Integer, CategoryEntity> implements
     ICategoryRepo {
 
+  @Override
   public List<BrandEntity> getBrandInCate(Integer cateId) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
@@ -34,6 +39,7 @@ public class CategoryRepo extends AbstractDao<Integer, CategoryEntity> implement
     return brandList;
   }
 
+  @Override
   public CategoryEntity findCategoryByName(String name) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
@@ -49,6 +55,24 @@ public class CategoryRepo extends AbstractDao<Integer, CategoryEntity> implement
       throw e;
     }
     return category;
+  }
+
+  public List<ProductEntity> getNewProductsByCategoryId(Integer id){
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = session.beginTransaction();
+    List<ProductEntity> products = new ArrayList<ProductEntity>();
+    String queryString = "FROM ProductEntity p WHERE p.categoryEntity.categoryId = :id ORDER BY createdDate desc ";
+    try {
+      Query query = session.createQuery(queryString);
+      query.setParameter("id",id);
+      query.setMaxResults(10);
+      products = query.getResultList();
+      transaction.commit();
+    }catch (HibernateException e){
+      transaction.rollback();
+      throw e;
+    }
+    return products;
   }
 
 }

@@ -31,11 +31,6 @@ public class TestCart {
   }
 
   @Test
-  public void testDeleteCartItem(){
-//    STRepoUtil.getCartItemRepo().deleteCartItem(1,1);
-  }
-
-  @Test
   public void testCart(){
     List<CartItemDTO> cartItemDTOS = STServiceUtil.getCartItemService().getCartItemsByCusId(1);
     if (cartItemDTOS != null){
@@ -47,22 +42,6 @@ public class TestCart {
   public void getRole(){
     RoleEntity roleEntity = STRepoUtil.getRoleRepo().getRoleByName("USER");
     System.out.println("duoc roi ne");
-  }
-
-  @Test
-  public void testGetBrandByCate(){
-//    CategoryCommand command = new CategoryCommand();
-//    command.
-//    List<BrandEntity> brandEntities = STRepoUtil.getCategoryRepo().getBrandInCate(1);
-//    System.out.println("duoc roi ne");
-  }
-
-  @Test
-  public void testPagination(){
-    Map<String, Object> properties = new HashMap<String,Object>();
-//    List<ProductDTO> productDTOS = STServiceUtil.getProductService().getProducts(properties);
-    System.out.println("duoc roi ne");
-
   }
 
   @Test

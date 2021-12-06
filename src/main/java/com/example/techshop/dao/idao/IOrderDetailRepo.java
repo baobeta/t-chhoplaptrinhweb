@@ -6,6 +6,4 @@ import java.util.List;
 
    List<Object[]> getIncomeInMonth(int year);
 
-   List<Integer> getYears();
-
 }
