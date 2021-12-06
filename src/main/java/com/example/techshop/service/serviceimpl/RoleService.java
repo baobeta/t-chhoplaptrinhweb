@@ -13,11 +13,14 @@ import java.util.List;
 
 public class RoleService implements IRoleService {
 
+
+  @Override
   public RoleDTO getRoleByName(String roleName) {
     RoleEntity roleEntity = STRepoUtil.getRoleRepo().getRoleByName(roleName);
     return RoleConverter.entity2Dto(roleEntity);
   }
 
+  @Override
   public List<RoleDTO> getRole() {
     List<RoleDTO> dtos = new ArrayList<>();
     List<RoleEntity> entitys = STRepoUtil.getRoleRepo().findAll();
@@ -27,11 +30,13 @@ public class RoleService implements IRoleService {
     return dtos;
   }
 
+  @Override
   public void saveRole(RoleDTO dto) {
     RoleEntity entity = RoleConverter.dto2Entity(dto);
     STRepoUtil.getRoleRepo().save(entity);
   }
 
+  @Override
   public RoleDTO updateRole(RoleDTO dto) {
     RoleEntity entity = RoleConverter.dto2Entity(dto);
     entity = STRepoUtil.getRoleRepo().update(entity);
@@ -39,6 +44,7 @@ public class RoleService implements IRoleService {
     return dto;
   }
 
+  @Override
   public void deleteRole(List<Integer> ids) {
     STRepoUtil.getRoleRepo().delete(ids);
   }

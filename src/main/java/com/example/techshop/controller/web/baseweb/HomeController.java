@@ -28,7 +28,6 @@ public class HomeController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
     try {
       CategoryCommand categoryCommand = FormUtil.populate(CategoryCommand.class, request);
       ProductCommand productCommand = FormUtil.populate(ProductCommand.class, request);
@@ -48,6 +47,8 @@ public class HomeController extends HttpServlet {
     categoryCommand.setListResult(STServiceUtil.getCategoryService().getAllCategory());
     categoryCommand.setBrandInCate(
         STServiceUtil.getCategoryService().buildBrandInCate(categoryCommand.getListResult()));
+    categoryCommand.setProductInCate(STServiceUtil.getCategoryService().buildProductInCate(
+        categoryCommand.getListResult()));
     productCommand.setNewProducts(STServiceUtil.getProductService().getNewProducts());
     productCommand.setIsSaleProducts(STServiceUtil.getProductService().getIsSaleProducts());
     request.setAttribute("cateItems", categoryCommand);

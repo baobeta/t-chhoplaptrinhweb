@@ -18,30 +18,36 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CartItemService implements ICartItemService {
 
+  @Override
   public boolean addProductToCart(Integer cusId, Integer productId) {
     return STRepoUtil.getCartItemRepo().addProductToCart(cusId, productId);
   }
 
+  @Override
   public void updateCartItem(Integer cusId, Integer productId, int quantity) {
     STRepoUtil.getCartItemRepo().updateCartItem(cusId, productId, quantity);
   }
 
+  @Override
   public void deleteCartItem(Integer cusId, Integer productId, HttpServletRequest request,
       HttpServletResponse response) {
     STRepoUtil.getCartItemRepo().deleteCartItem(cusId, productId, request, response);
   }
 
+  @Override
   public void addCartInCookieToCus(Integer cusId, HttpServletRequest request,
       HttpServletResponse response) {
     STRepoUtil.getCartItemRepo().addCartInCookieToCus(cusId, request, response);
   }
 
+  @Override
   public List<CartItemDTO> getCartItemsByCusId(Integer cusId) {
     List<CartItemEntity> cartItemEntities = STRepoUtil.getCartItemRepo().getCartItemsByCusId(cusId);
     List<CartItemDTO> cartItemDTOS = CartItemListConverter.entity2Dto(cartItemEntities);
     return cartItemDTOS;
   }
 
+  @Override
   public List<CartItemDTO> inCookieCartItems(HttpServletRequest request) {
     Cookie[] cookies = request.getCookies();
     List<CartItemDTO> cartItemList = new ArrayList<CartItemDTO>();
@@ -62,6 +68,7 @@ public class CartItemService implements ICartItemService {
     return cartItemList;
   }
 
+  @Override
   public Integer deleteCartItemGreater30Day() {
     List<CartItemEntity> listcart = STRepoUtil.getCartItemRepo().getCartGreater30Day();
     List<Integer> ids = new ArrayList<>();
@@ -71,6 +78,7 @@ public class CartItemService implements ICartItemService {
     return STRepoUtil.getCartItemRepo().delete(ids);
   }
 
+  @Override
   public Integer countCartItemsGreater30Day() {
     return STRepoUtil.getCartItemRepo().getCartGreater30Day().size();
   }

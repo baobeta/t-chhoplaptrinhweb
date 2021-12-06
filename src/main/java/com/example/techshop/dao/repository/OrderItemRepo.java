@@ -25,6 +25,7 @@ import org.hibernate.Transaction;
 public class OrderItemRepo extends AbstractDao<Integer, OrderItemEntity> implements
     IOrderItemRepo {
 
+  @Override
   public void convertCartItemToOrderItem(OrderDetailCommand command) {
     try {
       Integer cusId = command.getCusId();
@@ -64,6 +65,7 @@ public class OrderItemRepo extends AbstractDao<Integer, OrderItemEntity> impleme
     }
   }
 
+  @Override
   public List<OrderItemEntity> getOrderItemsByOrderId(Integer orderId) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();

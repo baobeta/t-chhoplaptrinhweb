@@ -72,19 +72,11 @@ public class ProductListAPI extends HttpServlet {
   void setProperties(HttpServletRequest request, ProductCommand command) {
     Integer brandId = Integer.parseInt(request.getParameter("brandId"));
     Integer categoryId = Integer.parseInt(request.getParameter("categoryId"));
-    String searchName = request.getParameter("searchName");
-    String sort = request.getParameter("sort");
     if (brandId != null && brandId > 0) {
       command.setBrand(STServiceUtil.getBrandService().findById(brandId));
     }
     if (categoryId != null && categoryId > 0) {
       command.setCategory(STServiceUtil.getCategoryService().findById(categoryId));
-    }
-    if (searchName != null && !searchName.isEmpty()) {
-      command.setSearchName(searchName);
-    }
-    if (sort != null && !sort.isEmpty()) {
-      command.setSort(sort);
     }
   }
 

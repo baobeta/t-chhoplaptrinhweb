@@ -16,11 +16,13 @@ import java.util.Map;
 
 public class UserService implements IUserService {
 
+  @Override
   public boolean register(UserDTO userDTO) {
     UserEntity userEntity = UserConverter.dto2Entity(userDTO);
     return STRepoUtil.getUserRepo().register(userEntity);
   }
 
+  @Override
   public UserDTO findUser(String email, String password) {
     UserEntity entity = STRepoUtil.getUserRepo().findUser(email, password);
     if (entity != null) {
@@ -30,18 +32,21 @@ public class UserService implements IUserService {
     return null;
   }
 
+  @Override
   public List<UserDTO> getUser() {
     List<UserEntity> entities = STRepoUtil.getUserRepo().findAll();
     List<UserDTO> dtos = UserListConverter.entity2Dto(entities);
     return dtos;
   }
 
+  @Override
   public UserDTO findById(Integer id) {
     UserEntity userEntity = STRepoUtil.getUserRepo().findById(id);
     UserDTO userDTO = UserConverter.entity2Dto(userEntity);
     return userDTO;
   }
 
+  @Override
   public void saveUser(UserDTO userDTO) throws Exception {
     UserEntity userEntity = UserConverter.dto2Entity(userDTO);
     UserEntity usersave = STRepoUtil.getUserRepo().save(userEntity);
@@ -50,6 +55,7 @@ public class UserService implements IUserService {
     }
   }
 
+  @Override
   public UserDTO updateUser(UserDTO userDTO) throws Exception {
     UserEntity userEntity = UserConverter.dto2Entity(userDTO);
     userEntity = STRepoUtil.getUserRepo().update(userEntity);
@@ -60,10 +66,12 @@ public class UserService implements IUserService {
     return userDTO;
   }
 
+  @Override
   public void deleteUser(List<Integer> ids) {
     STRepoUtil.getUserRepo().delete(ids);
   }
 
+  @Override
   public UserDTO findEqualUnique(String property, Object value) {
     UserEntity userEntity = STRepoUtil.getUserRepo().findEqualUnique(property, value);
     UserDTO userDTO = UserConverter.entity2Dto(userEntity);
@@ -71,11 +79,13 @@ public class UserService implements IUserService {
 
   }
 
+  @Override
   public List<UserDTO> pagingnation(Integer pageNumber, Integer pageSize) {
     List<UserEntity> listEntity = STRepoUtil.getUserRepo().pagination(pageNumber, pageSize);
     return UserListConverter.entity2Dto(listEntity);
   }
 
+  @Override
   public List<UserDTO> pagingnation(Integer pageNumber, Integer pageSize, String col,
       String value) {
     List<UserEntity> listEntity = STRepoUtil.getUserRepo()
@@ -83,10 +93,12 @@ public class UserService implements IUserService {
     return UserListConverter.entity2Dto(listEntity);
   }
 
+  @Override
   public Integer CountUser() {
     return STRepoUtil.getUserRepo().Count("userId");
   }
 
+  @Override
   public Integer CountUser(String col, String value) {
     return STRepoUtil.getUserRepo().Count("userId", col, value);
   }

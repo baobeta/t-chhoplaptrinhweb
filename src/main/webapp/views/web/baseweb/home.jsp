@@ -3,6 +3,7 @@
 <%@include file="/common/taglib.jsp" %>
 
 <fmt:setLocale value="vi_VN"/>
+
 <!-- BEGIN SLIDER -->
 <div class="page-slider margin-bottom-35">
     <!-- LayerSlider start -->
@@ -180,7 +181,8 @@
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="${product.photo}" style="height: 165px;margin-left: auto;margin-right: auto;"
+                                    <img src="${product.photo}"
+                                         style="height: 165px;margin-left: auto;margin-right: auto;"
                                          class="img-responsive" alt="Berry Lace Dress">
                                     <div>
                                         <a href="${product.photo}" height="165px"
@@ -199,7 +201,7 @@
                                 <div class="pi-price"><fmt:formatNumber value="${product.price}"
                                                                         type="currency"
                                                                         maxFractionDigits="0"
-                                                                        /></div>
+                                /></div>
                                 <div class="sticker sticker-sale"></div>
                             </div>
                         </div>
@@ -232,7 +234,9 @@
                                                  value="${category.key.categoryId}"/>
                                     </c:url>
                                     <div>
-                                        <button class="btn btn-link" style="color: #555; text-decoration: none" onclick='open123("${search}")'>${brand.name}</button>
+                                        <button class="btn btn-link"
+                                                style="color: #555; text-decoration: none"
+                                                onclick='open123("${search}")'>${brand.name}</button>
                                     </div>
                                 </c:forEach>
                             </ul>
@@ -255,7 +259,8 @@
                         <div>
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="${product.photo}"  style="height: 165px;margin-left: auto;margin-right: auto;"
+                                    <img src="${product.photo}"
+                                         style="height: 165px;margin-left: auto;margin-right: auto;"
                                          class="img-responsive" alt="Berry Lace Dress">
                                     <div>
                                         <a href="${product.photo}"
@@ -273,78 +278,103 @@
                                 <div class="pi-price"><fmt:formatNumber value="${product.price}"
                                                                         type="currency"
                                                                         maxFractionDigits="0"
-                                                                        /></div>
+                                /></div>
                                 <div class="sticker sticker-new"></div>
                             </div>
                         </div>
                     </c:forEach>
                 </div>
             </div>
+
+            <c:forEach items="${cateItems.productInCate}" var="category">
+                <div class="col-md-12 col-sm-6 margin-top-15">
+                    <h2>${category.key.name} mới</h2>
+                    <div class="owl-carousel owl-carousel4">
+                        <c:forEach items="${category.value}" var="product">
+                            <div>
+                                <div class="product-item">
+                                    <div class="pi-img-wrapper">
+                                        <img src="${product.photo}"
+                                             style="height: 165px;margin-left: auto;margin-right: auto;"
+                                             class="img-responsive" alt="Berry Lace Dress">
+                                        <div>
+                                            <a href="${product.photo}"
+                                               class="btn btn-default fancybox-button">Zoom</a>
+                                            <c:url var="pDetail" value="/pDetail">
+                                                <c:param name="pojo.productId"
+                                                         value="${product.productId}"/>
+                                            </c:url>
+                                            <a href="${pDetail}"
+                                               class="btn btn-default fancybox-fast-view">View</a>
+                                        </div>
+                                    </div>
+                                    <h3><a href="${pDetail}">${product.name}</a></h3>
+
+                                    <div class="pi-price"><fmt:formatNumber value="${product.price}"
+                                                                            type="currency"
+                                                                            maxFractionDigits="0"
+                                    /></div>
+                                    <div class="sticker sticker-new"></div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </c:forEach>
+
             <!-- END CONTENT -->
         </div>
         <!-- END SIDEBAR & CONTENT -->
-
-        <!-- BEGIN PROMO -->
-        <div class="row margin-bottom-35 ">
-            <!-- BEGIN PROMO -->
-            <div class="col-md-6 shop-index-carousel">
-                <div class="content-slider">
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="<c:url value='/static/assets/frontend/pages/img/index-sliders/slide1.jpg'/>"
-                                     class="img-responsive" alt="Berry Lace Dress">
-                            </div>
-                            <div class="item">
-                                <img src="<c:url value='/static/assets/frontend/pages/img/index-sliders/slide2.jpg'/>"
-                                     class="img-responsive" alt="Berry Lace Dress">
-                            </div>
-                            <div class="item">
-                                <img src="<c:url value='/static/assets/frontend/pages/img/index-sliders/slide3.jpg'/>"
-                                     class="img-responsive" alt="Berry Lace Dress">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END PROMO -->
-        </div>
-        <!-- END TWO PRODUCTS & PROMO -->
     </div>
 </div>
 <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
 <!--[if lt IE 9]>
 <script src="<c:url value='/static/assets/global/plugins/respond.min.js'/>"></script>
 <![endif]-->
-<script src="<c:url value='/static/assets/global/plugins/jquery.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/static/assets/global/plugins/jquery-migrate.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/static/assets/global/plugins/bootstrap/js/bootstrap.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/static/assets/frontend/layout/scripts/back-to-top.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/static/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery.min.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-migrate.min.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/bootstrap/js/bootstrap.min.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/layout/scripts/back-to-top.js'/>"
+        type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'/>"
+        type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
 <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
-<script src="<c:url value='/static/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js'/>" type="text/javascript"></script><!-- pop up -->
-<script src="<c:url value='/static/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js'/>" type="text/javascript"></script><!-- slider for products -->
-<script src="<c:url value='/static/assets/global/plugins/zoom/jquery.zoom.min.js'/>" type="text/javascript"></script><!-- product zoom -->
-<script src="<c:url value='/static/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js'/>" type="text/javascript"></script><!-- Quantity -->
+<script src="<c:url value='/static/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js'/>"
+        type="text/javascript"></script>
+<!-- pop up -->
+<script src="<c:url value='/static/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js'/>"
+        type="text/javascript"></script>
+<!-- slider for products -->
+<script src="<c:url value='/static/assets/global/plugins/zoom/jquery.zoom.min.js'/>"
+        type="text/javascript"></script>
+<!-- product zoom -->
+<script src="<c:url value='/static/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js'/>"
+        type="text/javascript"></script>
+<!-- Quantity -->
 
 <!-- BEGIN LayerSlider -->
-<script src="<c:url value='/static/assets/global/plugins/slider-layer-slider/js/greensock.js'/>" type="text/javascript"></script><!-- External libraries: GreenSock -->
-<script src="<c:url value='/static/assets/global/plugins/slider-layer-slider/js/layerslider.transitions.js'/>" type="text/javascript"></script><!-- LayerSlider script files -->
-<script src="<c:url value='/static/assets/global/plugins/slider-layer-slider/js/layerslider.kreaturamedia.jquery.js'/>" type="text/javascript"></script><!-- LayerSlider script files -->
-<script src="<c:url value='/static/assets/frontend/pages/scripts/layerslider-init.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/global/plugins/slider-layer-slider/js/greensock.js'/>"
+        type="text/javascript"></script>
+<!-- External libraries: GreenSock -->
+<script src="<c:url value='/static/assets/global/plugins/slider-layer-slider/js/layerslider.transitions.js'/>"
+        type="text/javascript"></script>
+<!-- LayerSlider script files -->
+<script src="<c:url value='/static/assets/global/plugins/slider-layer-slider/js/layerslider.kreaturamedia.jquery.js'/>"
+        type="text/javascript"></script>
+<!-- LayerSlider script files -->
+<script src="<c:url value='/static/assets/frontend/pages/scripts/layerslider-init.js'/>"
+        type="text/javascript"></script>
 <!-- END LayerSlider -->
 
-<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/static/assets/frontend/layout/scripts/layout.js'/>"
+        type="text/javascript"></script>
 <script type="text/javascript">
-  jQuery(document).ready(function() {
+  jQuery(document).ready(function () {
     Layout.init();
     Layout.initOWL();
     LayersliderInit.initLayerSlider();

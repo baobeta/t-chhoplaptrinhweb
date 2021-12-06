@@ -53,6 +53,8 @@ public class SearchController extends HttpServlet {
     productCommand.setTotalItems(
         (Integer) STServiceUtil.getProductService().getProducts(properties)[1]);
     productCommand.setTotalPages(totalPages(productCommand));
+    productCommand.setBrand(STServiceUtil.getBrandService().findById(productCommand.getBrand().getBrandId()));
+    productCommand.setCategory(STServiceUtil.getCategoryService().findById(productCommand.getCategory().getCategoryId()));
     request.setAttribute("cateItems", categoryCommand);
     request.setAttribute("productItems", productCommand);
   }

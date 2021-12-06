@@ -12,6 +12,7 @@ import org.hibernate.query.Query;
 public class BrandRepo extends AbstractDao<Integer, BrandEntity> implements
     IBrandRepo {
 
+  @Override
   public BrandEntity findBrandByName(String name) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();

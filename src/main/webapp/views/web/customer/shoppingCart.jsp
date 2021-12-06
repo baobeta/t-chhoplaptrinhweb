@@ -14,7 +14,7 @@
         <div class="row margin-bottom-40">
             <!-- BEGIN CONTENT -->
             <div class="col-md-12 col-sm-12">
-                <h1>Shopping cart</h1>
+                <h1><fmt:message key="cart" bundle="${lang}"/></h1>
                 <div class="goods-page">
                     <c:if test="${empty cartItems}">
                         <div class="container-fluid mt-100">
@@ -23,10 +23,10 @@
                                     <div class="card">
                                         <c:if test="${empty thankForPayment}">
                                             <div class="col-sm-12 empty-cart-cls text-center"><img
-                                                    src="https://i.imgur.com/dCdflKN.png"
+                                                    src="<c:url value="/static/assets/frontend/onepage/img/emptycart.png"/> "
                                                     width="130" height="130"
                                                     class="img-fluid mb-4 mr-3">
-                                                <h3><strong><fmt:message key="emptyCart" bundle="${lang}"/></strong></h3>
+                                                <h3><fmt:message key="emptyCart" bundle="${lang}"/></h3>
                                             </div>
                                         </c:if>
                                         <c:if test="${not empty thankForPayment}">

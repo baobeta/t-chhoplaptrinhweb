@@ -60,6 +60,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h1><fmt:message key="searchResult" bundle="${lang}"/>
+                                    <em>${productItems.category.name}</em>
+                                    <em>${productItems.brand.name}</em>
                                     <em>${productItems.searchName}</em></h1>
                             </div>
                             <div class="col-md-6">

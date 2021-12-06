@@ -26,9 +26,6 @@
             <div class="hor-menu ">
                 <ul class="nav navbar-nav" style="text-align:center">
                     <li class="" style="margin-right: 50px">
-                        <a href="<c:url value="/admin"/>">Trang chủ</a>
-                    </li>
-                    <li class="" style="margin-right: 50px">
                         <a href="<c:url value="/admin"/>">Dashboard</a>
                     </li>
                     <li class="" style="margin-right: 50px">
