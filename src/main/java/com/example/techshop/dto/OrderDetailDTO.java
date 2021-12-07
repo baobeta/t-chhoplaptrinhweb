@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class OrderDetailDTO {
+public class OrderDetailDTO implements Comparable<OrderDetailDTO> {
   
   private Integer orderDetailId;
 
@@ -28,4 +28,8 @@ public class OrderDetailDTO {
   private String address;
 
 
+  @Override
+  public int compareTo(OrderDetailDTO o) {
+    return (this.orderDetailId - o.getOrderDetailId());
+  }
 }

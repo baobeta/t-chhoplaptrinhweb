@@ -127,7 +127,7 @@
                                         <%--                                    <strong class="price"><span>$</span>3.00</strong>--%>
                                         <%--                                </li>--%>
                                     <li class="shopping-total-price">
-                                        <em>Total</em>
+                                        <em><fmt:message key="total" bundle="${lang}"/></em>
                                         <strong class="price"><fmt:formatNumber value="${totalAll}"
                                                                                 type="currency"
                                                                                 maxFractionDigits="0"/></strong>

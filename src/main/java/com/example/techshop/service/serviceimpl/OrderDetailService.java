@@ -1,15 +1,19 @@
 package com.example.techshop.service.serviceimpl;
 
 import com.example.techshop.dto.OrderDetailDTO;
+import com.example.techshop.dto.OrderItemDTO;
 import com.example.techshop.entity.OrderDetailEntity;
+import com.example.techshop.entity.OrderItemEntity;
 import com.example.techshop.service.iservice.IOrderDetailService;
 import com.example.techshop.utils.MailUtils;
 import com.example.techshop.utils.STRepoUtil;
 import com.example.techshop.utils.convert.OrderDetailConverter;
 import com.example.techshop.utils.convert.list.OrderDetailListConverter;
+import com.example.techshop.utils.convert.list.OrderItemListConverter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class OrderDetailService implements IOrderDetailService {
 
@@ -99,5 +103,20 @@ public class OrderDetailService implements IOrderDetailService {
     MailUtils mailSender = new MailUtils(orderDetail.getUserDTO().getEmail());
     mailSender.sendMail(
         MailUtils.mailHeaders() + MailUtils.mailContent(orderDetail) + MailUtils.mailFooter());
+  }
+
+  @Override
+  public Map<OrderDetailDTO, List<OrderItemDTO>> getItemsByCus(Integer cusId) {
+    Map<OrderDetailDTO, List<OrderItemDTO>> results = new TreeMap<OrderDetailDTO, List<OrderItemDTO>>();
+    List<OrderDetailEntity> orderDetails = STRepoUtil.getOrderDetailRepo().getOrderDetailByCusId(cusId);
+    OrderDetailDTO orderDetailDTO = null;
+    List<OrderItemDTO> orderItemDTOS = null;
+    for (OrderDetailEntity orderDetail :orderDetails){
+      List<OrderItemEntity> orderItems = STRepoUtil.getOrderDetailRepo().getOrderItems(orderDetail.getOrderDetailId());
+      orderDetailDTO = OrderDetailConverter.entity2Dto(orderDetail);
+      orderItemDTOS = OrderItemListConverter.entity2Dto(orderItems);
+      results.put(orderDetailDTO,orderItemDTOS);
+    }
+    return results;
   }
 }
