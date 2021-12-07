@@ -26,6 +26,6 @@ public class ShoppingSessionEntity {
   @JoinColumn(name = "cus_id", nullable = false)
   private UserEntity userEntity;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "shoppingSessionEntity", cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "shoppingSessionEntity",cascade = CascadeType.REMOVE, orphanRemoval = true)
   private List<CartItemEntity> cartItemEntityList;
 }

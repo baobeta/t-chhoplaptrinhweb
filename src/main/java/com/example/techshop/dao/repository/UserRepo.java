@@ -14,8 +14,6 @@ import org.hibernate.Transaction;
 
 public class UserRepo extends AbstractDao<Integer, UserEntity> implements IUserRepo {
 
-
-  @Override
   public UserEntity findUser(String email, String password) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
@@ -40,7 +38,6 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> implements IUserR
   }
 
 
-  @Override
   public ShoppingSessionEntity findSessionByCusId(Integer cusId) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     Transaction transaction = session.beginTransaction();
@@ -59,8 +56,6 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> implements IUserR
     }
   }
 
-
-  @Override
   public boolean register(UserEntity user) {
     try {
       if (isUniqueEmail(user.getEmail())) {

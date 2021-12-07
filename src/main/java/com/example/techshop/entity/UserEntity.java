@@ -36,7 +36,7 @@ public class UserEntity {
     @JoinColumn(name = "role_id")
     private RoleEntity roleEntity;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<OrderDetailEntity> orderDetailEntities;
 
 //    @OneToOne(mappedBy = "userEntity", cascade = CascadeType.ALL)

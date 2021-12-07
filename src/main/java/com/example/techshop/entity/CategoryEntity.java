@@ -25,7 +25,7 @@ public class CategoryEntity implements Comparable<CategoryEntity> {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoryEntity", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoryEntity", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ProductEntity> productEntityList;
 
     @Override

@@ -27,6 +27,6 @@ public class BrandEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "brandEntity", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "brandEntity", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ProductEntity> productEntityList;
 }
