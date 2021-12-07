@@ -21,10 +21,12 @@ public class BrandController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
+    // Set UTF 8 page
     resp.setContentType("text/html");
     resp.setCharacterEncoding("UTF-8");
     req.setCharacterEncoding("UTF-8");
     try {
+
       BrandCommand command = FormUtil.populate(BrandCommand.class, req);
       List<BrandDTO> listBrand = STServiceUtil.getBrandService()
           .pagination(command.getPage(), command.getMaxPageItems(), "name", command.getValue());

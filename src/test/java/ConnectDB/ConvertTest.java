@@ -17,18 +17,18 @@ import org.junit.Test;
 public class ConvertTest {
 
 
-  @Test
-  public void TestConvertList(){
-    List<ProductDTO> productDTOS = ProductListConverter.entity2Dto(STRepoUtil.getProductRepo()
-        .findAll());
-    System.out.println("done!!!");
-  }
-
-  @Test
-  public void TestConvertList2(){
-    List<ProductDTO> productDTOS = ProductListConverter.entity2Dto(STRepoUtil.getProductRepo()
-        .findAll());
-
-    System.out.println("done!!!");
-  }
+//  @Test
+//  public void TestConvertList(){
+//    List<ProductDTO> productDTOS = ProductListConverter.entity2Dto(STRepoUtil.getProductRepo()
+//        .findAll());
+//    System.out.println("done!!!");
+//  }
+//
+//  @Test
+//  public void TestConvertList2(){
+//    List<ProductDTO> productDTOS = ProductListConverter.entity2Dto(STRepoUtil.getProductRepo()
+//        .findAll());
+//
+//    System.out.println("done!!!");
+//  }
 }
