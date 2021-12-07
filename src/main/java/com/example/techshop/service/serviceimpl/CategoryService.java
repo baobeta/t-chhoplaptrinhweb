@@ -52,14 +52,12 @@ public class CategoryService implements ICategoryService {
 
   @Override
   public Map<CategoryDTO, List<BrandDTO>> buildBrandInCate(List<CategoryDTO> categoryDTOS) {
-    Map<CategoryDTO, List<BrandDTO>> brandInCate = new HashMap<CategoryDTO, List<BrandDTO>>();
+    Map<CategoryDTO, List<BrandDTO>> brandInCate = new TreeMap<CategoryDTO, List<BrandDTO>>();
     for (CategoryDTO category : categoryDTOS) {
       brandInCate.put(category,
           STServiceUtil.getCategoryService().getBrandByCate(category.getCategoryId()));
     }
-    TreeMap<CategoryDTO, List<BrandDTO>> sortedList = new TreeMap<>();
-    sortedList.putAll(brandInCate);
-    return sortedList;
+    return brandInCate;
   }
 
   @Override

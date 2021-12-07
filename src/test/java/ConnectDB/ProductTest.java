@@ -1,9 +1,12 @@
 package ConnectDB;
 
 import com.example.techshop.dto.CategoryDTO;
+import com.example.techshop.dto.OrderDetailDTO;
+import com.example.techshop.dto.OrderItemDTO;
 import com.example.techshop.dto.ProductDTO;
 import com.example.techshop.entity.CategoryEntity;
 import com.example.techshop.entity.OrderDetailEntity;
+import com.example.techshop.entity.OrderItemEntity;
 import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.utils.MailUtils;
 import com.example.techshop.utils.STRepoUtil;
@@ -55,7 +58,7 @@ public class ProductTest {
     properties.put("maxResult",6);
 //    List<ProductEntity> products = (List<ProductEntity>) STRepoUtil.getProductRepo().searchResult(properties)[0];
     List<ProductDTO> dtos = (List<ProductDTO>) STServiceUtil.getProductService().getProducts(properties)[0];
-    System.out.println("khong biet");
+    System.out.println("test");
   }
 
   @Test
@@ -81,19 +84,19 @@ public class ProductTest {
 
     System.out.println(name+sort+cusId);
 
-    System.out.println("khong biet");
+    System.out.println("test");
 
   }
 
   @Test
   public void testGetNewProduct() {
     List<ProductEntity> products = STRepoUtil.getProductRepo().getNewProducts();
-    System.out.println("khong biet");
+    System.out.println("test");
   }
   @Test
   public void testIsSaleProduct() {
     List<ProductEntity> products = STRepoUtil.getProductRepo().getIsSaleOffProducts();
-    System.out.println("khong biet");
+    System.out.println("test");
   }
 
   @Test
@@ -114,14 +117,20 @@ public class ProductTest {
   public void testProductsCategory(){
     List<CategoryDTO> categories = STServiceUtil.getCategoryService().getAllCategory();
     Map<CategoryDTO, List<ProductDTO>> productEntityList = STServiceUtil.getCategoryService().buildProductInCate(categories);
-    System.out.println("khong biet");
+    System.out.println("test");
 
   }
 
   @Test
   public void test(){
     List<CategoryEntity> entities = STRepoUtil.getCategoryRepo().findAll();
-    System.out.println("khong biet");
+    System.out.println("test");
 
+  }
+
+  @Test
+  public void testOrderDetail(){
+    Map<OrderDetailDTO, List<OrderItemDTO>> entities = STServiceUtil.getOrderDetailService().getItemsByCus(37);
+    System.out.println("test");
   }
 }

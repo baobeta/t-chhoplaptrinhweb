@@ -3,7 +3,10 @@ package com.example.techshop.dao.repository;
 import com.example.techshop.dao.AbstractDao;
 import com.example.techshop.dao.idao.IOrderDetailRepo;
 import com.example.techshop.entity.OrderDetailEntity;
+import com.example.techshop.entity.OrderItemEntity;
+import com.example.techshop.entity.ProductEntity;
 import com.example.techshop.utils.HibernateUtil;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -33,6 +36,41 @@ public class OrderDetailRepo extends AbstractDao<Integer, OrderDetailEntity> imp
     }
   }
 
+  @Override
+  public List<OrderItemEntity> getOrderItems(Integer orderId) {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = session.beginTransaction();
+    List<OrderItemEntity> items = new ArrayList<OrderItemEntity>();
+    String queryString = "FROM OrderItemEntity o WHERE o.orderDetailEntity.id = :orderId";
+    try {
+      org.hibernate.query.Query query = session.createQuery(queryString);
+      query.setParameter("orderId",orderId);
+      items = query.getResultList();
+      transaction.commit();
+    }catch (HibernateException e){
+      transaction.rollback();
+      throw e;
+    }
+    return items;
+  }
+
+  @Override
+  public List<OrderDetailEntity> getOrderDetailByCusId(Integer cusId){
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction transaction = session.beginTransaction();
+    List<OrderDetailEntity> orders = new ArrayList<OrderDetailEntity>();
+    String queryString = "FROM OrderDetailEntity o WHERE o.userEntity.id = :orderId";
+    try {
+      org.hibernate.query.Query query = session.createQuery(queryString);
+      query.setParameter("orderId",cusId);
+      orders = query.getResultList();
+      transaction.commit();
+    }catch (HibernateException e){
+      transaction.rollback();
+      throw e;
+    }
+    return orders;
+  }
 
   public List<Integer> getYears() {
 
@@ -51,4 +89,7 @@ public class OrderDetailRepo extends AbstractDao<Integer, OrderDetailEntity> imp
       session.close();
     }
   }
+
+
+
 }
