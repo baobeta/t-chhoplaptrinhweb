@@ -8,6 +8,7 @@
 <c:url var="search" value="/search"/>
 <c:url var="cart" value="/cart"/>
 <c:url var="register" value="/register"/>
+<c:url var="doneOrder" value="/done-order"/>
 
 <div class="pre-header">
     <div class="container">
@@ -26,6 +27,7 @@
                 <ul class="list-unstyled list-inline pull-right">
 
                     <c:if test="${sessionScope.loginedUser != null}">
+                        <li><a href="${doneOrder}"> <fmt:message key="doneOrder" bundle="${lang}"/></a></li>
                         <li><a href="#">${sessionScope.loginedUser.lastName}</a></li>
                         <li><a href="${logout}"><fmt:message key="logout" bundle="${lang}"/></a>
                         </li>

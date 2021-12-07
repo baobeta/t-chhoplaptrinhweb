@@ -13,68 +13,82 @@
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
             <!-- BEGIN CONTENT -->
-            <c:forEach var="orderDetail" items="${orderDetails.itemsByCus}">
-                <div class="col-md-12 col-sm-12">
-                    <h1>
-                        <fmt:formatDate type="date" value="${orderDetail.key.createdDate}"/>
-                    </h1>
-                    <div class="goods-page">
-                        <div class="goods-data clearfix">
-                            <div class="table-wrapper-responsive">
-                                <table summary="Shopping cart">
-                                    <tr>
-                                        <th class="goods-page-image"><fmt:message
-                                                key="image" bundle="${lang}"/></th>
-                                        <th class="goods-page-description"><fmt:message
-                                                key="description" bundle="${lang}"/></th>
-                                        <th class="goods-page-quantity"><fmt:message
-                                                key="quantity" bundle="${lang}"/></th>
-                                    </tr>
-                                    <c:forEach var="item" items="${orderDetail.value}">
+            <c:if test="${empty orderDetails.itemsByCus}">
+                <div class="col-sm-12 empty-cart-cls text-center"><img
+                        src="<c:url value="/static/assets/frontend/onepage/img/emptycart.png"/> "
+                        width="130" height="130"
+                        class="img-fluid mb-4 mr-3">
+                    <h3><fmt:message key="emptyOrder" bundle="${lang}"/></h3>
+                </div>
+            </c:if>
+            <c:if test="${not empty orderDetails.itemsByCus}">
+                <c:forEach var="orderDetail" items="${orderDetails.itemsByCus}">
+                    <div class="col-md-12 col-sm-12">
+                        <h1>
+                            <fmt:formatDate type="date" value="${orderDetail.key.createdDate}"/>
+                        </h1>
+                        <div class="goods-page">
+                            <div class="goods-data clearfix">
+                                <div class="table-wrapper-responsive">
+                                    <table summary="Shopping cart">
                                         <tr>
-                                            <c:url var="pDetail" value="/pDetail">
-                                                <c:param name="pojo.productId"
-                                                         value="${item.productDTO.productId}"/>
-                                            </c:url>
-                                            <td class="goods-page-image">
-                                                <a href="${pDetail}"><img
-                                                        src="${item.productDTO.photo}"
-                                                        alt="Berry Lace Dress'/>"></a>
-                                            </td>
-                                            <td class="goods-page-description">
-                                                <h3><a href="${pDetail}">${item.productDTO.name}</a>
-                                                </h3>
-                                                <p>${item.productDTO.description}</p>
-                                            </td>
-
-                                            <td class="goods-page-quantity">
-                                                <div class="product-quantity">
-                                                    <input id="product-quantity" type="text"
-                                                           value="${item.quantity}"
-                                                           class="form-control"
-                                                           disabled="disabled">
-                                                </div>
-                                            </td>
+                                            <th class="goods-page-image"><fmt:message
+                                                    key="image" bundle="${lang}"/></th>
+                                            <th class="goods-page-description" width="768px"
+                                                height="116px"><fmt:message
+                                                    key="description" bundle="${lang}"/></th>
+                                            <th class="goods-page-quantity"><fmt:message
+                                                    key="quantity" bundle="${lang}"/></th>
                                         </tr>
-                                    </c:forEach>
-                                </table>
-                            </div>
+                                        <c:forEach var="item" items="${orderDetail.value}">
+                                            <tr>
+                                                <c:url var="pDetail" value="/pDetail">
+                                                    <c:param name="pojo.productId"
+                                                             value="${item.productDTO.productId}"/>
+                                                </c:url>
+                                                <td class="goods-page-image">
+                                                    <a href="${pDetail}"><img
+                                                            src="${item.productDTO.photo}"
+                                                            alt="Berry Lace Dress'/>"></a>
+                                                </td>
+                                                <td class="goods-page-description" width="600px"
+                                                    height="116px">
+                                                    <h3>
+                                                        <a href="${pDetail}">${item.productDTO.name}</a>
+                                                    </h3>
+                                                    <p>${item.productDTO.description}</p>
+                                                </td>
 
-                            <div class="shopping-total">
-                                <ul>
-                                    <li class="shopping-total-price">
-                                        <em><fmt:message key="total" bundle="${lang}"/></em>
-                                        <strong class="price"><fmt:formatNumber
-                                                value="${orderDetail.key.total}"
-                                                type="currency"
-                                                maxFractionDigits="0"/></strong>
-                                    </li>
-                                </ul>
+                                                <td class="goods-page-quantity">
+                                                    <div class="product-quantity">
+                                                        <input id="product-quantity" type="text"
+                                                               value="${item.quantity}"
+                                                               class="form-control"
+                                                               disabled="disabled">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+                                </div>
+
+                                <div class="shopping-total">
+                                    <ul>
+                                        <li class="shopping-total-price">
+                                            <em><fmt:message key="total" bundle="${lang}"/></em>
+                                            <strong class="price"><fmt:formatNumber
+                                                    value="${orderDetail.key.total}"
+                                                    type="currency"
+                                                    maxFractionDigits="0"/></strong>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>
+                </c:forEach>
+            </c:if>
+
             <div class="col-md-12 col-sm-12">
                 <a class="btn btn-default" href="${home}"><fmt:message key="home"
                                                                        bundle="${lang}"/> <i
