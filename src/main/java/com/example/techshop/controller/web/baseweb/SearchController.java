@@ -44,7 +44,6 @@ public class SearchController extends HttpServlet {
     categoryCommand.setListResult(STServiceUtil.getCategoryService().getAllCategory());
     categoryCommand.setBrandInCate(
         STServiceUtil.getCategoryService().buildBrandInCate(categoryCommand.getListResult()));
-
     Map<String, Object> properties = STServiceUtil.getProductService()
         .searchProperties(productCommand);
     List<ProductDTO> products = (List<ProductDTO>) STServiceUtil.getProductService()
@@ -53,8 +52,10 @@ public class SearchController extends HttpServlet {
     productCommand.setTotalItems(
         (Integer) STServiceUtil.getProductService().getProducts(properties)[1]);
     productCommand.setTotalPages(totalPages(productCommand));
-    productCommand.setBrand(STServiceUtil.getBrandService().findById(productCommand.getBrand().getBrandId()));
-    productCommand.setCategory(STServiceUtil.getCategoryService().findById(productCommand.getCategory().getCategoryId()));
+    if (productCommand.getBrand().getBrandId()!=null && productCommand.getCategory().getCategoryId()!=null){
+      productCommand.setBrand(STServiceUtil.getBrandService().findById(productCommand.getBrand().getBrandId()));
+      productCommand.setCategory(STServiceUtil.getCategoryService().findById(productCommand.getCategory().getCategoryId()));
+    }
     request.setAttribute("cateItems", categoryCommand);
     request.setAttribute("productItems", productCommand);
   }
