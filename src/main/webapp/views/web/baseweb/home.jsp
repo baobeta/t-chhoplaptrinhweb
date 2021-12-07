@@ -179,7 +179,7 @@
                 <div class="owl-carousel owl-carousel5">
                     <c:forEach items="${productItems.isSaleProducts}" var="product">
                         <div>
-                            <div class="product-item">
+                            <div class="product-item" style="height: 280px">
                                 <div class="pi-img-wrapper">
                                     <img src="${product.photo}"
                                          style="height: 165px;margin-left: auto;margin-right: auto;"

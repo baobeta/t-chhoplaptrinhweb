@@ -81,7 +81,7 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> implements IUserR
       org.hibernate.query.Query query = session.createQuery(queryString);
       query.setParameter("email", email);
       if (query.getResultList().size() > 0) {
-        transaction.commit();
+        transaction.commit(); 
         return false;
       }
     } catch (HibernateException e) {
@@ -92,5 +92,4 @@ public class UserRepo extends AbstractDao<Integer, UserEntity> implements IUserR
     }
     return true;
   }
-
 }

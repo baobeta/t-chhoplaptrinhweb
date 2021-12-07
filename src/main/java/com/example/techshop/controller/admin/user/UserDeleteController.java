@@ -22,7 +22,7 @@ public class UserDeleteController extends HttpServlet {
     resp.setContentType("text/html");
     resp.setCharacterEncoding("UTF-8");
     req.setCharacterEncoding("UTF-8");
-    try {
+//    try {
       UserCommand command = FormUtil.populate(UserCommand.class, req);
       if (command.getIdDelete() != null) {
         List ids = new ArrayList();
@@ -32,8 +32,8 @@ public class UserDeleteController extends HttpServlet {
       } else {
         resp.sendRedirect("/admin/user");
       }
-    } catch (Exception e) {
-      resp.sendRedirect("/error");
-    }
+//    } catch (Exception e) {
+//      resp.sendRedirect("/error");
+//    }
   }
 }

@@ -68,7 +68,6 @@ public class EditProductController extends HttpServlet {
       } catch (Exception exception) {
         resp.sendRedirect("/admin/product?message=Error");
       }
-
     } else {
       ProductDTO dto = command.getPojo();
       dto.setCategoryDTO(STServiceUtil.getCategoryService().findById(idCategory));
@@ -80,9 +79,7 @@ public class EditProductController extends HttpServlet {
       } catch (Exception exception) {
         resp.sendRedirect("/admin/product?message=Error");
       }
-
     }
-
   }
 }
 
