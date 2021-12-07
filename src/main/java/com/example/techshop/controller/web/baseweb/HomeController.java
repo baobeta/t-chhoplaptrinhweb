@@ -54,6 +54,4 @@ public class HomeController extends HttpServlet {
     request.setAttribute("cateItems", categoryCommand);
     request.setAttribute("productItems", productCommand);
   }
-
-
 }
