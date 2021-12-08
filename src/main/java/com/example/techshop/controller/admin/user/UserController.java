@@ -49,7 +49,7 @@ public class UserController extends HttpServlet {
       if (message.trim().equals("addSuccess")) {
         request.setAttribute("message", "Thêm thành viên thành công");
       } else if (message.trim().equals("updateSuccess")) {
-        request.setAttribute("message", "Sửa thành viên thành công");
+        request.setAttribute("message", "Hàng động tiến thành công");
       } else if (message.trim().equals("delSuccess")) {
         request.setAttribute("message", "Xóa thành viên thành công");
       } else if (message.trim().equals("Error")) {

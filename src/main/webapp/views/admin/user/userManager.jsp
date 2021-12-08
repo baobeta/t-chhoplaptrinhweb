@@ -71,13 +71,10 @@
                             Hình ảnh
                           </th>
                           <th width="15%">
-                            Photo
-                          </th>
-                          <th width="10%">
                             Quyền
                           </th>
                           <th width="10%">
-
+                            Hành động
                           </th>
                         </tr>
                         </thead>

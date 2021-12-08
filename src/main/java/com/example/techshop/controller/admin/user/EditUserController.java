@@ -48,7 +48,7 @@ public class EditUserController extends HttpServlet {
     req.setCharacterEncoding("UTF-8");
     resp.setCharacterEncoding("UTF-8");
     UserCommand command = FormUtil.populate(UserCommand.class, req);
-    if (command.getPojo().getUserId() !=0&&command.getPojo().getUserId() !=null ) {
+    if (command.getPojo().getUserId() !=null ) {
       RoleDTO role = RoleConverter.entity2Dto(
           STRepoUtil.getRoleRepo().findEqualUnique("name", command.getRole()));
       command.getPojo().setRoleDTO(role);
@@ -63,7 +63,6 @@ public class EditUserController extends HttpServlet {
           STRepoUtil.getRoleRepo().findEqualUnique("name", command.getRole()));
       command.getPojo().setRoleDTO(role);
       try {
-        command.getPojo().setUserId(null);
         STServiceUtil.getUserService().saveUser(command.getPojo());
         resp.sendRedirect("/admin/user?message=addSuccess");
       } catch (Exception exception) {
