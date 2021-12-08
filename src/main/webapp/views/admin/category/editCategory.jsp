@@ -51,7 +51,7 @@
                                                     </div>
                                                     <div class="text-center m-3">
                                                         <input type="submit" value="Save" class="btn btn-primary m-3"/>
-                                                        <input type="button" value="Cancel" class="btn btn-secondary" id="buttonCancel"/>
+                                                        <a type="button" href="<c:url value='/admin/category'/>" class="btn btn-secondary">Cancel</a>
                                                     </div>
                                                 </form>
                                             </c:if>
@@ -75,7 +75,7 @@
                                                 </div>
                                                 <div class="form-group margin-bottom-10 margin-top-10 text-center ">
                                                     <input type="submit" value="Save" class="btn btn-primary margin-top-10"/>
-                                                    <input type="button" value="Cancel" class="btn btn-secondary margin-top-10" id="buttonCancel"/>
+                                                    <a type="button" href="<c:url value='/admin/category'/>" class="btn btn-secondary">Cancel</a>
                                                 </div>
                                            </form>
 
