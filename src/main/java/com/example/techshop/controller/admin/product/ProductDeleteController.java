@@ -24,7 +24,9 @@ public class ProductDeleteController extends HttpServlet {
     resp.setCharacterEncoding("UTF-8");
     req.setCharacterEncoding("UTF-8");
     try {
+      //get data from page
       ProductCommand command = FormUtil.populate(ProductCommand.class, req);
+      //check conditions delete
       if (command.getIdDelete() != null) {
         List ids = new ArrayList();
         ids.add(command.getIdDelete());

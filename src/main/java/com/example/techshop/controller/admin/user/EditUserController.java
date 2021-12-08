@@ -47,7 +47,10 @@ public class EditUserController extends HttpServlet {
       throws ServletException, IOException {
     req.setCharacterEncoding("UTF-8");
     resp.setCharacterEncoding("UTF-8");
+
+    //get data from page
     UserCommand command = FormUtil.populate(UserCommand.class, req);
+    //update user
     if (command.getPojo().getUserId() !=null ) {
       RoleDTO role = RoleConverter.entity2Dto(
           STRepoUtil.getRoleRepo().findEqualUnique("name", command.getRole()));
@@ -58,6 +61,7 @@ public class EditUserController extends HttpServlet {
       } catch (Exception exception) {
         resp.sendRedirect("/admin/user?message=Error");
       }
+      // add user
     } else {
       RoleDTO role = RoleConverter.entity2Dto(
           STRepoUtil.getRoleRepo().findEqualUnique("name", command.getRole()));

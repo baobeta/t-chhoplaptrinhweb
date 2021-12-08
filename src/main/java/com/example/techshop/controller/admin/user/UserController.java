@@ -25,13 +25,17 @@ public class UserController extends HttpServlet {
     response.setCharacterEncoding("UTF-8");
     request.setCharacterEncoding("UTF-8");
     try {
+      //get data in page
       UserCommand command = FormUtil.populate(UserCommand.class, request);
+      //get data pagination
       List<UserDTO> users = STServiceUtil.getUserService()
-          .pagingnation(command.getPage(), command.getMaxPageItems(), "firstName",
+          .pagingnation(command.getPage(), command.getMaxPageItems(), "lastName",
               command.getValue());
       command.setTotalItems(
-          (STServiceUtil.getUserService().CountUser("firstName", command.getValue())
+          (STServiceUtil.getUserService().CountUser("lastName", command.getValue())
               / command.getMaxPageItems()) + 1);
+
+      //send data to page
       request.setAttribute("users", users);
       checkMessage(request);
       request.setAttribute("pojo", command);
