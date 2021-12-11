@@ -35,7 +35,7 @@ public class OrderDetailEntity {
     @Column(name="address")
     private String address;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderDetailEntity", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderDetailEntity", cascade = CascadeType.ALL)
     private List<OrderItemEntity> orderItemEntityList;
 
     @ManyToOne

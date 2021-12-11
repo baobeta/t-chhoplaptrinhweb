@@ -47,13 +47,13 @@
                                                             <label class="col-md-2 control-label">Giá
                                                                 <span class="required"> * </span></label>
                                                             <div class="col-md-10">
-                                                                <input type="text" class="form-control" value="${product.price}" name="pojo.price" placeholder="">
+                                                                <input type="number" class="form-control" value="${product.price}" name="pojo.price" placeholder="" min="1">
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
                                                             <label class="col-md-2 control-label">Số lượng: <span class="required">* </span></label>
                                                             <div class="col-md-10">
-                                                                <input type="text" class="form-control" value="${product.quantity}" name="pojo.quantity" placeholder="">
+                                                                <input type="number" class="form-control" value="${product.quantity}" name="pojo.quantity" placeholder="" min="1">
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
@@ -133,13 +133,13 @@
                                                             <label class="col-md-2 control-label">Giá
                                                                 <span class="required"> * </span></label>
                                                             <div class="col-md-10">
-                                                                <input type="text" class="form-control" name="pojo.price" placeholder="">
+                                                                <input type="text" class="form-control" name="pojo.price" placeholder="" min="1">
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">
                                                             <label class="col-md-2 control-label">Số lượng: <span class="required">* </span></label>
                                                             <div class="col-md-10">
-                                                                <input type="text" class="form-control" name="pojo.quantity" placeholder="">
+                                                                <input type="number" class="form-control" name="pojo.quantity" placeholder="" min="1" >
                                                             </div>
                                                         </div>
                                                         <div class="form-group margin-bottom-10">

@@ -234,7 +234,7 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
       criteria.setFirstResult((pageNumber - 1) * pageSize);
       criteria.setMaxResults(pageSize);
       criteria.add(Restrictions.ilike(col, "%" + value + "%", MatchMode.ANYWHERE));
-      criteria.addOrder(Order.asc(firstLetter + remainingLetters + "Id"));
+      criteria.addOrder(Order.desc(firstLetter + remainingLetters + "Id"));
 
       listResult = (List<T>) criteria.list();
       session.getTransaction().commit();
