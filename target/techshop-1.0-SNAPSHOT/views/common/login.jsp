@@ -81,7 +81,7 @@
                         <div class="col-md-4 col-sm-4 pull-right">
                             <div class="form-info">
                                 <h2><em>Important</em> Information</h2>
-                                <p>LOVE Cô MAI ANH THER</p>
+                                <p>Công Nghệ Phần Mềm</p>
                             </div>
                         </div>
                     </div>
