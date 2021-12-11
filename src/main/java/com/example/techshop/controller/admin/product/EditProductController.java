@@ -67,6 +67,9 @@ public class EditProductController extends HttpServlet {
     //update
     if (command.getPojo().getProductId() != null) {
       ProductDTO productUpdate = command.getPojo();
+      if(productUpdate.getPhoto() ==null || productUpdate.getPhoto().equals("")) {
+       productUpdate.setPhoto(STServiceUtil.getProductService().findById(productUpdate.getProductId()).getPhoto());
+      }
       productUpdate.setCategoryDTO(STServiceUtil.getCategoryService().findById(idCategory));
       productUpdate.setBrandDTO(STServiceUtil.getBrandService().findById(idBrand));
       try {

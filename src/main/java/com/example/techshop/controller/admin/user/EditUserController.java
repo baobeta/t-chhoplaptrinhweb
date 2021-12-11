@@ -56,6 +56,9 @@ public class EditUserController extends HttpServlet {
           STRepoUtil.getRoleRepo().findEqualUnique("name", command.getRole()));
       command.getPojo().setRoleDTO(role);
       try {
+        if(command.getPojo().getPhotos() == null || command.getPojo().getPhotos().equals("")) {
+          command.getPojo().setPhotos(STServiceUtil.getUserService().findById(command.getPojo().getUserId()).getPhotos());
+        }
         STServiceUtil.getUserService().updateUser(command.getPojo());
         resp.sendRedirect("/admin/user?message=updateSuccess");
       } catch (Exception exception) {
