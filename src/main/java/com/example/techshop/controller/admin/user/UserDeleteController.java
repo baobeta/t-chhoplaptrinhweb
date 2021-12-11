@@ -22,8 +22,11 @@ public class UserDeleteController extends HttpServlet {
     resp.setContentType("text/html");
     resp.setCharacterEncoding("UTF-8");
     req.setCharacterEncoding("UTF-8");
+
     try {
+      //get id user delete
       UserCommand command = FormUtil.populate(UserCommand.class, req);
+      //delete
       if (command.getIdDelete() != null) {
         List ids = new ArrayList();
         ids.add(command.getIdDelete());

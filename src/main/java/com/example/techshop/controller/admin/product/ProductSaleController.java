@@ -27,19 +27,22 @@ public class ProductSaleController extends HttpServlet {
     response.setCharacterEncoding("UTF-8");
     request.setCharacterEncoding("UTF-8");
     try {
+      //get data from page
       ProductCommand command = FormUtil.populate(ProductCommand.class, request);
 
+      //pagingnation list product sale
       List<ProductDTO> listProduct =
           STServiceUtil.getProductService().pagingnation(command.getPage(),
               command.getMaxPageItems(), "sale", true);
-
       command.setTotalItems(
           (STServiceUtil.getProductService().CountProduct("sale", true) / command.getMaxPageItems())
               + 1);
 
+      // get brand and category
       List<BrandDTO> listBrand = STServiceUtil.getBrandService().getAllBrand();
       List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().getAllCategory();
 
+      // send data to page
       request.setAttribute("products", listProduct);
       request.setAttribute("brands", listBrand);
       request.setAttribute("category", listCategory);

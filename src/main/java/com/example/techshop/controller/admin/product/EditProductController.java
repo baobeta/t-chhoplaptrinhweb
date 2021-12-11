@@ -30,14 +30,19 @@ public class EditProductController extends HttpServlet {
     response.setCharacterEncoding("UTF-8");
     request.setCharacterEncoding("UTF-8");
     try {
+      //get data from page
       ProductCommand command = FormUtil.populate(ProductCommand.class, request);
+      // check update or create product
       if (request.getParameter("productId") != null) {
         Integer id = Integer.valueOf(request.getParameter("productId"));
         ProductDTO dto = STServiceUtil.getProductService().findEqualUnique("id", id);
         request.setAttribute("product", dto);
       }
+      // get list brand and category
       List<BrandDTO> listBrand = STServiceUtil.getBrandService().getAllBrand();
       List<CategoryDTO> listCategory = STServiceUtil.getCategoryService().getAllCategory();
+
+      //send data to page
       request.setAttribute("brands", listBrand);
       request.setAttribute("categorys", listCategory);
       RequestDispatcher dispatcher
@@ -54,10 +59,12 @@ public class EditProductController extends HttpServlet {
     resp.setContentType("text/html");
     resp.setCharacterEncoding("UTF-8");
     req.setCharacterEncoding("UTF-8");
+    //get data
     ProductCommand command = FormUtil.populate(ProductCommand.class, req);
     Integer idCategory = Integer.valueOf(command.getCategoryDTO());
     Integer idBrand = Integer.valueOf(command.getBrandDTO());
 
+    //update
     if (command.getPojo().getProductId() != null) {
       ProductDTO productUpdate = command.getPojo();
       productUpdate.setCategoryDTO(STServiceUtil.getCategoryService().findById(idCategory));
@@ -69,6 +76,7 @@ public class EditProductController extends HttpServlet {
         resp.sendRedirect("/admin/product?message=Error");
       }
 
+      //create product
     } else {
       ProductDTO dto = command.getPojo();
       dto.setCategoryDTO(STServiceUtil.getCategoryService().findById(idCategory));
